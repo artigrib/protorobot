@@ -45,7 +45,7 @@
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": { "@type": "Place", "name": "Místo upřesníme", "address": { "@type": "PostalAddress", "addressLocality": "Praha", "addressCountry": "CZ" } },
   "image": ["https://protorobot.cz/img/og.jpg"],
-  "organizer": { "@type": "Organization", "name": "PROTO ROBOT", "email": "artis.ai.2049@gmail.com" },
+  "organizer": { "@type": "Organization", "name": "PROTO ROBOT", "url": "https://protorobot.cz/" },
   "offers": { "@type": "Offer", "url": "https://luma.com/2pxjv05i", "price": "0", "priceCurrency": "CZK", "availability": "https://schema.org/InStock" },
   "inLanguage": ["cs", "en"]
 }
@@ -99,11 +99,11 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 @keyframes breathe{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.03) rotate(1.5deg)}}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.12)}}
 @keyframes float{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 10px))}}
-@keyframes glyph{0%,100%{transform:translateY(-50%) rotate(-27deg)}50%{transform:translateY(-46%) rotate(-24deg)}}
 @keyframes ticker{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .city__name,.hero__type__in,.badge,.tier__glyph,.slide.is-on img{animation:none!important}
+  .city__name,.hero__type__in,.badge,.slide.is-on img{animation:none!important}
+  .tier__pattern span{animation:pattern-glow calc(var(--beat) * 2) linear infinite!important}
   .ticker__track{animation-duration:70s}
   .js .page,.js .mod{opacity:1;transform:none;transition:none}
   .photo,.tier__art{transition:none}
@@ -120,7 +120,6 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:0;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .18s,color .18s}
 .pill:hover{background:rgba(0,0,0,.8)}
 .pill--orange{background:var(--orange);color:var(--black);backdrop-filter:none} .pill--orange:hover{background:var(--black);color:var(--white)}
-.pill--grey{background:var(--grey-pill);color:var(--black);backdrop-filter:none} .pill--grey:hover{background:var(--black);color:var(--white)}
 
 /* ---------- header ---------- */
 .top{position:fixed;left:var(--g);right:var(--g);top:var(--g);z-index:50;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;pointer-events:none}
@@ -238,22 +237,27 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .card__name{position:absolute;top:22px;left:50%;transform:translateX(-50%);z-index:3;background:var(--white);color:var(--black);border-radius:999px;height:var(--pill-h);padding:0 25px;display:inline-flex;align-items:center;font-size:var(--nav-fs);text-transform:uppercase;white-space:nowrap}
 .card p{margin-top:var(--s1);font-size:16px;line-height:1.35}
 .card p strong{font-weight:600}
-.card__cta{display:inline-block;margin-top:6px;font-size:16px;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
-.more{display:flex;justify-content:center;padding-top:var(--s4)}
 @media (max-width:820px){.card,.card--lg{grid-column:span 6}}
 
 /* ---------- registration ---------- */
 .tix h2{text-align:center}
-.tiers{display:grid;grid-template-columns:repeat(2,minmax(0,460px));gap:var(--g);justify-content:center;text-align:center}
-.tier__art{display:block;position:relative;aspect-ratio:348/432;border-radius:20px;overflow:hidden;background:var(--black);transition:transform .35s var(--ease-out)}
-.tier__art:hover,.tier__art:focus-visible{transform:translateY(-8px)}
+.tiers{display:grid;grid-template-columns:minmax(0,460px);gap:var(--g);justify-content:center;text-align:center}
+.tier__art{display:block;position:relative;color:inherit;aspect-ratio:348/432;border-radius:20px;overflow:hidden;background:var(--black);--px:0;--py:0;--lift:0;
+  transform:perspective(1000px) rotateX(calc(var(--py) * -5deg)) rotateY(calc(var(--px) * 7deg)) translateY(calc(var(--lift) * -8px));will-change:transform}
 .tier{container-type:inline-size}
-.tier__glyph{position:absolute;left:2%;top:50%;transform:translateY(-50%) rotate(-27deg);font-weight:900;font-style:italic;font-stretch:125%;font-size:31cqw;line-height:.72;letter-spacing:-.06em;white-space:nowrap;user-select:none;animation:glyph 12s ease-in-out infinite;opacity:.4;transition:opacity .4s}
-.tier__art:hover .tier__glyph{opacity:1}
-.tier__art--hot .tier__glyph{color:var(--orange)}
-.tier__art--info{background:var(--white)}
-.tier__art--info .tier__glyph{color:#e4e4e4;opacity:1;animation-delay:-6s}
-.tier__art .pill{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--black);color:var(--white);backdrop-filter:none;overflow:hidden}
+.tier__pattern{position:absolute;left:50%;top:50%;width:360%;transform:translate(calc(-50% + var(--px) * 18px),calc(-50% + var(--py) * 18px)) rotate(-27deg);display:flex;flex-direction:column;gap:.1em;
+  font-weight:900;font-style:italic;font-stretch:125%;font-size:13cqw;line-height:.8;letter-spacing:-.04em;white-space:nowrap;text-transform:uppercase;user-select:none;opacity:.75;transition:opacity .4s}
+/* each row is a strip of orange light passing through the letters, one row after another */
+.tier__pattern span{display:block;color:transparent;-webkit-background-clip:text;background-clip:text;
+  background-image:linear-gradient(100deg,var(--orange-dim) 0%,var(--orange-dim) 30%,var(--orange) 45%,#ffa86b 50%,var(--orange) 55%,var(--orange-dim) 70%,var(--orange-dim) 100%);
+  background-size:300% 100%;background-position:100% 0;
+  animation:pattern-drift calc(var(--beat) * 6) linear infinite, pattern-glow calc(var(--beat) * 2) linear infinite}
+.tier__pattern span:nth-child(even){animation-direction:reverse,normal;margin-left:-8%}
+.tier__pattern span:nth-child(3n+1){animation-delay:0s,-.4s} .tier__pattern span:nth-child(3n+2){animation-delay:0s,-2.2s} .tier__pattern span:nth-child(3n){animation-delay:0s,-4.6s}
+.tier__art:hover .tier__pattern{opacity:1}
+@keyframes pattern-glow{from{background-position:100% 0}to{background-position:0 0}}
+@keyframes pattern-drift{from{transform:translateX(0)}to{transform:translateX(-8.6%)}}   /* exactly one "PROTO ROBOT " of the row so the loop is seamless */
+.tier__art .pill{position:absolute;left:50%;top:50%;transform:translate(calc(-50% - var(--px) * 8px),calc(-50% - var(--py) * 8px));background:var(--black);color:var(--white);backdrop-filter:none;overflow:hidden;transition:background .18s,color .18s}
 .tier__art--hot .pill{background:var(--white);color:var(--black)}
 .pill--flip .f-a,.pill--flip .f-b{display:flex;align-items:center;justify-content:center;height:100%;transition:transform .35s cubic-bezier(.7,0,.3,1)}
 .pill--flip .f-b{position:absolute;inset:0;transform:translateY(100%)}
@@ -261,17 +265,10 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .tier__art:hover .pill--flip .f-b,.tier__art:focus-visible .pill--flip .f-b{transform:translateY(0)}
 .tier__lead{margin-top:var(--s2);font-size:16px;line-height:1.1;text-transform:uppercase}
 .tier ul{margin-top:var(--s1);font-size:16px;line-height:1.4}
-@media (max-width:560px){.tiers{grid-template-columns:1fr;gap:var(--s3)}}
 
 /* ---------- venue ---------- */
 .venue .addr{font-weight:500;margin-bottom:.5em}
 
-/* ---------- partners ---------- */
-.partners p{color:var(--grey-text);font-size:16px;margin-bottom:var(--s2)}
-.partners__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--g)}
-.logo{font-weight:500;font-size:15px;letter-spacing:.02em;text-transform:uppercase;text-align:center;color:#8f8f8f;border:1.5px dashed var(--grey-line);border-radius:8px;padding:14px 10px}
-@media (max-width:820px){.partners__grid{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:640px){.partners__grid{grid-template-columns:repeat(2,1fr)}.partners .logo:nth-child(n+5){display:none}}
 
 /* ---------- footer ---------- */
 .foot__img{aspect-ratio:1440/560;margin:0}
@@ -280,38 +277,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .foot .pill:hover{background:var(--orange);color:var(--black)}
 .foot__meta{width:100%;color:rgba(255,255,255,.7);font-size:14px;padding-top:12px}
 @media (max-width:640px){.foot .pill{height:44px;padding:0 18px;font-size:14px}}
-/* ---------- contact dialog ---------- */
-.dlg{border:0;padding:0;background:transparent;max-width:min(560px,calc(100vw - 2*var(--g)));width:100%;margin:auto}
-.dlg::backdrop{background:rgba(240,240,240,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.dlg[open]{animation:dlg-in .35s var(--ease-out)}
-@keyframes dlg-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.form{position:relative;background:var(--white);border-radius:24px;padding:var(--s3) var(--s3) var(--s3)}
-.dlg__close{position:absolute;right:var(--s2);top:var(--s2);height:40px;padding:0 18px;font-size:14px}
-.form__title{font-weight:300;font-size:clamp(34px,4vw,52px);letter-spacing:-.04em;line-height:1;margin:0 0 6px;padding-right:90px}
-.form__hint{color:var(--grey-text);font-size:16px;margin-bottom:var(--s2)}
-.field{display:block;margin-bottom:var(--s2)}
-.field>span{display:block;font-size:14px;text-transform:uppercase;letter-spacing:.02em;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;font:inherit;font-size:18px;padding:12px 16px;border:2px solid var(--black);border-radius:14px;background:var(--white);color:var(--black);transition:border-color .18s,box-shadow .18s}
-.field textarea{resize:vertical;min-height:96px;border-radius:18px}
-.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,90,0,.25)}
-.field.is-invalid input,.field.is-invalid textarea{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,90,0,.25)}
-.field__err{display:none;color:#B33E00;font-size:14px;margin-top:6px}
-.field.is-invalid .field__err{display:block}
-.form__actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.form__status{margin-top:var(--s2);font-size:16px;min-height:1.4em}
-.form__status.is-ok{color:#0a6b1f} .form__status.is-err{color:#C8000A}
-.form.is-sent .field,.form.is-sent .form__actions,.form.is-sent .form__hint{display:none}
-.form.is-sent .form__status{font-size:20px}
-.form.is-busy #fSubmit{opacity:.6;pointer-events:none}
-.field--check{display:grid;grid-template-columns:auto 1fr;gap:10px 12px;align-items:start;font-size:15px;line-height:1.4}
-.field--check input{width:22px;height:22px;margin-top:2px;accent-color:var(--orange)}
-.field--check .field__err{grid-column:2}
-.field--check.is-invalid input{outline:2px solid var(--orange);outline-offset:2px;border-radius:4px}
-.linklike{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:.15em;cursor:pointer}
-.terms p{font-size:15px;line-height:1.45;margin-bottom:12px}
-.terms p a{text-decoration:underline;text-underline-offset:.15em}
-.terms .form__actions{margin-top:var(--s2)}
-@media (max-width:640px){.form{padding:var(--s3) var(--gt) var(--s3)}.dlg{max-width:calc(100vw - 2*var(--g))}}
 </style>
 </head>
 <body>
@@ -323,9 +288,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     <div class="city__nav" id="cityNav">
       <a class="pill" href="#about">O akci</a>
       <a class="pill" href="#programme">Program</a>
-      <a class="pill" href="#register">Řečníci</a>
       <a class="pill" href="#venue">Místo</a>
-      <a class="pill" href="#partners">Partneři</a>
       <a class="pill city__lang" href="/en/" hreflang="en" lang="en">English</a>
     </div>
   </nav>
@@ -368,7 +331,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 <section class="mod intro" id="about">
   <h1><span>Proto Robot #0</span><span>Praha, 23. 10. 2026</span></h1>
   <p>PROTO ROBOT je nová série setkání pro lidi, kteří staví roboty, a #0 je to úplně první. Přednášky, živá dema, pivo a povídání. <span class="tag">Komunita</span> pro každého v Praze, kdo dělá na hardwaru, autonomii, robot learningu nebo nástrojích kolem nich. Přineste, na čem pracujete, ukažte to a podívejte se, co mají na stole ostatní.</p>
-  <p>Pátek 23. října, 18 až 22 hodin. Vstup zdarma, nutná registrace. Přednášky jsou v angličtině. Chcete slot na pódiu nebo stůl na demo? <a href="mailto:artis.ai.2049@gmail.com" data-form="talk">Napište nám</a>.</p>
+  <p>Pátek 23. října, 18 až 22 hodin. Vstup zdarma, nutná registrace. Přednášky jsou česky a anglicky.</p>
 </section>
 
 <div class="ticker" aria-hidden="true"><div class="ticker__track"><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span></div></div>
@@ -382,18 +345,16 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 <section class="mod mod--flush hl" id="programme">
   <h2><span id="fitTitle">Program</span></h2>
   <div class="grid">
-    <a class="card card--lg" href="mailto:artis.ai.2049@gmail.com?subject=Talk%20at%20PROTO%20ROBOT%20%230" data-form="talk">
+    <article class="card card--lg">
       <span class="card__name">Přednášky</span>
       <div class="photo"><img loading="lazy" decoding="async" src="/img/card-speaker.jpg" alt=""></div>
       <p>Krátké přednášky od lidí, kteří stavějí skutečné stroje: humanoidi, koboty, drony, autonomní stacky. Dvacet minut každá. Řečníky právě potvrzujeme.</p>
-      <span class="card__cta">Navrhnout přednášku</span>
-    </a>
-    <a class="card card--lg" href="mailto:artis.ai.2049@gmail.com?subject=Demo%20at%20PROTO%20ROBOT%20%230" data-form="demo">
+    </article>
+    <article class="card card--lg">
       <span class="card__name">Dema</span>
       <div class="photo"><img loading="lazy" decoding="async" src="/img/robot-dog.jpg" alt=""></div>
       <p>Přineste tu věc samotnou. Stůl, zásuvka a místnost plná lidí, kteří se zeptají na to správné. Nedodělané je v pořádku. O to jde.</p>
-      <span class="card__cta">Zamluvit stůl</span>
-    </a>
+    </article>
     <article class="card" id="timetable">
       <span class="card__name"><time datetime="2026-10-23T18:00+02:00">18:00</time></span>
       <div class="photo photo--frame"><video muted loop playsinline autoplay preload="metadata" poster="/img/doors-poster.jpg" data-src="/video/doors.mp4" aria-label="Lidé přicházejí"></video></div>
@@ -410,21 +371,15 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <p><strong>Hangout do 22:00.</strong> Pivo a řeči o práci. Máme toho hodně. A proto robot.</p>
     </article>
   </div>
-  <div class="more"><a class="pill pill--grey" href="mailto:artis.ai.2049@gmail.com?subject=PROTO%20ROBOT%20%230" data-form="talk">Chcete přednášet? Napište nám</a></div>
 </section>
 
 <section class="mod tix" id="register">
   <h2>Vstup zdarma.<br>Zaregistrujte se</h2>
   <div class="tiers">
     <div class="tier">
-      <a class="tier__art tier__art--hot" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener"><span class="tier__glyph" aria-hidden="true">PROTO</span><span class="pill pill--flip"><span class="f-a">Registrace na Luma</span><span class="f-b" aria-hidden="true">Otevře Luma</span></span></a>
+      <a class="tier__art tier__art--hot" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener"><span class="tier__pattern" aria-hidden="true"><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span></span><span class="pill pill--flip"><span class="f-a">Registrace na Luma</span><span class="f-b" aria-hidden="true">Otevře Luma</span></span></a>
       <p class="tier__lead">Pro hosty</p>
       <ul><li>Zdarma, RSVP na jedno kliknutí</li><li>Pátek 23. října 2026, 18:00 až 22:00</li><li>Adresu pošleme po registraci</li><li>Počet míst je omezený</li></ul>
-    </div>
-    <div class="tier">
-      <a class="tier__art tier__art--info" href="mailto:artis.ai.2049@gmail.com?subject=Talk%20or%20demo%20at%20PROTO%20ROBOT%20%230" data-form="talk"><span class="tier__glyph" aria-hidden="true">PROTO</span><span class="pill pill--flip"><span class="f-a">Přednáška nebo demo</span><span class="f-b" aria-hidden="true">Otevře formulář</span></span></a>
-      <p class="tier__lead">Pro řečníky</p>
-      <ul><li>20minutová přednáška nebo stůl s vaším robotem</li><li>Česky nebo anglicky</li><li>Řekněte nám, co stavíte</li><li>Odpovíme do několika dní</li></ul>
     </div>
   </div>
 </section>
@@ -432,23 +387,15 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 <section class="mod venue" id="venue">
   <h2>Místo v Praze<br>upřesníme</h2>
   <p class="lede addr">Praha, pátek 23. října 2026, 18:00 až 22:00</p>
-  <p class="lede">Domlouváme prostor s místem pro plátno, pár stolů s hardwarem a lednici. Adresa přijde všem registrovaným na Luma zhruba týden před akcí. Pokud by vaše dílna, laboratoř nebo kancelář mohla hostit tuto nebo některou další edici, <a href="mailto:artis.ai.2049@gmail.com?subject=Hosting%20PROTO%20ROBOT" data-form="partner">napište nám</a>.</p>
+  <p class="lede">Domlouváme prostor s místem pro plátno, pár stolů s hardwarem a lednici. Adresa přijde všem registrovaným na Luma zhruba týden před akcí.</p>
 </section>
 
-<section class="mod partners" id="partners" aria-labelledby="partners-h">
-  <p id="partners-h">Partnery a hostitele uvedeme zde. Chcete tu mít logo? <a href="mailto:artis.ai.2049@gmail.com?subject=Partnering%20with%20PROTO%20ROBOT" data-form="partner">Ozvěte se</a>.</p>
-  <div class="partners__grid" aria-hidden="true">
-    <div class="logo">Partner</div><div class="logo">Partner</div><div class="logo">Partner</div><div class="logo">Partner</div><div class="logo">Partner</div><div class="logo">Partner</div>
-  </div>
-</section>
 
 </main>
 
 <div class="foot__img photo"><img loading="lazy" decoding="async" src="/img/foot-dog.jpg" alt="" style="object-position:center 55%"></div>
 <footer class="foot">
   <a class="pill" href="#about">O akci</a>
-  <a class="pill" href="mailto:artis.ai.2049@gmail.com" data-form="other">Kontakt</a>
-  <a class="pill" href="mailto:artis.ai.2049@gmail.com?subject=Talk%20or%20demo%20at%20PROTO%20ROBOT%20%230" data-form="talk">Výzva pro přednášky a dema</a>
   <a class="pill" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener">Luma</a>
   <a class="pill" href="/en/" hreflang="en" lang="en">English</a>
   <div class="foot__meta">© 2026 PROTO ROBOT. Máme toho hodně. A proto robot.</div>
@@ -456,44 +403,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 </div>
 
 
-<dialog class="dlg" id="formDlg" aria-labelledby="dlgTitle">
-  <form class="form" id="contactForm" novalidate>
-    <button class="dlg__close pill pill--grey" type="button" data-close aria-label="Zavřít">Zavřít</button>
-    <h2 class="form__title" id="dlgTitle">Napište nám</h2>
-    <p class="form__hint">Odpovíme do několika dní.</p>
-    <label class="field"><span>Chci</span>
-      <select name="type" id="fType">
-        <option value="Talk">Přednášet</option>
-        <option value="Demo">Ukázat demo</option>
-        <option value="Partner">Partnerství nebo hosting</option>
-        <option value="Other">Něco jiného</option>
-        <option value="Delete">Smazat moje údaje</option>
-      </select></label>
-    <label class="field"><span>E-mail</span><input type="email" name="email" autocomplete="email" inputmode="email" required placeholder="vy@priklad.cz"><small class="field__err"></small></label>
-    <label class="field"><span>Telefon</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" required placeholder="+420 123 456 789"><small class="field__err"></small></label>
-    <label class="field field--text"><span data-label-request>Na čem stavíte?</span><textarea name="request" rows="4" required placeholder="Stačí pár řádků"></textarea><small class="field__err"></small></label>
-    <label class="field field--check"><input type="checkbox" name="consent" required><span>Souhlasím, že PROTO ROBOT uloží moje kontaktní údaje, aby mohl odpovědět na tuto žádost. <button type="button" class="linklike" data-terms>Jak nakládáme s vašimi údaji</button></span><small class="field__err"></small></label>
-    <div class="form__actions">
-      <button class="pill pill--orange" type="submit" id="fSubmit">Odeslat</button>
-    </div>
-    <p class="form__status" id="fStatus" role="status" aria-live="polite"></p>
-  </form>
-</dialog>
-
-<dialog class="dlg" id="termsDlg" aria-labelledby="termsTitle">
-  <div class="form terms">
-    <button class="dlg__close pill pill--grey" type="button" data-close-terms aria-label="Zavřít">Zavřít</button>
-    <h2 class="form__title" id="termsTitle">Vaše údaje</h2>
-    <p><strong>Kdo.</strong> PROTO ROBOT, komunitní meetup v Praze. Kontakt: <a href="mailto:artis.ai.2049@gmail.com">artis.ai.2049@gmail.com</a>.</p>
-    <p><strong>Co sbíráme.</strong> Jen to, co napíšete do tohoto formuláře: co chcete (přednáška, demo, partnerství, jiné), váš e-mail, telefonní číslo a zprávu.</p>
-    <p><strong>Proč.</strong> Abychom vám odpověděli a zorganizovali meetup: potvrdili přednášku nebo demo stůl, domluvili detaily s partnerem nebo hostitelem. Nic jiného. Žádné newslettery, žádná reklama, žádné předávání třetím stranám.</p>
-    <p><strong>Právní základ.</strong> Váš souhlas (čl. 6 odst. 1 písm. a) GDPR). Můžete ho kdykoli odvolat.</p>
-    <p><strong>Kde jsou uloženy.</strong> V Google Formuláři a jeho tabulce v Google účtu organizátora (Google Ireland Ltd). Přístup má jen organizační tým.</p>
-    <p><strong>Jak dlouho.</strong> Šest měsíců po akci, nebo dokud nepožádáte o smazání, podle toho, co nastane dřív.</p>
-    <p><strong>Vaše práva.</strong> Můžete se zeptat, co o vás máme, nechat to opravit nebo smazat. Ve formuláři zvolte „Smazat moje údaje“ a pošlete svůj e-mail, nebo napište na <a href="mailto:artis.ai.2049@gmail.com?subject=Smazat%20moje%20udaje">artis.ai.2049@gmail.com</a>. Odpovíme do několika dní a potvrdíme, až budou údaje smazány. Můžete se také obrátit na Úřad pro ochranu osobních údajů (ÚOOÚ).</p>
-    <div class="form__actions"><button class="pill pill--orange" type="button" data-terms-ok>Přečteno</button></div>
-  </div>
-</dialog>
 
 <script>
 (() => {
@@ -697,6 +606,31 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   heroClock.start();
   matchMedia('(orientation: portrait)').addEventListener?.('change', heroClock.start);
 
+  /* ---------- registration card: pointer parallax ----------
+     The card does not jump to the pointer: every frame it closes a small part of the distance
+     to the target (and to rest after the pointer leaves), so entering, following and leaving
+     are one continuous, slow movement. */
+  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {   // pointer-driven, so it stays on under reduced motion
+    $$('.tier__art').forEach(card => {
+      let tx = 0, ty = 0, tl = 0, cx = 0, cy = 0, cl = 0, raf = null;
+      const EASE = 0.06;   // share of the remaining distance covered per frame: lower = slower, softer
+      const frame = () => {
+        cx += (tx - cx) * EASE; cy += (ty - cy) * EASE; cl += (tl - cl) * EASE;
+        card.style.setProperty('--px', cx.toFixed(4)); card.style.setProperty('--py', cy.toFixed(4)); card.style.setProperty('--lift', cl.toFixed(4));
+        const settled = Math.abs(tx - cx) < 0.002 && Math.abs(ty - cy) < 0.002 && Math.abs(tl - cl) < 0.002;
+        raf = settled ? null : requestAnimationFrame(frame);
+      };
+      const run = () => { if (!raf) raf = requestAnimationFrame(frame); };
+      card.addEventListener('pointerenter', () => { tl = 1; run(); });
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width - 0.5) * 2; ty = ((e.clientY - r.top) / r.height - 0.5) * 2;   // -1 … 1 from the centre
+        run();
+      });
+      card.addEventListener('pointerleave', () => { tx = ty = tl = 0; run(); });
+    });
+  }
+
   /* ---------- agenda clips ---------- */
   const clips = $$('.photo video');
   const playClip = v => {
@@ -732,102 +666,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     else { heroClock.start(); kickClips(); }
   });
 
-  /* ---------- contact form (Google Form backend) ---------- */
-  const FORM_URL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSe9Jm70N9j3tTsOfNvAgWnEwNEXrh07FfJATELCqoApF3uNtQ/formResponse';
-  const FIELDS = { type: 'entry.259228601', email: 'entry.856845439', phone: 'entry.1380697797', request: 'entry.384541728' };
-  const TYPES = { talk: 'Talk', demo: 'Demo', partner: 'Partner', other: 'Other' };
-  const FALLBACK_MAIL = 'mailto:artis.ai.2049@gmail.com';
-
-  const dlg = $('#formDlg'), form = $('#contactForm'), formStatus = $('#fStatus');
-  const field = name => form.elements[name];
-  let opener = null;
-
-  const setStatus = (text, cls = '') => { formStatus.textContent = text; formStatus.className = 'form__status' + (cls ? ' ' + cls : ''); };
-  const setError = (name, msg) => {
-    const wrap = field(name).closest('.field');
-    wrap.classList.toggle('is-invalid', !!msg);
-    $('.field__err', wrap).textContent = msg || '';
-  };
-  const RULES = {
-    email:   { test: v => /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(v), empty: 'Zadejte e-mail', bad: 'Tohle nevypadá jako e-mail' },
-    phone:   { test: v => /^\+?[0-9][0-9 ()-]{5,}[0-9]$/.test(v) && v.replace(/\D/g, '').length >= 7 && v.replace(/\D/g, '').length <= 15, empty: 'Zadejte telefonní číslo', bad: 'Použijte číslice, mezery a +, například +420 777 123 456' },
-    request: { test: v => v.length >= 10, empty: 'Napište, na čem stavíte', bad: 'Ještě pár slov, prosím' },
-  };
-  const checkField = name => {
-    const v = field(name).value.trim(), rule = RULES[name];
-    const msg = !v ? rule.empty : rule.test(v) ? '' : rule.bad;
-    setError(name, msg);
-    return !msg;
-  };
-  const isDelete = () => field('type').value === 'Delete';
-  const checkConsent = () => {
-    const ok = field('consent').checked;
-    const wrap = field('consent').closest('.field');
-    wrap.classList.toggle('is-invalid', !ok);
-    $('.field__err', wrap).textContent = ok ? '' : 'Zaškrtněte prosím políčko, abychom mohli uložit váš kontakt';
-    return ok;
-  };
-  const validate = () => {
-    const names = isDelete() ? ['email'] : Object.keys(RULES);   // a deletion request only needs the email to match
-    const fields = names.map(checkField);
-    if (isDelete()) ['phone', 'request'].forEach(n => setError(n));
-    return [...fields, checkConsent()].every(Boolean);
-  };
-  const applyMode = () => {
-    const del = isDelete();
-    $('[data-label-request]', form).textContent = del ? 'Chcete nám něco sdělit? (nepovinné)' : 'Na čem stavíte?';
-    field('request').placeholder = del ? 'Například: kterou žádost smazat' : 'Stačí pár řádků';
-    field('phone').closest('.field').querySelector('span').textContent = del ? 'Telefon (nepovinné)' : 'Telefon';
-  };
-  field('type').addEventListener('change', applyMode);
-
-  const openForm = (kind, from) => {
-    opener = from;
-    form.reset(); form.classList.remove('is-sent', 'is-busy'); setStatus('');
-    $$('.field', form).forEach(f => f.classList.remove('is-invalid'));
-    field('type').value = TYPES[kind] || 'Other'; applyMode();
-    if (typeof dlg.showModal !== 'function') { location.href = from?.href || FALLBACK_MAIL; return; }
-    dlg.showModal(); field('email').focus();
-  };
-  const closeForm = () => { dlg.close(); opener?.focus(); };
-
-  document.addEventListener('click', e => {
-    const a = e.target.closest('[data-form]'); if (!a) return;
-    e.preventDefault();
-    openForm(a.dataset.form, a);
-  });
-  $('[data-close]', dlg).addEventListener('click', closeForm);
-  dlg.addEventListener('click', e => { if (e.target === dlg) closeForm(); });   // backdrop
-  field('consent').addEventListener('change', () => { if (field('consent').checked) checkConsent(); });
-
-  const termsDlg = $('#termsDlg');
-  $('[data-terms]', form).addEventListener('click', () => termsDlg.showModal());
-  $('[data-close-terms]', termsDlg).addEventListener('click', () => termsDlg.close());
-  termsDlg.addEventListener('click', e => { if (e.target === termsDlg) termsDlg.close(); });
-  $('[data-terms-ok]', termsDlg).addEventListener('click', () => { termsDlg.close(); field('consent').checked = true; checkConsent(); field('consent').focus(); });
-  Object.keys(RULES).forEach(n => {
-    field(n).addEventListener('blur', () => { if (field(n).value.trim()) checkField(n); });
-    field(n).addEventListener('input', () => { if (field(n).closest('.field').classList.contains('is-invalid')) checkField(n); });
-  });
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (!validate()) { $('.is-invalid input, .is-invalid textarea', form)?.focus(); return; }
-    form.classList.add('is-busy'); setStatus('Odesílám');
-    const body = new URLSearchParams();
-    Object.entries(FIELDS).forEach(([name, entry]) => body.append(entry, field(name).value.trim()));
-    body.append('fvv', '1'); body.append('pageHistory', '0'); body.append('fbzx', '-3949615280961334720');
-    try {
-      await fetch(FORM_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
-      form.classList.remove('is-busy'); form.classList.add('is-sent');
-      setStatus('Odesláno. Odpovíme do několika dní.', 'is-ok');
-      setTimeout(closeForm, 2500);
-    } catch (err) {
-      form.classList.remove('is-busy');
-      setStatus('', 'is-err');
-      formStatus.innerHTML = `Nepodařilo se odeslat. Napište nám na <a href="${FALLBACK_MAIL}">artis.ai.2049@gmail.com</a>`;
-    }
-  });
 })();
 </script>
 </body>
