@@ -296,6 +296,10 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .venue .addr{font-weight:500;margin-bottom:.5em}
 
 
+.venue__photos{margin-top:var(--s3)}
+.venue__photos .photo--wide img{object-position:center 60%}
+.venue__photos .photo:last-child img{object-position:center 35%}
+
 /* ---------- footer ---------- */
 .foot__img{aspect-ratio:1440/560;margin:0}
 .foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px;margin:0;background:var(--black);min-height:70px}
@@ -440,6 +444,11 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <h2>Pracovna<br>Vlkova 36, Prague 3</h2>
   <p class="lede">Pracovna is a café with a coworking space. Walk in through the main entrance and ask at the bar for PROTO ROBOT.</p>
   <p class="lede"><a href="https://www.google.com/maps/search/?api=1&amp;query=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Open in maps</a></p>
+  <div class="strip venue__photos" role="group" aria-label="Photos of Pracovna">
+    <div class="photo photo--wide"><img loading="lazy" decoding="async" src="/img/venue-hall.jpg" alt="The hall at Pracovna set up with chairs"></div>
+    <div class="photo"><img loading="lazy" decoding="async" src="/img/venue-event.jpg" alt="An event in the Pracovna hall"></div>
+    <div class="photo"><img loading="lazy" decoding="async" src="/img/venue-street.jpg" alt="Pracovna sign on Vlkova street"></div>
+  </div>
 </section>
 
 

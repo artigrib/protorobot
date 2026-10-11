@@ -296,6 +296,10 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .venue .addr{font-weight:500;margin-bottom:.5em}
 
 
+.venue__photos{margin-top:var(--s3)}
+.venue__photos .photo--wide img{object-position:center 60%}
+.venue__photos .photo:last-child img{object-position:center 35%}
+
 /* ---------- footer ---------- */
 .foot__img{aspect-ratio:1440/560;margin:0}
 .foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px;margin:0;background:var(--black);min-height:70px}
@@ -440,6 +444,11 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <h2>Pracovna<br>Vlkova 36, Praha 3</h2>
   <p class="lede">Pracovna je kavárna s coworkingem. Vejděte hlavním vchodem a na baru se zeptejte na PROTO ROBOT.</p>
   <p class="lede"><a href="https://www.google.com/maps/search/?api=1&amp;query=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Otevřít v mapě</a></p>
+  <div class="strip venue__photos" role="group" aria-label="Fotky Pracovny">
+    <div class="photo photo--wide"><img loading="lazy" decoding="async" src="/img/venue-hall.jpg" alt="Sál v Pracovně se židlemi pro publikum"></div>
+    <div class="photo"><img loading="lazy" decoding="async" src="/img/venue-event.jpg" alt="Akce v sále Pracovny"></div>
+    <div class="photo"><img loading="lazy" decoding="async" src="/img/venue-street.jpg" alt="Vývěsní štít Pracovny na Vlkově ulici"></div>
+  </div>
 </section>
 
 
