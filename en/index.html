@@ -45,7 +45,7 @@
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": { "@type": "Place", "name": "Pracovna", "address": { "@type": "PostalAddress", "streetAddress": "Vlkova 36", "addressLocality": "Prague 3", "addressCountry": "CZ" } },
   "image": ["https://protorobot.cz/img/og.jpg"],
-  "organizer": { "@type": "Organization", "name": "PROTO ROBOT", "url": "https://protorobot.cz/" },
+  "organizer": { "@type": "Organization", "name": "PROTO ROBOT", "url": "https://protorobot.cz/", "sameAs": ["https://luma.com/user/protorobot"] },
   "offers": { "@type": "Offer", "url": "https://luma.com/2pxjv05i", "price": "0", "priceCurrency": "CZK", "availability": "https://schema.org/InStock" },
   "inLanguage": ["en", "cs"]
 }
@@ -264,6 +264,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .cal .pill{background:var(--black);backdrop-filter:none;height:44px;padding:0 20px;font-size:15px}
 .cal .pill:hover{background:var(--orange);color:var(--black)}
 
+.follow{margin-top:var(--s2);font-size:16px;line-height:1.4}
 /* ---------- registration ---------- */
 .tix h2{text-align:center}
 .tiers{display:grid;grid-template-columns:minmax(0,460px);gap:var(--g);justify-content:center;text-align:center}
@@ -441,12 +442,14 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <p class="tier__lead">For guests</p>
       <ul><li>Free, registration on Luma</li><li>Pracovna, Vlkova 36, Prague 3</li><li>Places are limited</li></ul>
       <div class="cal"><a class="pill" href="/proto-robot-0.ics" download>Add to calendar</a><a class="pill" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=PROTO+ROBOT+%230&amp;dates=20261023T160000Z%2F20261023T200000Z&amp;details=Robotics+meetup.+Doors+18%3A00%2C+talks+19%3A00+to+about+21%3A00%2C+then+demo+tables+and+chatter+until+22%3A00.+https%3A%2F%2Fprotorobot.cz%2Fen%2F&amp;location=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Google Calendar</a></div>
+      <p class="follow">PROTO ROBOT is a series. <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow us on Luma</a> to hear about #1 first.</p>
     </div>
   </div>
 </section>
 
 <section class="mod venue" id="venue">
   <h2>Pracovna<br>Vlkova 36, Prague 3</h2>
+  <p class="lede">Pracovna is a café with a coworking space. Walk in through the main entrance and ask at the bar for PROTO ROBOT.</p>
   <p class="lede"><a href="https://www.google.com/maps/search/?api=1&amp;query=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Open in maps</a></p>
 </section>
 
@@ -457,6 +460,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 <footer class="foot">
   <a class="pill" href="#about">About</a>
   <a class="pill" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener">Luma</a>
+  <a class="pill" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a>
   <a class="pill" href="/" hreflang="cs" lang="cs">Česky</a>
   <div class="foot__meta">© 2026 PROTO ROBOT. <span lang="cs">Máme toho hodně. A proto robot.</span></div>
 </footer>
