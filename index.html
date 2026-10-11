@@ -237,9 +237,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .card p{margin-top:var(--s1);font-size:16px;line-height:1.35}
 .card p strong{font-weight:600}
 @media (max-width:820px){.card,.card--lg{grid-column:span 6}}
-.card--full{grid-column:1/-1}
-.card--full .photo{aspect-ratio:1420/560}
-@media (max-width:640px){.card--full .photo{aspect-ratio:4/3}}
 
 /* ---------- speakers ---------- */
 .spk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3) var(--g)}
@@ -384,11 +381,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <span class="card__name"><time datetime="2026-10-23T21:00+02:00">21:00</time></span>
       <div class="photo photo--frame"><video muted loop playsinline autoplay preload="metadata" poster="/img/demo-poster.jpg" data-src="/video/demo.mp4" aria-label="Lidé u baru"></video></div>
       <p><strong>Demo stoly a povídání do 22:00.</strong> Řeči o práci. Máme toho hodně. A proto robot.</p>
-    </article>
-    <article class="card card--full">
-      <span class="card__name">Dema</span>
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/h-reachy.jpg" alt="Reachy Mini na stole" style="object-position:center 12%"></div>
-      <p>Reachy Mini a humanoid od Integry, plus cokoli, co přinesete vy. Stůl, zásuvka a místnost plná lidí, kteří se zeptají na to správné. Nedodělané je v pořádku.</p>
     </article>
   </div>
 </section>
