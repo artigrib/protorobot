@@ -242,7 +242,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3) var(--g)}
 @media (max-width:1100px){.spk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
-.spk{display:flex;flex-direction:column}
+.spk{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0;align-content:start}
 .spk .photo{aspect-ratio:1/1}
 .spk .photo img{object-position:center 30%;transition:opacity .65s var(--ease-out),transform .9s var(--ease-out)}
 .spk:hover .photo img{transform:scale(1.04)}
@@ -399,28 +399,28 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.jpg" alt="Fabien Danieau"><span class="spk__no">01</span><span class="spk__demo">Živé demo</span></div>
       <h3 class="spk__name">Fabien Danieau</h3>
       <p class="spk__org">Pollen Robotics</p>
-      <p class="spk__talk" lang="en">Reachy Mini: an open-source, expressive desktop robot</p>
-      <p class="spk__note">Reachy Mini bude u demo stolu vedle pódia.</p>
+      <p class="spk__talk">Reachy Mini: open-source stolní robot</p>
+      <p class="spk__note">Expresivní robot na váš stůl. Reachy Mini bude na demo stole u pódia.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.jpg" alt="Lukáš Vítek"><span class="spk__no">02</span><span class="spk__demo">Živé demo</span></div>
       <h3 class="spk__name">Lukáš Vítek</h3>
       <p class="spk__org">Integra Robotics</p>
-      <p class="spk__talk">Humanoid a Physical AI</p>
-      <p class="spk__note">Integra chystá demo svého humanoida.</p>
+      <p class="spk__talk">Humanoid a physical AI</p>
+      <p class="spk__note">Kde se humanoidi potkávají s physical AI. Integra přiveze humanoida na demo.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.jpg" alt="Ondřej Bruna"><span class="spk__no">03</span></div>
       <h3 class="spk__name">Ondřej Bruna</h3>
-      <p class="spk__org">spoluautor a vývojář KORD</p>
-      <p class="spk__talk" lang="en">KORD: Lessons Learned</p>
-      <p class="spk__note">Posledních deset let je součástí cesty, na které od nuly vznikl kolaborativní robot se 7 stupni volnosti. Pracoval přitom na různých částech robotického softwaru, včetně KORD, real-time komunikačního rozhraní pro robotické ruce.</p>
+      <p class="spk__org">Spoluautor KORD</p>
+      <p class="spk__talk">KORD: co jsme se naučili</p>
+      <p class="spk__note">Deset let stavby 7-DOF kobota od nuly a real-time rozhraní pro jeho ruku.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.jpg" alt="Tomáš Konečný"><span class="spk__no">04</span></div>
       <h3 class="spk__name">Tomáš Konečný</h3>
       <p class="spk__org">Robotservice</p>
-      <p class="spk__talk"><span lang="en">Common facility robot issues</span> / Běžné problémy servisních robotů</p>
+      <p class="spk__talk">Běžné problémy servisních robotů</p>
       <p class="spk__note">Pět minut z praxe: co se na servisních robotech v provozu opravdu kazí.</p>
     </article>
   </div>
