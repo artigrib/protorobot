@@ -21,7 +21,7 @@
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:title" content="PROTO ROBOT #0: setkání robotiků v Praze">
 <meta property="og:description" content="Přednášky a živá dema. Pátek 23. října 2026, 18:00. Vstup zdarma, registrace na Luma.">
-<meta property="og:image" content="https://protorobot.cz/img/og.jpg">
+<meta property="og:image" content="https://protorobot.cz/img/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="PROTO ROBOT #0, Praha, 23. října 2026">
@@ -257,6 +257,13 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk__talk{margin-top:var(--s2);padding-top:var(--s1);border-top:1px solid var(--black);font-size:19px;line-height:1.2;font-weight:600;letter-spacing:-.01em}
 .spk__note{margin-top:.5em;font-size:16px;line-height:1.35}
 
+.spk__name a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent;transition:text-decoration-color .2s}
+.spk__name a:hover,.spk__name a:focus-visible{text-decoration-color:currentColor}
+.spk__name a::after{content:"\2197";font-size:.5em;vertical-align:.7em;margin-left:.15em;opacity:.45}
+.cal{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s1);margin-top:var(--s2)}
+.cal .pill{background:var(--black);backdrop-filter:none;height:44px;padding:0 20px;font-size:15px}
+.cal .pill:hover{background:var(--orange);color:var(--black)}
+
 /* ---------- registration ---------- */
 .tix h2{text-align:center}
 .tiers{display:grid;grid-template-columns:minmax(0,460px);gap:var(--g);justify-content:center;text-align:center}
@@ -392,28 +399,28 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <div class="spk-grid">
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.jpg" alt="Tomáš Konečný"><span class="spk__no">01</span></div>
-      <h3 class="spk__name">Tomáš Konečný</h3>
+      <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, Profil na LinkedIn">Tomáš Konečný</a></h3>
       <p class="spk__org">Robotservice</p>
       <p class="spk__talk">Běžné problémy servisních robotů</p>
       <p class="spk__note">Pět minut z praxe: co se na servisních robotech v provozu opravdu kazí.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.jpg" alt="Lukáš Vítek"><span class="spk__no">02</span><span class="spk__demo">Živé demo</span></div>
-      <h3 class="spk__name">Lukáš Vítek</h3>
+      <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, Profil na LinkedIn">Lukáš Vítek</a></h3>
       <p class="spk__org">Integra Robotics</p>
       <p class="spk__talk">Humanoid a physical AI</p>
       <p class="spk__note">Kde se humanoidi potkávají s physical AI. Integra přiveze humanoida na demo.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.jpg" alt="Fabien Danieau"><span class="spk__no">03</span><span class="spk__demo">Živé demo</span></div>
-      <h3 class="spk__name">Fabien Danieau</h3>
+      <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, Profil na LinkedIn">Fabien Danieau</a></h3>
       <p class="spk__org">Pollen Robotics</p>
       <p class="spk__talk">Reachy Mini: open-source stolní robot</p>
       <p class="spk__note">Expresivní robot na váš stůl. Reachy Mini bude na demo stole u pódia.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.jpg" alt="Ondřej Bruna"><span class="spk__no">04</span></div>
-      <h3 class="spk__name">Ondřej Bruna</h3>
+      <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, Profil na LinkedIn">Ondřej Bruna</a></h3>
       <p class="spk__org">Spoluautor KORD</p>
       <p class="spk__talk">KORD: co jsme se naučili</p>
       <p class="spk__note">Deset let stavby 7-DOF kobota od nuly a real-time rozhraní pro jeho ruku.</p>
@@ -428,6 +435,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <a class="tier__art tier__art--hot" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener"><span class="tier__pattern" aria-hidden="true"><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span></span><span class="pill pill--flip"><span class="f-a">Registrace na Luma</span><span class="f-b" aria-hidden="true">Otevře Luma</span></span></a>
       <p class="tier__lead">Pro hosty</p>
       <ul><li>Zdarma, registrace na Lumě</li><li>Pracovna, Vlkova 36, Praha 3</li><li>Počet míst je omezený</li></ul>
+      <div class="cal"><a class="pill" href="/proto-robot-0.ics" download>Přidat do kalendáře</a><a class="pill" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=PROTO+ROBOT+%230&amp;dates=20261023T160000Z%2F20261023T200000Z&amp;details=Setk%C3%A1n%C3%AD+robotik%C5%AF.+Otev%C3%ADr%C3%A1me+v+18%3A00%2C+p%C5%99edn%C3%A1%C5%A1ky+od+19%3A00+zhruba+do+21%3A00%2C+pak+demo+stoly+a+pov%C3%ADd%C3%A1n%C3%AD+do+22%3A00.+https%3A%2F%2Fprotorobot.cz%2F&amp;location=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Google Kalendář</a></div>
     </div>
   </div>
 </section>
