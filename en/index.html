@@ -43,7 +43,7 @@
   "endDate": "2026-10-23T22:00:00+02:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "location": { "@type": "Place", "name": "Venue to be announced", "address": { "@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "CZ" } },
+  "location": { "@type": "Place", "name": "Pracovna", "address": { "@type": "PostalAddress", "streetAddress": "Vlkova 36", "addressLocality": "Prague 3", "addressCountry": "CZ" } },
   "image": ["https://protorobot.cz/img/og.jpg"],
   "organizer": { "@type": "Organization", "name": "PROTO ROBOT", "url": "https://protorobot.cz/" },
   "offers": { "@type": "Offer", "url": "https://luma.com/2pxjv05i", "price": "0", "priceCurrency": "CZK", "availability": "https://schema.org/InStock" },
@@ -238,6 +238,25 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .card p strong{font-weight:600}
 @media (max-width:820px){.card,.card--lg{grid-column:span 6}}
 
+/* ---------- speakers ---------- */
+.spk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3) var(--g)}
+@media (max-width:1100px){.spk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
+.spk{display:flex;flex-direction:column}
+.spk .photo{aspect-ratio:1/1}
+.spk .photo img{object-position:center 30%;transition:opacity .65s var(--ease-out),transform .9s var(--ease-out)}
+.spk:hover .photo img{transform:scale(1.04)}
+.spk__no,.spk__demo{position:absolute;z-index:3;left:var(--s1);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center;font-size:15px;text-transform:uppercase;white-space:nowrap}
+.spk__no{top:var(--s1);background:var(--white);color:var(--black)}
+.spk__demo{bottom:var(--s1);background:var(--black);color:var(--white)}
+.spk__name{margin-top:var(--s2);font-weight:300;font-size:clamp(30px,2.7vw,42px);line-height:.95;letter-spacing:-.04em;text-wrap:balance}
+.spk__org{margin-top:.55em;font-size:14px;line-height:1.3;text-transform:uppercase;letter-spacing:.02em;color:var(--grey-text)}
+.spk__talk{margin-top:var(--s2);padding-top:var(--s1);border-top:1px solid var(--black);font-size:19px;line-height:1.2;font-weight:600;letter-spacing:-.01em}
+.spk__note{margin-top:.5em;font-size:16px;line-height:1.35}
+.spk-cta{margin-top:var(--s4);display:flex;flex-wrap:wrap;align-items:center;gap:var(--s1) var(--s2)}
+.spk-cta .pill{background:var(--black);backdrop-filter:none}
+.spk-cta .pill:hover{background:var(--orange);color:var(--black)}
+
 /* ---------- registration ---------- */
 .tix h2{text-align:center}
 .tiers{display:grid;grid-template-columns:minmax(0,460px);gap:var(--g);justify-content:center;text-align:center}
@@ -287,6 +306,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     <div class="city__nav" id="cityNav">
       <a class="pill" href="#about">About</a>
       <a class="pill" href="#programme">Program</a>
+      <a class="pill" href="#speakers">Speakers</a>
       <a class="pill" href="#venue">Venue</a>
       <a class="pill city__lang" href="/" hreflang="cs" lang="cs">Česky</a>
     </div>
@@ -329,8 +349,8 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 
 <section class="mod intro" id="about">
   <h1><span>Proto Robot #0</span><span>Prague, 23.10.2026</span></h1>
-  <p>PROTO ROBOT is a new series of meetups for people who build robots, and #0 is the very first one. Talks, live demos, beer and conversation. A <span class="tag">community</span> for anyone in Prague working on robots, physical AI, autonomy or the tools around them. Bring what you're working on, show it, and see what everyone else has on the bench.</p>
-  <p>Friday 23 October, 6 to 10 pm. Free entry, registration required. Talks are in Czech and English.</p>
+  <p>We’re kicking off a series of meetups for people who <span class="tag">build</span> robots and people who want to. Talks, demos, beer and chatter.</p>
+  <p>Friday 23 October. Doors 18:00, talks 18:30 to about 20:45, then demo tables and chatter until 22:00. Pracovna, Vlkova 36, Prague 3. Free entry, registration required. Talks in English and Czech.</p>
 </section>
 
 <div class="ticker" aria-hidden="true"><div class="ticker__track"><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span></div></div>
@@ -347,12 +367,12 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     <article class="card card--lg">
       <span class="card__name">Talks</span>
       <div class="photo"><img loading="lazy" decoding="async" src="/img/card-speaker.jpg" alt=""></div>
-      <p>Short talks from people shipping real machines. Twenty minutes each. Speakers are being confirmed.</p>
+      <p>Four talks from people who build real machines, in English and Czech. <a href="#speakers">Speakers below.</a></p>
     </article>
     <article class="card card--lg">
       <span class="card__name">Demos</span>
       <div class="photo"><img loading="lazy" decoding="async" src="/img/robot-dog.jpg" alt=""></div>
-      <p>Bring the thing itself. A table, power and a room full of people who will ask the right questions. Half-finished is fine. That's the point.</p>
+      <p>Reachy Mini and Integra’s humanoid, plus whatever you bring. A table, power and a room full of people who will ask the right questions. Half-finished is fine.</p>
     </article>
     <article class="card" id="timetable">
       <span class="card__name"><time datetime="2026-10-23T18:00+02:00">18:00</time></span>
@@ -360,15 +380,53 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <p><strong>Doors open.</strong> Grab a beer, walk the demo tables, find the people whose repo you've been reading.</p>
     </article>
     <article class="card">
-      <span class="card__name"><time datetime="2026-10-23T19:00+02:00">19:00</time></span>
+      <span class="card__name"><time datetime="2026-10-23T18:30+02:00">18:30</time></span>
       <div class="photo photo--frame"><video muted loop playsinline autoplay preload="metadata" poster="/img/hall-poster.jpg" data-src="/video/hall.mp4" aria-label="Talk in the main hall"></video></div>
-      <p><strong>Talks on stage,</strong> then demos on the floor. The exact timetable goes out a week before the event.</p>
+      <p><strong>Talks on stage</strong> until about 20:45. Four speakers, in English and Czech.</p>
     </article>
     <article class="card">
-      <span class="card__name"><time datetime="2026-10-23T21:00+02:00">21:00</time></span>
+      <span class="card__name"><time datetime="2026-10-23T20:45+02:00">20:45</time></span>
       <div class="photo photo--frame"><video muted loop playsinline autoplay preload="metadata" poster="/img/demo-poster.jpg" data-src="/video/demo.mp4" aria-label="People at the bar"></video></div>
-      <p><strong>Hangout until 22:00.</strong> Beer and talking shop. We have a lot to discuss. And that's why robot.</p>
+      <p><strong>Demo tables and chatter until 22:00.</strong> Beer and talking shop. We have a lot to discuss. And that's why robot.</p>
     </article>
+  </div>
+</section>
+
+<section class="mod speakers" id="speakers">
+  <h2>Speakers</h2>
+  <div class="spk-grid">
+    <article class="spk">
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.jpg" alt="Fabien Danieau"><span class="spk__no">01</span><span class="spk__demo">Live demo</span></div>
+      <h3 class="spk__name">Fabien Danieau</h3>
+      <p class="spk__org">Pollen Robotics</p>
+      <p class="spk__talk">Reachy Mini: an open-source, expressive desktop robot</p>
+      <p class="spk__note">Reachy Mini will be there, at the demo table next to the stage.</p>
+    </article>
+    <article class="spk">
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.jpg" alt="Lukáš Vítek"><span class="spk__no">02</span><span class="spk__demo">Live demo</span></div>
+      <h3 class="spk__name">Lukáš Vítek</h3>
+      <p class="spk__org">Integra Robotics</p>
+      <p class="spk__talk" lang="cs">Humanoid a Physical AI</p>
+      <p class="spk__note">Integra is preparing a demo of their humanoid.</p>
+    </article>
+    <article class="spk">
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.jpg" alt="Ondřej Bruna"><span class="spk__no">03</span></div>
+      <h3 class="spk__name">Ondřej Bruna</h3>
+      <p class="spk__org">co-author and developer of KORD</p>
+      <p class="spk__talk">KORD: Lessons Learned</p>
+      <p class="spk__note">For the past decade, he has been part of the journey of building a 7-DOF collaborative robot from scratch. Along the way, he has worked on various aspects of robotics software, including KORD, a real-time communication interface for robotic arms.</p>
+    </article>
+    <article class="spk">
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.jpg" alt="Tomáš Konečný"><span class="spk__no">04</span></div>
+      <h3 class="spk__name">Tomáš Konečný</h3>
+      <p class="spk__org">Robotservice</p>
+      <p class="spk__talk">Common facility robot issues / <span lang="cs">Běžné problémy servisních robotů</span></p>
+      <p class="spk__note">Five minutes from the field: what actually breaks on service robots in operation.</p>
+    </article>
+  </div>
+  <div class="spk-cta">
+    <p class="lede">Bringing something to show? Want to speak at #1? Get in touch.</p>
+    <a class="pill" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener">Get in touch</a>
   </div>
 </section>
 
@@ -378,15 +436,15 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     <div class="tier">
       <a class="tier__art tier__art--hot" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener"><span class="tier__pattern" aria-hidden="true"><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span><span>PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT PROTO ROBOT</span></span><span class="pill pill--flip"><span class="f-a">Register on Luma</span><span class="f-b" aria-hidden="true">Opens Luma</span></span></a>
       <p class="tier__lead">For guests</p>
-      <ul><li>Free, registration on Luma</li><li>Friday 23 October 2026, 18:00 to 22:00</li><li>The address goes out to registered guests a week before the event</li><li>Places are limited</li></ul>
+      <ul><li>Free, registration on Luma</li><li>Friday 23 October 2026, 18:00 to 22:00</li><li>Pracovna, Vlkova 36, Prague 3</li><li>Places are limited</li></ul>
     </div>
   </div>
 </section>
 
 <section class="mod venue" id="venue">
-  <h2>Prague venue<br>to be announced</h2>
-  <p class="lede addr">Prague, Friday 23 October 2026, 18:00 to 22:00</p>
-  <p class="lede">We are confirming a space with room for a screen, a few tables of hardware and a fridge. The address goes out to everyone registered on Luma about a week before the event.</p>
+  <h2>Pracovna<br>Vlkova 36, Prague 3</h2>
+  <p class="lede addr">Friday 23 October 2026, 18:00 to 22:00</p>
+  <p class="lede">Doors 18:00, talks 18:30 to about 20:45, then demo tables and chatter until 22:00. <a href="https://www.google.com/maps/search/?api=1&amp;query=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Open in maps</a></p>
 </section>
 
 
