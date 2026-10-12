@@ -298,9 +298,15 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .venue .addr{font-weight:500;margin-bottom:.5em}
 
 
-.venue__photos{margin-top:var(--s3)}
-.venue__photos .photo--wide img{object-position:center 60%}
-.venue__photos .photo:last-child img{object-position:center 35%}
+/* the way in, in order: street, café, hall */
+.venue__photos{margin-top:var(--s3);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:var(--g)}
+.venue__photos .photo{aspect-ratio:3/2}
+.venue__photos .photo--street{grid-row:1/3;aspect-ratio:auto}
+.venue__photos .photo--street img{object-position:center 40%}
+.venue__photos .photo--hall img{object-position:center 60%}
+.venue__step{position:absolute;z-index:3;top:var(--s1);left:var(--s1);background:var(--white);color:var(--black);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center;gap:.6em;font-size:15px;text-transform:uppercase;white-space:nowrap}
+.venue__step b{font-weight:400;opacity:.5}
+@media (max-width:640px){.venue__photos{grid-template-columns:1fr}.venue__photos .photo--street{grid-row:auto;aspect-ratio:4/5}}
 
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px;margin:0;background:var(--black);min-height:70px}
@@ -440,10 +446,10 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <h2>Pracovna<br>Vlkova 36, Praha 3</h2>
   <p class="lede">Pracovna je kavárna s coworkingem. Vejděte hlavním vchodem a na baru se zeptejte na PROTO ROBOT.</p>
   <p class="lede"><a href="https://www.google.com/maps/search/?api=1&amp;query=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Otevřít v mapě</a></p>
-  <div class="strip venue__photos" role="group" aria-label="Fotky Pracovny">
-    <div class="photo photo--wide"><img loading="lazy" decoding="async" src="/img/venue-hall.webp" alt="Sál v Pracovně se židlemi pro publikum"></div>
-    <div class="photo"><img loading="lazy" decoding="async" src="/img/venue-event.webp" alt="Akce v sále Pracovny"></div>
-    <div class="photo"><img loading="lazy" decoding="async" src="/img/venue-street.webp" alt="Vývěsní štít Pracovny na Vlkově ulici"></div>
+  <div class="venue__photos" role="group" aria-label="Cesta dovnitř">
+    <div class="photo photo--street"><img loading="lazy" decoding="async" src="/img/venue-street.webp" alt="Vývěsní štít Pracovny na Vlkově ulici"><span class="venue__step"><b>01</b>Vchod</span></div>
+    <div class="photo photo--cafe"><img loading="lazy" decoding="async" src="/img/venue-cafe.webp" alt="Kavárna a bar v Pracovně"><span class="venue__step"><b>02</b>Kavárna, zeptejte se na baru</span></div>
+    <div class="photo photo--hall"><img loading="lazy" decoding="async" src="/img/venue-hall.webp" alt="Sál v Pracovně se židlemi pro publikum"><span class="venue__step"><b>03</b>Sál</span></div>
   </div>
 </section>
 
