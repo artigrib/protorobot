@@ -33,6 +33,9 @@ and decoration without a job is left out.
 Register appears three times: the header pill, the ticker under the intro, and the last section (the footer has it too).
 On phones the section menu starts folded into one pill so the hero stays clear; tap it to open.
 
+Every Register link carries a UTM tag so Luma → Insights → UTM Sources shows which one people use:
+web-header, web-ticker, web-final, web-footer (utm_medium = cs or en).
+
 Event details for search engines (date, venue, speakers) live in the JSON-LD block in the head of each page.
 
 ## Editing tips
