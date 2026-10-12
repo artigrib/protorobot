@@ -242,8 +242,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk .photo{aspect-ratio:1/1}
 .spk .photo img{object-position:center 30%;transition:opacity .65s var(--ease-out),transform .9s var(--ease-out)}
 .spk:hover .photo img{transform:scale(1.04)}
-.spk__no,.spk__demo{position:absolute;z-index:3;left:var(--s1);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center;font-size:15px;text-transform:uppercase;white-space:nowrap}
-.spk__no{top:var(--s1);background:var(--white);color:var(--black)}
+.spk__demo{position:absolute;z-index:3;left:var(--s1);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center;font-size:15px;text-transform:uppercase;white-space:nowrap}
 .spk__demo{bottom:var(--s1);background:var(--black);color:var(--white)}
 .spk__name{margin-top:var(--s2);font-weight:300;font-size:clamp(30px,2.7vw,42px);line-height:.95;letter-spacing:-.04em;text-wrap:balance}
 .spk__org{margin-top:.55em;font-size:14px;line-height:1.3;text-transform:uppercase;letter-spacing:.02em;color:var(--grey-text)}
@@ -308,7 +307,6 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
   .spk__org{font-size:12px}
   .spk__talk{margin-top:var(--s1);padding-top:8px;font-size:16px}
   .spk__note{font-size:14px}
-  .spk__no{display:none}
   .spk__demo{left:6px;bottom:6px;height:24px;padding:0 9px;font-size:11px}
   .spk__bot{width:28px;height:46px;right:6px;bottom:6px;top:auto;border-radius:8px}
 }
@@ -383,28 +381,28 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
   <h2>Řečníci</h2>
   <div class="spk-grid">
     <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__no">01</span><span class="spk__bot"><img src="/img/bot-robotservice.webp" alt="Servisní robot" width="60" height="96" loading="lazy" decoding="async"></span></div>
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot"><img src="/img/bot-robotservice.webp" alt="Servisní robot" width="60" height="96" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, Profil na LinkedIn">Tomáš Konečný</a></h3>
       <p class="spk__org">Robotservice</p>
       <p class="spk__talk">Běžné problémy servisních robotů</p>
       <p class="spk__note">Pět minut z praxe: co se na servisních robotech v provozu opravdu kazí.</p>
     </article>
     <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__no">02</span><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoidní robot" width="60" height="96" loading="lazy" decoding="async"></span></div>
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoidní robot" width="60" height="96" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, Profil na LinkedIn">Lukáš Vítek</a></h3>
       <p class="spk__org">Integra Robotics</p>
       <p class="spk__talk">Humanoid a physical AI</p>
       <p class="spk__note">Kde se humanoidi potkávají s physical AI. Integra přiveze humanoida na demo.</p>
     </article>
     <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__no">03</span><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="60" height="96" loading="lazy" decoding="async"></span></div>
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="60" height="96" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, Profil na LinkedIn">Fabien Danieau</a></h3>
       <p class="spk__org">Pollen Robotics</p>
       <p class="spk__talk">Reachy Mini: open-source stolní robot</p>
       <p class="spk__note">Expresivní robot na váš stůl. Reachy Mini bude na demo stole u pódia.</p>
     </article>
     <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.webp" alt="Ondřej Bruna"><span class="spk__no">04</span></div>
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.webp" alt="Ondřej Bruna"></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, Profil na LinkedIn">Ondřej Bruna</a></h3>
       <p class="spk__org">Spoluautor a vývojář KORDu</p>
       <p class="spk__talk">KORD: co jsme se naučili</p>
