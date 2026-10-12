@@ -7,7 +7,7 @@ Static site, no build step. Live at https://protorobot.cz (Czech) and https://pr
     img/            greyscale images (the orange duotone is CSS)
                     .webp files are what the pages load; the .jpg/.png next to them are the sources
                     og.jpg is the social preview (stays JPEG for crawlers)
-    video/          H.264 clips for the timetable cards
+    video/          H.264 clips (not used on the page since the program became a timetable)
     CNAME           custom domain for GitHub Pages (protorobot.cz)
 
 The two pages are separate files with the same layout. Any change to content or styles has to be made in both.
