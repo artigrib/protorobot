@@ -319,6 +319,10 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
   .spk__bot{width:31px;height:42px;right:6px;bottom:6px;top:auto;border-radius:8px}
 }
 
+/* Luma's checkout window is capped at 600px tall, which hides the Register button on desktop.
+   On wider screens let it use the screen height; on phones Luma already goes full screen. */
+@media (min-width:641px){.luma-checkout--overlay .luma-checkout--modal{height:min(860px,calc(100dvh - 48px))!important;max-height:none!important}}
+
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px;margin:0;background:var(--black);min-height:70px}
 .foot .pill{background:var(--white);color:var(--black);backdrop-filter:none;height:50px}
