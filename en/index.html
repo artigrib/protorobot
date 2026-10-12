@@ -199,7 +199,6 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .facts{display:flex;flex-wrap:wrap;gap:var(--s1);margin-top:var(--s3)}
 .facts a{text-decoration:none;display:inline-flex;align-items:center;height:var(--pill-h);padding:0 22px;border:2px solid var(--black);border-radius:999px;font-size:var(--nav-fs);text-transform:uppercase;white-space:nowrap;transition:background .18s,color .18s}
 .facts a:hover,.facts a:focus-visible{background:var(--black);color:var(--white)}
-.tag{display:inline-flex;align-items:center;border:2px solid var(--black);border-radius:999px;padding:.05em .8em 0;height:1.3em;margin:0 .2em;font-size:.78em;vertical-align:.1em;text-transform:uppercase;line-height:1}
 @media (max-width:640px){.intro{padding-top:calc(var(--header-h) + var(--s3))}.intro h1{font-size:12.5vw;letter-spacing:-.04em;line-height:.95}.intro p{font-size:19px;line-height:1.3;letter-spacing:-.01em}}
 
 /* ---------- ticker ---------- */
@@ -269,7 +268,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .venue__photos .photo--hall img{object-position:center 60%}
 .venue__step{position:absolute;z-index:3;top:var(--s1);left:var(--s1);background:var(--white);color:var(--black);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center;gap:.6em;font-size:15px;text-transform:uppercase;white-space:nowrap}
 .venue__step b{font-weight:400;opacity:.5}
-@media (max-width:640px){.venue__photos{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.venue__photos{grid-template-columns:minmax(0,1fr)}.venue__photos .photo{aspect-ratio:3/2}}
 
 /* ---------- system: one heading scale, one axis, one button set ---------- */
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s1);margin-top:var(--s3)}
@@ -373,7 +372,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 
 <section class="mod intro" id="about">
   <h1>Proto Robot #0</h1>
-  <p>We’re kicking off a series of meetups for people who <span class="tag">build</span> robots and people who want to. Talks, demos and chatter.</p>
+  <p>We’re kicking off a series of meetups for people who build robots and people who want to. Talks, demos and chatter.</p>
   <p class="facts" aria-label="Key facts"><a href="#programme"><time datetime="2026-10-23T18:00+02:00">Fri 23.10, 18:00</time></a><a href="#venue">Pracovna, Prague 3</a></p>
 </section>
 
@@ -452,7 +451,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 
 <footer class="foot">
   <a class="pill" href="#about">About</a>
-  <a class="pill" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener">Luma</a>
+  <a class="pill" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener">Register</a>
   <a class="pill" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a>
   <a class="pill" href="/" hreflang="cs" lang="cs">Česky</a>
   <div class="foot__meta">© 2026 PROTO ROBOT. <span lang="cs">Máme toho hodně. A proto robot.</span></div>
@@ -597,10 +596,13 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 
   const cityBtn = $('#cityBtn');
   const setCityOpen = open => { city.classList.toggle('is-open', open); cityBtn.setAttribute('aria-expanded', String(open || !city.classList.contains('city--collapsed'))); };
-  new IntersectionObserver(([e]) => {
-    city.classList.toggle('city--collapsed', !e.isIntersecting);
-    setCityOpen(false);
-  }, { threshold: 0.08 }).observe(hero);
+  // on phones the menu starts folded so the hero stays clear; elsewhere it folds once the hero scrolls away
+  const phone = matchMedia('(max-width: 640px)');
+  let heroVisible = true;
+  const foldCity = () => { city.classList.toggle('city--collapsed', phone.matches || !heroVisible); setCityOpen(false); };
+  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; foldCity(); }, { threshold: 0.08 }).observe(hero);
+  phone.addEventListener?.('change', foldCity);
+  foldCity();
   cityBtn.addEventListener('click', () => {
     if (!city.classList.contains('city--collapsed')) { window.scrollTo({ top: 0, behavior: reduced.matches ? 'auto' : 'smooth' }); return; }
     setCityOpen(!city.classList.contains('is-open'));

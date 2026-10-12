@@ -30,7 +30,8 @@ and decoration without a job is left out.
 7. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
    calendar button: Luma offers it after registering, and a second button invites "added to calendar" instead of registering
 
-Register appears three times: the header pill, the ticker under the intro, and the last section.
+Register appears three times: the header pill, the ticker under the intro, and the last section (the footer has it too).
+On phones the section menu starts folded into one pill so the hero stays clear; tap it to open.
 
 Event details for search engines (date, venue, speakers) live in the JSON-LD block in the head of each page.
 
