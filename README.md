@@ -15,12 +15,19 @@ Asset paths are absolute (/img/, /video/), so the site must live at the domain r
 
 ## What is on the page
 
-1. Hero carousel and intro (date, times, venue, languages)
-2. Programme: timetable cards 18:00 / 19:00 / 21:00
-3. Speakers: four cards in running order, each with photo, LinkedIn link, talk title and one-line note.
-   Optional pills on the photo: "Live demo" (bottom left) and a robot tile (bottom right, img/bot-*.webp)
-4. Registration: Luma link, Google Calendar link, "follow on Luma" for the next meetups
-5. Venue: Pracovna, Vlkova 36, Prague 3, how to get in, map link, three photos of the place
+One system: everything sits on the left axis, the intro h1 is the only large heading, every section
+heading uses the same smaller h2, and decoration without a job is left out.
+
+1. Hero: carousel, straight PROTO ROBOT title on the left axis, flipping badge under it (Meetup #0 / date)
+2. Intro: date, times, venue, languages, then the first Register button
+3. Ticker: links to registration
+4. Speakers: four cards in running order (photo, LinkedIn, talk title, one-line note; optional "Live demo"
+   and robot tile). On phones each card is photo left, text right
+5. Program: three lines, 18:00 / 19:00 / 21:00
+6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)
+7. Register: last section before the footer (Luma, Google Calendar, follow on Luma)
+
+Register appears three times: the header pill, under the intro, and as the last section.
 
 Event details for search engines (date, venue, speakers) live in the JSON-LD block in the head of each page.
 
@@ -29,7 +36,7 @@ Event details for search engines (date, venue, speakers) live in the JSON-LD blo
 - Speaker photos: square, greyscale, cropped so the head fills about the same share of the frame on every card.
 - New images: add the source to img/, convert to .webp (quality ~78) and reference the .webp.
 - After changing og.jpg, bump the `?v=` number in the og:image meta tags so Telegram and LinkedIn fetch the new one.
-- Timetable videos load only when the visitor scrolls near them; hero slides after the first load one beat ahead.
+- Hero slides after the first load one beat ahead. video/ is no longer used on the page.
 
 ## Deploy
 
