@@ -20,7 +20,8 @@ sits on the left axis. The intro h1 is the only large heading, every section hea
 and decoration without a job is left out.
 
 1. Hero: carousel, PROTO ROBOT title centred and still; the badge under it turns to the next fact with each photo (what / when / where)
-2. Intro: date, times, venue, languages
+2. Intro: name, who it is for, and one row of fact pills (date and time → Program, place → Venue); free entry is the ticker right below.
+   Details live once, in their own sections; the talk languages sit on the 19:00 line
 3. Ticker: links to registration (the first Register after the facts)
 4. Speakers: four cards in running order, unnumbered until the slots are confirmed (photo, LinkedIn, talk title, one-line note; optional "Live demo"
    and robot tile). On phones each card is photo left, text right
