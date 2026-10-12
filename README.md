@@ -15,17 +15,18 @@ Asset paths are absolute (/img/, /video/), so the site must live at the domain r
 
 ## What is on the page
 
-One system: everything sits on the left axis, the intro h1 is the only large heading, every section
-heading uses the same smaller h2, and decoration without a job is left out.
+One system: the two posters (hero and the closing Register block) are centred, everything people read
+sits on the left axis. The intro h1 is the only large heading, every section heading uses the same smaller h2,
+and decoration without a job is left out.
 
-1. Hero: carousel, straight PROTO ROBOT title on the left axis, flipping badge under it (Meetup #0 / date)
+1. Hero: carousel, straight PROTO ROBOT title centred, flipping badge under it (Meetup #0 / date)
 2. Intro: date, times, venue, languages, then the first Register button
 3. Ticker: links to registration
 4. Speakers: four cards in running order (photo, LinkedIn, talk title, one-line note; optional "Live demo"
    and robot tile). On phones each card is photo left, text right
 5. Program: three lines, 18:00 / 19:00 / 21:00
 6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)
-7. Register: last section before the footer (Luma, Google Calendar, follow on Luma)
+7. Register: centred closing block before the footer (Luma, Google Calendar, follow on Luma)
 
 Register appears three times: the header pill, under the intro, and as the last section.
 

@@ -184,7 +184,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .hero__type.is-out span{opacity:0;transition:transform var(--cut) var(--ease-slide),opacity .5s ease .35s}
 .hero__type.is-out span:first-child{transform:translateX(-260%)}
 .hero__type.is-out span:last-child{transform:translateX(260%)}
-.badge{position:absolute;left:var(--gt);top:var(--by,60%);z-index:3;perspective:900px}
+.badge{position:absolute;left:50%;top:var(--by,60%);transform:translateX(-50%);z-index:3;perspective:900px}
 .badge__flip{position:relative;background:var(--orange);color:var(--black);border-radius:999px;font-size:clamp(26px,2.8vw,40px);height:65px;padding:0 32px;display:grid;place-items:center;text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;transform-style:preserve-3d;transition:transform var(--cut) var(--ease-slide)}
 .badge__flip span{grid-area:1/1;backface-visibility:hidden;text-align:center}
 .badge__flip .f-b{transform:rotateX(180deg)}
@@ -292,8 +292,10 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 .tt p strong{font-weight:600}
 @media (max-width:820px){.tt{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
 
-/* registration: left axis, compact, last thing before the footer */
-.tix .lede{max-width:40ch}
+/* registration: the closing poster, centred like the hero; everything read in between sits on the left axis */
+.tix{text-align:center}
+.tix .lede{max-width:40ch;margin-inline:auto}
+.tix .cta-row{justify-content:center}
 .tix .follow{margin-top:var(--s2);font-size:16px;line-height:1.4}
 .venue .addr{font-weight:500}
 
@@ -524,14 +526,14 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
     };
     const H = hero.getBoundingClientRect();
     let B = bounds();
-    // the title sits on the page's left axis; the badge goes right under its ink
+    // posters are centred: the title on the hero's centre line, the badge right under its ink
     const gut = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gt')) || 10;
     const badgeH = badgeFlipEl.getBoundingClientRect().height || 65;
     set('--sc', Math.min(1, (H.width - 2 * gut) / (B.r - B.l), (H.height * 0.6) / (B.b - B.t)));
     B = bounds();
     const blockH = (B.b - B.t) + 24 + badgeH;
     const top = H.top + (H.height - blockH) / 2 + H.height * 0.04;
-    set('--tx', (H.left + gut - B.l) + 'px');
+    set('--tx', (H.left + H.width / 2 - (B.l + B.r) / 2) + 'px');
     set('--ty', (top - B.t) + 'px');
     hero.style.setProperty('--by', (top - H.top + (B.b - B.t) + 24) + 'px');
     type.classList.add('is-ready');
