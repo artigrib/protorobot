@@ -368,14 +368,13 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
     </div>
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
-  <div class="badge" id="badge" data-faces='["Meetup #0","It works","Prague, 23.10.2026"]'><div class="badge__flip"><span class="f-a">Meetup #0</span><span class="f-b" aria-hidden="true"></span></div></div>
+  <div class="badge" id="badge" data-faces='["Meetup #0","Fri 23.10, 18:00","Pracovna, Prague 3"]'><div class="badge__flip"><span class="f-a">Meetup #0</span><span class="f-b" aria-hidden="true"></span></div></div>
 </section>
 
 <section class="mod intro" id="about">
   <h1><span>Proto Robot #0</span><span>Prague, 23.10.2026</span></h1>
   <p>We’re kicking off a series of meetups for people who <span class="tag">build</span> robots and people who want to. Talks, demos and chatter.</p>
   <p>Friday 23 October. Doors 18:00, talks 19:00 to about 21:00, then demo tables and chatter until 22:00. Pracovna, Vlkova 36, Prague 3. Free entry, registration required. Talks in English and Czech.</p>
-  <div class="cta-row"><a class="pill pill--orange pill--lg" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener">Register on Luma</a></div>
 </section>
 
 <a class="ticker" href="https://luma.com/2pxjv05i" target="_blank" rel="noopener" aria-label="Free entry. Register on Luma"><div class="ticker__track" aria-hidden="true"><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span><span>Free entry</span><span>Register</span></div></a>
@@ -663,7 +662,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
     const tick = () => {
       carousel.step();
       badgeFlip.next();
-      badgeFlip.isDate() ? titleOut() : titleIn();   // the title leaves while the badge shows the date
+      // the title is the logo and stays put; each photo change turns the badge to the next fact: what, when, where
     };
     const stop = () => { clearInterval(timer); timer = null; };
     const start = () => { stop(); carousel.reset(); badgeFlip.reset(); titleIn(); timer = setInterval(tick, BEAT_MS); };

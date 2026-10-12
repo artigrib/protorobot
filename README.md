@@ -19,16 +19,16 @@ One system: the two posters (hero and the closing Register block) are centred, e
 sits on the left axis. The intro h1 is the only large heading, every section heading uses the same smaller h2,
 and decoration without a job is left out.
 
-1. Hero: carousel, straight PROTO ROBOT title centred, flipping badge under it (Meetup #0 / date)
-2. Intro: date, times, venue, languages, then the first Register button
-3. Ticker: links to registration
+1. Hero: carousel, PROTO ROBOT title centred and still; the badge under it turns to the next fact with each photo (what / when / where)
+2. Intro: date, times, venue, languages
+3. Ticker: links to registration (the first Register after the facts)
 4. Speakers: four cards in running order (photo, LinkedIn, talk title, one-line note; optional "Live demo"
    and robot tile). On phones each card is photo left, text right
 5. Program: three lines, 18:00 / 19:00 / 21:00
 6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)
 7. Register: centred closing block before the footer (Luma, Google Calendar, follow on Luma)
 
-Register appears three times: the header pill, under the intro, and as the last section.
+Register appears three times: the header pill, the ticker under the intro, and the last section.
 
 Event details for search engines (date, venue, speakers) live in the JSON-LD block in the head of each page.
 
