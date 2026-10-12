@@ -33,8 +33,10 @@ and decoration without a job is left out.
 Register appears three times: the header pill, the ticker under the intro, and the last section (the footer has it too).
 On phones the section menu starts folded into one pill so the hero stays clear; tap it to open.
 
-Every Register link carries a UTM tag so Luma → Insights → UTM Sources shows which one people use:
-web-header, web-ticker, web-final, web-footer (utm_medium = cs or en).
+Every Register link opens Luma's checkout window on the page (embed.lu.ma/checkout-button.js, data-luma-* attributes).
+If the script fails, the link opens the Luma event page as before. Each link tags registrations with
+data-luma-utm-source (web-header-cs, web-ticker-en, ...) and page views with the same utm_source in the URL,
+so Luma → Insights / Guests shows which button converts.
 
 Event details for search engines (date, venue, speakers) live in the JSON-LD block in the head of each page.
 
