@@ -26,7 +26,8 @@ and decoration without a job is left out.
    and robot tile). On phones each card is photo left, text right
 5. Program: three lines, 18:00 / 19:00 / 21:00
 6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)
-7. Register: centred closing block before the footer (Luma, Google Calendar, follow on Luma)
+7. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
+   calendar button: Luma offers it after registering, and a second button invites "added to calendar" instead of registering
 
 Register appears three times: the header pill, the ticker under the intro, and the last section.
 
