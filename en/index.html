@@ -191,10 +191,10 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 /* speakers' companies on the first screen, on the hero's dark bottom */
 .hero__cos{position:absolute;z-index:3;left:0;right:0;bottom:calc(var(--s3) + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 28px;padding:0 var(--gt);color:var(--white)}
 .hero__cos__label{width:100%;text-align:center;font-size:13px;letter-spacing:.02em;text-transform:uppercase;opacity:.75}
-.hero__cos .co{display:inline-flex;align-items:center;gap:9px;font-size:21px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
-.hero__cos .co img{height:26px;width:auto;filter:grayscale(1) brightness(1.25)}
-.hero__cos .co img.co-integra{height:28px;filter:none}
-@media (max-width:640px){.hero__cos{gap:8px 18px;bottom:calc(var(--s2) + env(safe-area-inset-bottom))}.hero__cos .co{font-size:16px;gap:6px}.hero__cos .co img{height:20px}.hero__cos .co img.co-integra{height:22px}.hero__cos__label{font-size:11px}}
+.hero__cos .co{display:inline-flex;align-items:center;gap:10px;font-size:27px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.hero__cos .co img{height:34px;width:auto;filter:grayscale(1) brightness(1.25)}
+.hero__cos .co img.co-integra{height:36px;filter:none}
+@media (max-width:640px){.hero__cos{gap:8px 18px;bottom:calc(var(--s2) + env(safe-area-inset-bottom))}.hero__cos .co{font-size:19px;gap:7px}.hero__cos .co img{height:24px}.hero__cos .co img.co-integra{height:26px}.hero__cos__label{font-size:11px}}
 
 /* ---------- intro ---------- */
 .intro{padding-top:var(--s4)}
@@ -319,7 +319,8 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk__co img.co-integra{height:22px;margin-block:-2px}
 /* partner logos: sized by eye */
 /* same height is not the same size: the light three-line Pracovna mark goes up, the heavy ČAUI block down */
-.partner{--h:40px}.partner--pracovna{--h:54px}.partner--caai{--h:36px}
+.partner{--h:40px}.partner--pracovna{--h:54px}.partner--caai{--h:46px}
+.venue__logo{margin-bottom:var(--s2)}
 .partner img{height:var(--h);width:auto;display:block}
 .partner{display:inline-flex}
 .partner:hover img,.partner:focus-visible img{opacity:.6}
@@ -340,7 +341,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   .lineup .co{font-size:18px;gap:7px}
   .lineup .co img{height:22px}
   .lineup .co img.co-integra{height:25px}
-  .lineup .partner{--k:.7}
+  .lineup .partner{--k:.85}
 }
 
 /* ---------- footer ---------- */
@@ -407,8 +408,8 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <p>We’re kicking off a series of meetups for people who build robots and people who want to. Talks, demos and chatter.</p>
   <p class="facts" aria-label="Key facts"><a href="#programme"><time datetime="2026-10-23T18:00+02:00">Fri 23.10, 18:00</time></a><a href="#venue">Pracovna, Prague 3</a><a class="pill--orange" href="https://luma.com/2pxjv05i?utm_source=web-intro&amp;utm_medium=en" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-intro-en" target="_blank" rel="noopener">Register on Luma</a></p>
   <div class="lineup" role="group" aria-label="Partners">
-    <div class="lineup__group"><span class="lineup__label">Supported by</span>
-      <div class="lineup__row"><a class="partner partner--pracovna" href="https://www.pracovna.cz/" target="_blank" rel="noopener"><img src="/img/partner-pracovna.webp" alt="Pracovna" width="46" height="54"></a><a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"></a><a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai-en.svg" alt="Czech Association of Artificial Intelligence" width="175" height="36"></a></div>
+    <div class="lineup__group"><span class="lineup__label">Media partners</span>
+      <div class="lineup__row"><a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai-en.svg" alt="Czech Association of Artificial Intelligence" width="175" height="36"></a><a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"></a></div>
     </div>
   </div>
 </section>
@@ -464,6 +465,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 
 <section class="mod venue" id="venue">
   <h2>Venue</h2>
+  <a class="partner partner--pracovna venue__logo" href="https://www.pracovna.cz/" target="_blank" rel="noopener"><img src="/img/partner-pracovna.webp" alt="Pracovna" width="46" height="54"></a>
   <p class="lede addr">Pracovna, Vlkova 36, Prague 3</p>
   <p class="lede">Pracovna is a café with a coworking space. Walk in through the main entrance and ask at the bar for PROTO ROBOT.</p>
   <p class="lede"><a href="https://www.google.com/maps/search/?api=1&amp;query=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Open in maps</a></p>
