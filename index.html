@@ -268,7 +268,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 /* the way in, in order: street, café, hall — one row, a column on phones */
 .venue__photos{margin-top:var(--s3);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
 .venue__photos .photo{aspect-ratio:1/1}
-.venue__photos .photo--street img{object-position:center 35%}
+.venue__photos .photo--street img{object-position:center 35%;transform:scale(1.4);transform-origin:50% 50%}  /* closer in, so the Pracovna sign reads */
 .venue__photos .photo--hall img{object-position:center 60%}
 .venue__step{position:absolute;z-index:3;top:var(--s1);left:var(--s1);background:var(--white);color:var(--black);height:36px;padding:0 12px;display:inline-flex;align-items:center;gap:.6em;font-size:15px;text-transform:uppercase;white-space:nowrap}
 .venue__step b{font-weight:400;opacity:.5}
