@@ -28,8 +28,7 @@ venue and registration text, at most ~60 characters a line. Nothing fades in on 
    Details live once, in their own sections; the talk languages sit on the 19:00 line.
    Under it the line-up (.lineup): "Mediální partneři / Media partners": ČAUI first and a step larger (--h 46px), then
    Maker Faire (40px); 85% of that on phones. Maker Faire's site SVG recoloured, ČAUI from the PDFs the association sent
-   (partner-caai.svg Czech, partner-caai-en.svg English). Pracovna's logo (site logo recoloured) sits in the Venue
-   section above the address, since it is the place rather than a name to drop.
+   (partner-caai.svg Czech, partner-caai-en.svg English). Pracovna has no logo on the page: its sign is in the first venue photo.
    The speakers' companies sit on the first screen instead: .hero__cos at the bottom of the hero, "Řečníci z / Speakers from"
    Hugging Face, Pollen Robotics, Integra Robotics (white; logo-integra-light.svg is the mark redrawn for dark backgrounds;
    add Robotservice the same way once Tomáš sends a logo).
