@@ -135,7 +135,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .city__nav .pill[aria-current="true"]{background:var(--orange);color:var(--black)}
 /* collapsed: one pill; tapping it reopens the panel */
 .city--collapsed{background:transparent;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none}
-.city--collapsed .city__name{height:var(--pill-h);padding:0 25px;font-size:var(--nav-fs);background:rgba(0,0,0,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);animation:none}
+.city--collapsed .city__name{height:var(--pill-h);padding:0 25px;font-size:var(--nav-fs);background:rgba(0,0,0,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);animation:none}
 .city--collapsed .city__name:hover{background:rgba(0,0,0,.8)}
 .city--collapsed .city__nav{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility 0s .2s;position:absolute}
 .city--collapsed.is-open{background:rgba(0,0,0,.30);padding:10px;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
@@ -252,13 +252,13 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 
 .spk__name a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent;transition:text-decoration-color .2s}
 .spk__name a:hover,.spk__name a:focus-visible{text-decoration-color:currentColor}
-.spk__name a::after{content:"\2197";font-size:.5em;vertical-align:.7em;margin-left:.15em;opacity:.45}
+.spk__name a::after{content:"";display:inline-block;width:.32em;height:.32em;margin-left:.12em;vertical-align:.62em;background:currentColor;opacity:.45;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat}
 
 .spk__bot{position:absolute;z-index:3;right:var(--s1);bottom:var(--s1);width:66px;height:88px;border-radius:13px;overflow:hidden;background:rgba(255,255,255,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .photo .spk__bot img{position:static;width:100%;height:100%;object-fit:cover;filter:none;opacity:1;transform:none}
 .spk:hover .photo .spk__bot img{transform:none}
+.spk__orgs{display:flex;flex-wrap:wrap;gap:4px 16px}
 .spk__co{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-.spk__co+.spk__co{margin-left:16px}
 .spk__co img{height:16px;width:auto;filter:grayscale(1) contrast(1.25) brightness(.8);opacity:.85;transition:filter .3s,opacity .3s}
 /* company marks are monochrome like the rest of the page; they take their own colour only on hover */
 @media (hover:hover){.spk:hover .spk__co img{filter:none;opacity:1}}
@@ -409,7 +409,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, LinkedIn profile">Fabien Danieau</a></h3>
-      <p class="spk__org"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" width="16" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" width="20" height="18">Hugging Face</span></p>
+      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" width="16" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" width="20" height="18">Hugging Face</span></p>
       <p class="spk__talk">Reachy Mini: open-source desk robot</p>
       <p class="spk__note">An expressive desk robot. Live demo in the middle of the talk, then try it yourself at the demo table.</p>
     </article>
