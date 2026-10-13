@@ -6,7 +6,7 @@ Static site, no build step. Live at https://protorobot.cz (Czech) and https://pr
     en/index.html   English version (protorobot.cz/en/)
     img/            greyscale images (the orange duotone is CSS)
                     .webp files are what the pages load; the .jpg/.png next to them are the sources
-                    og.jpg is the social preview (stays JPEG for crawlers)
+                    og.jpg is the social preview with the logo band (stays JPEG for crawlers)
     video/          H.264 clips (not used on the page since the program became a timetable)
     CNAME           custom domain for GitHub Pages (protorobot.cz)
 
@@ -25,22 +25,24 @@ venue and registration text, at most ~60 characters a line. Nothing fades in on 
 
 1. Hero: carousel, PROTO ROBOT title centred and still; the black badge under it turns to the next fact with each photo (what / when / where)
 2. Intro: who it is for, and one row: date and time → Program, place → Venue, orange Register on Luma.
-   Details live once, in their own sections; the talk languages sit on the 19:00 line
+   Details live once, in their own sections; the talk languages sit on the 19:00 line.
+   Under it the line-up (.lineup), everything black and greyscale:
+   "Řečníci z / Speakers from": Pollen Robotics, Hugging Face, Integra Robotics (mark + name; add Robotservice
+   the same way once Tomáš sends a logo); "Podporují / Supported by": Pracovna, Maker Faire, ČAUI (logos sized by eye:
+   --h 54/40/36px on desktop, 70% on phones). Pracovna's site logo recoloured, Maker Faire's site SVG recoloured,
+   ČAUI from the PDFs the association sent (partner-caai.svg Czech, partner-caai-en.svg English).
+   Only the speakers' companies and these three partners; no other organisations' logos (no investors, no registrants).
+   Not "backed by": nobody here funds the event.
 3. (The ticker was removed: its Register moved into the intro row.)
 4. Speakers (a company logo sits right before its own name in the company line: an <img height="18" alt=""> inside
-   that company's <span class="spk__co">, own colours; Fabien has Pollen + Hugging Face, Vítek has the
-   Integra square mark (cut from the logo on integrarobotics.cz), Konečný gets his once he sends it; Bruna has none): four cards in running order, unnumbered until the slots are confirmed (photo, LinkedIn, talk title, one-line note; optional "Live demo"
+   that company's <span class="spk__co">, shown in greyscale to match the line-up; Fabien has Pollen + Hugging Face, Vítek has the
+   Integra square mark (cut from the logo on integrarobotics.cz), Konečný gets his once he sends it; Bruna has none): four cards ordered by prominence, not by running order (Danieau, Vítek, Bruna, Konečný; the same goes for the line-up: Hugging Face first) (photo, LinkedIn, talk title, one-line note; optional "Live demo"
    and robot tile). On phones each card is photo left, text right
 5. Program: three lines, 18:00 / 19:00 / 21:00
 6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)
 7. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
    calendar button: Luma offers it after registering, and a second button invites "added to calendar" instead of registering
-8. Partners (last section above the footer): Pracovna (venue), Maker Faire and Česká asociace umělé inteligence
-   (media partners). One row, sized by eye rather than by one height (Pracovna 54px, Maker Faire 40, ČAUI 36 on desktop,
-   75% of that on phones), black, from the partners' own
-   sources: Pracovna's site logo recoloured, Maker Faire's site SVG recoloured, ČAUI from the PDFs the association
-   sent (partner-caai.svg Czech, partner-caai-en.svg English).
-   Only these three partners; no other organisations' logos.
+(The separate Partners section at the bottom was folded into the line-up under the intro.)
 
 Register appears three times: the header pill, the intro row and the closing block. The footer is plain text links.
 On phones the section menu starts folded into one pill so the hero stays clear; tap it to open.

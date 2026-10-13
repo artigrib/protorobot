@@ -21,7 +21,7 @@
 <meta property="og:locale:alternate" content="en_GB">
 <meta property="og:title" content="PROTO ROBOT #0: setkání robotiků v Praze">
 <meta property="og:description" content="Přednášky a živá dema. Pátek 23. října 2026, 18:00. Vstup zdarma, registrace na Luma.">
-<meta property="og:image" content="https://protorobot.cz/img/og.jpg?v=2">
+<meta property="og:image" content="https://protorobot.cz/img/og.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="PROTO ROBOT #0, Praha, 23. října 2026">
@@ -306,18 +306,35 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
    On wider screens let it use the screen height; on phones Luma already goes full screen. */
 @media (min-width:641px){.luma-checkout--overlay .luma-checkout--modal{height:min(720px,calc(100dvh - 48px))!important;max-height:none!important}}
 
-.spk__co img{height:18px;width:auto;flex:none}
+.spk__co img{height:18px;width:auto;flex:none;filter:grayscale(1) contrast(1.15)}
 /* the open staircase mark looks smaller than a solid icon at the same height */
 .spk__co img.co-integra{height:22px;margin-block:-2px}
-/* partners: logos at one height, black on the page background, caption underneath */
-.partners__row{display:grid;grid-template-columns:repeat(3,max-content);gap:var(--s2) var(--s4);align-items:end}
+/* partner logos: sized by eye */
 /* same height is not the same size: the light three-line Pracovna mark goes up, the heavy ČAUI block down */
 .partner{--h:40px}.partner--pracovna{--h:54px}.partner--caai{--h:36px}
-.partner{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .partner img{height:var(--h);width:auto;display:block}
-.partner span{font-size:13px;line-height:1.2;color:var(--grey-text);text-transform:uppercase;letter-spacing:.02em}
-.partner:hover span,.partner:focus-visible span{color:var(--black)}
-@media (max-width:640px){.partners__row{grid-template-columns:repeat(3,auto);justify-content:space-between;gap:var(--s2) 12px;align-items:start}.partner img{height:calc(var(--h) * .75)}.partners__row{align-items:end}.partner span{font-size:11px}}
+.partner{display:inline-flex}
+.partner:hover img,.partner:focus-visible img{opacity:.6}
+
+/* line-up: who is behind the evening, right under the facts. Everything black, one optical size */
+.lineup{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--s3) var(--s4);margin-top:var(--s4)}
+.intro .lineup__label{display:block;font-size:13px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--grey-text);max-width:none;margin-bottom:14px}
+.lineup__row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;min-height:44px;list-style:none}
+.lineup .co{display:inline-flex;align-items:center;gap:9px;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1;white-space:nowrap}
+.lineup .co img{height:28px;width:auto;flex:none;filter:grayscale(1) contrast(1.15)}
+.lineup .co img.co-integra{height:32px}
+.lineup .partner{--k:1}
+.lineup .partner img{height:calc(var(--h) * var(--k))}
+@media (max-width:640px){
+  .lineup{gap:var(--s2) 18px;margin-top:var(--s3)}
+  .lineup__group:first-child{width:100%}
+  .intro .lineup__label{font-size:11px;margin-bottom:10px}
+  .lineup__row{gap:12px 16px;min-height:36px}
+  .lineup .co{font-size:18px;gap:7px}
+  .lineup .co img{height:22px}
+  .lineup .co img.co-integra{height:25px}
+  .lineup .partner{--k:.7}
+}
 
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s1) var(--s3);padding:var(--s3) var(--gt) calc(var(--s3) + env(safe-area-inset-bottom));background:var(--black);color:var(--white)}
@@ -381,17 +398,29 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <h1 class="vh">Proto Robot #0</h1>
   <p>Rozjíždíme sérii setkání pro lidi, kteří staví roboty, a pro ty, kdo by chtěli. Přednášky, dema a povídání.</p>
   <p class="facts" aria-label="Hlavní informace"><a href="#programme"><time datetime="2026-10-23T18:00+02:00">Pá 23. 10., 18:00</time></a><a href="#venue">Pracovna, Praha 3</a><a class="pill--orange" href="https://luma.com/2pxjv05i?utm_source=web-intro&amp;utm_medium=cs" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-intro-cs" target="_blank" rel="noopener">Registrace na Lumě</a></p>
+  <div class="lineup" role="group" aria-label="Řečníci a partneři">
+    <div class="lineup__group"><span class="lineup__label">Řečníci z</span>
+      <ul class="lineup__row">
+        <li class="co"><img src="/img/logo-hf.svg" alt="" height="28">Hugging Face</li>
+        <li class="co"><img src="/img/logo-pollen.webp" alt="" height="28">Pollen Robotics</li>
+        <li class="co"><img class="co-integra" src="/img/logo-integra.svg" alt="" height="32">Integra Robotics</li>
+      </ul>
+    </div>
+    <div class="lineup__group"><span class="lineup__label">Podporují</span>
+      <div class="lineup__row"><a class="partner partner--pracovna" href="https://www.pracovna.cz/" target="_blank" rel="noopener"><img src="/img/partner-pracovna.webp" alt="Pracovna" width="46" height="54"></a><a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"></a><a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai.svg" alt="Česká asociace umělé inteligence" width="173" height="36"></a></div>
+    </div>
+  </div>
 </section>
 
 <section class="mod speakers" id="speakers">
   <h2>Řečníci</h2>
   <div class="spk-grid">
     <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot spk__bot--wide"><img src="/img/bot-scrubber.webp" alt="Podlahový mycí robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, Profil na LinkedIn">Tomáš Konečný</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co">Robotservice</span></p>
-      <p class="spk__talk">Běžné problémy servisních robotů</p>
-      <p class="spk__note">Pět minut z praxe: co se na servisních robotech v provozu opravdu kazí.</p>
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
+      <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, Profil na LinkedIn">Fabien Danieau</a></h3>
+      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" height="18">Hugging Face</span></p>
+      <p class="spk__talk">Reachy Mini: open-source stolní robot</p>
+      <p class="spk__note">Expresivní stolní robot. Živé demo uprostřed přednášky, potom si ho vyzkoušíte u demo stolu.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoidní robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
@@ -401,18 +430,18 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <p class="spk__note">Kde se humanoidi potkávají s physical AI. Integra přiveze humanoida na demo.</p>
     </article>
     <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, Profil na LinkedIn">Fabien Danieau</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" height="18">Hugging Face</span></p>
-      <p class="spk__talk">Reachy Mini: open-source stolní robot</p>
-      <p class="spk__note">Expresivní stolní robot. Živé demo uprostřed přednášky, potom si ho vyzkoušíte u demo stolu.</p>
-    </article>
-    <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.webp" alt="Ondřej Bruna"></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, Profil na LinkedIn">Ondřej Bruna</a></h3>
       <p class="spk__org">spoluautor a vývojář KORDu</p>
       <p class="spk__talk">KORD: Lessons Learned</p>
       <p class="spk__note">Deset let stavby 7-DOF kobota od nuly a real-time rozhraní pro jeho ruku.</p>
+    </article>
+    <article class="spk">
+      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot spk__bot--wide"><img src="/img/bot-scrubber.webp" alt="Podlahový mycí robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
+      <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, Profil na LinkedIn">Tomáš Konečný</a></h3>
+      <p class="spk__org spk__orgs"><span class="spk__co">Robotservice</span></p>
+      <p class="spk__talk">Běžné problémy servisních robotů</p>
+      <p class="spk__note">Pět minut z praxe: co se na servisních robotech v provozu opravdu kazí.</p>
     </article>
   </div>
 </section>
@@ -451,15 +480,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <p class="follow">PROTO ROBOT je série. <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Sledujte nás na Lumě</a> a o #1 se dozvíte jako první.</p>
 </section>
 
-
-<section class="mod partners" id="partners" aria-label="Partneři akce">
-  <h2>Partneři</h2>
-  <div class="partners__row">
-    <a class="partner partner--pracovna" href="https://www.pracovna.cz/" target="_blank" rel="noopener"><img src="/img/partner-pracovna.webp" alt="Pracovna" width="46" height="54"><span>místo konání</span></a>
-    <a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"><span>mediální partner</span></a>
-    <a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai.svg" alt="Česká asociace umělé inteligence" width="173" height="36"><span>mediální partner</span></a>
-  </div>
-</section>
 
 </main>
 
