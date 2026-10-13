@@ -259,10 +259,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk:hover .photo .spk__bot img{transform:none}
 .spk__orgs{display:flex;flex-wrap:wrap;gap:4px 16px}
 .spk__co{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-.spk__co img{height:16px;width:auto;filter:grayscale(1) contrast(1.25) brightness(.8);opacity:.85;transition:filter .3s,opacity .3s}
-/* company marks are monochrome like the rest of the page; they take their own colour only on hover */
-@media (hover:hover){.spk:hover .spk__co img{filter:none;opacity:1}}
-@media (max-width:560px){.spk__org{text-transform:none;letter-spacing:0;font-size:13px}.spk__co img{height:13px}.spk__orgs{flex-wrap:nowrap;gap:8px}/* one line like the others: on phones Hugging Face is just its mark (the name stays for screen readers) */.spk__co-name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+@media (max-width:560px){.spk__org{text-transform:none;letter-spacing:0;font-size:13px}.spk__orgs{flex-wrap:nowrap;gap:8px}}
 .photo .spk__bot--wide img{object-fit:contain}
 @media (max-width:380px){.spk__org{font-size:12px}}
 /* ---------- registration ---------- */
@@ -323,6 +320,17 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 /* Luma's checkout window is capped at 600px tall, which hides the Register button on desktop.
    On wider screens let it use the screen height; on phones Luma already goes full screen. */
 @media (min-width:641px){.luma-checkout--overlay .luma-checkout--modal{height:min(720px,calc(100dvh - 48px))!important;max-height:none!important}}
+
+.spk__marks{display:flex;align-items:center;gap:12px;margin-top:10px}
+.spk__marks:empty{display:none}
+.spk__marks img{height:28px;width:auto}
+/* partners: logos at one height, black on the page background, caption underneath */
+.partners__row{display:grid;grid-template-columns:repeat(3,max-content);gap:var(--s2) var(--s4);align-items:end}
+.partner{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.partner img{height:40px;width:auto;display:block}
+.partner span{font-size:13px;line-height:1.2;color:var(--grey-text);text-transform:uppercase;letter-spacing:.02em}
+.partner:hover span,.partner:focus-visible span{color:var(--black)}
+@media (max-width:640px){.partners__row{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
 
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px;margin:0;background:var(--black);min-height:70px}
@@ -397,28 +405,28 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot spk__bot--wide"><img src="/img/bot-scrubber.webp" alt="Floor scrubber robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, LinkedIn profile">Tomáš Konečný</a></h3>
       <p class="spk__org">Robotservice</p>
-      <p class="spk__talk">Common facility robot issues</p>
+      <p class="spk__talk">Common facility robot issues<span class="spk__marks"></span></p>
       <p class="spk__note">Five minutes from the field: what really breaks on service robots in operation.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoid robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, LinkedIn profile">Lukáš Vítek</a></h3>
       <p class="spk__org">Integra Robotics</p>
-      <p class="spk__talk">Humanoids and physical AI</p>
+      <p class="spk__talk">Humanoids and physical AI<span class="spk__marks"></span></p>
       <p class="spk__note">Where humanoids meet physical AI. Integra brings their humanoid for a live demo.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, LinkedIn profile">Fabien Danieau</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" width="16" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" width="20" height="18"><span class="spk__co-name">Hugging Face</span></span></p>
-      <p class="spk__talk">Reachy Mini: open-source desk robot</p>
+      <p class="spk__org spk__orgs"><span class="spk__co">Pollen Robotics</span><span class="spk__co">Hugging Face</span></p>
+      <p class="spk__talk">Reachy Mini: open-source desk robot<span class="spk__marks"><img src="/img/logo-pollen.webp" alt="Pollen Robotics" height="28"><img src="/img/logo-hf.svg" alt="Hugging Face" height="28"></span></p>
       <p class="spk__note">An expressive desk robot. Live demo in the middle of the talk, then try it yourself at the demo table.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.webp" alt="Ondřej Bruna"></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, LinkedIn profile">Ondřej Bruna</a></h3>
       <p class="spk__org">Co-author and developer of KORD</p>
-      <p class="spk__talk">KORD: lessons learned</p>
+      <p class="spk__talk">KORD: Lessons Learned</p>
       <p class="spk__note">Ten years building a 7-DOF cobot from scratch and its real-time arm interface.</p>
     </article>
   </div>
@@ -458,6 +466,15 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
   <p class="follow">PROTO ROBOT is a series. <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow us on Luma</a> to hear about #1 first.</p>
 </section>
 
+
+<section class="mod partners" id="partners" aria-label="Event partners">
+  <h2>Partners</h2>
+  <div class="partners__row">
+    <a class="partner" href="https://www.pracovna.cz/" target="_blank" rel="noopener"><img src="/img/partner-pracovna.webp" alt="Pracovna" width="34" height="40"><span>venue</span></a>
+    <a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"><span>media partner</span></a>
+    <a class="partner" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai.svg" alt="Česká asociace umělé inteligence" width="192" height="40"><span>media partner</span></a>
+  </div>
+</section>
 
 </main>
 
