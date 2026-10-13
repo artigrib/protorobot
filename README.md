@@ -6,7 +6,7 @@ Static site, no build step. Live at https://protorobot.cz (Czech) and https://pr
     en/index.html   English version (protorobot.cz/en/)
     img/            greyscale images (the orange duotone is CSS)
                     .webp files are what the pages load; the .jpg/.png next to them are the sources
-                    og.jpg is the social preview with the logo band (stays JPEG for crawlers)
+                    og.jpg is the social preview: Reachy Mini (Pollen product photo) with the logo band (stays JPEG for crawlers)
     video/          H.264 clips (not used on the page since the program became a timetable)
     CNAME           custom domain for GitHub Pages (protorobot.cz)
 
