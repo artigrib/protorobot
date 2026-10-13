@@ -262,8 +262,9 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk__co img{height:16px;width:auto;filter:grayscale(1) contrast(1.25) brightness(.8);opacity:.85;transition:filter .3s,opacity .3s}
 /* company marks are monochrome like the rest of the page; they take their own colour only on hover */
 @media (hover:hover){.spk:hover .spk__co img{filter:none;opacity:1}}
-@media (max-width:560px){.spk__co img{height:13px}}
+@media (max-width:560px){.spk__org{text-transform:none;letter-spacing:0;font-size:13px}.spk__co img{height:13px}.spk__orgs{flex-wrap:nowrap;gap:8px}/* one line like the others: on phones Hugging Face is just its mark (the name stays for screen readers) */.spk__co-name{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
 .photo .spk__bot--wide img{object-fit:contain}
+@media (max-width:380px){.spk__org{font-size:12px}}
 /* ---------- registration ---------- */
 /* ---------- venue ---------- */
 
@@ -409,7 +410,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, LinkedIn profile">Fabien Danieau</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" width="16" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" width="20" height="18">Hugging Face</span></p>
+      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" width="16" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" width="20" height="18"><span class="spk__co-name">Hugging Face</span></span></p>
       <p class="spk__talk">Reachy Mini: open-source desk robot</p>
       <p class="spk__note">An expressive desk robot. Live demo in the middle of the talk, then try it yourself at the demo table.</p>
     </article>
