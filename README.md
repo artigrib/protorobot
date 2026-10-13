@@ -16,13 +16,17 @@ Asset paths are absolute (/img/, /video/), so the site must live at the domain r
 ## What is on the page
 
 One system: the two posters (hero and the closing Register block) are centred, everything people read
-sits on the left axis. The intro h1 is the only large heading, every section heading uses the same smaller h2,
-and decoration without a job is left out.
+sits on the left axis. The hero title is the page title (the intro h1 is visually hidden), every section heading
+uses the same h2, and decoration without a job is left out.
 
-1. Hero: carousel, PROTO ROBOT title centred and still; the badge under it turns to the next fact with each photo (what / when / where)
-2. Intro: name, who it is for, and one row of fact pills (date and time → Program, place → Venue); free entry is the ticker right below.
+Two shapes: a pill is something you press (orange pill = register), everything else is a rectangle
+(photos, robot tiles, Live demo and step labels, the black hero badge). One lead size for the intro,
+venue and registration text, at most ~60 characters a line. Nothing fades in on scroll.
+
+1. Hero: carousel, PROTO ROBOT title centred and still; the black badge under it turns to the next fact with each photo (what / when / where)
+2. Intro: who it is for, and one row: date and time → Program, place → Venue, orange Register on Luma.
    Details live once, in their own sections; the talk languages sit on the 19:00 line
-3. Ticker: links to registration (the first Register after the facts)
+3. (The ticker was removed: its Register moved into the intro row.)
 4. Speakers (a company logo sits right before its own name in the company line: an <img height="18" alt=""> inside
    that company's <span class="spk__co">, own colours; Fabien has Pollen + Hugging Face, Vítek and Konečný get theirs
    in the same place once they send them; Bruna has none): four cards in running order, unnumbered until the slots are confirmed (photo, LinkedIn, talk title, one-line note; optional "Live demo"
@@ -32,18 +36,19 @@ and decoration without a job is left out.
 7. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
    calendar button: Luma offers it after registering, and a second button invites "added to calendar" instead of registering
 8. Partners (last section above the footer): Pracovna (venue), Maker Faire and Česká asociace umělé inteligence
-   (media partners). One row, logos 40px high on desktop and scaled to fit on phones, black, from the partners' own
+   (media partners). One row, sized by eye rather than by one height (Pracovna 54px, Maker Faire 40, ČAUI 36 on desktop,
+   75% of that on phones), black, from the partners' own
    sources: Pracovna's site logo recoloured, Maker Faire's site SVG recoloured, ČAUI from the PDFs the association
    sent (partner-caai.svg Czech, partner-caai-en.svg English).
    Only these three partners; no other organisations' logos.
 
-Register appears three times: the header pill, the ticker under the intro, and the last section (the footer has it too).
+Register appears three times: the header pill, the intro row and the closing block. The footer is plain text links.
 On phones the section menu starts folded into one pill so the hero stays clear; tap it to open.
 
 Every Register link opens Luma's checkout window on the page (embed.lu.ma/checkout-button.js, data-luma-* attributes).
 If the script fails, the link opens the Luma event page as before. Each link tags registrations with
 data-luma-utm-source (web-header-cs, web-ticker-en, ...) and page views with the same utm_source in the URL,
-so Luma → Insights / Guests shows which button converts.
+so Luma → Insights / Guests shows which button converts (web-header, web-intro, web-final; web-ticker and web-footer are retired).
 
 Event details for search engines (date, venue, speakers) live in the JSON-LD block in the head of each page.
 

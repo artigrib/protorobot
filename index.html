@@ -78,8 +78,8 @@ a{color:inherit;text-decoration:none}
 img,video{display:block;max-width:100%}
 ul{list-style:none}
 p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
-:focus-visible{outline:3px solid var(--black);outline-offset:3px;border-radius:999px}
-.card:focus-visible,.tier:focus-visible{border-radius:20px}
+:focus-visible{outline:3px solid var(--black);outline-offset:3px}
+.pill:focus-visible,.facts a:focus-visible{border-radius:999px}
 [id]{scroll-margin-top:calc(var(--header-h) + var(--pill-h) + var(--s3))}
 .skip{position:fixed;left:var(--g);top:-100px;z-index:100;background:var(--black);color:var(--white);padding:0 20px;height:var(--pill-h);display:inline-flex;align-items:center;border-radius:999px;transition:top .2s}
 .skip:focus{top:var(--g)}
@@ -88,24 +88,18 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .mod{padding:0 var(--gt) var(--s5)}
 .mod--flush{padding-left:var(--g);padding-right:var(--g)}
 .mod h2{font-weight:300;font-size:clamp(36px,4.8vw,68px);line-height:.95;letter-spacing:-.04em;margin-bottom:var(--s3);text-wrap:balance}
-.lede{font-size:clamp(18px,1.8vw,26px);line-height:1.3;letter-spacing:-.015em}
+.lede,.intro p{font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:34em;text-wrap:pretty}
+.tix .lede,.foot__meta,.follow{text-wrap:balance}
 .lede+.lede{margin-top:.6em}
 
 /* ---------- motion ---------- */
-.js .page{opacity:0;transition:opacity .6s ease}
-.js .page.is-in{opacity:1}
-.js .mod{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .8s var(--ease-out)}
-.js .mod.is-in{opacity:1;transform:none}
 @keyframes drift{0%,100%{transform:translate(0,0)}25%{transform:translate(2px,-1px)}50%{transform:translate(-2px,3px)}75%{transform:translate(3px,-3px)}}
 @keyframes breathe{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.03) rotate(1.5deg)}}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.12)}}
 @keyframes float{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 10px))}}
-@keyframes ticker{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .city__name,.hero__type__in,.badge,.slide.is-on img{animation:none!important}
-  .ticker__track{animation-duration:70s}
-  .js .page,.js .mod{opacity:1;transform:none;transition:none}
   .photo,.tier__art{transition:none}
   /* carousel and title still change, but by crossfade instead of movement */
   .hero__track--h,.hero__track--v{transform:none!important;transition:none}
@@ -188,7 +182,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .hero__type.is-out span:first-child{transform:translateX(-260%)}
 .hero__type.is-out span:last-child{transform:translateX(260%)}
 .badge{position:absolute;left:50%;top:var(--by,60%);transform:translateX(-50%);z-index:3;perspective:900px}
-.badge__flip{position:relative;background:var(--orange);color:var(--black);border-radius:999px;font-size:clamp(26px,2.8vw,40px);height:65px;padding:0 32px;display:grid;place-items:center;text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;transform-style:preserve-3d;transition:transform var(--cut) var(--ease-slide)}
+.badge__flip{position:relative;background:var(--black);color:var(--white);border-radius:0;font-size:clamp(26px,2.8vw,40px);height:65px;padding:0 32px;display:grid;place-items:center;text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;transform-style:preserve-3d;transition:transform var(--cut) var(--ease-slide)}
 .badge__flip span{grid-area:1/1;backface-visibility:hidden;text-align:center}
 .badge__flip .f-b{transform:rotateX(180deg)}
 .badge.is-flipped .badge__flip{transform:rotateX(180deg)}
@@ -196,20 +190,14 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 
 /* ---------- intro ---------- */
 .intro{padding-top:calc(var(--header-h) + var(--s4))}
-.intro h1{margin-bottom:var(--s3);font-weight:300;font-size:clamp(56px,10.6vw,152px);line-height:.92;letter-spacing:-.05em;text-wrap:balance}
-.intro p{font-size:clamp(21px,2.15vw,31px);line-height:1.18;letter-spacing:-.015em}
-.intro p.facts{font-size:inherit;letter-spacing:0}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.intro p.facts{font-size:inherit;letter-spacing:0;max-width:none}
 .facts{display:flex;flex-wrap:wrap;gap:var(--s1);margin-top:var(--s3)}
 .facts a{text-decoration:none;display:inline-flex;align-items:center;height:var(--pill-h);padding:0 22px;border:2px solid var(--black);border-radius:999px;font-size:var(--nav-fs);text-transform:uppercase;white-space:nowrap;transition:background .18s,color .18s}
 .facts a:hover,.facts a:focus-visible{background:var(--black);color:var(--white)}
-@media (max-width:640px){.intro{padding-top:calc(var(--header-h) + var(--s3))}.intro h1{font-size:12.5vw;letter-spacing:-.04em;line-height:.95}.intro p{font-size:19px;line-height:1.3;letter-spacing:-.01em}}
-
-/* ---------- ticker ---------- */
-.ticker{overflow:hidden;background:var(--black);color:var(--white);padding:16px 0;white-space:nowrap;margin-bottom:var(--s5)}
-.ticker__track{display:inline-block;animation:ticker 26s linear infinite;font-size:clamp(28px,3.5vw,50px);letter-spacing:-.03em;text-transform:uppercase}
-.ticker__track span{margin-right:.9em}
-.ticker__track span::before{content:"";display:inline-block;width:.62em;height:.62em;border-radius:50%;border:.09em solid var(--white);margin-right:.7em;vertical-align:-.04em}
-@media (max-width:640px){.ticker{padding:12px 0}}
+.facts a.pill--orange{border-color:var(--orange)}
+.facts a.pill--orange:hover,.facts a.pill--orange:focus-visible{border-color:var(--black)}
+@media (max-width:640px){.intro{padding-top:calc(var(--header-h) + var(--s3))}}
 
 /* ---------- photos: orange duotone ---------- */
 .photo{position:relative;overflow:hidden;background:var(--orange-deep);transition:transform .35s var(--ease-out)}
@@ -231,7 +219,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 /* clips are 640px sources: framed at ~80% of the card so desktop screens upscale them less */
 .photo--frame{background:var(--orange-dim)}
-.photo--frame video{left:9%;top:9%;width:82%;height:82%;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.photo--frame video{left:9%;top:9%;width:82%;height:82%}
 
 .card__name{position:absolute;top:22px;left:50%;transform:translateX(-50%);z-index:3;background:var(--white);color:var(--black);border-radius:999px;height:var(--pill-h);padding:0 25px;display:inline-flex;align-items:center;font-size:var(--nav-fs);text-transform:uppercase;white-space:nowrap}
 .card p{margin-top:var(--s1);font-size:16px;line-height:1.35}
@@ -246,7 +234,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk .photo{aspect-ratio:1/1}
 .spk .photo img{object-position:center 30%;transition:opacity .65s var(--ease-out),transform .9s var(--ease-out)}
 .spk:hover .photo img{transform:scale(1.04)}
-.spk__demo{position:absolute;z-index:3;left:var(--s1);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center;font-size:15px;text-transform:uppercase;white-space:nowrap}
+.spk__demo{position:absolute;z-index:3;left:var(--s1);height:36px;padding:0 12px;display:inline-flex;align-items:center;font-size:15px;text-transform:uppercase;white-space:nowrap}
 .spk__demo{bottom:var(--s1);background:var(--black);color:var(--white)}
 .spk__name{margin-top:var(--s2);font-weight:300;font-size:clamp(30px,2.7vw,42px);line-height:.95;letter-spacing:-.04em;text-wrap:balance}
 .spk__org{margin-top:.55em;font-size:14px;line-height:1.3;text-transform:uppercase;letter-spacing:.02em;color:var(--grey-text)}
@@ -257,7 +245,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk__name a:hover,.spk__name a:focus-visible{text-decoration-color:currentColor}
 .spk__name a::after{content:"";display:inline-block;width:.32em;height:.32em;margin-left:.06em;vertical-align:.5em;background:currentColor;opacity:.45;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat}
 
-.spk__bot{position:absolute;z-index:3;right:var(--s1);bottom:var(--s1);width:66px;height:88px;border-radius:13px;overflow:hidden;background:rgba(255,255,255,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.spk__bot{position:absolute;z-index:3;right:var(--s1);bottom:var(--s1);width:66px;height:88px;border-radius:0;overflow:hidden;background:rgba(255,255,255,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .photo .spk__bot img{position:static;width:100%;height:100%;object-fit:cover;filter:none;opacity:1;transform:none}
 .spk:hover .photo .spk__bot img{transform:none}
 .spk__orgs{display:flex;flex-wrap:wrap;gap:4px 16px}
@@ -274,7 +262,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .venue__photos .photo{aspect-ratio:1/1}
 .venue__photos .photo--street img{object-position:center 35%}
 .venue__photos .photo--hall img{object-position:center 60%}
-.venue__step{position:absolute;z-index:3;top:var(--s1);left:var(--s1);background:var(--white);color:var(--black);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center;gap:.6em;font-size:15px;text-transform:uppercase;white-space:nowrap}
+.venue__step{position:absolute;z-index:3;top:var(--s1);left:var(--s1);background:var(--white);color:var(--black);height:36px;padding:0 12px;display:inline-flex;align-items:center;gap:.6em;font-size:15px;text-transform:uppercase;white-space:nowrap}
 .venue__step b{font-weight:400;opacity:.5}
 @media (max-width:640px){.venue__photos{grid-template-columns:minmax(0,1fr)}.venue__photos .photo{aspect-ratio:3/2}}
 
@@ -284,12 +272,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .pill--dark{background:var(--black);color:var(--white);backdrop-filter:none}
 .pill--dark:hover{background:var(--orange);color:var(--black)}
 @media (max-width:640px){.pill--lg{height:56px;padding:0 24px;font-size:17px}}
-
-/* ticker is a link to registration */
-a.ticker{display:block;color:var(--white);transition:background .2s,color .2s}
-a.ticker:hover,a.ticker:focus-visible{background:var(--orange);color:var(--black)}
-a.ticker:hover .ticker__track span::before,a.ticker:focus-visible .ticker__track span::before{border-color:var(--black)}
-a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 
 /* timetable: same rule line as the talk titles on speaker cards */
 .tt{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3) var(--g);counter-reset:none}
@@ -301,7 +283,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 
 /* registration: the closing poster, centred like the hero; everything read in between sits on the left axis */
 .tix{text-align:center}
-.tix .lede{max-width:40ch;margin-inline:auto}
+.tix .lede{max-width:24em;margin-inline:auto}
 .tix .cta-row{justify-content:center}
 .tix .follow{margin-top:var(--s2);font-size:16px;line-height:1.4}
 .venue .addr{font-weight:500}
@@ -316,8 +298,8 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
   .spk__org{font-size:12px}
   .spk__talk{margin-top:var(--s1);padding-top:8px;font-size:16px}
   .spk__note{font-size:14px}
-  .spk__demo{left:6px;bottom:6px;height:24px;padding:0 9px;font-size:11px}
-  .spk__bot{width:31px;height:42px;right:6px;bottom:6px;top:auto;border-radius:8px}
+  .spk__demo{left:6px;bottom:6px;height:22px;padding:0 7px;font-size:11px}
+  .spk__bot{width:31px;height:42px;right:6px;bottom:6px;top:auto}
 }
 
 /* Luma's checkout window is capped at 600px tall, which hides the Register button on desktop.
@@ -327,18 +309,20 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 .spk__co img{height:18px;width:auto;flex:none}
 /* partners: logos at one height, black on the page background, caption underneath */
 .partners__row{display:grid;grid-template-columns:repeat(3,max-content);gap:var(--s2) var(--s4);align-items:end}
+/* same height is not the same size: the light three-line Pracovna mark goes up, the heavy ČAUI block down */
+.partner{--h:40px}.partner--pracovna{--h:54px}.partner--caai{--h:36px}
 .partner{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-.partner img{height:40px;width:auto;display:block}
+.partner img{height:var(--h);width:auto;display:block}
 .partner span{font-size:13px;line-height:1.2;color:var(--grey-text);text-transform:uppercase;letter-spacing:.02em}
 .partner:hover span,.partner:focus-visible span{color:var(--black)}
-@media (max-width:640px){.partners__row{grid-template-columns:repeat(3,auto);justify-content:space-between;gap:var(--s2) 12px;align-items:start}.partner img{height:clamp(20px,7.6vw,32px)}.partner span{font-size:11px}}
+@media (max-width:640px){.partners__row{grid-template-columns:repeat(3,auto);justify-content:space-between;gap:var(--s2) 12px;align-items:start}.partner img{height:calc(var(--h) * .75)}.partners__row{align-items:end}.partner span{font-size:11px}}
 
 /* ---------- footer ---------- */
-.foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px 10px calc(24px + env(safe-area-inset-bottom));margin:0;background:var(--black);min-height:70px}
-.foot .pill{background:var(--white);color:var(--black);backdrop-filter:none;height:50px}
-.foot .pill:hover{background:var(--orange);color:var(--black)}
-.foot__meta{width:100%;color:rgba(255,255,255,.7);font-size:14px;padding-top:12px}
-@media (max-width:640px){.foot .pill{height:44px;padding:0 18px;font-size:14px}}
+.foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s1) var(--s3);padding:var(--s3) var(--gt) calc(var(--s3) + env(safe-area-inset-bottom));background:var(--black);color:var(--white)}
+.foot a{font-size:16px;text-transform:uppercase;letter-spacing:.02em;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.25em;transition:text-decoration-color .2s,color .2s}
+.foot a:hover,.foot a:focus-visible{color:var(--orange);text-decoration-color:currentColor}
+.foot :focus-visible{outline-color:var(--white)}
+.foot__meta{width:100%;color:rgba(255,255,255,.7);font-size:14px;padding-top:var(--s1)}
 </style>
 </head>
 <body>
@@ -392,12 +376,10 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 </section>
 
 <section class="mod intro" id="about">
-  <h1>Proto Robot #0</h1>
+  <h1 class="vh">Proto Robot #0</h1>
   <p>Rozjíždíme sérii setkání pro lidi, kteří staví roboty, a pro ty, kdo by chtěli. Přednášky, dema a povídání.</p>
-  <p class="facts" aria-label="Hlavní informace"><a href="#programme"><time datetime="2026-10-23T18:00+02:00">Pá 23. 10., 18:00</time></a><a href="#venue">Pracovna, Praha 3</a></p>
+  <p class="facts" aria-label="Hlavní informace"><a href="#programme"><time datetime="2026-10-23T18:00+02:00">Pá 23. 10., 18:00</time></a><a href="#venue">Pracovna, Praha 3</a><a class="pill--orange" href="https://luma.com/2pxjv05i?utm_source=web-intro&amp;utm_medium=cs" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-intro-cs" target="_blank" rel="noopener">Registrace na Lumě</a></p>
 </section>
-
-<a class="ticker" href="https://luma.com/2pxjv05i?utm_source=web-ticker&amp;utm_medium=cs" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-ticker-cs" target="_blank" rel="noopener" aria-label="Vstup zdarma. Registrace na Lumě"><div class="ticker__track" aria-hidden="true"><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span><span>Vstup zdarma</span><span>Registrace</span></div></a>
 
 <section class="mod speakers" id="speakers">
   <h2>Řečníci</h2>
@@ -443,7 +425,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
       <p><strong>Přednášky na pódiu</strong> zhruba do 21:00, anglicky a česky.</p>
     </li>
     <li><time datetime="2026-10-23T21:00+02:00">21:00</time>
-      <p><strong>Demo stoly a povídání do 22:00.</strong> Řeči o práci. Máme toho hodně. A proto robot.</p>
+      <p><strong>Demo stoly a povídání do 22:00.</strong> Řeči o práci. Máme toho hodně.</p>
     </li>
   </ol>
 </section>
@@ -471,19 +453,18 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 <section class="mod partners" id="partners" aria-label="Partneři akce">
   <h2>Partneři</h2>
   <div class="partners__row">
-    <a class="partner" href="https://www.pracovna.cz/" target="_blank" rel="noopener"><img src="/img/partner-pracovna.webp" alt="Pracovna" width="34" height="40"><span>místo konání</span></a>
+    <a class="partner partner--pracovna" href="https://www.pracovna.cz/" target="_blank" rel="noopener"><img src="/img/partner-pracovna.webp" alt="Pracovna" width="46" height="54"><span>místo konání</span></a>
     <a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"><span>mediální partner</span></a>
-    <a class="partner" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai.svg" alt="Česká asociace umělé inteligence" width="192" height="40"><span>mediální partner</span></a>
+    <a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai.svg" alt="Česká asociace umělé inteligence" width="173" height="36"><span>mediální partner</span></a>
   </div>
 </section>
 
 </main>
 
 <footer class="foot">
-  <a class="pill" href="#about">O akci</a>
-  <a class="pill" href="https://luma.com/2pxjv05i?utm_source=web-footer&amp;utm_medium=cs" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-footer-cs" target="_blank" rel="noopener">Registrace</a>
-  <a class="pill" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Sledovat na Lumě</a>
-  <a class="pill" href="/en/" hreflang="en" lang="en">English</a>
+  <a href="#about">O akci</a>
+  <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Sledovat na Lumě</a>
+  <a href="/en/" hreflang="en" lang="en">English</a>
   <div class="foot__meta">© 2026 PROTO ROBOT. Máme toho hodně. A proto robot.</div>
 </footer>
 </div>
@@ -501,16 +482,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
   const debounce = (fn, ms = 80) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
   const hero = $('.hero');
 
-  /* ---------- page in + section reveal ---------- */
-  requestAnimationFrame(() => $('#page').classList.add('is-in'));
-  if ('IntersectionObserver' in window && !reduced.matches) {
-    const io = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-    }), { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-    $$('.mod').forEach(m => io.observe(m));
-  } else {
-    $$('.mod').forEach(m => m.classList.add('is-in'));
-  }
+  /* ---------- photos fade in once loaded ---------- */
   $$('.photo img').forEach(im => {
     const on = () => im.classList.add('is-loaded');
     im.complete && im.naturalWidth ? on() : im.addEventListener('load', on, { once: true });
