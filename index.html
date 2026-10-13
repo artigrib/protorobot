@@ -188,6 +188,14 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .badge.is-flipped .badge__flip{transform:rotateX(180deg)}
 @media (max-width:640px){.badge__flip{height:52px;padding:0 20px;font-size:24px;max-width:calc(100vw - 2*var(--gt))}.hero__type span{font-size:22vw}}
 
+/* speakers' companies on the first screen, on the hero's dark bottom */
+.hero__cos{position:absolute;z-index:3;left:0;right:0;bottom:calc(var(--s3) + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 28px;padding:0 var(--gt);color:var(--white)}
+.hero__cos__label{width:100%;text-align:center;font-size:13px;letter-spacing:.02em;text-transform:uppercase;opacity:.75}
+.hero__cos .co{display:inline-flex;align-items:center;gap:9px;font-size:21px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.hero__cos .co img{height:26px;width:auto;filter:grayscale(1) brightness(1.25)}
+.hero__cos .co img.co-integra{height:28px;filter:grayscale(1) invert(1) brightness(1.1)}
+@media (max-width:640px){.hero__cos{gap:8px 18px;bottom:calc(var(--s2) + env(safe-area-inset-bottom))}.hero__cos .co{font-size:16px;gap:6px}.hero__cos .co img{height:20px}.hero__cos .co img.co-integra{height:22px}.hero__cos__label{font-size:11px}}
+
 /* ---------- intro ---------- */
 .intro{padding-top:calc(var(--header-h) + var(--s4))}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -392,6 +400,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
   <div class="badge" id="badge" data-faces='["Meetup #0","Pá 23. 10., 18:00","Pracovna, Praha 3"]'><div class="badge__flip"><span class="f-a">Meetup #0</span><span class="f-b" aria-hidden="true"></span></div></div>
+  <div class="hero__cos"><span class="hero__cos__label">Řečníci z</span><span class="co"><img src="/img/logo-hf.svg" alt="" height="26">Hugging Face</span><span class="co"><img src="/img/logo-pollen.webp" alt="" height="26">Pollen Robotics</span><span class="co"><img class="co-integra" src="/img/logo-integra.svg" alt="" height="28">Integra Robotics</span></div>
 </section>
 
 <section class="mod intro" id="about">
