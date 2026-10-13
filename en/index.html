@@ -152,12 +152,22 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 }
 @media (max-width:640px){.city{gap:10px;padding:8px}.city--collapsed:not(.is-open){padding:0}.city:not(.city--collapsed) .city__name,.city--collapsed.is-open .city__name{height:60px;padding:0 24px;font-size:20px}.city__nav{gap:8px}.top .pill{padding:0 14px;font-size:14px}}
 
+/* folded menu: two bars say "this opens", they turn into a cross while it is open */
+.burger{display:none;position:relative;width:18px;height:12px;margin-left:14px;flex:none}
+.burger::before,.burger::after{content:"";position:absolute;left:0;right:0;height:2px;background:currentColor;transition:transform .25s var(--ease-out),top .25s var(--ease-out)}
+.burger::before{top:0}.burger::after{top:10px}
+.city--collapsed .burger{display:inline-block}
+.city--collapsed.is-open .burger::before{top:5px;transform:rotate(45deg)}
+.city--collapsed.is-open .burger::after{top:5px;transform:rotate(-45deg)}
+
 /* small phones: tighter header so that panel and Register share one row */
 @media (max-width:370px){
   .city:not(.city--collapsed) .city__name,.city--collapsed.is-open .city__name{height:44px;padding:0 14px;font-size:15px}
   .city__nav{gap:6px}
   .city__nav .pill{padding:0 10px;font-size:12px;height:36px}
   .top .top__cta{padding:0 12px;font-size:13px}
+  .city--collapsed:not(.is-open) .city__name{padding:0 14px}
+  .burger{width:14px;margin-left:8px}
 }
 
 /* ---------- hero: two carousels, one per orientation ---------- */
@@ -356,7 +366,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 
 <header class="top">
   <nav class="city" id="city" aria-label="Sections">
-    <button class="city__name" type="button" id="cityBtn" aria-controls="cityNav" aria-expanded="true">Proto Robot #0</button>
+    <button class="city__name" type="button" id="cityBtn" aria-controls="cityNav" aria-expanded="true">Proto Robot #0<span class="burger" aria-hidden="true"></span></button>
     <div class="city__nav" id="cityNav">
       <a class="pill" href="#about">About</a>
       <a class="pill" href="#speakers">Speakers</a>
