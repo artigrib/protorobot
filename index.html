@@ -2,7 +2,7 @@
 <html lang="cs" class="no-js">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.classList.replace('no-js','js')</script>
 
 <title>PROTO ROBOT #0: setkání robotiků v Praze, 23. října 2026</title>
@@ -122,7 +122,10 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .pill--orange{background:var(--orange);color:var(--black);backdrop-filter:none} .pill--orange:hover{background:var(--black);color:var(--white)}
 
 /* ---------- header ---------- */
-.top{position:fixed;left:var(--g);right:var(--g);top:var(--g);z-index:50;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;pointer-events:none}
+.top{position:fixed;left:var(--g);right:var(--g);top:calc(var(--g) + env(safe-area-inset-top));z-index:50;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;pointer-events:none}
+/* past the hero the header pills sit on a frosted band, so they never print over the text below */
+.top::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(var(--g) * 2 + var(--pill-h) + env(safe-area-inset-top));background:rgba(240,240,240,.82);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);box-shadow:0 1px 0 rgba(0,0,0,.08);opacity:0;transition:opacity .25s;z-index:-1;pointer-events:none}
+.top.is-solid::before{opacity:1}
 .top>*{pointer-events:auto}
 .top__right{display:flex;gap:10px;flex:0 0 auto}
 .top__lang{padding:0 18px}
@@ -252,7 +255,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 
 .spk__name a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent;transition:text-decoration-color .2s}
 .spk__name a:hover,.spk__name a:focus-visible{text-decoration-color:currentColor}
-.spk__name a::after{content:"";display:inline-block;width:.32em;height:.32em;margin-left:.12em;vertical-align:.62em;background:currentColor;opacity:.45;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat}
+.spk__name a::after{content:"";display:inline-block;width:.32em;height:.32em;margin-left:.06em;vertical-align:.5em;background:currentColor;opacity:.45;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2.5 7.5 7.5 2.5M3.5 2.5h4v4' fill='none' stroke='black' stroke-width='1.2'/%3E%3C/svg%3E") center/contain no-repeat}
 
 .spk__bot{position:absolute;z-index:3;right:var(--s1);bottom:var(--s1);width:66px;height:88px;border-radius:13px;overflow:hidden;background:rgba(255,255,255,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .photo .spk__bot img{position:static;width:100%;height:100%;object-fit:cover;filter:none;opacity:1;transform:none}
@@ -333,7 +336,7 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
 @media (max-width:640px){.partners__row{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
 
 /* ---------- footer ---------- */
-.foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px;margin:0;background:var(--black);min-height:70px}
+.foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px 10px calc(24px + env(safe-area-inset-bottom));margin:0;background:var(--black);min-height:70px}
 .foot .pill{background:var(--white);color:var(--black);backdrop-filter:none;height:50px}
 .foot .pill:hover{background:var(--orange);color:var(--black)}
 .foot__meta{width:100%;color:rgba(255,255,255,.7);font-size:14px;padding-top:12px}
@@ -629,7 +632,8 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
   const phone = matchMedia('(max-width: 640px)');
   let heroVisible = true;
   const foldCity = () => { city.classList.toggle('city--collapsed', phone.matches || !heroVisible); setCityOpen(false); };
-  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; foldCity(); }, { threshold: 0.08 }).observe(hero);
+  const topBar = $('.top');
+  new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; foldCity(); topBar.classList.toggle('is-solid', !heroVisible); }, { threshold: 0.08 }).observe(hero);
   phone.addEventListener?.('change', foldCity);
   foldCity();
   cityBtn.addEventListener('click', () => {
