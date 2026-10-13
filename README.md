@@ -28,8 +28,8 @@ venue and registration text, at most ~60 characters a line. Nothing fades in on 
    Details live once, in their own sections; the talk languages sit on the 19:00 line
 3. (The ticker was removed: its Register moved into the intro row.)
 4. Speakers (a company logo sits right before its own name in the company line: an <img height="18" alt=""> inside
-   that company's <span class="spk__co">, own colours; Fabien has Pollen + Hugging Face, Vítek and Konečný get theirs
-   in the same place once they send them; Bruna has none): four cards in running order, unnumbered until the slots are confirmed (photo, LinkedIn, talk title, one-line note; optional "Live demo"
+   that company's <span class="spk__co">, own colours; Fabien has Pollen + Hugging Face, Vítek has the
+   Integra square mark (cut from the logo on integrarobotics.cz), Konečný gets his once he sends it; Bruna has none): four cards in running order, unnumbered until the slots are confirmed (photo, LinkedIn, talk title, one-line note; optional "Live demo"
    and robot tile). On phones each card is photo left, text right
 5. Program: three lines, 18:00 / 19:00 / 21:00
 6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)

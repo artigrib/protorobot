@@ -307,6 +307,8 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 @media (min-width:641px){.luma-checkout--overlay .luma-checkout--modal{height:min(720px,calc(100dvh - 48px))!important;max-height:none!important}}
 
 .spk__co img{height:18px;width:auto;flex:none}
+/* the open staircase mark looks smaller than a solid icon at the same height */
+.spk__co img.co-integra{height:22px;margin-block:-2px}
 /* partners: logos at one height, black on the page background, caption underneath */
 .partners__row{display:grid;grid-template-columns:repeat(3,max-content);gap:var(--s2) var(--s4);align-items:end}
 /* same height is not the same size: the light three-line Pracovna mark goes up, the heavy ČAUI block down */
@@ -394,7 +396,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoidní robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, Profil na LinkedIn">Lukáš Vítek</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co">Integra Robotics</span></p>
+      <p class="spk__org spk__orgs"><span class="spk__co"><img class="co-integra" src="/img/logo-integra.svg" alt="" height="22">Integra Robotics</span></p>
       <p class="spk__talk">Humanoid a physical AI</p>
       <p class="spk__note">Kde se humanoidi potkávají s physical AI. Integra přiveze humanoida na demo.</p>
     </article>
