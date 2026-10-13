@@ -264,7 +264,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk__co{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 @media (max-width:560px){.spk__org{text-transform:none;letter-spacing:0;font-size:13px}.spk__orgs{flex-wrap:nowrap;gap:8px}}
 .photo .spk__bot--wide img{object-fit:contain}
-@media (max-width:380px){.spk__org{font-size:12px}}
+@media (max-width:380px){.spk__org{font-size:12px}.spk__orgs{flex-wrap:wrap;gap:4px 8px}}
 /* ---------- registration ---------- */
 /* ---------- venue ---------- */
 
@@ -324,16 +324,14 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
    On wider screens let it use the screen height; on phones Luma already goes full screen. */
 @media (min-width:641px){.luma-checkout--overlay .luma-checkout--modal{height:min(720px,calc(100dvh - 48px))!important;max-height:none!important}}
 
-.spk__marks{display:flex;align-items:center;gap:12px;margin-top:10px}
-.spk__marks:empty{display:none}
-.spk__marks img{height:28px;width:auto}
+.spk__co img{height:18px;width:auto;flex:none}
 /* partners: logos at one height, black on the page background, caption underneath */
 .partners__row{display:grid;grid-template-columns:repeat(3,max-content);gap:var(--s2) var(--s4);align-items:end}
 .partner{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .partner img{height:40px;width:auto;display:block}
 .partner span{font-size:13px;line-height:1.2;color:var(--grey-text);text-transform:uppercase;letter-spacing:.02em}
 .partner:hover span,.partner:focus-visible span{color:var(--black)}
-@media (max-width:640px){.partners__row{grid-template-columns:minmax(0,1fr);gap:var(--s2)}}
+@media (max-width:640px){.partners__row{grid-template-columns:repeat(3,auto);justify-content:space-between;gap:var(--s2) 12px;align-items:start}.partner img{height:clamp(20px,7.6vw,32px)}.partner span{font-size:11px}}
 
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;gap:10px;padding:10px 10px calc(24px + env(safe-area-inset-bottom));margin:0;background:var(--black);min-height:70px}
@@ -407,22 +405,22 @@ a.ticker:focus-visible{outline-offset:-3px;border-radius:0}
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot spk__bot--wide"><img src="/img/bot-scrubber.webp" alt="Podlahový mycí robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, Profil na LinkedIn">Tomáš Konečný</a></h3>
-      <p class="spk__org">Robotservice</p>
-      <p class="spk__talk">Běžné problémy servisních robotů<span class="spk__marks"></span></p>
+      <p class="spk__org spk__orgs"><span class="spk__co">Robotservice</span></p>
+      <p class="spk__talk">Běžné problémy servisních robotů</p>
       <p class="spk__note">Pět minut z praxe: co se na servisních robotech v provozu opravdu kazí.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoidní robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, Profil na LinkedIn">Lukáš Vítek</a></h3>
-      <p class="spk__org">Integra Robotics</p>
-      <p class="spk__talk">Humanoid a physical AI<span class="spk__marks"></span></p>
+      <p class="spk__org spk__orgs"><span class="spk__co">Integra Robotics</span></p>
+      <p class="spk__talk">Humanoid a physical AI</p>
       <p class="spk__note">Kde se humanoidi potkávají s physical AI. Integra přiveze humanoida na demo.</p>
     </article>
     <article class="spk">
       <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Živé demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
       <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, Profil na LinkedIn">Fabien Danieau</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co">Pollen Robotics</span><span class="spk__co">Hugging Face</span></p>
-      <p class="spk__talk">Reachy Mini: open-source stolní robot<span class="spk__marks"><img src="/img/logo-pollen.webp" alt="Pollen Robotics" height="28"><img src="/img/logo-hf.svg" alt="Hugging Face" height="28"></span></p>
+      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" height="18">Hugging Face</span></p>
+      <p class="spk__talk">Reachy Mini: open-source stolní robot</p>
       <p class="spk__note">Expresivní stolní robot. Živé demo uprostřed přednášky, potom si ho vyzkoušíte u demo stolu.</p>
     </article>
     <article class="spk">

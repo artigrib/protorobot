@@ -23,16 +23,18 @@ and decoration without a job is left out.
 2. Intro: name, who it is for, and one row of fact pills (date and time → Program, place → Venue); free entry is the ticker right below.
    Details live once, in their own sections; the talk languages sit on the 19:00 line
 3. Ticker: links to registration (the first Register after the facts)
-4. Speakers (company logos go in .spk__marks under the talk title, 28px, own colours; Fabien has Pollen + Hugging Face,
-   Vítek and Konečný have empty slots until they send logos; Bruna has none): four cards in running order, unnumbered until the slots are confirmed (photo, LinkedIn, talk title, one-line note; optional "Live demo"
+4. Speakers (a company logo sits right before its own name in the company line: an <img height="18" alt=""> inside
+   that company's <span class="spk__co">, own colours; Fabien has Pollen + Hugging Face, Vítek and Konečný get theirs
+   in the same place once they send them; Bruna has none): four cards in running order, unnumbered until the slots are confirmed (photo, LinkedIn, talk title, one-line note; optional "Live demo"
    and robot tile). On phones each card is photo left, text right
 5. Program: three lines, 18:00 / 19:00 / 21:00
 6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)
-8. Partners (last section above the footer): Pracovna (venue), Maker Faire and Česká asociace umělé inteligence
-   (media partners). Logos 40px high, black, from the partners' own sites: Pracovna's site logo recoloured,
-   Maker Faire's site SVG recoloured, ČAUI from the logo-caui-2025.zip press kit on asociace.ai/pro-media.
+7. Partners (last section above the footer): Pracovna (venue), Maker Faire and Česká asociace umělé inteligence
+   (media partners). One row, logos 40px high on desktop and scaled to fit on phones, black, from the partners' own
+   sources: Pracovna's site logo recoloured, Maker Faire's site SVG recoloured, ČAUI from the PDFs the association
+   sent (partner-caai.svg Czech, partner-caai-en.svg English).
    Only these three partners; no other organisations' logos.
-7. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
+8. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
    calendar button: Luma offers it after registering, and a second button invites "added to calendar" instead of registering
 
 Register appears three times: the header pill, the ticker under the intro, and the last section (the footer has it too).
