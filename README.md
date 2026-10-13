@@ -29,13 +29,13 @@ and decoration without a job is left out.
    and robot tile). On phones each card is photo left, text right
 5. Program: three lines, 18:00 / 19:00 / 21:00
 6. Venue: address, how to get in, map link, the way in as three photos (street, café, hall)
-7. Partners (last section above the footer): Pracovna (venue), Maker Faire and Česká asociace umělé inteligence
+7. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
+   calendar button: Luma offers it after registering, and a second button invites "added to calendar" instead of registering
+8. Partners (last section above the footer): Pracovna (venue), Maker Faire and Česká asociace umělé inteligence
    (media partners). One row, logos 40px high on desktop and scaled to fit on phones, black, from the partners' own
    sources: Pracovna's site logo recoloured, Maker Faire's site SVG recoloured, ČAUI from the PDFs the association
    sent (partner-caai.svg Czech, partner-caai-en.svg English).
    Only these three partners; no other organisations' logos.
-8. Register: centred closing block before the footer (one Luma button, follow on Luma). No separate
-   calendar button: Luma offers it after registering, and a second button invites "added to calendar" instead of registering
 
 Register appears three times: the header pill, the ticker under the intro, and the last section (the footer has it too).
 On phones the section menu starts folded into one pill so the hero stays clear; tap it to open.
