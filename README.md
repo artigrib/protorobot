@@ -46,7 +46,9 @@ venue and registration text, at most ~60 characters a line. Nothing fades in on 
 (The separate Partners section at the bottom was folded into the line-up under the intro.)
 
 Register appears three times: the header pill, the intro row and the closing block. The footer is plain text links.
-On phones the section menu starts folded into one pill so the hero stays clear; tap it to open.
+The section menu is an icon-only round button (two bars, a cross while open; aria-label "Menu"). On phones it starts folded
+so the hero stays clear; on desktop the section pills show at the top and fold into the button once the hero scrolls away.
+The partners row under the hero is centred and always one row (on phones the logo heights follow the screen width).
 
 Every Register link opens Luma's checkout window on the page (embed.lu.ma/checkout-button.js, data-luma-* attributes).
 If the script fails, the link opens the Luma event page as before. Each link tags registrations with

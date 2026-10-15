@@ -160,14 +160,19 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .city--collapsed.is-open .burger::before{top:5px;transform:rotate(45deg)}
 .city--collapsed.is-open .burger::after{top:5px;transform:rotate(-45deg)}
 
+/* the menu button is only the icon: a round button the height of the other pills */
+.city:not(.city--collapsed) .city__name{display:none}
+.city:not(.city--collapsed){gap:0}
+.top .city.city--collapsed .city__name{width:var(--pill-h);height:var(--pill-h);padding:0;justify-content:center}
+.city--collapsed .burger{margin-left:0}
+.city--collapsed.is-open .city__nav{margin-top:10px}
+
 /* small phones: tighter header so that panel and Register share one row */
 @media (max-width:370px){
   .city:not(.city--collapsed) .city__name,.city--collapsed.is-open .city__name{height:44px;padding:0 14px;font-size:15px}
   .city__nav{gap:6px}
   .city__nav .pill{padding:0 10px;font-size:12px;height:36px}
   .top .top__cta{padding:0 12px;font-size:13px}
-  .city--collapsed:not(.is-open) .city__name{padding:0 14px}
-  .burger{width:14px;margin-left:8px}
 }
 
 /* ---------- hero: two carousels, one per orientation ---------- */
@@ -335,22 +340,24 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .partner:hover img,.partner:focus-visible img{opacity:.6}
 
 /* line-up: who is behind the evening, right under the facts. Everything black, one optical size */
-.lineup{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--s3) var(--s4);margin-bottom:var(--s4)}
+.lineup{display:flex;justify-content:center;text-align:center;margin-bottom:var(--s4)}
+.lineup__group{display:flex;flex-direction:column;align-items:center}
 .intro .lineup__label{display:block;font-size:13px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--grey-text);max-width:none;margin-bottom:14px}
-.lineup__row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;min-height:44px;list-style:none}
+.lineup__row{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:14px 40px;min-height:44px;list-style:none}
 .lineup .co{display:inline-flex;align-items:center;gap:9px;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1;white-space:nowrap}
 .lineup .co img{height:28px;width:auto;flex:none;filter:grayscale(1) contrast(1.15)}
 .lineup .co img.co-integra{height:32px}
 .lineup .partner{--k:1}
 .lineup .partner img{height:calc(var(--h) * var(--k))}
 @media (max-width:640px){
-  .lineup{gap:var(--s2) 18px;margin-bottom:var(--s3)}
+  .lineup{margin-bottom:var(--s3)}
   .intro .lineup__label{font-size:11px;margin-bottom:10px}
-  .lineup__row{gap:12px 16px;min-height:36px}
+  .lineup__row{gap:16px;min-height:36px}
   .lineup .co{font-size:18px;gap:7px}
   .lineup .co img{height:22px}
   .lineup .co img.co-integra{height:25px}
-  .lineup .partner{--k:.62}
+  .lineup .partner img{height:min(calc((100vw - 2 * var(--gt) - 32px) * var(--r)), calc(var(--h) * .85))}
+  .partner--edih,.partner--caai{--r:.0925}.lineup .partner:not(.partner--edih):not(.partner--caai){--r:.0805}
 }
 
 /* ---------- footer ---------- */
@@ -366,7 +373,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 
 <header class="top">
   <nav class="city" id="city" aria-label="Sekce">
-    <button class="city__name" type="button" id="cityBtn" aria-controls="cityNav" aria-expanded="true">Proto Robot #0<span class="burger" aria-hidden="true"></span></button>
+    <button class="city__name" type="button" id="cityBtn" aria-controls="cityNav" aria-expanded="true" aria-label="Menu"><span class="burger" aria-hidden="true"></span></button>
     <div class="city__nav" id="cityNav">
       <a class="pill" href="#about">O akci</a>
       <a class="pill" href="#speakers">Řečníci</a>
