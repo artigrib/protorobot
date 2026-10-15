@@ -123,7 +123,6 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .top>*{pointer-events:auto}
 .top__right{display:flex;gap:10px;flex:0 0 auto}
 .top__lang{padding:0 18px}
-.city__lang{display:none}
 .city{display:flex;flex-direction:column;gap:18px;align-items:flex-start;padding:10px;border-radius:40px;width:max-content;max-width:calc(100vw - 2*var(--g) - 200px);
   background:rgba(0,0,0,.30);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);transition:background .25s,padding .25s}
 .city__name{height:78px;padding:0 40px;font-size:28px;line-height:1;border-radius:999px;border:0;cursor:pointer;font-family:inherit;background:rgba(0,0,0,.45);color:var(--white);display:inline-flex;align-items:center;text-transform:uppercase;animation:drift calc(var(--beat) * 4) ease-in-out infinite;transition:height .25s,padding .25s,font-size .25s,background .25s}
@@ -142,9 +141,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .city[data-cols="3"] .city__nav{display:grid;grid-template-columns:repeat(3,max-content)}
 .city[data-cols="2"] .city__nav{display:grid;grid-template-columns:repeat(2,max-content)}
 @media (max-width:540px){
-  /* one row even on small phones: the language switch moves into the panel, only Register stays on the right */
-  .top__lang{display:none}
-  .city__lang{display:inline-flex}
+  /* one row even on small phones */
   .city{max-width:none}
   .city__name{white-space:nowrap}
   .city:not(.city--collapsed) .city__name,.city--collapsed.is-open .city__name{height:52px;padding:0 18px;font-size:17px}
@@ -379,7 +376,6 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <a class="pill" href="#speakers">Speakers</a>
       <a class="pill" href="#programme">Program</a>
       <a class="pill" href="#venue">Venue</a>
-      <a class="pill city__lang" href="/" hreflang="cs" lang="cs">Česky</a>
     </div>
   </nav>
   <div class="top__right">
