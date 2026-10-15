@@ -26,8 +26,8 @@ venue and registration text, at most ~60 characters a line. Nothing fades in on 
 1. Hero: carousel, PROTO ROBOT title centred and still; the black badge under it turns to the next fact with each photo (what / when / where)
 2. Intro: who it is for, and one row: date and time → Program, place → Venue, orange Register on Luma.
    Details live once, in their own sections; the talk languages sit on the 19:00 line.
-   Under it the line-up (.lineup): "Mediální partneři / Media partners": ČAUI first and a step larger (--h 46px), then
-   Maker Faire (40px); 85% of that on phones. Maker Faire's site SVG recoloured, ČAUI from the PDFs the association sent
+   Under it the line-up (.lineup): "Partneři / Partners": EDIH CTU (logo they sent, recoloured black; they share the event
+   on their LinkedIn), ČAUI (both --h 46px), then Maker Faire (40px); 85% of that on phones. Maker Faire's site SVG recoloured, ČAUI from the PDFs the association sent
    (partner-caai.svg Czech, partner-caai-en.svg English). Pracovna has no logo on the page: its sign is in the first venue photo.
    The speakers' companies sit on the first screen instead: .hero__cos at the bottom of the hero, "Řečníci z / Speakers from"
    Hugging Face, Pollen Robotics, Integra Robotics (white; logo-integra-light.svg is the mark redrawn for dark backgrounds;
