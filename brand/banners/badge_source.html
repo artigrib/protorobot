@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#000;--paper:#fff;--flame:#E8360A;--s:6.5pt;--m:9pt}
+body{background:#fff;font-family:Inter,Helvetica,Arial,sans-serif}.sheet{width:210mm;height:297mm;position:relative;overflow:hidden}
+.lab{position:absolute;width:80mm;height:50mm;overflow:hidden;;background:var(--paper)}
+.cap{position:absolute;font-size:7pt;color:#888;font-weight:300}
+h6{font-weight:300;font-size:var(--s);line-height:1}
+.chk{display:flex;align-items:center;gap:1.5mm}
+.chk i{display:block;width:5.5mm;height:5.5mm;border:0.7mm solid var(--flame);flex:none}
+.chk b{font-weight:500;font-size:var(--m);line-height:1;white-space:nowrap}
+.rule{position:absolute;height:0.45mm;background:var(--ink)}
+
+/* B: vertical black rail like the name rails on the poster */
+.B .rail{position:absolute;left:0;top:0;width:11mm;height:50mm;background:var(--ink)}
+.B .rail span{position:absolute;left:0;bottom:3mm;width:11mm;color:#fff;font-weight:500;font-size:11pt;letter-spacing:-.02em;writing-mode:vertical-rl;transform:rotate(180deg);text-align:left;height:44mm;line-height:11mm}
+.B .dot{position:absolute;left:2.5mm;top:2.5mm;width:6mm;height:6mm;border-radius:50%;background:var(--flame);color:#fff;font-weight:700;font-size:7.5pt;line-height:6mm;text-align:center;letter-spacing:-.04em}
+.B .name{position:absolute;left:14mm;top:3mm;width:63mm;height:15mm;border-bottom:0.45mm solid var(--ink)}
+.B .name h6{position:absolute;left:0;top:0}
+.B .build{position:absolute;left:14mm;top:21mm;width:63mm;height:9mm;border-bottom:0.45mm solid var(--ink)}
+.B .build h6{position:absolute;left:0;top:0}
+.B .look{position:absolute;left:14mm;top:34mm;width:63mm}
+.B .look h6{margin-bottom:2mm}
+.B .look .r{display:flex;justify-content:space-between;width:63mm}
+
+.tick{position:absolute;background:#000}</style></head><body><div class="sheet" id="sheet"></div><template id="t"><div class="lab B">
+  <div class="rail"><span>proto robot</span></div><div class="dot">#0</div>
+  <div class="name"><h6>name</h6></div>
+  <div class="build"><h6>what I do</h6></div>
+  <div class="look"><h6>looking for</h6><div class="r"><span class="chk"><i></i><b>a job</b></span><span class="chk"><i></i><b>hires</b></span><span class="chk"><i></i><b>funding</b></span></div></div>
+</div></template>
+<script>
+const sh=document.getElementById('sheet'),t=document.getElementById('t');
+const L=20,T=18.5,W=80,H=50,G=10;
+for(let r=0;r<5;r++)for(let c=0;c<2;c++){const n=t.content.firstElementChild.cloneNode(true);n.style.left=(L+c*(W+G))+'mm';n.style.top=(T+r*H)+'mm';sh.appendChild(n);}
+
+const ys=[18.5,68.5,118.5,168.5,218.5,268.5], xs=[20,100,110,190];
+for(const y of ys){ for(const [x0,w] of [[14,4],[102,6],[192,4]]){const d=document.createElement('div');d.className='tick';d.style.cssText=`left:${x0}mm;top:${y}mm;width:${w}mm;height:0.15mm`;sh.appendChild(d);} }
+for(const x of xs){ for(const [y0,h] of [[12.5,4],[270.5,4]]){const d=document.createElement('div');d.className='tick';d.style.cssText=`left:${x}mm;top:${y0}mm;width:0.15mm;height:${h}mm`;sh.appendChild(d);} }
+</script></body></html>
