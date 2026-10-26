@@ -442,6 +442,14 @@ html.lb-open{overflow:hidden}
 .intro p.nums-who{font-size:16px;line-height:1.4;color:var(--grey-text);max-width:44em;margin-bottom:var(--s4)}
 @media (max-width:640px){.nums{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--s2)}.nums span{font-size:12px}.intro p.nums-who{font-size:14px;margin-bottom:var(--s3)}}
 
+/* intro: one centred column under the centred hero and partner row, so the figures, the line and the buttons share its axis */
+.intro{text-align:center}
+.intro .nums{margin-inline:auto;max-width:880px}
+.intro .nums li{align-items:center}
+.intro p{margin-inline:auto}
+.intro p.nums-who{margin-inline:auto;max-width:40em}
+.intro p.facts{justify-content:center}
+
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s1) var(--s3);padding:var(--s3) var(--gt) calc(var(--s3) + env(safe-area-inset-bottom));background:var(--black);color:var(--white)}
 .foot a{font-size:16px;text-transform:uppercase;letter-spacing:.02em;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.25em;transition:text-decoration-color .2s,color .2s}
