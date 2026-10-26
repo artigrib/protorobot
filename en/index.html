@@ -331,7 +331,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .spk__co img.co-integra{height:22px;margin-block:-2px}
 /* partner logos: sized by eye */
 /* same height is not the same size: the light three-line Pracovna mark goes up, the heavy ČAUI block down */
-.partner{--h:40px}.partner--caai{--h:46px}.partner--edih{--h:46px}
+.partner{--h:40px}.partner--caai{--h:46px}.partner--edih{--h:46px}.partner--fel{--h:42px}.partner--revel{--h:30px}.partner--pr{--h:32px}
 .partner img{height:var(--h);width:auto;display:block}
 .partner{display:inline-flex}
 .partner:hover img,.partner:focus-visible img{opacity:.6}
@@ -340,12 +340,14 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .lineup{display:flex;justify-content:center;text-align:center;margin-bottom:var(--s4)}
 .lineup__group{display:flex;flex-direction:column;align-items:center}
 .intro .lineup__label{display:block;font-size:13px;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--grey-text);max-width:none;margin-bottom:14px}
-.lineup__row{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:14px 40px;min-height:44px;list-style:none}
+.lineup__row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 40px;min-height:44px;list-style:none}
 .lineup .co{display:inline-flex;align-items:center;gap:9px;font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1;white-space:nowrap}
 .lineup .co img{height:28px;width:auto;flex:none;filter:grayscale(1) contrast(1.15)}
 .lineup .co img.co-integra{height:32px}
 .lineup .partner{--k:1}
 .lineup .partner img{height:calc(var(--h) * var(--k))}
+/* below 1200px the six partners sit in two rows of three */
+@media (max-width:1200px){.lineup__row{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;justify-items:center}}
 @media (max-width:640px){
   .lineup{margin-bottom:var(--s3)}
   .intro .lineup__label{font-size:11px;margin-bottom:10px}
@@ -354,7 +356,9 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   .lineup .co img{height:22px}
   .lineup .co img.co-integra{height:25px}
   .lineup .partner img{height:min(calc((100vw - 2 * var(--gt) - 32px) * var(--r)), calc(var(--h) * .85))}
-  .partner--edih,.partner--caai{--r:.0925}.lineup .partner:not(.partner--edih):not(.partner--caai){--r:.0805}
+  /* six logos, two rows of three: each row adds up to the screen width */
+  .lineup .partner{--r:.092}.lineup .partner--edih,.lineup .partner--caai{--r:.1057}.lineup .partner--fel{--r:.0966}.lineup .partner--revel{--r:.069}.lineup .partner--pr{--r:.0736}
+  .lineup__row{row-gap:18px}
 }
 
 /* ---------- footer ---------- */
@@ -418,7 +422,7 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 <section class="mod intro" id="about">
   <div class="lineup" role="group" aria-label="Partners">
     <div class="lineup__group"><span class="lineup__label">Partners</span>
-      <div class="lineup__row"><a class="partner partner--edih" href="https://www.edihctu.eu/" target="_blank" rel="noopener"><img src="/img/partner-edih.webp" alt="EDIH CTU" width="94" height="46"></a><a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai-en.svg" alt="Czech Association of Artificial Intelligence" width="175" height="36"></a><a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"></a></div>
+      <div class="lineup__row"><a class="partner partner--edih" href="https://www.edihctu.eu/" target="_blank" rel="noopener"><img src="/img/partner-edih.webp" alt="EDIH CTU" width="94" height="46"></a><a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai-en.svg" alt="Czech Association of Artificial Intelligence" width="175" height="36"></a><a class="partner partner--fel" href="https://fel.cvut.cz/" target="_blank" rel="noopener"><img src="/img/partner-fel.webp" alt="Faculty of Electrical Engineering, CTU in Prague" width="118" height="42"></a><a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"></a><a class="partner partner--revel" href="https://revelrobotics.com/" target="_blank" rel="noopener"><img src="/img/partner-revel.png" alt="REVEL Robotics" width="101" height="30"></a><span class="partner partner--pr"><img src="/img/partner-printedrobotics.svg" alt="Printed Robotics" width="151" height="32"></span></div>
     </div>
   </div>
   <h1 class="vh">Proto Robot #0</h1>
