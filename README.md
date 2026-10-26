@@ -63,8 +63,8 @@ Event details for search engines (date, venue, speakers) live in the JSON-LD blo
 
     index.html, en/index.html   series page between meetups: "#1 coming soon", follow on Luma, 6 photos from #0, link to /0/
     0/index.html, en/0/index.html   permanent archive of #0: program as it ran, speakers (stage photos), all 27 photos, partners
-    img/0/      web copies of the #0 photos (h- landscape hero; v-N- portrait hero: hand-composed 2:3 frames shown in the
-                upper 72% of the phone hero, title sits below them; sp- speakers; g- gallery 900x600),
+    img/0/      web copies of the #0 photos (h- landscape hero; v-N- portrait hero: hand-composed 2:3 frames pinned to the top
+                of the phone hero (78% high), cropped so faces and robot heads sit above the centred title; sp- speakers; g- gallery 900x600),
                 brightened before the orange duotone because the room was dark
     brand/photos/0/   the 27 JPEGs (2400px) from the RAW files; gallery tiles link to them
     img/og-series-cs.jpg / -en.jpg   social preview of the homepage ("#1 coming soon"); /0/ keeps og.jpg
