@@ -67,6 +67,8 @@ Event details for search engines (date, venue, speakers) live in the JSON-LD blo
                 of the phone hero (78% high), cropped so faces and robot heads sit above the centred title; sp- speakers; g- gallery 900x600),
                 brightened before the orange duotone because the room was dark
     brand/photos/0/   the 27 JPEGs (2400px) from the RAW files; gallery tiles link to them
+    img/0/l-*.webp    1800px copies for the photo viewer (dialog#lb): arrows, swipe, Esc, phone Back closes it;
+                      without JS the tiles still open the original JPEG
     img/og-series-cs.jpg / -en.jpg   social preview of the homepage ("#1 coming soon"); /0/ keeps og.jpg
 
 The event registration (Luma checkout, evt-5Jn9XJ4x8XfOmyL) is gone from all pages; every orange button now follows

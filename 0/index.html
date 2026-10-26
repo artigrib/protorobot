@@ -436,6 +436,29 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 .tl-note{margin-top:var(--s2);font-size:16px;color:var(--grey-text)}
 @media (max-width:640px){.tl li{grid-template-columns:72px minmax(0,1fr);gap:var(--s1)}}
 
+/* ---------- photo viewer ---------- */
+.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:rgba(0,0,0,.94);color:var(--white);overflow:hidden}
+.lb::backdrop{background:rgba(0,0,0,.94)}
+.lb[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.lb__bar{display:flex;justify-content:space-between;align-items:center;padding:calc(10px + env(safe-area-inset-top)) max(var(--g),env(safe-area-inset-right)) 10px max(var(--g),env(safe-area-inset-left))}
+.lb__count{font-size:15px;letter-spacing:.02em;opacity:.8;font-variant-numeric:tabular-nums}
+.lb__stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:0;padding:0 var(--g);touch-action:pan-y}
+.lb__img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;user-select:none;-webkit-user-drag:none;transition:opacity .2s}
+.lb__img.is-loading{opacity:.35}
+.lb__btn{width:52px;height:52px;border-radius:999px;border:0;background:rgba(255,255,255,.14);color:var(--white);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font:inherit;transition:background .18s}
+.lb__btn:hover,.lb__btn:focus-visible{background:var(--orange);color:var(--black)}
+.lb__btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+.lb__nav{position:absolute;top:50%;transform:translateY(-50%)}
+.lb__nav--prev{left:max(var(--g),env(safe-area-inset-left))}
+.lb__nav--next{right:max(var(--g),env(safe-area-inset-right))}
+.lb__foot{height:calc(16px + env(safe-area-inset-bottom))}
+@media (max-width:640px){
+  .lb__stage{padding:0}
+  .lb__nav{top:auto;bottom:calc(-52px - 8px);transform:none}
+  .lb__foot{height:calc(76px + env(safe-area-inset-bottom))}
+}
+html.lb-open{overflow:hidden}
+
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s1) var(--s3);padding:var(--s3) var(--gt) calc(var(--s3) + env(safe-area-inset-bottom));background:var(--black);color:var(--white)}
 .foot a{font-size:16px;text-transform:uppercase;letter-spacing:.02em;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.25em;transition:text-decoration-color .2s,color .2s}
@@ -557,33 +580,33 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 <section class="mod" id="photos">
   <h2>Fotky</h2>
   <div class="gal">
-    <a href="/brand/photos/0/DSC08035.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8035.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08039.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8039.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08064.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8064.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08067.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8067.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08071.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8071.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08074.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8074.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08108.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8108.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08116.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8116.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08129.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8129.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08141.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8141.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08156.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8156.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08178.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8178.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08186.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8186.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08202.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8202.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08214.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8214.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08217.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8217.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08230.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8230.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08248.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8248.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08264.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8264.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08298.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8298.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08308.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8308.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08340.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8340.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08353.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8353.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08357.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8357.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08370.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8370.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08388.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8388.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
-    <a href="/brand/photos/0/DSC08397.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8397.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08035.jpg" data-full="/img/0/l-8035.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8035.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08039.jpg" data-full="/img/0/l-8039.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8039.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08064.jpg" data-full="/img/0/l-8064.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8064.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08067.jpg" data-full="/img/0/l-8067.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8067.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08071.jpg" data-full="/img/0/l-8071.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8071.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08074.jpg" data-full="/img/0/l-8074.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8074.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08108.jpg" data-full="/img/0/l-8108.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8108.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08116.jpg" data-full="/img/0/l-8116.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8116.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08129.jpg" data-full="/img/0/l-8129.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8129.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08141.jpg" data-full="/img/0/l-8141.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8141.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08156.jpg" data-full="/img/0/l-8156.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8156.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08178.jpg" data-full="/img/0/l-8178.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8178.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08186.jpg" data-full="/img/0/l-8186.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8186.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08202.jpg" data-full="/img/0/l-8202.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8202.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08214.jpg" data-full="/img/0/l-8214.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8214.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08217.jpg" data-full="/img/0/l-8217.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8217.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08230.jpg" data-full="/img/0/l-8230.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8230.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08248.jpg" data-full="/img/0/l-8248.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8248.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08264.jpg" data-full="/img/0/l-8264.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8264.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08298.jpg" data-full="/img/0/l-8298.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8298.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08308.jpg" data-full="/img/0/l-8308.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8308.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08340.jpg" data-full="/img/0/l-8340.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8340.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08353.jpg" data-full="/img/0/l-8353.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8353.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08357.jpg" data-full="/img/0/l-8357.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8357.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08370.jpg" data-full="/img/0/l-8370.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8370.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08388.jpg" data-full="/img/0/l-8388.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8388.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08397.jpg" data-full="/img/0/l-8397.webp"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8397.webp" alt="Fotka z PROTO ROBOT #0" width="900" height="600"></div></a>
   </div>
 </section>
 
@@ -602,6 +625,11 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   <a href="/en/0/" hreflang="en" lang="en">English</a>
   <div class="foot__meta">© 2026 PROTO ROBOT. Máme toho hodně. A proto robot.</div>
 </footer>
+<dialog class="lb" id="lb" aria-label="Fotka z večera PROTO ROBOT #0" data-of="z">
+  <div class="lb__bar"><span class="lb__count" aria-live="polite"></span><button class="lb__btn lb__close" type="button" aria-label="Zavřít"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="lb__stage"><img class="lb__img" alt="" decoding="async"><button class="lb__btn lb__nav lb__nav--prev" type="button" aria-label="Předchozí fotka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button class="lb__btn lb__nav lb__nav--next" type="button" aria-label="Další fotka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  <div class="lb__foot"></div>
+</dialog>
 </div>
 
 
@@ -854,6 +882,67 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     else { heroClock.start(); kickClips(); }
   });
 
+})();
+</script>
+<script>
+/* photo viewer: one dialog for every gallery link on the page */
+(() => {
+  const links = [...document.querySelectorAll('.gal a[data-full]')];
+  const dlg = document.getElementById('lb');
+  if (!links.length || !dlg || typeof dlg.showModal !== 'function') return;
+  const img = dlg.querySelector('.lb__img'), count = dlg.querySelector('.lb__count');
+  const of = dlg.dataset.of;
+  let i = 0, pushed = false;
+  const preload = k => { const n = links[(k + links.length) % links.length]; if (n) { const im = new Image(); im.src = n.dataset.full; } };
+  const show = k => {
+    i = (k + links.length) % links.length;
+    const a = links[i];
+    img.classList.add('is-loading');
+    img.onload = () => img.classList.remove('is-loading');
+    img.src = a.dataset.full;
+    img.alt = a.querySelector('img').alt;
+    count.textContent = (i + 1) + ' ' + of + ' ' + links.length;
+    preload(i + 1); preload(i - 1);
+  };
+  const open = k => {
+    show(k);
+    document.documentElement.classList.add('lb-open');
+    dlg.showModal();
+    // the phone's Back button closes the viewer instead of leaving the page
+    try { history.pushState({ lb: 1 }, ''); pushed = true; } catch (e) { pushed = false; }
+  };
+  const close = (fromHistory) => {
+    if (!dlg.open) return;
+    dlg.close();
+    document.documentElement.classList.remove('lb-open');
+    if (pushed && !fromHistory) { pushed = false; history.back(); }
+    pushed = false;
+    links[i].focus({ preventScroll: true });
+  };
+  links.forEach((a, k) => a.addEventListener('click', e => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;   // let people open the original in a new tab
+    e.preventDefault(); open(k);
+  }));
+  dlg.querySelector('.lb__close').addEventListener('click', () => close());
+  dlg.querySelector('.lb__nav--prev').addEventListener('click', () => show(i - 1));
+  dlg.querySelector('.lb__nav--next').addEventListener('click', () => show(i + 1));
+  dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });
+  dlg.addEventListener('click', e => { if (e.target === dlg || e.target.classList.contains('lb__stage')) close(); });
+  document.addEventListener('keydown', e => {
+    if (!dlg.open) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(i + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(i - 1); }
+  });
+  addEventListener('popstate', () => { if (dlg.open) { pushed = false; close(true); } });
+  // swipe left/right on the photo
+  let x0 = null, y0 = 0;
+  const stage = dlg.querySelector('.lb__stage');
+  stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(i + (dx < 0 ? 1 : -1));
+  }, { passive: true });
 })();
 </script>
 </body>
