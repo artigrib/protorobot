@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.classList.replace('no-js','js')</script>
 
-<title>PROTO ROBOT #0: robotics meetup in Prague, 23 October 2026</title>
-<meta name="description" content="PROTO ROBOT #0 is the first meetup for people who build robots. Talks and live demos. Prague, Friday 23 October 2026, 18:00 to 22:00. Free entry, registration on Luma.">
+<title>PROTO ROBOT: robotics meetups in Prague</title>
+<meta name="description" content="PROTO ROBOT is a Prague meetup series on robotics and physical AI. #0 took place on 23 October 2026 at Pracovna, #1 is in the works. Follow us on Luma.">
 <link rel="canonical" href="https://protorobot.cz/en/">
 <link rel="alternate" hreflang="en" href="https://protorobot.cz/en/">
 <link rel="alternate" hreflang="cs" href="https://protorobot.cz/">
@@ -19,12 +19,12 @@
 <meta property="og:url" content="https://protorobot.cz/en/">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="cs_CZ">
-<meta property="og:title" content="PROTO ROBOT #0: robotics meetup in Prague">
-<meta property="og:description" content="Talks and live demos. Friday 23 October 2026, 18:00. Free entry, register on Luma.">
-<meta property="og:image" content="https://protorobot.cz/img/og.jpg?v=4">
+<meta property="og:title" content="PROTO ROBOT: robotics meetups in Prague">
+<meta property="og:description" content="#0 took place on 23 October 2026. #1 is in the works, follow us on Luma.">
+<meta property="og:image" content="https://protorobot.cz/img/og-series-en.jpg?v=1">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="PROTO ROBOT #0, Prague, 23 October 2026">
+<meta property="og:image:alt" content="PROTO ROBOT, #1 coming soon">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23FF5A00'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='30' fill='%23000'%3EPR%3C/text%3E%3C/svg%3E">
@@ -36,19 +36,48 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Event",
-  "name": "PROTO ROBOT #0: robotics meetup",
-  "description": "The first meetup for people who build robots. Talks and live demos.",
-  "startDate": "2026-10-23T18:00:00+02:00",
-  "endDate": "2026-10-23T22:00:00+02:00",
-  "eventStatus": "https://schema.org/EventScheduled",
-  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "location": { "@type": "Place", "name": "Pracovna", "address": { "@type": "PostalAddress", "streetAddress": "Vlkova 36", "addressLocality": "Prague 3", "addressCountry": "CZ" } },
-  "image": ["https://protorobot.cz/img/og.jpg"],
-  "performer": [{"@type": "Person", "name": "Tomáš Konečný", "sameAs": "https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/", "affiliation": {"@type": "Organization", "name": "Robotservice"}}, {"@type": "Person", "name": "Lukáš Vítek", "sameAs": "https://www.linkedin.com/in/vitek-lukas/", "affiliation": {"@type": "Organization", "name": "Integra Robotics"}}, {"@type": "Person", "name": "Fabien Danieau", "sameAs": "https://www.linkedin.com/in/fabiendanieau/", "affiliation": {"@type": "Organization", "name": "Pollen Robotics (Hugging Face)"}}, {"@type": "Person", "name": "Ondřej Bruna", "sameAs": "https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/"}],
-  "organizer": { "@type": "Organization", "name": "PROTO ROBOT", "url": "https://protorobot.cz/", "sameAs": ["https://luma.com/user/protorobot"] },
-  "offers": { "@type": "Offer", "url": "https://luma.com/2pxjv05i", "price": "0", "priceCurrency": "CZK", "availability": "https://schema.org/InStock" },
-  "inLanguage": ["en", "cs"]
+  "@type": "EventSeries",
+  "name": "PROTO ROBOT",
+  "description": "PROTO ROBOT is a Prague meetup series on robotics and physical AI. #0 took place on 23 October 2026 at Pracovna, #1 is in the works. Follow us on Luma.",
+  "url": "https://protorobot.cz/en/",
+  "location": {
+    "@type": "Place",
+    "name": "Praha",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Praha",
+      "addressCountry": "CZ"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "PROTO ROBOT",
+    "url": "https://protorobot.cz/",
+    "sameAs": [
+      "https://luma.com/user/protorobot"
+    ]
+  },
+  "subEvent": [
+    {
+      "@type": "Event",
+      "name": "PROTO ROBOT #0",
+      "startDate": "2026-10-23T18:00:00+02:00",
+      "endDate": "2026-10-23T22:00:00+02:00",
+      "url": "https://protorobot.cz/en/0/",
+      "location": {
+        "@type": "Place",
+        "name": "Pracovna",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Vlkova 36",
+          "addressLocality": "Prague 3",
+          "addressCountry": "CZ"
+        }
+      },
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled"
+    }
+  ]
 }
 </script>
 
@@ -361,6 +390,21 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
   .lineup__row{row-gap:18px}
 }
 
+/* ---------- after #0: photo grid, timetable as a list ---------- */
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g)}
+.gal a{display:block}
+.gal .photo{aspect-ratio:3/2}
+.gal a:hover .photo,.gal a:focus-visible .photo{transform:translateY(-4px)}
+@media (max-width:640px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.gal-more{margin-top:var(--s3)}
+.tl{list-style:none;border-top:1px solid var(--black)}
+.tl li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s2);padding:var(--s1) 0;border-bottom:1px solid var(--grey-line);align-items:baseline}
+.tl time{font-weight:300;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em;line-height:1}
+.tl b{display:block;font-weight:600;font-size:19px;line-height:1.25}
+.tl span{display:block;font-size:16px;line-height:1.35;color:var(--grey-text)}
+.tl-note{margin-top:var(--s2);font-size:16px;color:var(--grey-text)}
+@media (max-width:640px){.tl li{grid-template-columns:72px minmax(0,1fr);gap:var(--s1)}}
+
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s1) var(--s3);padding:var(--s3) var(--gt) calc(var(--s3) + env(safe-area-inset-bottom));background:var(--black);color:var(--white)}
 .foot a{font-size:16px;text-transform:uppercase;letter-spacing:.02em;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.25em;transition:text-decoration-color .2s,color .2s}
@@ -377,46 +421,45 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     <button class="city__name" type="button" id="cityBtn" aria-controls="cityNav" aria-expanded="true" aria-label="Menu"><span class="burger" aria-hidden="true"></span></button>
     <div class="city__nav" id="cityNav">
       <a class="pill" href="#about">About</a>
-      <a class="pill" href="#speakers">Speakers</a>
-      <a class="pill" href="#programme">Program</a>
-      <a class="pill" href="#venue">Venue</a>
+      <a class="pill" href="/en/0/">#0</a>
+      <a class="pill" href="#photos">Photos</a>
     </div>
   </nav>
   <div class="top__right">
     <a class="pill top__lang" href="/" hreflang="cs" lang="cs" aria-label="Česky">CS</a>
-    <a class="pill pill--orange top__cta" href="https://luma.com/2pxjv05i?utm_source=web-header&amp;utm_medium=en" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-header-en" target="_blank" rel="noopener">Register</a>
+    <a class="pill pill--orange top__cta" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow</a>
   </div>
 </header>
 
 <div class="page" id="page">
 <main id="main">
 
-<section class="hero" id="top" aria-label="Proto Robot #0, Prague">
+<section class="hero" id="top" aria-label="Proto Robot">
   <div class="hero__bg">
     <div class="hero__track hero__track--h" data-track>
-    <div class="slide is-on"><img src="/img/card-talk.webp" alt="" fetchpriority="high"></div>
-    <div class="slide"><img src="/img/h-duck.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/hero-audience.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/h-lerobot.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/card-workshop.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/h-reachy.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/h-lounge.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/h-moveo.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide is-on"><img src="/img/0/h-8141.webp" alt="" fetchpriority="high"></div>
+    <div class="slide"><img src="/img/0/h-8039.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/h-8035.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/h-8230.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/h-8186.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/h-8357.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/h-8217.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/h-8340.webp" alt="" loading="lazy" decoding="async"></div>
     </div>
     <div class="hero__track hero__track--v" data-track>
-    <div class="slide is-on"><img src="/img/v-talk.webp" alt="" fetchpriority="high"></div>
-    <div class="slide"><img src="/img/v-parol.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/v-audience.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/v-gripper.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/v-workshop.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/v-reachy.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/v-speaker.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/v-moveo.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide is-on"><img src="/img/0/v-8141.webp" alt="" fetchpriority="high"></div>
+    <div class="slide"><img src="/img/0/v-8039.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-8035.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-8230.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-8186.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-8357.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-8217.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-8340.webp" alt="" loading="lazy" decoding="async"></div>
     </div>
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
-  <div class="badge" id="badge" data-faces='["Meetup #0","Fri 23.10, 18:00","Pracovna, Prague 3"]'><div class="badge__flip"><span class="f-a">Meetup #0</span><span class="f-b" aria-hidden="true"></span></div></div>
-  <div class="hero__cos"><span class="hero__cos__label">Speakers from</span><span class="co"><img src="/img/logo-hf.svg" alt="" height="26">Hugging Face</span><span class="co"><img src="/img/logo-pollen.webp" alt="" height="26">Pollen Robotics</span><span class="co"><img class="co-integra" src="/img/logo-integra-light.svg" alt="" height="28">Integra Robotics</span></div>
+  <div class="badge" id="badge" data-faces='["#1 coming soon", "#0 was on 23.10", "Prague"]'><div class="badge__flip"><span class="f-a">#1 coming soon</span><span class="f-b" aria-hidden="true"></span></div></div>
+  <div class="hero__cos"><span class="hero__cos__label">Spoke at #0</span><span class="co"><img src="/img/logo-hf.svg" alt="" height="26">Hugging Face</span><span class="co"><img src="/img/logo-pollen.webp" alt="" height="26">Pollen Robotics</span><span class="co"><img class="co-integra" src="/img/logo-integra-light.svg" alt="" height="28">Integra Robotics</span></div>
 </section>
 
 <section class="mod intro" id="about">
@@ -425,84 +468,35 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
       <div class="lineup__row"><a class="partner partner--edih" href="https://www.edihctu.eu/" target="_blank" rel="noopener"><img src="/img/partner-edih.webp" alt="EDIH CTU" width="94" height="46"></a><a class="partner partner--caai" href="https://asociace.ai/" target="_blank" rel="noopener"><img src="/img/partner-caai-en.svg" alt="Czech Association of Artificial Intelligence" width="175" height="36"></a><a class="partner partner--fel" href="https://fel.cvut.cz/" target="_blank" rel="noopener"><img src="/img/partner-fel.webp" alt="Faculty of Electrical Engineering, CTU in Prague" width="118" height="42"></a><a class="partner" href="https://makerfaire.cz/" target="_blank" rel="noopener"><img src="/img/partner-makerfaire.svg" alt="Maker Faire" width="175" height="40"></a><a class="partner partner--revel" href="https://revelrobotics.com/" target="_blank" rel="noopener"><img src="/img/partner-revel.png" alt="REVEL Robotics" width="101" height="30"></a><span class="partner partner--pr"><img src="/img/partner-printedrobotics.svg" alt="Printed Robotics" width="151" height="32"></span></div>
     </div>
   </div>
-  <h1 class="vh">Proto Robot #0</h1>
+  <h1 class="vh">PROTO ROBOT</h1>
   <p>A Prague meetup series on robotics and physical AI. For people who build robots, people who want to, and people who back them. Talks, live demos and networking.</p>
-  <p class="facts" aria-label="Key facts"><a href="#programme"><time datetime="2026-10-23T18:00+02:00">Fri 23.10, 18:00</time></a><a href="#venue">Pracovna, Prague 3</a><a class="pill--orange" href="https://luma.com/2pxjv05i?utm_source=web-intro&amp;utm_medium=en" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-intro-en" target="_blank" rel="noopener">Register</a></p>
+  <p class="facts"><a href="/en/0/">#0: program and photos</a><a class="pill--orange" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a></p>
 </section>
 
-<section class="mod speakers" id="speakers">
-  <h2>Speakers</h2>
-  <div class="spk-grid">
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, LinkedIn profile">Fabien Danieau</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" height="18">Hugging Face</span></p>
-      <p class="spk__talk">Reachy Mini: open-source desk robot</p>
-      <p class="spk__note">An expressive desk robot. Live demo in the middle of the talk.</p>
-    </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoid robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, LinkedIn profile">Lukáš Vítek</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co"><img class="co-integra" src="/img/logo-integra.svg" alt="" height="22">Integra Robotics</span></p>
-      <p class="spk__talk">Humanoids and physical AI</p>
-      <p class="spk__note">Where humanoids meet physical AI. Integra brings their humanoid for a live demo.</p>
-    </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-bruna.webp" alt="Ondřej Bruna"></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, LinkedIn profile">Ondřej Bruna</a></h3>
-      <p class="spk__org">Co-author and developer of KORD</p>
-      <p class="spk__talk">KORD: Lessons Learned</p>
-      <p class="spk__note">What worked, what didn’t and what he’d do differently after ten years building a 7-axis cobot.</p>
-    </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot spk__bot--wide"><img src="/img/bot-scrubber.webp" alt="Floor scrubber robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, LinkedIn profile">Tomáš Konečný</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co">Robotservice</span></p>
-      <p class="spk__talk">Common facility robot issues</p>
-      <p class="spk__note">Five minutes from the field: what really breaks on service robots in operation.</p>
-    </article>
+<section class="mod" id="photos">
+  <h2>#0 in pictures</h2>
+  <div class="gal">
+    <a href="/brand/photos/0/DSC08039.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8039.webp" alt="Photo from PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08141.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8141.webp" alt="Photo from PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08035.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8035.webp" alt="Photo from PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08230.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8230.webp" alt="Photo from PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08357.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8357.webp" alt="Photo from PROTO ROBOT #0" width="900" height="600"></div></a>
+    <a href="/brand/photos/0/DSC08340.jpg" target="_blank" rel="noopener"><div class="photo"><img loading="lazy" decoding="async" src="/img/0/g-8340.webp" alt="Photo from PROTO ROBOT #0" width="900" height="600"></div></a>
   </div>
+  <div class="cta-row gal-more"><a class="pill pill--dark" href="/en/0/">The whole #0 evening</a></div>
 </section>
 
-<section class="mod" id="programme">
-  <h2>Program</h2>
-  <ol class="tt">
-    <li><time datetime="2026-10-23T18:00+02:00">18:00</time>
-      <p><strong>Doors open.</strong> Walk the demo tables, find the people whose repo you've been reading.</p>
-    </li>
-    <li><time datetime="2026-10-23T19:00+02:00">19:00</time>
-      <p><strong>Talks on stage</strong> until about 21:00, in English and Czech.</p>
-    </li>
-    <li><time datetime="2026-10-23T21:00+02:00">21:00</time>
-      <p><strong>Demo tables and chatter until 22:00.</strong> Talking shop. We have a lot to discuss.</p>
-    </li>
-  </ol>
+<section class="mod tix" id="next">
+  <h2>#1 is in the works</h2>
+  <p class="lede">Follow us on Luma to hear about the next meetup first.</p>
+  <div class="cta-row"><a class="pill pill--orange pill--lg" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a></div>
 </section>
-
-<section class="mod venue" id="venue">
-  <h2>Venue</h2>
-  <p class="lede addr">Pracovna, Vlkova 36, Prague 3</p>
-  <p class="lede">Pracovna is a café with a coworking space. Walk in through the main entrance and ask at the bar for PROTO ROBOT.</p>
-  <p class="lede"><a href="https://www.google.com/maps/search/?api=1&amp;query=Pracovna%2C+Vlkova+36%2C+Praha+3" target="_blank" rel="noopener">Open in maps</a></p>
-  <div class="venue__photos" role="group" aria-label="The way in">
-    <div class="photo photo--street"><img loading="lazy" decoding="async" src="/img/venue-street.webp" alt="Pracovna sign on Vlkova street"><span class="venue__step"><b>01</b>Entrance</span></div>
-    <div class="photo photo--cafe"><img loading="lazy" decoding="async" src="/img/venue-cafe.webp" alt="The café and bar at Pracovna"><span class="venue__step"><b>02</b>Café</span></div>
-    <div class="photo photo--hall"><img loading="lazy" decoding="async" src="/img/venue-hall.webp" alt="The hall at Pracovna set up with chairs"><span class="venue__step"><b>03</b>Hall</span></div>
-  </div>
-</section>
-
-<section class="mod tix" id="register">
-  <h2>Register</h2>
-  <p class="lede">Free entry, registration on Luma. Places are limited.</p>
-  <div class="cta-row"><a class="pill pill--orange pill--lg" href="https://luma.com/2pxjv05i?utm_source=web-final&amp;utm_medium=en" data-luma-action="checkout" data-luma-event-id="evt-5Jn9XJ4x8XfOmyL" data-luma-utm-source="web-final-en" target="_blank" rel="noopener">Register</a></div>
-  <p class="follow">PROTO ROBOT is a series. <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow us on Luma</a> to hear about #1 first.</p>
-</section>
-
 
 </main>
 
 <footer class="foot">
   <a href="#about">About</a>
+  <a href="/en/0/">#0</a>
   <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a>
   <a href="/" hreflang="cs" lang="cs">Česky</a>
   <div class="foot__meta">© 2026 PROTO ROBOT. <span lang="cs">Máme toho hodně. A proto robot.</span></div>
@@ -761,7 +755,5 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
 
 })();
 </script>
-<!-- Luma checkout: Register links open registration in a window on this page; without the script they still open Luma -->
-<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" async></script>
 </body>
 </html>
