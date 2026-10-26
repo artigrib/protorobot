@@ -69,7 +69,7 @@ Event details for search engines (date, venue, speakers) live in the JSON-LD blo
     brand/photos/0/   the 27 JPEGs (2400px) from the RAW files; gallery tiles link to them
     img/0/l-*.webp    1800px copies for the photo viewer (dialog#lb): arrows, swipe, Esc, phone Back closes it;
                       without JS the tiles still open the original JPEG
-    .nums           #0 in numbers under the partner row on all four pages: 143 registered, ~100 in the room, 4 talks,
+    .nums           #0 in numbers under the partner row on /0/ only (home has one short line above its photos): 143 registered, ~100 in the room, 4 talks,
                     3 live demos (AgiBot X2 Ultra, Reachy Mini, Krabičák); one line on who registered (73 engineers/researchers, 37 students, 31 founders).
                     Investors named only generically; KORD speaker without the former employer.
     img/og-series-cs.jpg / -en.jpg   social preview of the homepage ("#1 coming soon"); /0/ keeps og.jpg
