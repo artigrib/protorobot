@@ -237,6 +237,12 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .hero__cos .co img.co-integra{height:36px;filter:none}
 @media (max-width:640px){.hero__cos{gap:8px 18px;bottom:calc(var(--s2) + env(safe-area-inset-bottom))}.hero__cos .co{font-size:19px;gap:7px}.hero__cos .co img{height:24px}.hero__cos .co img.co-integra{height:26px}.hero__cos__label{font-size:11px}}
 
+/* phones: the photo keeps a real 2:3 frame in the upper part of the hero and fades into black under the title */
+@media (orientation:portrait){
+  .hero__track--v .slide{background:#000}
+  .hero__track--v .slide img{height:72%;object-position:center top;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+}
+
 /* ---------- intro ---------- */
 .intro{padding-top:var(--s4)}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -447,14 +453,14 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     <div class="slide"><img src="/img/0/h-8340.webp" alt="" loading="lazy" decoding="async"></div>
     </div>
     <div class="hero__track hero__track--v" data-track>
-    <div class="slide is-on"><img src="/img/0/v-8141.webp" alt="" fetchpriority="high"></div>
-    <div class="slide"><img src="/img/0/v-8039.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-8035.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-8230.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-8186.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-8357.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-8217.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-8340.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide is-on"><img src="/img/0/v-1-8039.webp" alt="" fetchpriority="high"></div>
+    <div class="slide"><img src="/img/0/v-2-8141.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-3-8217.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-4-8357.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-5-8035.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-6-8230.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-7-8156.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/0/v-8-8129.webp" alt="" loading="lazy" decoding="async"></div>
     </div>
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
@@ -565,7 +571,13 @@ a.card:hover .photo,a.card:focus-visible .photo{transform:translateY(-8px)}
     set('--sc', Math.min(1, (H.width - 2 * gut) / (B.r - B.l), (H.height * 0.6) / (B.b - B.t)));
     B = bounds();
     const blockH = (B.b - B.t) + 24 + badgeH;
-    const top = H.top + (H.height - blockH) / 2 + H.height * 0.04;
+    let top = H.top + (H.height - blockH) / 2 + H.height * 0.04;
+    // phones: the photo is the upper frame, so the title sits low, between the photo and the logos
+    if (matchMedia('(orientation: portrait)').matches) {
+      const cos = document.querySelector('.hero__cos');
+      const floor = cos ? cos.getBoundingClientRect().top - 20 : H.bottom - 40;
+      top = Math.max(H.top + H.height * 0.30, Math.min(H.top + H.height * 0.58, floor - blockH));
+    }
     set('--tx', (H.left + H.width / 2 - (B.l + B.r) / 2) + 'px');
     set('--ty', (top - B.t) + 'px');
     hero.style.setProperty('--by', (top - H.top + (B.b - B.t) + 24) + 'px');
