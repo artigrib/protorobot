@@ -69,6 +69,9 @@ Event details for search engines (date, venue, speakers) live in the JSON-LD blo
     brand/photos/0/   the 27 JPEGs (2400px) from the RAW files; gallery tiles link to them
     img/0/l-*.webp    1800px copies for the photo viewer (dialog#lb): arrows, swipe, Esc, phone Back closes it;
                       without JS the tiles still open the original JPEG
+    .nums           #0 in numbers under the partner row on all four pages: 143 registered, ~100 in the room, 4 talks,
+                    2 live demos; one line on who registered (73 engineers/researchers, 37 students, 31 founders).
+                    Investors named only generically; KORD speaker without the former employer.
     img/og-series-cs.jpg / -en.jpg   social preview of the homepage ("#1 coming soon"); /0/ keeps og.jpg
 
 The event registration (Luma checkout, evt-5Jn9XJ4x8XfOmyL) is gone from all pages; every orange button now follows
