@@ -29,7 +29,7 @@ venue and registration text, at most ~60 characters a line. Nothing fades in on 
    Above the text, right under the hero, the line-up (.lineup, one row on phones from ~375px): "Partneři / Partners": EDIH CTU (logo they sent, recoloured black; they share the event
    on their LinkedIn), ČAUI (both --h 46px), then Maker Faire (40px); 85% of that on phones. Maker Faire's site SVG recoloured, ČAUI from the PDFs the association sent
    (partner-caai.svg Czech, partner-caai-en.svg English). Also FEL ČVUT (English logo only, ask Radovan Suk for the Czech one), REVEL Robotics (box with the name cut out,
-   from brand/duotone) and Printed Robotics (wordmark SVG, no link: no site known). Six logos: one row on wide screens,
+   from brand/duotone) and Printed Robotics (wordmark SVG, links to printedrobotics.cz). Six logos: one row on wide screens,
    two rows of three below 1200px, in the banner order. Source files for all partners live in brand/. Pracovna has no logo on the page: its sign is in the first venue photo.
    The speakers' companies sit on the first screen instead: .hero__cos at the bottom of the hero, "Řečníci z / Speakers from"
    Hugging Face, Pollen Robotics, Integra Robotics (white; logo-integra-light.svg is the mark redrawn for dark backgrounds;
