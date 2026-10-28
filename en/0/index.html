@@ -286,6 +286,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 
 /* ---------- intro ---------- */
 .intro{padding-top:var(--s4)}
+/* read by screen readers only (the hero badge reads its three facts here; its turning faces are aria-hidden) */
 .vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .intro p.facts{font-size:inherit;letter-spacing:0;max-width:none}
 .facts{display:flex;flex-wrap:wrap;gap:var(--s1);margin-top:var(--s3)}
@@ -545,7 +546,7 @@ html.lb-open{overflow:hidden}
     </div>
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
-  <div class="badge" id="badge" data-faces='["#0 took place", "23.10.2026", "Pracovna, Prague 3"]'><div class="badge__flip"><span class="f-a">#0 took place</span><span class="f-b" aria-hidden="true"></span></div></div>
+  <div class="badge" id="badge" data-faces='["#0 took place", "23.10.2026", "Pracovna, Prague 3"]'><span class="vh">#0 took place, 23.10.2026, Pracovna, Prague 3</span><div class="badge__flip" aria-hidden="true"><span class="f-a">#0 took place</span><span class="f-b" aria-hidden="true"></span></div></div>
   <div class="hero__cos"><span class="hero__cos__label">Speakers from</span><span class="co"><img src="/img/logo-hf.svg" alt="" height="26">Hugging Face</span><span class="co"><img src="/img/logo-pollen.webp" alt="" height="26">Pollen Robotics</span><span class="co"><img class="co-integra" src="/img/logo-integra-light.svg" alt="" height="28">Integra Robotics</span></div>
 </section>
 
@@ -791,9 +792,13 @@ html.lb-open{overflow:hidden}
   const city = $('#city');
 
   const navLinks = $$('.city__nav a');
+  // the link of the section in the middle of the screen is current: aria-current="true" (an empty value means false); none over the hero
+  const setCurrent = id => navLinks.forEach(l => {
+    if (id && l.getAttribute('href') === '#' + id) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+  });
   const sectionIO = new IntersectionObserver(entries => entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    navLinks.forEach(l => l.toggleAttribute('aria-current', l.getAttribute('href') === '#' + e.target.id));
+    if (e.isIntersecting) setCurrent(e.target.id);
+    else if (navLinks.some(l => l.hasAttribute('aria-current') && l.getAttribute('href') === '#' + e.target.id)) setCurrent(null);
   }), { rootMargin: '-40% 0px -50% 0px' });
   navLinks.map(l => document.getElementById(l.getAttribute('href').slice(1))).filter(Boolean).forEach(sec => sectionIO.observe(sec));
 
