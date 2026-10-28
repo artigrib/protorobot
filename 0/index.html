@@ -266,14 +266,16 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 @media (max-width:640px),(max-height:500px){.hero{min-height:0}}
 @media (max-width:640px){.hero__cos{gap:8px 18px;bottom:calc(var(--s2) + env(safe-area-inset-bottom))}.hero__cos .co{font-size:19px;gap:7px}.hero__cos .co img{height:24px}.hero__cos .co img.co-integra{height:26px}.hero__cos__label{font-size:11px}}
 
-/* phones on their side: a smaller title and badge, the speakers' companies on one line */
-@media (orientation:landscape) and (max-height:500px){
-  .hero{--title-h:.42}
+/* short screens: a smaller badge and company line; phones on their side also get a smaller title and the companies on one line */
+@media (max-height:500px){
   .badge__flip{height:44px;padding:0 20px;font-size:20px}
-  .hero__cos{flex-wrap:nowrap;gap:0 16px;bottom:calc(var(--s1) + env(safe-area-inset-bottom))}
-  .hero__cos__label{width:auto;font-size:11px}
   .hero__cos .co{font-size:16px;gap:6px}
   .hero__cos .co img{height:20px}.hero__cos .co img.co-integra{height:22px}
+}
+@media (orientation:landscape) and (max-height:500px){
+  .hero{--title-h:.42}
+  .hero__cos{flex-wrap:nowrap;gap:0 16px;bottom:calc(var(--s1) + env(safe-area-inset-bottom))}
+  .hero__cos__label{width:auto;font-size:11px}
 }
 
 /* phones: a real 2:3 frame pinned to the top, its subject composed above the centred title; it fades into black below */
