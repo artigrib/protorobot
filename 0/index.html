@@ -501,6 +501,12 @@ html.lb-open{overflow:hidden}
 .foot a:hover,.foot a:focus-visible{color:var(--orange);text-decoration-color:currentColor}
 .foot :focus-visible{outline-color:var(--white)}
 .foot__meta{width:100%;color:rgba(255,255,255,.7);font-size:14px;padding-top:var(--s1)}
+/* footer links: same small text, but a hit area at least 44px high and 44px wide;
+   the padding is taken back by the margin, so the row keeps its place */
+.foot{row-gap:22px}
+.foot a{position:relative;padding:11px 0;margin:-11px 0}
+.foot a::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,44px);transform:translateX(-50%)}
+.foot .foot__meta{padding-top:0}
 </style>
 </head>
 <body>
