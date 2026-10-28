@@ -169,6 +169,8 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 /* how many pills fit in a row is measured by the script (real font widths): 5 in a row, 3+2 or 2+2+1 */
 .city[data-cols="3"] .city__nav{display:grid;grid-template-columns:repeat(3,max-content)}
 .city[data-cols="2"] .city__nav{display:grid;grid-template-columns:repeat(2,max-content)}
+/* narrow phones with four links: one column, so the panel never pushes Follow off the screen */
+.city[data-cols="1"] .city__nav{display:grid;grid-template-columns:max-content}
 @media (max-width:540px){
   /* one row even on small phones */
   .city{max-width:none}
@@ -638,20 +640,23 @@ html.lb-open{overflow:hidden}
     badgeFlipEl.style.width = Math.ceil(w) + 'px';
   };
   /* nav panel: pick the widest arrangement whose real width fits next to the buttons */
-  const cityEl = $('#city'), cityNav = $('#cityNav'), topRight = $('.top__right');
+  const cityEl = $('#city'), cityNav = $('#cityNav'), topRight = $('.top__right'), topEl = $('.top');
   const fitNav = () => {
     cityEl.removeAttribute('data-cols');
     const pills = $$('.pill', cityNav).filter(p => getComputedStyle(p).display !== 'none');
     const ws = pills.map(p => p.getBoundingClientRect().width);
     const gap = parseFloat(getComputedStyle(cityNav).columnGap) || 10;
-    const pad = parseFloat(getComputedStyle(cityEl).paddingLeft) * 2;
-    const available = topRight.getBoundingClientRect().left - 12 - cityEl.getBoundingClientRect().left - pad;
+    // the open panel's padding, also while it is folded into the round button (folded, it has none)
+    const folded = cityEl.classList.contains('city--collapsed') && !cityEl.classList.contains('is-open');
+    const pad = 2 * (folded ? (innerWidth <= 640 ? 8 : 10) : parseFloat(getComputedStyle(cityEl).paddingLeft));
+    // measured from the header's right edge: an over-wide panel pushes the buttons, so their left edge is not a limit
+    const available = topEl.getBoundingClientRect().right - topRight.getBoundingClientRect().width - 12 - cityEl.getBoundingClientRect().left - pad;
     const rowWidth = cols => {
       const colW = Array.from({ length: cols }, (_, k) => Math.max(...ws.filter((w, j) => j % cols === k)));
       return colW.reduce((a, b) => a + b, 0) + gap * (cols - 1);
     };
     if (rowWidth(pills.length) <= available) return;
-    cityEl.dataset.cols = rowWidth(3) <= available ? '3' : '2';
+    cityEl.dataset.cols = [3, 2].find(c => c < pills.length && rowWidth(c) <= available) || 1;
   };
   const layout = () => { fitNav(); fitProgram(); centreType(); sizeBadge(); };
   const relayout = debounce(layout);
