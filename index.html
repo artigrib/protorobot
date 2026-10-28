@@ -237,7 +237,19 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .hero__cos .co{display:inline-flex;align-items:center;gap:10px;font-size:27px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
 .hero__cos .co img{height:34px;width:auto;filter:grayscale(1) brightness(1.25)}
 .hero__cos .co img.co-integra{height:36px;filter:none}
+/* short screens (phones on their side, iPhone SE behind its toolbars): the hero is one screen, never taller */
+@media (max-width:640px),(max-height:500px){.hero{min-height:0}}
 @media (max-width:640px){.hero__cos{gap:8px 18px;bottom:calc(var(--s2) + env(safe-area-inset-bottom))}.hero__cos .co{font-size:19px;gap:7px}.hero__cos .co img{height:24px}.hero__cos .co img.co-integra{height:26px}.hero__cos__label{font-size:11px}}
+
+/* phones on their side: a smaller title and badge, the speakers' companies on one line */
+@media (orientation:landscape) and (max-height:500px){
+  .hero{--title-h:.42}
+  .badge__flip{height:44px;padding:0 20px;font-size:20px}
+  .hero__cos{flex-wrap:nowrap;gap:0 16px;bottom:calc(var(--s1) + env(safe-area-inset-bottom))}
+  .hero__cos__label{width:auto;font-size:11px}
+  .hero__cos .co{font-size:16px;gap:6px}
+  .hero__cos .co img{height:20px}.hero__cos .co img.co-integra{height:22px}
+}
 
 /* phones: a real 2:3 frame pinned to the top, its subject composed above the centred title; it fades into black below */
 @media (orientation:portrait){
@@ -617,7 +629,8 @@ html.lb-open{overflow:hidden}
     // posters are centred: the title on the hero's centre line, the badge right under its ink
     const gut = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gt')) || 10;
     const badgeH = badgeFlipEl.getBoundingClientRect().height || 65;
-    set('--sc', Math.min(1, (H.width - 2 * gut) / (B.r - B.l), (H.height * 0.6) / (B.b - B.t)));
+    const titleH = parseFloat(getComputedStyle(hero).getPropertyValue('--title-h')) || 0.6;   // share of the hero height the title may take
+    set('--sc', Math.min(1, (H.width - 2 * gut) / (B.r - B.l), (H.height * titleH) / (B.b - B.t)));
     B = bounds();
     const blockH = (B.b - B.t) + 24 + badgeH;
     const top = H.top + (H.height - blockH) / 2 + H.height * 0.04;
@@ -690,8 +703,8 @@ html.lb-open{overflow:hidden}
 
   const cityBtn = $('#cityBtn');
   const setCityOpen = open => { city.classList.toggle('is-open', open); cityBtn.setAttribute('aria-expanded', String(open || !city.classList.contains('city--collapsed'))); };
-  // on phones the menu starts folded so the hero stays clear; elsewhere it folds once the hero scrolls away
-  const phone = matchMedia('(max-width: 640px)');
+  // on phones (also on their side) the menu starts folded so the hero stays clear; elsewhere it folds once the hero scrolls away
+  const phone = matchMedia('(max-width: 640px), (max-height: 500px)');
   let heroVisible = true;
   const foldCity = () => { city.classList.toggle('city--collapsed', phone.matches || !heroVisible); setCityOpen(false); };
   const topBar = $('.top');
