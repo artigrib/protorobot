@@ -128,8 +128,11 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 @keyframes float{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 10px))}}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .city__name,.hero__type__in,.badge,.slide.is-on img{animation:none!important}
-  .photo,.tier__art{transition:none}
+  /* nothing travels, turns or zooms: no loops, no badge flip, no hover lifts; colour and opacity changes stay */
+  *,*::before,*::after{animation:none!important;scroll-behavior:auto!important}
+  .photo,.badge__flip,.hero__type span,.burger::before,.burger::after,.skip{transition:none!important}
+  .gal a:hover .photo,.gal a:focus-visible .photo,.spk:hover .photo img{transform:none}
+  .spk .photo img{transition:opacity .65s var(--ease-out)}
   /* carousel and title still change, but by crossfade instead of movement */
   .hero__track--h,.hero__track--v{transform:none!important;transition:none}
   .slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
