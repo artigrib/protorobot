@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where to build in Prague: hackerspaces and workshops | PROTO ROBOT</title>
+<meta name="description" content="A map of Prague hackerspaces, makerspaces and open workshops where you can solder, 3D print and build robots. Who can use them, what they have, and a bit of history.">
+<link rel="canonical" href="https://protorobot.cz/en/dilny/">
+<link rel="alternate" hreflang="cs" href="https://protorobot.cz/dilny/">
+<link rel="alternate" hreflang="en" href="https://protorobot.cz/en/dilny/">
+<link rel="alternate" hreflang="x-default" href="https://protorobot.cz/dilny/">
+<meta name="theme-color" content="#FF5A00">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://protorobot.cz/en/dilny/">
+<meta property="og:title" content="Where to build in Prague: hackerspaces and workshops | PROTO ROBOT">
+<meta property="og:description" content="A map of Prague hackerspaces, makerspaces and open workshops where you can solder, 3D print and build robots. Who can use them, what they have, and a bit of history.">
+<meta property="og:image" content="https://protorobot.cz/img/og.jpg?v=4">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23FF5A00'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='30' fill='%23000'%3EPR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap">
+<style>
+/* Same tokens as / and /0/. Page: makerspace map, cards, lore timeline. */
+:root{
+  --orange:#FF5A00; --black:#000; --white:#fff; --grey:#F0F0F0; --grey-pill:#D0D0D0; --grey-line:#c8c8c8; --grey-text:#5c5c5c;
+  --river:#d9e3ea; --ghost:#a9a9a9;
+  --font:"Archivo","Archivo Fallback","Helvetica Neue",Arial,sans-serif;
+  --g:10px; --gt:10px; --pill-h:52px; --nav-fs:18px;
+  --s1:10px; --s2:20px; --s3:40px; --s4:80px; --s5:160px;
+}
+@media (max-width:820px){:root{--s3:28px;--s4:56px;--s5:96px}}
+@media (max-width:640px){:root{--pill-h:44px;--nav-fs:15px;--gt:16px;--s4:48px;--s5:72px}}
+@font-face{font-family:"Archivo Fallback";src:local("Arial");size-adjust:101%;ascent-override:88%;descent-override:22%;line-gap-override:0%}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--grey);color:var(--black);font-size:18px;line-height:1.35;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--black);outline-offset:3px}
+.pill:focus-visible,.chip:focus-visible{border-radius:999px}
+.skip{position:fixed;left:var(--g);top:-100px;z-index:100;background:var(--black);color:var(--white);padding:0 20px;height:var(--pill-h);display:inline-flex;align-items:center;border-radius:999px;transition:top .2s}
+.skip:focus{top:var(--g)}
+
+/* pills and header, as on the rest of the site */
+.pill{display:inline-flex;align-items:center;justify-content:center;height:var(--pill-h);padding:0 25px;border-radius:999px;background:var(--black);color:var(--white);font-size:var(--nav-fs);font-weight:400;text-transform:uppercase;letter-spacing:.01em;border:0;white-space:nowrap;font-family:inherit;transition:background .18s,color .18s}
+.pill:hover{background:rgba(0,0,0,.8)}
+.pill[aria-current="page"]{background:var(--orange);color:var(--black)}
+.pill--orange{background:var(--orange);color:var(--black)} .pill--orange:hover{background:var(--black);color:var(--white)}
+.top{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:calc(var(--g) + env(safe-area-inset-top)) var(--g) var(--g);background:rgba(240,240,240,.86);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+.top nav,.top__right{display:flex;gap:10px;flex-wrap:wrap}
+.top__lang{padding:0 18px}
+@media (max-width:640px){.top .pill{padding:0 14px;font-size:14px}.top nav,.top__right{gap:6px}}
+@media (max-width:380px){.top .pill{padding:0 10px;font-size:12px;height:36px}}
+
+/* page */
+main{padding:var(--s3) var(--gt) var(--s5)}
+.hero{display:grid;grid-template-columns:1fr auto;gap:var(--s2);align-items:end;padding-bottom:var(--s2);border-bottom:2px solid var(--black)}
+.kicker{font-size:14px;text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.kicker svg{width:56px;height:14px}
+h1{font-weight:300;font-size:clamp(48px,9vw,140px);line-height:.88;letter-spacing:-.05em;margin-top:var(--s2);text-wrap:balance}
+h1 b{font-weight:700}
+.lede{font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:34em;margin-top:var(--s2);text-wrap:pretty}
+.stamp{text-align:right;font-size:14px;color:var(--grey-text);white-space:nowrap}
+.stamp b{display:block;font-size:clamp(56px,7vw,96px);line-height:.9;font-weight:700;letter-spacing:-.05em;color:var(--orange)}
+@media (max-width:700px){.hero{grid-template-columns:1fr}.stamp{text-align:left}}
+
+section{margin-top:var(--s4)}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--black);padding-bottom:var(--s1);margin-bottom:var(--s2)}
+.sechead h2{font-weight:300;font-size:clamp(32px,4.2vw,60px);line-height:.95;letter-spacing:-.04em}
+.sechead .note{font-size:14px;color:var(--grey-text);text-transform:uppercase;letter-spacing:.03em}
+
+.mapbox{position:relative;background:var(--white);border-radius:24px;overflow:hidden}
+.mapbox svg{display:block;width:100%;height:auto}
+.district{font-size:13px;fill:var(--ghost);letter-spacing:.14em;text-transform:uppercase;font-family:var(--font)}
+.river{fill:none;stroke:var(--river);stroke-width:26;stroke-linecap:round;stroke-linejoin:round}
+.rivername{font-size:12px;fill:var(--grey-text);letter-spacing:.3em;font-family:var(--font)}
+.pin{cursor:pointer;outline:none}
+.pin circle.dot{stroke:var(--white);stroke-width:3}
+.pin text{font-family:var(--font);font-weight:700;font-size:15px;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pin.dim{opacity:.18}
+.pin circle.halo{fill:none;stroke:var(--orange);stroke-width:3;opacity:0;transition:opacity .15s}
+.pin.on circle.halo,.pin:focus-visible circle.halo{opacity:1}
+.mapnote{position:absolute;left:16px;bottom:12px;right:16px;font-size:12px;color:var(--grey-text)}
+@media (max-width:700px){.mapnote{position:static;padding:0 16px 14px}.pin{transform-box:fill-box;transform-origin:center;transform:scale(1.9)}.district{font-size:24px}.rivername{font-size:20px}}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s2)}
+.chip{font:400 15px/1 var(--font);height:44px;padding:0 18px;border:2px solid var(--black);border-radius:999px;background:transparent;color:var(--black);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.01em}
+.chip[aria-pressed="false"]{opacity:.35}
+.chip .c{color:var(--grey-text)}
+.sw{width:12px;height:12px;border-radius:50%;display:inline-block}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));column-gap:var(--s2);border-top:1px solid var(--grey-line)}
+.card{padding:var(--s2) 0;border-bottom:1px solid var(--grey-line);display:grid;grid-template-columns:44px 1fr;gap:4px 14px;min-width:0;transition:background .15s}
+.card.on{background:var(--white);box-shadow:-10px 0 0 var(--white),10px 0 0 var(--white)}
+.card[hidden]{display:none!important}
+.num{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px}
+.card h3{font-size:24px;font-weight:600;letter-spacing:-.025em;line-height:1.1;margin-top:3px}
+.meta{font-size:14px;color:var(--grey-text);margin-top:4px}
+.body{grid-column:2;min-width:0}
+.access{display:inline-flex;align-items:center;margin-top:12px;height:28px;padding:0 12px;border-radius:999px;font-size:13px;text-transform:uppercase;letter-spacing:.02em}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-size:13px;height:26px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--white)}
+.card p{margin-top:12px;font-size:16px;line-height:1.4}
+.lore{color:var(--grey-text)}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:14px;font-size:15px}
+.links a{text-transform:uppercase;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.links a:hover{color:var(--orange)}
+.links .mail{color:var(--grey-text);user-select:all;overflow-wrap:anywhere}
+.src{font-size:12px;color:var(--grey-text);margin-top:10px}
+.src a{text-decoration:underline;text-underline-offset:.15em}
+
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:1px solid var(--black)}
+.ev{padding:var(--s2) var(--s2) var(--s2) 0;border-bottom:1px solid var(--grey-line)}
+.ev b{display:block;font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ev span{display:block;margin-top:10px;font-size:15px;line-height:1.35}
+.ev.end b{color:var(--ghost)}
+.ev.now b{color:var(--orange)}
+.missing{margin-top:var(--s4);font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:34em}
+.missing a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
+
+.foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s1) var(--s3);padding:var(--s3) var(--gt) calc(var(--s3) + env(safe-area-inset-bottom));background:var(--black);color:var(--white)}
+.foot a{font-size:16px;text-transform:uppercase;letter-spacing:.02em;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.25em;transition:text-decoration-color .2s,color .2s}
+.foot a:hover,.foot a:focus-visible{color:var(--orange);text-decoration-color:currentColor}
+.foot :focus-visible{outline-color:var(--white)}
+.foot__meta{width:100%;color:rgba(255,255,255,.7);font-size:14px;padding-top:var(--s1)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <nav aria-label="Menu">
+    <a class="pill" href="/en/">#1</a>
+    <a class="pill" href="/en/0/">#0</a>
+    <a class="pill" href="https://protorobot.cz/en/dilny/" aria-current="page">Map</a>
+  </nav>
+  <div class="top__right">
+    <a class="pill top__lang" href="/dilny/" hreflang="cs" lang="cs" aria-label="Česky">CZ</a>
+    <a class="pill pill--orange" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero">
+  <div>
+    <div class="kicker"><svg viewBox="0 0 560 140" aria-hidden="true"><rect x="0" y="58" width="372" height="24" fill="#FF5A00"/><circle cx="442" cy="70" r="70" fill="#FF5A00"/></svg>PROTO ROBOT community</div>
+    <h1><b>Where to build</b> in Prague</h1>
+    <p class="lede">Hackerspaces, open workshops and labs where you can solder, 3D print, laser cut or weld. For anyone building robots and hardware.</p>
+  </div>
+  <div class="stamp"><b id="countOpen"></b>active places<br>checked 30 Oct 2026</div>
+</div>
+
+<section aria-labelledby="h-map">
+  <div class="sechead"><h2 id="h-map">Map</h2></div>
+  <div class="mapbox">
+    <svg id="map" viewBox="0 0 1000 760" role="img" aria-labelledby="h-map"></svg>
+    <div class="mapnote">Schematic, not to scale. Use the Maps link on each place for directions.</div>
+  </div>
+  <div class="legend" id="legend" role="group"></div>
+</section>
+
+<section aria-labelledby="h-list">
+  <div class="sechead"><h2 id="h-list">Places</h2><span class="note" id="shown"></span></div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section aria-labelledby="h-lore">
+  <div class="sechead"><h2 id="h-lore">Prague's maker scene over time</h2></div>
+  <div class="timeline"><div class="ev "><b>2010</b><span>brmlab opens, the first Czech hackerspace, at Bubenská 1 in Holešovice.</span></div><div class="ev "><b>2014</b><span>The art group Ztohoven opens Paralelní Polis: a hackerspace, a bitcoin-only café and the Hackers Congress.</span></div><div class="ev "><b>2018</b><span>Josef Průša opens PrusaLab, 350 m² for the public. FutLab opens and brmlab moves in across its corridor.</span></div><div class="ev end"><b>2020</b><span>Covid closes the workshops. PrusaLab becomes a prototyping centre and accelerator.</span></div><div class="ev end"><b>2021</b><span>FutLab turns into an art bronze foundry.</span></div><div class="ev "><b>2024</b><span>The city opens HW Lab Praha. NTK adds welding with ČVUT. Paralelní Polis closes.</span></div><div class="ev now"><b>2026</b><span>brmlab turns 16. Public workshops run at NTK, HW Lab and Hybernská.</span></div></div>
+  <p class="missing">Missing a workshop, or something is off? Message us on Luma or LinkedIn.</p>
+</section>
+</main>
+
+<footer class="foot">
+  <a href="/en/">#1</a><a href="/en/0/">#0</a>
+  <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Luma</a>
+  <a href="/dilny/" hreflang="cs" lang="cs">Česky</a>
+  <div class="foot__meta">© 2026 PROTO ROBOT. Máme toho hodně. A&nbsp;proto robot.</div>
+</footer>
+
+<script>
+const D={"places": [{"n": 1, "name": "brmlab", "lat": 50.0835, "lon": 14.4803, "acc": "members", "q": "Pod Kapličkou 3155/20, Praha", "web": "https://brmlab.cz", "mail": "brmlab@brmlab.cz", "src": [["mailing list 2026", "https://brmlab.cz/mailman3/hyperkitty/list/brmlab@brmlab.cz/latest?count=100"], ["Lupa 2018", "https://www.lupa.cz/clanky/jako-cukrarna-pro-geeky-a-kutily-v-praze-otevira-komunitni-dilna-futlab/"]], "kind": "hackerspace", "area": "Praha 3, Pod Kapličkou 3155/20", "who": "Members; guests are welcome at talks and events. Older sources say CZK 500 a month, CZK 250 for students; check current fees.", "gear": ["3D printing", "PCB making", "electronics", "biolab"], "lore": "The first Czech hackerspace, opened in October 2010 at Bubenská 1. Home of BRMBOT, built for the RoboTour contest, a RepRap branch the community adopted as recommended, and a workshop with Mitch Altman. Moved to Žižkov in 2018 and turns 16 in October 2026."}, {"n": 2, "name": "Polytechnická dílna NTK", "lat": 50.1039, "lon": 14.3905, "acc": "public", "q": "Národní technická knihovna, Technická 6, Praha", "web": "https://www.techlib.cz/cs/84997-polytechnicka-dilna", "mail": "dilna@techlib.cz", "src": [["techlib.cz", "https://www.techlib.cz/cs/84997-polytechnicka-dilna"], ["fablabs.io", "https://fablabs.io/labs/ntk3dworkshop"]], "kind": "public library workshop", "area": "Praha 6, Technická 6, NTK ground floor", "who": "NTK registration and a Czech address, 18+. Online safety course and a certificate per machine, book ahead. Free, you pay for materials.", "gear": ["Prusa XL, MK4", "Epilog laser", "electronics", "wood and metal shop", "3D scanner", "welding"], "lore": "MIG/MAG, TIG and MMA welding once a month in the ČVUT mechanical engineering halls, since 2024. Also runs repair days open to anyone."}, {"n": 3, "name": "HW Lab Praha", "lat": 50.0629, "lon": 14.4285, "acc": "public", "q": "Kongresové centrum Praha, 5. května 65", "web": "https://hwlab.praha.eu", "mail": "hwlab@hwlabpraha.cz", "src": [["hwlab.praha.eu", "https://hwlab.praha.eu/otevrena-dilna"]], "kind": "city makerspace", "area": "Praha 4, Prague Congress Centre, entrance 11", "who": "Free during opening hours, you pay for materials. Register online first and get a QR code. Under 18 with a parent's signature.", "gear": ["Prusa, Formlabs, Bambu", "xTool 55 W laser", "soldering and hot air", "oscilloscope", "power tools", "CNC embroidery"], "lore": "Opened in June 2024 by Prague City Hall with the local tech community, run by DDM Praha 6. Open workshop Tue to Thu 16:30–20:00, electronics repair on Thursdays."}, {"n": 4, "name": "HYB4 Cirkulární dílna", "lat": 50.0874, "lon": 14.4317, "acc": "public", "q": "Kampus Hybernská, Hybernská 4, Praha", "web": "https://kampushybernska.cz/en/cirkularita/cirkularni-dilna-hyb4", "mail": "dilna@kampushybernska.cz", "src": [["kampushybernska.cz", "https://kampushybernska.cz/en/cirkularita/cirkularni-dilna-hyb4"]], "kind": "community workshop", "area": "Praha 1, Kampus Hybernská", "who": "Book by the hour, CZK 150 per person per hour, after training. Paid workshops CZK 650 to 1,800.", "gear": ["soldering", "drills", "saws", "milling machine", "grinder", "compressor"], "lore": "The workshop of Charles University's circularity programme at Kampus Hybernská. Good for metal and wood parts; no 3D printer or laser."}, {"n": 5, "name": "PrusaLab", "lat": 50.1063, "lon": 14.4405, "acc": "members", "q": "PrusaLab, Partyzánská 188/7a, Praha", "web": "https://prusalab.cz", "mail": "info@prusalab.cz", "src": [["prusalab.cz", "https://prusalab.cz/"], ["Prusa blog 2022", "https://blog.prusa3d.com/redefining-prusalab-from-makerspace-to-a-hi-tech-prototyping-center_67340"]], "kind": "prototyping centre", "area": "Praha 7, Partyzánská 188/7a", "who": "Not a public workshop. Contact the lab with a project; acceptance depends on capacity and works more like an accelerator. Also offers 3D printing on demand.", "gear": ["3D printing", "CNC milling", "laser", "PCB making", "vacuum casting"], "lore": "Josef Průša opened it on 6 June 2018 as a 350 m² community workshop with about a hundred regular members in two years. It closed to the public during Covid and launched a hardware startup accelerator in 2020. Hosts the Prague Hardware Meetup."}, {"n": 6, "name": "TAKT Praha", "lat": 50.0868, "lon": 14.4635, "acc": "members", "q": "Jeseniova 212, Praha", "web": "https://wiki.taktpraha.cz", "mail": "info@taktpraha.cz", "src": [["wiki.taktpraha.cz", "https://wiki.taktpraha.cz/"]], "kind": "hackerspace", "area": "Žižkov, Jeseniova 212", "who": "Members with 24/7 access. The last documented event is from March 2024; check it is active before you go.", "gear": ["3D printing", "electronics"], "lore": "Run by Takt z.s., described around 2020 as a new hackerspace. Its wiki lists Thursday electronics lessons."}, {"n": 7, "name": "MacGyver, bastlíři Silicon Hill", "lat": 50.081, "lon": 14.392, "acc": "students", "q": "Koleje Strahov blok 9, Praha", "web": "https://www.siliconhill.cz", "mail": "", "src": [["Silicon Hill 2024", "https://zapisy.sh.cvut.cz/prilohy/20250227-Vyrocni-zprava-SH-2024.pdf"]], "kind": "ČVUT student club", "area": "Praha 6, Strahov dorms, block 9", "who": "Silicon Hill club members only, mostly ČVUT students living at Strahov. Four evenings a week in term, no booking.", "gear": ["soldering stations", "ultrasonic cleaner", "PCB saw", "hand tools"], "lore": "The electronics room is nicknamed Mučírna (torture room), the mechanical one Mechadílna. The club has kept annual reports since 2009."}, {"n": 8, "name": "HWLab FIT ČVUT", "lat": 50.1052, "lon": 14.3935, "acc": "students", "q": "Thákurova 7, Praha", "web": "https://fit.cvut.cz/en/science-and-research/facilities/laboratories/12218-hardware-workshop-and-laboratory-hwlab", "mail": "", "src": [["fit.cvut.cz", "https://fit.cvut.cz/en/science-and-research/facilities/laboratories/12218-hardware-workshop-and-laboratory-hwlab"]], "kind": "university lab", "area": "Praha 6, Thákurova 7, building A, 10th floor", "who": "FIT staff and students and research labs. Not open to the public.", "gear": ["oscilloscopes", "logic analysers", "FPGA", "micro soldering", "PCB etching"], "lore": "The hardware workshop of the Faculty of Information Technology, for student projects and research."}, {"n": 9, "name": "Maker Institute", "lat": null, "lon": null, "acc": "public", "q": "", "web": "https://makerinstitute.cz", "mail": "info@makerinstitute.cz", "src": [["makerinstitute.cz", "https://makerinstitute.cz/"]], "kind": "education makerspace", "area": "Dejvice, lab address not published", "who": "Paid workshops, e.g. CZK 500 to 700 for 2 hours. Make-iton, a one-semester incubator for students.", "gear": ["workshops"], "lore": "Used to run fablabs on the Dejvice campus. Since 2023 it co-teaches the FEL ČVUT course How to Make (Almost) Anything."}, {"n": 10, "name": "Paralelní Polis", "lat": 50.103, "lon": 14.4495, "acc": "closed", "q": "Dělnická 43, Praha", "web": "", "mail": "", "src": [["Forbes 2024", "https://forbes.cz/tecka-za-kryptoanarchistickym-experimentem-jak-vidi-konec-paralleni-polis-roman-tyc/"]], "kind": "hackerspace, closed", "area": "Praha 7, Dělnická 43", "who": "Closed in 2024; the space is now a coworking.", "gear": ["3D printing", "laser"], "lore": "The Institute of Cryptoanarchy of the art group Ztohoven, opened in 2014, with a hackerspace, a bitcoin-only café and the yearly Hackers Congress. Roman Týc called its end a controlled collapse."}, {"n": 11, "name": "FutLab", "lat": 50.0868, "lon": 14.488, "acc": "closed", "q": "Pod Kapličkou 20, Praha", "web": "", "mail": "", "src": [["CzechCrunch 2021", "https://cc.cz/3d-tisk-v-loznici-byl-uz-moc-tak-zalozil-dilnu-budoucnosti-nakonec-daniel-gottwald-skoncil-u-slevarny-21-stoleti/"]], "kind": "makerspace, closed", "area": "Praha 3, Pod Kapličkou 20", "who": "Ended as an open workshop around 2020 and 2021.", "gear": ["10 printers", "90 W laser", "X-Carve CNC"], "lore": "Founded by Daniel Gottwald in April 2018, across the corridor from brmlab. After Covid it became a 21st-century foundry."}, {"n": 12, "name": "DOK16", "lat": 50.07, "lon": 14.411, "acc": "closed", "q": "Hořejší nábřeží, kobka 16, Praha", "web": "https://m.mlp.cz/en/pobocky/dok16-neighborhood-workshop", "mail": "", "src": [["mlp.cz", "https://m.mlp.cz/en/pobocky/dok16-neighborhood-workshop"]], "kind": "city library workshop, paused", "area": "Praha 5, vault 16, Hořejší nábřeží", "who": "Closed long-term for technical reasons.", "gear": ["hand and power tools"], "lore": "The city library's neighbourhood workshop in a riverside vault, free with a library card after training."}], "acc": {"public": "Open to the public", "members": "Members or by application", "students": "Students", "closed": "Closed or paused"}, "districts": ["Holešovice", "Dejvice", "Strahov", "Old Town", "Žižkov", "Vinohrady", "Smíchov", "Nusle", "Karlín"], "web": "website", "maps": "Maps", "src": "sources", "of": "of"};
+const P=D.places;
+const BOX={w:1000,h:760,lon0:14.372,lon1:14.498,lat0:50.054,lat1:50.122};
+const X=lon=>(lon-BOX.lon0)/(BOX.lon1-BOX.lon0)*BOX.w;
+const Y=lat=>(BOX.lat1-lat)/(BOX.lat1-BOX.lat0)*BOX.h;
+const ACCESS={
+  public:{color:"var(--orange)",ink:"var(--black)",bg:"var(--orange)",fg:"var(--black)"},
+  members:{color:"var(--black)",ink:"var(--white)",bg:"var(--black)",fg:"var(--white)"},
+  students:{color:"var(--grey-text)",ink:"var(--white)",bg:"var(--grey-pill)",fg:"var(--black)"},
+  closed:{color:"var(--ghost)",ink:"var(--white)",bg:"transparent",fg:"var(--grey-text)"}
+};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const river=[[50.054,14.4165],[50.060,14.4160],[50.0665,14.4165],[50.0725,14.4135],[50.0790,14.4120],[50.0865,14.4115],[50.0910,14.4140],[50.0935,14.4200],[50.0948,14.4290],[50.0968,14.4375],[50.1010,14.4480],[50.1045,14.4605],[50.1090,14.4610],[50.1110,14.4520],[50.1135,14.4380],[50.1140,14.4240],[50.1125,14.4080],[50.1150,14.3960],[50.1220,14.3920]];
+const dpos=[[50.1055,14.4300],[50.0985,14.3870],[50.0775,14.3880],[50.0905,14.4240],[50.0800,14.4600],[50.0725,14.4470],[50.0670,14.3990],[50.0590,14.4420],[50.0960,14.4600]];
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById("map");
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
+function smooth(pts){let d=`M${pts[0][0]},${pts[0][1]}`;for(let i=1;i<pts.length-1;i++){const mx=(pts[i][0]+pts[i+1][0])/2,my=(pts[i][1]+pts[i+1][1])/2;d+=` Q${pts[i][0]},${pts[i][1]} ${mx},${my}`}const l=pts[pts.length-1];return d+` L${l[0]},${l[1]}`}
+el("path",{d:smooth(river.map(([la,lo])=>[X(lo),Y(la)])),class:"river"});
+const rv=el("text",{x:X(14.4065),y:Y(50.0745),class:"rivername",transform:`rotate(-80 ${X(14.4065)} ${Y(50.0745)})`});rv.textContent="VLTAVA";
+D.districts.forEach((n,i)=>{const [la,lo]=dpos[i];const t=el("text",{x:X(lo),y:Y(la),class:"district","text-anchor":"middle"});t.textContent=n});
+
+const pins={};
+const ord={closed:0,students:1,members:2,public:3};
+P.filter(p=>p.lat).sort((a,b)=>ord[a.acc]-ord[b.acc]).forEach(p=>{
+  const a=ACCESS[p.acc];
+  const g=el("g",{class:"pin",tabindex:"0",role:"button","aria-label":`${p.n}. ${p.name}`});
+  el("circle",{cx:X(p.lon),cy:Y(p.lat),r:25,class:"halo"},g);
+  const c=el("circle",{cx:X(p.lon),cy:Y(p.lat),r:18,class:"dot",fill:a.color},g);
+  if(p.acc==="closed")c.setAttribute("stroke-dasharray","4 3");
+  const t=el("text",{x:X(p.lon),y:Y(p.lat)+1,fill:a.ink},g);t.textContent=p.n;
+  g.addEventListener("click",()=>focusCard(p.n));
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();focusCard(p.n)}});
+  pins[p.n]=g;
+});
+
+const cards=document.getElementById("cards");
+const gmap=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
+P.forEach(p=>{
+  const a=ACCESS[p.acc];
+  const d=document.createElement("article");
+  d.className="card";d.id="m"+p.n;
+  d.innerHTML=`<div class="num" style="background:${a.color};color:${a.ink}">${p.n}</div>
+   <div><h3>${esc(p.name)}</h3><div class="meta">${esc(p.kind)} · ${esc(p.area)}</div></div>
+   <div class="body">
+     <span class="access" style="background:${a.bg};color:${a.fg};${p.acc==='closed'?'border:1px dashed var(--ghost)':''}">${esc(D.acc[p.acc])}</span>
+     <p>${esc(p.who)}</p>
+     <div class="tags">${p.gear.map(g=>`<span class="tag">${esc(g)}</span>`).join("")}</div>
+     <p class="lore">${esc(p.lore)}</p>
+     <div class="links">${p.web?`<a href="${esc(p.web)}" target="_blank" rel="noopener">${D.web}</a>`:""}${p.q?`<a href="${gmap(p.q)}" target="_blank" rel="noopener">${D.maps}</a>`:""}${p.mail?`<span class="mail">${esc(p.mail)}</span>`:""}</div>
+     <div class="src">${D.src}: ${p.src.map(([t,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(" · ")}</div>
+   </div>`;
+  d.addEventListener("mouseenter",()=>hi(p.n,true));d.addEventListener("mouseleave",()=>hi(p.n,false));
+  cards.appendChild(d);
+});
+function hi(n,on){const g=pins[n];if(g)g.classList.toggle("on",on);document.getElementById("m"+n).classList.toggle("on",on)}
+function focusCard(n){document.querySelectorAll(".card.on,.pin.on").forEach(c=>c.classList.remove("on"));hi(n,true);document.getElementById("m"+n).scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"})}
+
+const state={public:true,members:true,students:true,closed:true};
+const legend=document.getElementById("legend");
+Object.keys(ACCESS).forEach(k=>{
+  const b=document.createElement("button");b.className="chip";b.type="button";b.setAttribute("aria-pressed","true");
+  b.innerHTML=`<span class="sw" style="background:${ACCESS[k].color}"></span>${esc(D.acc[k])} <span class="c">${P.filter(p=>p.acc===k).length}</span>`;
+  b.addEventListener("click",()=>{state[k]=!state[k];b.setAttribute("aria-pressed",String(state[k]));apply()});
+  legend.appendChild(b);
+});
+function apply(){let n=0;P.forEach(p=>{const on=state[p.acc];document.getElementById("m"+p.n).hidden=!on;if(pins[p.n])pins[p.n].classList.toggle("dim",!on);if(on)n++});document.getElementById("shown").textContent=n+" "+D.of+" "+P.length}
+apply();
+document.getElementById("countOpen").textContent=P.filter(p=>p.acc!=="closed").length;
+</script>
+</body>
+</html>

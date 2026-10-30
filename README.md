@@ -79,6 +79,14 @@ the series on Luma. When #1 has a date, rebuild the homepage as its landing page
 and add /1/ after it happens. Talk recordings go into the program list on /0/ (placeholder line there).
 Old hero photos from other events (img/card-*, h-*, v-*) are no longer used.
 
+## Makerspace map (since 30 Oct 2026)
+
+    dilny/index.html, en/dilny/index.html   "Kde stavět v Praze": Prague hackerspaces and open workshops on a schematic
+                    Vltava map (inline SVG, no map tiles), filter by access, cards with who/gear/lore/contacts, a lore timeline.
+                    Both files are generated together from one data list (places in CZ and EN), so edit both or regenerate.
+                    Pin positions are approximate; each card links to Google Maps by address. Facts checked 30 Oct 2026.
+                    Not linked from the homepage yet; share the URL directly.
+
 ## Editing tips
 
 - Speaker photos: square, greyscale, cropped so the head fills about the same share of the frame on every card.

@@ -24,4 +24,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://protorobot.cz/en/0/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://protorobot.cz/0/"/>
   </url>
+  <url>
+    <loc>https://protorobot.cz/dilny/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://protorobot.cz/dilny/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://protorobot.cz/en/dilny/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://protorobot.cz/dilny/"/>
+  </url>
+  <url>
+    <loc>https://protorobot.cz/en/dilny/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://protorobot.cz/dilny/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://protorobot.cz/en/dilny/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://protorobot.cz/dilny/"/>
+  </url>
 </urlset>
