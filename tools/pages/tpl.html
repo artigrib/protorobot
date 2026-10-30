@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<link rel="canonical" href="{{canon}}">
+<link rel="alternate" hreflang="cs" href="https://protorobot.cz/dilny/">
+<link rel="alternate" hreflang="en" href="https://protorobot.cz/en/dilny/">
+<link rel="alternate" hreflang="x-default" href="https://protorobot.cz/dilny/">
+<meta name="theme-color" content="#FF5A00">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{canon}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{desc}}">
+<meta property="og:image" content="https://protorobot.cz/img/og.jpg?v=4">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23FF5A00'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='30' fill='%23000'%3EPR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap">
+<style>
+/* Same tokens as / and /0/. Page: makerspace map, cards, lore timeline. */
+:root{
+  --orange:#FF5A00; --black:#000; --white:#fff; --grey:#F0F0F0; --grey-pill:#D0D0D0; --grey-line:#c8c8c8; --grey-text:#5c5c5c;
+  --river:#d9e3ea; --ghost:#a9a9a9;
+  --font:"Archivo","Archivo Fallback","Helvetica Neue",Arial,sans-serif;
+  --g:10px; --gt:10px; --pill-h:52px; --nav-fs:18px;
+  --s1:10px; --s2:20px; --s3:40px; --s4:80px; --s5:160px;
+}
+@media (max-width:820px){:root{--s3:28px;--s4:56px;--s5:96px}}
+@media (max-width:640px){:root{--pill-h:44px;--nav-fs:15px;--gt:16px;--s4:48px;--s5:72px}}
+@font-face{font-family:"Archivo Fallback";src:local("Arial");size-adjust:101%;ascent-override:88%;descent-override:22%;line-gap-override:0%}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--grey);color:var(--black);font-size:18px;line-height:1.35;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--black);outline-offset:3px}
+.pill:focus-visible,.chip:focus-visible{border-radius:999px}
+.skip{position:fixed;left:var(--g);top:-100px;z-index:100;background:var(--black);color:var(--white);padding:0 20px;height:var(--pill-h);display:inline-flex;align-items:center;border-radius:999px;transition:top .2s}
+.skip:focus{top:var(--g)}
+
+/* pills and header, as on the rest of the site */
+.pill{display:inline-flex;align-items:center;justify-content:center;height:var(--pill-h);padding:0 25px;border-radius:999px;background:var(--black);color:var(--white);font-size:var(--nav-fs);font-weight:400;text-transform:uppercase;letter-spacing:.01em;border:0;white-space:nowrap;font-family:inherit;transition:background .18s,color .18s}
+.pill:hover{background:rgba(0,0,0,.8)}
+.pill[aria-current="page"]{background:var(--orange);color:var(--black)}
+.pill--orange{background:var(--orange);color:var(--black)} .pill--orange:hover{background:var(--black);color:var(--white)}
+.top{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:calc(var(--g) + env(safe-area-inset-top)) var(--g) var(--g);background:rgba(240,240,240,.86);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+.top nav,.top__right{display:flex;gap:10px;flex-wrap:wrap}
+.top__lang{padding:0 18px}
+@media (max-width:640px){.top{gap:6px}.top nav,.top__right{gap:5px;flex-wrap:nowrap}.top nav{overflow-x:auto;scrollbar-width:none;min-width:0}.top .pill{padding:0 12px;font-size:13px;height:38px}}
+@media (max-width:430px){.top .pill{padding:0 9px;font-size:12px;height:34px}.top__lang{padding:0 9px}}
+
+/* page */
+main{padding:var(--s3) var(--gt) var(--s5)}
+.hero{display:grid;grid-template-columns:1fr auto;gap:var(--s2);align-items:end;padding-bottom:var(--s2);border-bottom:2px solid var(--black)}
+.kicker{font-size:14px;text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.kicker svg{width:56px;height:14px}
+h1{font-weight:300;font-size:clamp(48px,9vw,140px);line-height:.88;letter-spacing:-.05em;margin-top:var(--s2);text-wrap:balance}
+h1 b{font-weight:700}
+.lede{font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:34em;margin-top:var(--s2);text-wrap:pretty}
+.stamp{text-align:right;font-size:14px;color:var(--grey-text);white-space:nowrap}
+.stamp b{display:block;font-size:clamp(56px,7vw,96px);line-height:.9;font-weight:700;letter-spacing:-.05em;color:var(--orange)}
+@media (max-width:700px){.hero{grid-template-columns:1fr}.stamp{text-align:left}}
+
+section{margin-top:var(--s4)}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--black);padding-bottom:var(--s1);margin-bottom:var(--s2)}
+.sechead h2{font-weight:300;font-size:clamp(32px,4.2vw,60px);line-height:.95;letter-spacing:-.04em}
+.sechead .note{font-size:14px;color:var(--grey-text);text-transform:uppercase;letter-spacing:.03em}
+
+.mapbox{position:relative;background:var(--white);border-radius:24px;overflow:hidden}
+.mapbox svg{display:block;width:100%;height:auto}
+.district{font-size:13px;fill:var(--ghost);letter-spacing:.14em;text-transform:uppercase;font-family:var(--font)}
+.river{fill:none;stroke:var(--river);stroke-width:26;stroke-linecap:round;stroke-linejoin:round}
+.rivername{font-size:12px;fill:var(--grey-text);letter-spacing:.3em;font-family:var(--font)}
+.pin{cursor:pointer;outline:none}
+.pin circle.dot{stroke:var(--white);stroke-width:3}
+.pin text{font-family:var(--font);font-weight:700;font-size:15px;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pin.dim{opacity:.18}
+.pin circle.halo{fill:none;stroke:var(--orange);stroke-width:3;opacity:0;transition:opacity .15s}
+.pin.on circle.halo,.pin:focus-visible circle.halo{opacity:1}
+.mapnote{position:absolute;left:16px;bottom:12px;right:16px;font-size:12px;color:var(--grey-text)}
+@media (max-width:700px){.mapnote{position:static;padding:0 16px 14px}.pin{transform-box:fill-box;transform-origin:center;transform:scale(1.9)}.district{font-size:24px}.rivername{font-size:20px}}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s2)}
+.chip{font:400 15px/1 var(--font);height:44px;padding:0 18px;border:2px solid var(--black);border-radius:999px;background:transparent;color:var(--black);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.01em}
+.chip[aria-pressed="false"]{opacity:.35}
+.chip .c{color:var(--grey-text)}
+.sw{width:12px;height:12px;border-radius:50%;display:inline-block}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));column-gap:var(--s2);border-top:1px solid var(--grey-line)}
+.card{padding:var(--s2) 0;border-bottom:1px solid var(--grey-line);display:grid;grid-template-columns:44px 1fr;gap:4px 14px;min-width:0;transition:background .15s}
+.card.on{background:var(--white);box-shadow:-10px 0 0 var(--white),10px 0 0 var(--white)}
+.card[hidden]{display:none!important}
+.num{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px}
+.card h3{font-size:24px;font-weight:600;letter-spacing:-.025em;line-height:1.1;margin-top:3px}
+.meta{font-size:14px;color:var(--grey-text);margin-top:4px}
+.body{grid-column:2;min-width:0}
+.access{display:inline-flex;align-items:center;margin-top:12px;height:28px;padding:0 12px;border-radius:999px;font-size:13px;text-transform:uppercase;letter-spacing:.02em}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-size:13px;height:26px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:var(--white)}
+.card p{margin-top:12px;font-size:16px;line-height:1.4}
+.lore{color:var(--grey-text)}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:14px;font-size:15px}
+.links a{text-transform:uppercase;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.links a:hover{color:var(--orange)}
+.links .mail{color:var(--grey-text);user-select:all;overflow-wrap:anywhere}
+.src{font-size:12px;color:var(--grey-text);margin-top:10px}
+.src a{text-decoration:underline;text-underline-offset:.15em}
+
+.timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:1px solid var(--black)}
+.ev{padding:var(--s2) var(--s2) var(--s2) 0;border-bottom:1px solid var(--grey-line)}
+.ev b{display:block;font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ev span{display:block;margin-top:10px;font-size:15px;line-height:1.35}
+.ev.end b{color:var(--ghost)}
+.ev.now b{color:var(--orange)}
+.missing{margin-top:var(--s4);font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:34em}
+.missing a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
+
+.foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s1) var(--s3);padding:var(--s3) var(--gt) calc(var(--s3) + env(safe-area-inset-bottom));background:var(--black);color:var(--white)}
+.foot a{font-size:16px;text-transform:uppercase;letter-spacing:.02em;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.25em;transition:text-decoration-color .2s,color .2s}
+.foot a:hover,.foot a:focus-visible{color:var(--orange);text-decoration-color:currentColor}
+.foot :focus-visible{outline-color:var(--white)}
+.foot__meta{width:100%;color:rgba(255,255,255,.7);font-size:14px;padding-top:var(--s1)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+<header class="top">
+  <nav aria-label="Menu">
+    <a class="pill" href="{{homehref}}">#1</a>
+    <a class="pill" href="{{homehref}}0/">#0</a>
+    <a class="pill" href="{{canon}}" aria-current="page">{{hmap}}</a>
+    <a class="pill" href="{{homehref}}granty/">{{hgrant}}</a>
+  </nav>
+  <div class="top__right">
+    <a class="pill top__lang" href="{{alt}}" hreflang="{{altlang}}" lang="{{altlang}}" aria-label="{{altname}}">{{altlabel}}</a>
+    <a class="pill pill--orange" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">{{follow}}</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero">
+  <div>
+    <div class="kicker"><svg viewBox="0 0 560 140" aria-hidden="true"><rect x="0" y="58" width="372" height="24" fill="#FF5A00"/><circle cx="442" cy="70" r="70" fill="#FF5A00"/></svg>{{kicker}}</div>
+    <h1><b>{{h1a}}</b> {{h1b}}</h1>
+    <p class="lede">{{lede}}</p>
+  </div>
+  <div class="stamp"><b id="countOpen"></b>{{active}}<br>{{checked}}</div>
+</div>
+
+<section aria-labelledby="h-map">
+  <div class="sechead"><h2 id="h-map">{{hmap}}</h2></div>
+  <div class="mapbox">
+    <svg id="map" viewBox="0 0 1000 760" role="img" aria-labelledby="h-map"></svg>
+    <div class="mapnote">{{mapnote}}</div>
+  </div>
+  <div class="legend" id="legend" role="group"></div>
+</section>
+
+<section aria-labelledby="h-list">
+  <div class="sechead"><h2 id="h-list">{{hlist}}</h2><span class="note" id="shown"></span></div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<section aria-labelledby="h-lore">
+  <div class="sechead"><h2 id="h-lore">{{hlore}}</h2></div>
+  <div class="timeline">{{timeline}}</div>
+  <p class="missing">{{missing}}</p>
+</section>
+</main>
+
+<footer class="foot">
+  {{footlinks}}
+  <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Luma</a>
+  <a href="{{alt}}" hreflang="{{altlang}}" lang="{{altlang}}">{{altname}}</a>
+  <div class="foot__meta">{{foot}}</div>
+</footer>
+
+<script>
+const D={{datajson}};
+const P=D.places;
+const BOX={w:1000,h:760,lon0:14.372,lon1:14.498,lat0:50.054,lat1:50.122};
+const X=lon=>(lon-BOX.lon0)/(BOX.lon1-BOX.lon0)*BOX.w;
+const Y=lat=>(BOX.lat1-lat)/(BOX.lat1-BOX.lat0)*BOX.h;
+const ACCESS={
+  public:{color:"var(--orange)",ink:"var(--black)",bg:"var(--orange)",fg:"var(--black)"},
+  members:{color:"var(--black)",ink:"var(--white)",bg:"var(--black)",fg:"var(--white)"},
+  students:{color:"var(--grey-text)",ink:"var(--white)",bg:"var(--grey-pill)",fg:"var(--black)"}
+};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const river=[[50.054,14.4165],[50.060,14.4160],[50.0665,14.4165],[50.0725,14.4135],[50.0790,14.4120],[50.0865,14.4115],[50.0910,14.4140],[50.0935,14.4200],[50.0948,14.4290],[50.0968,14.4375],[50.1010,14.4480],[50.1045,14.4605],[50.1090,14.4610],[50.1110,14.4520],[50.1135,14.4380],[50.1140,14.4240],[50.1125,14.4080],[50.1150,14.3960],[50.1220,14.3920]];
+const dpos=[[50.1055,14.4300],[50.0985,14.3870],[50.0775,14.3880],[50.0905,14.4240],[50.0800,14.4600],[50.0725,14.4470],[50.0670,14.3990],[50.0590,14.4420],[50.0960,14.4600]];
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById("map");
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
+function smooth(pts){let d=`M${pts[0][0]},${pts[0][1]}`;for(let i=1;i<pts.length-1;i++){const mx=(pts[i][0]+pts[i+1][0])/2,my=(pts[i][1]+pts[i+1][1])/2;d+=` Q${pts[i][0]},${pts[i][1]} ${mx},${my}`}const l=pts[pts.length-1];return d+` L${l[0]},${l[1]}`}
+el("path",{d:smooth(river.map(([la,lo])=>[X(lo),Y(la)])),class:"river"});
+const rv=el("text",{x:X(14.4065),y:Y(50.0745),class:"rivername",transform:`rotate(-80 ${X(14.4065)} ${Y(50.0745)})`});rv.textContent="VLTAVA";
+D.districts.forEach((n,i)=>{const [la,lo]=dpos[i];const t=el("text",{x:X(lo),y:Y(la),class:"district","text-anchor":"middle"});t.textContent=n});
+
+const pins={};
+const ord={closed:0,students:1,members:2,public:3};
+P.filter(p=>p.lat).sort((a,b)=>ord[a.acc]-ord[b.acc]).forEach(p=>{
+  const a=ACCESS[p.acc];
+  const g=el("g",{class:"pin",tabindex:"0",role:"button","aria-label":`${p.n}. ${p.name}`});
+  el("circle",{cx:X(p.lon),cy:Y(p.lat),r:25,class:"halo"},g);
+  const c=el("circle",{cx:X(p.lon),cy:Y(p.lat),r:18,class:"dot",fill:a.color},g);
+  if(p.acc==="closed")c.setAttribute("stroke-dasharray","4 3");
+  const t=el("text",{x:X(p.lon),y:Y(p.lat)+1,fill:a.ink},g);t.textContent=p.n;
+  g.addEventListener("click",()=>focusCard(p.n));
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();focusCard(p.n)}});
+  pins[p.n]=g;
+});
+
+const cards=document.getElementById("cards");
+const gmap=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
+P.forEach(p=>{
+  const a=ACCESS[p.acc];
+  const d=document.createElement("article");
+  d.className="card";d.id="m"+p.n;
+  d.innerHTML=`<div class="num" style="background:${a.color};color:${a.ink}">${p.n}</div>
+   <div><h3>${esc(p.name)}</h3><div class="meta">${esc(p.kind)} · ${esc(p.area)}</div></div>
+   <div class="body">
+     <span class="access" style="background:${a.bg};color:${a.fg};${p.acc==='closed'?'border:1px dashed var(--ghost)':''}">${esc(D.acc[p.acc])}</span>
+     <p>${esc(p.who)}</p>
+     <div class="tags">${p.gear.map(g=>`<span class="tag">${esc(g)}</span>`).join("")}</div>
+     <p class="lore">${esc(p.lore)}</p>
+     <div class="links">${p.web?`<a href="${esc(p.web)}" target="_blank" rel="noopener">${D.web}</a>`:""}${p.q?`<a href="${gmap(p.q)}" target="_blank" rel="noopener">${D.maps}</a>`:""}${p.mail?`<span class="mail">${esc(p.mail)}</span>`:""}</div>
+     <div class="src">${D.src}: ${p.src.map(([t,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join(" · ")}</div>
+   </div>`;
+  d.addEventListener("mouseenter",()=>hi(p.n,true));d.addEventListener("mouseleave",()=>hi(p.n,false));
+  cards.appendChild(d);
+});
+function hi(n,on){const g=pins[n];if(g)g.classList.toggle("on",on);document.getElementById("m"+n).classList.toggle("on",on)}
+function focusCard(n){document.querySelectorAll(".card.on,.pin.on").forEach(c=>c.classList.remove("on"));hi(n,true);document.getElementById("m"+n).scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"})}
+
+const state={public:true,members:true,students:true,closed:true};
+const legend=document.getElementById("legend");
+Object.keys(ACCESS).forEach(k=>{
+  const b=document.createElement("button");b.className="chip";b.type="button";b.setAttribute("aria-pressed","true");
+  b.innerHTML=`<span class="sw" style="background:${ACCESS[k].color}"></span>${esc(D.acc[k])} <span class="c">${P.filter(p=>p.acc===k).length}</span>`;
+  b.addEventListener("click",()=>{state[k]=!state[k];b.setAttribute("aria-pressed",String(state[k]));apply()});
+  legend.appendChild(b);
+});
+function apply(){let n=0;P.forEach(p=>{const on=state[p.acc];document.getElementById("m"+p.n).hidden=!on;if(pins[p.n])pins[p.n].classList.toggle("dim",!on);if(on)n++});document.getElementById("shown").textContent=n+" "+D.of+" "+P.length}
+apply();
+document.getElementById("countOpen").textContent=P.filter(p=>p.acc!=="closed").length;
+</script>
+</body>
+</html>

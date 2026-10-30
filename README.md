@@ -106,3 +106,10 @@ DNS: `protorobot.cz` A records → 185.199.108.153, 185.199.109.153, 185.199.110
                     and is computed in the browser, so passed dates drop out and get struck through on their own.
                     Both files are generated from one data list; every item was checked on its official page on 30 Oct 2026.
                     Recheck monthly: amounts and calls change. The map page and the grants page share header and footer.
+
+## Page generators
+
+    tools/pages/gen.py, tpl.html            build dilny/ and en/dilny/ (places data is in gen.py)
+    tools/pages/gen_granty.py, tpl_granty.html   build granty/ and en/granty/ (programmes are in gen_granty.py)
+    Run from the repo root: python3 tools/pages/gen.py . && python3 tools/pages/gen_granty.py .
+    Edit the data or templates there, never the generated index.html files by hand.

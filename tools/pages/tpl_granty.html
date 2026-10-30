@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<link rel="canonical" href="{{canon}}">
+<link rel="alternate" hreflang="cs" href="https://protorobot.cz/granty/">
+<link rel="alternate" hreflang="en" href="https://protorobot.cz/en/granty/">
+<link rel="alternate" hreflang="x-default" href="https://protorobot.cz/granty/">
+<meta name="theme-color" content="#FF5A00">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{canon}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{desc}}">
+<meta property="og:image" content="https://protorobot.cz/img/og.jpg?v=4">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23FF5A00'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='30' fill='%23000'%3EPR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap">
+<style>
+{{basecss}}
+/* page: grants list */
+main{padding:var(--s3) var(--gt) var(--s5)}
+.hero{display:grid;grid-template-columns:1fr auto;gap:var(--s2);align-items:end;padding-bottom:var(--s2);border-bottom:2px solid var(--black)}
+.kicker{font-size:14px;text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.kicker svg{width:56px;height:14px}
+h1{font-weight:300;font-size:clamp(48px,9vw,140px);line-height:.88;letter-spacing:-.05em;margin-top:var(--s2);text-wrap:balance}
+h1 b{font-weight:700}
+.lede{font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:34em;margin-top:var(--s2);text-wrap:pretty}
+.stamp{text-align:right;font-size:14px;color:var(--grey-text);white-space:nowrap}
+.stamp b{display:block;font-size:clamp(56px,7vw,96px);line-height:.9;font-weight:700;letter-spacing:-.05em;color:var(--orange)}
+@media (max-width:700px){.hero{grid-template-columns:1fr}.stamp{text-align:left}}
+
+.prague{margin-top:var(--s3);display:grid;grid-template-columns:auto 1fr;gap:var(--s2);align-items:start;background:var(--black);color:var(--white);border-radius:24px;padding:var(--s2) var(--s3) var(--s2) var(--s2)}
+.prague b{display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:999px;background:var(--orange);color:var(--black);font-weight:400;text-transform:uppercase;font-size:15px;white-space:nowrap}
+.prague p{font-size:clamp(17px,1.6vw,22px);line-height:1.3;letter-spacing:-.01em;max-width:46em}
+@media (max-width:640px){.prague{grid-template-columns:1fr;padding:var(--s2)}.prague b{justify-self:start}}
+.disclaimer{margin-top:var(--s1);font-size:14px;color:var(--grey-text)}
+
+section{margin-top:var(--s4)}
+.sechead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--black);padding-bottom:var(--s1);margin-bottom:var(--s2)}
+.sechead h2{font-weight:300;font-size:clamp(32px,4.2vw,60px);line-height:.95;letter-spacing:-.04em}
+.sechead .note{font-size:14px;color:var(--grey-text);text-transform:uppercase;letter-spacing:.03em}
+
+.soon{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:10px}
+.dl{background:var(--white);border-radius:24px;padding:var(--s2);display:flex;flex-direction:column;gap:6px;min-height:170px;transition:background .18s,color .18s}
+.dl:hover{background:var(--orange)}
+.dl .d{font-size:clamp(40px,4vw,56px);font-weight:700;letter-spacing:-.05em;line-height:.9}
+.dl .in{font-size:14px;text-transform:uppercase;color:var(--grey-text)}
+.dl:hover .in{color:var(--black)}
+.dl .n{margin-top:auto;font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.15}
+.dl .k{font-size:14px;color:var(--grey-text)}
+.dl:hover .k{color:var(--black)}
+@media (max-width:640px){.soon{grid-template-columns:1fr 1fr}.dl{min-height:0;padding:16px;border-radius:18px}.dl .d{font-size:34px}.dl .n{font-size:16px;margin-top:6px}.dl .in{font-size:12px}}
+.empty{font-size:18px;color:var(--grey-text)}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:400 15px/1 var(--font);height:44px;padding:0 18px;border:2px solid var(--black);border-radius:999px;background:transparent;color:var(--black);cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.01em}
+.chip[aria-pressed="true"]{background:var(--black);color:var(--white)}
+.chip .c{opacity:.6}
+.filters{position:sticky;top:calc(var(--pill-h) + 2*var(--g));z-index:5;background:var(--grey);padding:var(--s1) 0;margin-top:var(--s4)}
+
+.grp{margin-top:var(--s3)}
+.grp[hidden]{display:none}
+.grp h2{font-weight:300;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.04em;border-bottom:1px solid var(--black);padding-bottom:var(--s1)}
+.row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) 190px;gap:6px var(--s2);padding:var(--s2) 0;border-bottom:1px solid var(--grey-line);align-items:start}
+.row h3{font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.15}
+.row h3 a{text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.15em;transition:color .18s,text-decoration-color .18s}
+.row h3 a:hover,.row h3 a:focus-visible{color:var(--orange);text-decoration-color:currentColor}
+.row h3 a::after{content:" ↗";font-weight:300;font-size:.8em;color:var(--grey-text)}
+.amt{display:inline-flex;align-items:center;min-height:28px;margin-top:8px;padding:2px 12px;border-radius:999px;background:var(--white);font-size:14px;line-height:1.2}
+.row p{font-size:16px;line-height:1.4}
+.when{text-align:right;font-size:15px;line-height:1.3}
+.when b{display:block;font-size:22px;font-weight:700;letter-spacing:-.03em}
+.when.live b{color:var(--orange)}
+.when.past{color:var(--grey-text)}
+.when.past b{text-decoration:line-through;color:var(--grey-text)}
+.when span{color:var(--grey-text);font-size:13px;text-transform:uppercase;letter-spacing:.02em}
+@media (max-width:820px){.row{grid-template-columns:1fr auto}.row p{grid-column:1/-1;grid-row:2}.when{grid-column:2;grid-row:1}}
+@media (max-width:480px){.row{grid-template-columns:1fr}.when{grid-column:1;grid-row:auto;text-align:left}.when b{display:inline;margin-right:8px}}
+.missing{margin-top:var(--s4);font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:34em}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+<header class="top">
+  <nav aria-label="Menu">
+    <a class="pill" href="{{homehref}}">#1</a>
+    <a class="pill" href="{{homehref}}0/">#0</a>
+    <a class="pill" href="{{homehref}}dilny/">{{hmap}}</a>
+    <a class="pill" href="{{canon}}" aria-current="page">{{hgrant}}</a>
+  </nav>
+  <div class="top__right">
+    <a class="pill top__lang" href="{{alt}}" hreflang="{{altlang}}" lang="{{altlang}}" aria-label="{{altname}}">{{altlabel}}</a>
+    <a class="pill pill--orange" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">{{follow}}</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero">
+  <div>
+    <div class="kicker"><svg viewBox="0 0 560 140" aria-hidden="true"><rect x="0" y="58" width="372" height="24" fill="#FF5A00"/><circle cx="442" cy="70" r="70" fill="#FF5A00"/></svg>{{kicker}}</div>
+    <h1><b>{{h1a}}</b> {{h1b}}</h1>
+    <p class="lede">{{lede}}</p>
+  </div>
+  <div class="stamp"><b id="count"></b>{{programmes}}<br>{{checked}}</div>
+</div>
+
+<div class="prague"><b>{{praguelabel}}</b><p>{{prague}}</p></div>
+<p class="disclaimer">{{disclaimer}}</p>
+
+<section aria-labelledby="h-soon">
+  <div class="sechead"><h2 id="h-soon">{{hsoon}}</h2><span class="note">{{soonnote}}</span></div>
+  <div class="soon" id="soon"></div>
+</section>
+
+<div class="filters"><div class="legend" id="legend" role="group" aria-label="{{filterlabel}}"></div></div>
+<div id="list"></div>
+<p class="missing">{{missing}}</p>
+</main>
+
+<footer class="foot">
+  {{footlinks}}
+  <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Luma</a>
+  <a href="{{alt}}" hreflang="{{altlang}}" lang="{{altlang}}">{{altname}}</a>
+  <div class="foot__meta">{{foot}}</div>
+</footer>
+
+<script>
+const D={{datajson}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const today=new Date();today.setHours(0,0,0,0);
+const day=iso=>{const [y,m,d]=iso.split("-").map(Number);return new Date(y,m-1,d)};
+const fmt=iso=>{const t=day(iso);return D.lang==="cs"?`${t.getDate()}. ${t.getMonth()+1}.`:t.toLocaleDateString("en-GB",{day:"numeric",month:"short"})};
+const fmtY=iso=>{const t=day(iso);return fmt(iso)+(t.getFullYear()!==today.getFullYear()?" "+t.getFullYear():"")};
+const daysTo=iso=>Math.round((day(iso)-today)/864e5);
+const inDays=n=>n===0?D.t.today:(D.lang==="cs"?(n===1?"zítra":`za ${n} ${n<5?"dny":"dní"}`):(n===1?"tomorrow":`in ${n} days`));
+const G=D.items;
+// each item may carry several dates: show the next one ahead, or the last one if all have passed
+G.forEach(g=>{if(!g.dates||!g.dates.length)return;const s=g.dates.slice().sort((a,b)=>a[0].localeCompare(b[0]));const nx=s.find(d=>daysTo(d[0])>=0)||s[s.length-1];g.date=nx[0];g.dkind=nx[1]});
+document.getElementById("count").textContent=G.length;
+
+// deadlines in the next 90 days, closing dates first
+const soon=G.filter(g=>g.date&&daysTo(g.date)>=0&&daysTo(g.date)<=90).sort((a,b)=>a.date.localeCompare(b.date));
+const sb=document.getElementById("soon");
+if(!soon.length)sb.innerHTML=`<p class="empty">${D.t.none}</p>`;
+soon.forEach(g=>{const a=document.createElement("a");a.className="dl";a.href=g.url;a.target="_blank";a.rel="noopener";
+  a.innerHTML=`<span class="d">${fmtY(g.date)}</span><span class="in">${D.t[g.dkind]} · ${inDays(daysTo(g.date))}</span><span class="n">${esc(g.name)}</span><span class="k">${esc(g.amount||"")}</span>`;sb.appendChild(a)});
+
+const list=document.getElementById("list");
+D.cats.forEach(([k,label])=>{
+  const items=G.filter(g=>g.cat===k);if(!items.length)return;
+  const s=document.createElement("section");s.className="grp";s.dataset.cat=k;s.setAttribute("aria-label",label);
+  s.innerHTML=`<h2>${esc(label)}</h2>`+items.map(g=>{
+    let w;
+    if(g.date){const n=daysTo(g.date);const cls=n<0?"past":(n<=30?"live":"");w=`<div class="when ${cls}"><span>${n<0?D.t.past:D.t[g.dkind]}</span><b>${fmtY(g.date)}</b></div>`}
+    else w=`<div class="when"><span>${D.t.when}</span><b style="font-size:17px;font-weight:500">${esc(g.when)}</b></div>`;
+    return `<div class="row"><div><h3><a href="${esc(g.url)}" target="_blank" rel="noopener">${esc(g.name)}</a></h3>${g.amount?`<span class="amt">${esc(g.amount)}</span>`:""}</div><p>${esc(g.text)}</p>${w}</div>`}).join("");
+  list.appendChild(s)});
+
+const lg=document.getElementById("legend");let cur="all";
+const chips=[["all",D.t.all,G.length]].concat(D.cats.map(([k,l])=>[k,l,G.filter(g=>g.cat===k).length]).filter(c=>c[2]));
+chips.forEach(([k,l,n])=>{const b=document.createElement("button");b.className="chip";b.type="button";b.setAttribute("aria-pressed",String(k==="all"));
+  b.innerHTML=`${esc(l)} <span class="c">${n}</span>`;
+  b.addEventListener("click",()=>{cur=k;lg.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");
+    document.querySelectorAll(".grp").forEach(s=>s.hidden=!(k==="all"||s.dataset.cat===k))});lg.appendChild(b)});
+</script>
+</body>
+</html>
