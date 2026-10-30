@@ -52,8 +52,8 @@ a{color:inherit;text-decoration:none}
 .top{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:calc(var(--g) + env(safe-area-inset-top)) var(--g) var(--g);background:rgba(240,240,240,.86);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
 .top nav,.top__right{display:flex;gap:10px;flex-wrap:wrap}
 .top__lang{padding:0 18px}
-@media (max-width:640px){.top .pill{padding:0 14px;font-size:14px}.top nav,.top__right{gap:6px}}
-@media (max-width:380px){.top .pill{padding:0 10px;font-size:12px;height:36px}}
+@media (max-width:640px){.top{gap:6px}.top nav,.top__right{gap:5px;flex-wrap:nowrap}.top nav{overflow-x:auto;scrollbar-width:none;min-width:0}.top .pill{padding:0 12px;font-size:13px;height:38px}}
+@media (max-width:430px){.top .pill{padding:0 9px;font-size:12px;height:34px}.top__lang{padding:0 9px}}
 
 /* page */
 main{padding:var(--s3) var(--gt) var(--s5)}
@@ -136,6 +136,7 @@ section{margin-top:var(--s4)}
     <a class="pill" href="/en/">#1</a>
     <a class="pill" href="/en/0/">#0</a>
     <a class="pill" href="https://protorobot.cz/en/dilny/" aria-current="page">Map</a>
+    <a class="pill" href="/en/granty/">Grants</a>
   </nav>
   <div class="top__right">
     <a class="pill top__lang" href="/dilny/" hreflang="cs" lang="cs" aria-label="Česky">CZ</a>
@@ -175,7 +176,7 @@ section{margin-top:var(--s4)}
 </main>
 
 <footer class="foot">
-  <a href="/en/">#1</a><a href="/en/0/">#0</a>
+  <a href="/en/">#1</a><a href="/en/0/">#0</a><a href="/en/granty/">Grants</a>
   <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Luma</a>
   <a href="/dilny/" hreflang="cs" lang="cs">Česky</a>
   <div class="foot__meta">© 2026 PROTO ROBOT. Máme toho hodně. A&nbsp;proto robot.</div>

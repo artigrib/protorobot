@@ -98,3 +98,11 @@ Old hero photos from other events (img/card-*, h-*, v-*) are no longer used.
 
 GitHub Pages serves the main branch from the repository root. Pushing to main publishes within a minute or two.
 DNS: `protorobot.cz` A records → 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153; `www` CNAME → `<github-user>.github.io`.
+
+## Grants list (since 30 Oct 2026)
+
+    granty/index.html, en/granty/index.html   "Peníze na roboty": grants, EU calls, accelerators, compute credits and
+                    hardware perks for robotics startups, filter by type. "Closing soon" shows deadlines in the next 90 days
+                    and is computed in the browser, so passed dates drop out and get struck through on their own.
+                    Both files are generated from one data list; every item was checked on its official page on 30 Oct 2026.
+                    Recheck monthly: amounts and calls change. The map page and the grants page share header and footer.
