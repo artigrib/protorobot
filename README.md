@@ -85,7 +85,7 @@ Old hero photos from other events (img/card-*, h-*, v-*) are no longer used.
                     Vltava map (inline SVG, no map tiles), filter by access, cards with who/gear/lore/contacts, a lore timeline.
                     Both files are generated together from one data list (places in CZ and EN), so edit both or regenerate.
                     Pin positions are approximate; each card links to Google Maps by address. Facts checked 30 Oct 2026.
-                    Not linked from the homepage yet; share the URL directly.
+                    Linked from the footer of /, /0/ and their EN versions.
 
 ## Editing tips
 
