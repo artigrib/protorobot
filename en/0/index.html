@@ -454,44 +454,62 @@ html.lb-open{overflow:hidden}
 .foot a{position:relative;padding:11px 0;margin:-11px 0}
 .foot a::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,44px);transform:translateX(-50%)}
 .foot .foot__meta{padding-top:0}
-/* ---------- recordings: custom player ---------- */
-.vp{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:var(--g);margin-top:var(--s3)}
-.vp__stage{position:relative;aspect-ratio:16/9;background:var(--orange-deep);overflow:hidden}
-.vp__video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
-.vp__big{position:absolute;inset:0;margin:auto;width:84px;height:84px;border:0;border-radius:999px;background:var(--orange);color:var(--black);cursor:pointer;display:grid;place-items:center}
-.vp__big svg{width:40px;height:40px;fill:currentColor}
-.vp__big:hover,.vp__big:focus-visible{background:var(--black);color:var(--white)}
-.vp.is-playing .vp__big,.vp.has-played .vp__big{display:none}
-.vp__bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:8px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:var(--white)}
+/* ---------- Swiss grid: sections and talks ---------- */
+.mod>h2{padding-top:var(--s1);border-top:2px solid var(--black)}
+.talk-list{margin-top:var(--s4,64px);border-top:1px solid var(--black)}
+.talk{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--g);row-gap:var(--s2,20px);padding:var(--s3,32px) 0 var(--s4,64px);border-bottom:1px solid var(--black);align-items:start}
+.talk__n{grid-column:1/span 1;font-weight:300;font-size:clamp(40px,4.8vw,68px);line-height:.85;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.talk__text{grid-column:2/span 4;max-width:34em}
+.talk__media{grid-column:7/span 6}
+.talk__ch{grid-column:7/span 6;display:none}
+.talk.is-ready .talk__ch{display:block}
+.talk__meta{font-size:14px;line-height:1.3;text-transform:uppercase;letter-spacing:.04em;color:var(--grey-text);font-variant-numeric:tabular-nums}
+.talk__title{margin-top:var(--s1);font-weight:300;font-size:clamp(28px,2.7vw,42px);line-height:1;letter-spacing:-.035em;text-wrap:balance}
+.talk__who{display:flex;gap:12px;align-items:center;margin-top:var(--s2,20px);padding-top:var(--s1);border-top:1px solid var(--grey-line)}
+.talk__face{flex:none;width:56px;height:56px;object-fit:cover;object-position:center 30%;filter:grayscale(1)}
+.talk__who p{font-size:17px;line-height:1.25}
+.talk__who a{display:block;font-weight:600;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em;text-decoration-color:transparent}
+.talk__who a:hover,.talk__who a:focus-visible{text-decoration-color:currentColor}
+.talk__who span{display:block;font-size:15px;color:var(--grey-text)}
+.talk__desc{margin-top:var(--s2,20px);font-size:16px;line-height:1.45}
+.talk__poster{all:unset;box-sizing:border-box;position:relative;display:block;width:100%;aspect-ratio:16/9;background:var(--orange-deep);overflow:hidden;cursor:pointer}
+.talk__poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.talk__poster.is-soon{cursor:default}
+.talk__poster.is-soon img{object-position:center 30%;filter:grayscale(1) contrast(1.1);opacity:.85;mix-blend-mode:luminosity}
+.talk__go{position:absolute;left:var(--s1);bottom:var(--s1)}
+.talk__poster:hover .talk__go,.talk__poster:focus-visible .talk__go{background:var(--black);color:var(--white)}
+.talk__soon{position:absolute;left:var(--s1);bottom:var(--s1);background:var(--black);color:var(--white);font-size:14px;text-transform:uppercase;letter-spacing:.04em;padding:8px 12px}
+.talk__label{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--grey-text);margin-bottom:6px}
+.talk__chapters{list-style:none;padding:0;margin:0;columns:2;column-gap:var(--g)}
+.talk__chapters li{break-inside:avoid}
+.talk__chapters button{all:unset;box-sizing:border-box;display:flex;gap:12px;width:100%;padding:6px 0;border-top:1px solid var(--grey-line);font-size:15px;line-height:1.3;cursor:pointer}
+.talk__chapters time{flex:none;width:3.2em;font-variant-numeric:tabular-nums;color:var(--grey-text)}
+.talk__chapters button:hover,.talk__chapters button:focus-visible,.talk__chapters .is-on button{color:var(--orange)}
+.talk__chapters .is-on time{color:inherit}
+/* player */
+.vp{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+.vp__video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.vp__bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:8px;padding:10px;background:rgba(0,0,0,.6);color:var(--white)}
 .vp.is-playing.is-idle .vp__bar{opacity:0}
 .vp__btn{flex:none;height:36px;min-width:36px;padding:0 10px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:var(--white);font:600 14px var(--font);cursor:pointer;display:grid;place-items:center}
 .vp__btn:hover,.vp__btn:focus-visible{background:var(--orange);color:var(--black)}
-.vp__btn svg{width:20px;height:20px;fill:currentColor;stroke:currentColor;stroke-width:0}
-.vp__fs svg,.vp__mute .i-vol,.vp__mute .i-x{fill:none;stroke-width:2}
+.vp__btn svg{width:20px;height:20px;fill:currentColor}
+.vp__fs svg,.vp__mute .i-vol,.vp__mute .i-x{fill:none;stroke:currentColor;stroke-width:2}
 .vp__play .i-pause,.vp.is-playing .vp__play .i-play{display:none}.vp.is-playing .vp__play .i-pause{display:inline}
 .vp__mute .i-x,.vp.is-muted .vp__mute .i-vol{display:none}.vp.is-muted .vp__mute .i-x{display:inline}
 .vp__seek{flex:1;min-width:60px;accent-color:var(--orange);height:24px}
 .vp__vol{width:80px;accent-color:var(--orange)}
 .vp__time{flex:none;font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
-.vp:fullscreen{display:block;background:#000}.vp:fullscreen .vp__side{display:none}.vp:fullscreen .vp__stage{height:100%;aspect-ratio:auto}
-.vp__side{background:var(--grey);padding:var(--s2,20px);max-height:0;min-height:100%;overflow:auto}
-.vp__now{font-size:20px;line-height:1.2;margin-bottom:var(--s2,20px)}.vp__now b{display:block}.vp__now span{color:var(--grey-text)}
-.vp__label{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
-.vp__label--list{margin-top:var(--s3)}
-.vp__chapters{list-style:none;padding:0;margin:0}
-.vp__chapters button{all:unset;box-sizing:border-box;display:flex;gap:12px;width:100%;padding:6px 0;border-top:1px solid var(--grey-line);font-size:15px;line-height:1.3;cursor:pointer}
-.vp__chapters time{flex:none;width:3.2em;font-variant-numeric:tabular-nums;color:var(--grey-text)}
-.vp__chapters button:hover,.vp__chapters button:focus-visible,.vp__chapters .is-on button{color:var(--orange)}
-.vp__list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
-.vp__list button{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer}
-.vp__thumb{display:block;aspect-ratio:16/9;background:var(--orange-deep) center/cover no-repeat;margin-bottom:8px;position:relative}
-.vp__thumb i{position:absolute;left:8px;top:8px;background:var(--black);color:var(--white);font:600 12px var(--font);font-style:normal;padding:4px 6px}
-.vp__list b{display:block;font-size:17px}.vp__list span.t{display:block;font-size:15px;color:var(--grey-text);line-height:1.3}
-.vp__list .is-on .vp__thumb{outline:3px solid var(--orange);outline-offset:-3px}
-.vp__list button:hover b,.vp__list button:focus-visible b{color:var(--orange)}
-.vp__list .is-soon button{cursor:default;opacity:.55}
-@media (max-width:900px){.vp{grid-template-columns:1fr}.vp__side{max-height:340px;min-height:0}.vp__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.vp__vol{display:none}.vp__bar{gap:4px;padding:6px}.vp__big{width:64px;height:64px}}
+.vp:fullscreen{aspect-ratio:auto}
+@media (max-width:1100px){.talk__n{grid-column:1/span 12}.talk__text{grid-column:1/span 5}.talk__media,.talk__ch{grid-column:6/span 7}}
+@media (max-width:760px){
+  .talk{row-gap:var(--s2,16px);padding-bottom:var(--s3,40px)}
+  .talk__n,.talk__text,.talk__media,.talk__ch{grid-column:1/-1}
+  .talk__n{font-size:40px}
+  .talk__media{order:2}.talk__ch{order:3}.talk__text{order:1}
+  .talk__chapters{columns:1}
+  .vp__vol{display:none}.vp__bar{gap:4px;padding:6px}
+}
 </style>
 </head>
 <body>
@@ -502,7 +520,7 @@ html.lb-open{overflow:hidden}
     <button class="city__name" type="button" id="cityBtn" aria-controls="cityNav" aria-expanded="true" aria-label="Menu"><span class="burger" aria-hidden="true"></span></button>
     <div class="city__nav" id="cityNav">
       <a class="pill" href="#programme">Program</a>
-      <a class="pill" href="#speakers">Speakers</a>
+      <a class="pill" href="#talks">Speakers</a>
       <a class="pill" href="#photos">Photos</a>
       <a class="pill" href="/en/">#1</a>
     </div>
@@ -571,13 +589,72 @@ html.lb-open{overflow:hidden}
   </ol>
 </section>
 
-<section class="mod rec" id="recordings">
-  <h2>Recordings</h2>
-  <p class="lede">All four talks from PROTO ROBOT #0. Chapters jump straight to the spot.</p>
-  <div class="vp" id="vp" tabindex="-1">
-    <div class="vp__stage">
+
+
+<section class="mod talks" id="talks">
+  <h2>Talks</h2>
+  <p class="lede">Four talks from 23 October. Each with video and chapters.</p>
+  <div class="talk-list">
+    <article class="talk is-ready" id="01-konecny-robot-issues" data-id="01-konecny-robot-issues">
+      <p class="talk__n">01</p>
+      <div class="talk__text">
+        <p class="talk__meta">19:05 · CZ</p>
+        <h3 class="talk__title">Common facility robot issues</h3>
+        <div class="talk__who">
+          <img class="talk__face" loading="lazy" decoding="async" src="/img/0/sp-konecny.webp" alt="" width="64" height="64">
+          <p><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener">Tomáš Konečný</a><span>Robotservice</span></p>
+        </div>
+        <p class="talk__desc">Five minutes from the field: Tomáš Konečný of Robotservice, which services cleaning and other service robots, on what really breaks in operation: unprepared sites, staff who skip daily maintenance, extreme cases (a robot washed with a hose) and a plea to designers to keep wear parts accessible. Most of the video is audience Q&amp;A: sensors and stuck robots, autonomy and central control, outdoor use, theft and vandalism, warranty service. Talk in Czech; part of the Q&amp;A was not recorded.</p>
+      </div>
+      <div class="talk__media"><button class="talk__poster" type="button" data-play aria-label="Play: Common facility robot issues"><img loading="lazy" decoding="async" src="" data-src="01-konecny-robot-issues.webp" alt="" width="1280" height="720"><span class="talk__go pill pill--orange">Play</span></button></div>
+      <div class="talk__ch"><p class="talk__label">Chapters</p><ol class="talk__chapters"><li><button type="button" data-t="0"><time>00:00</time><span>Úvod</span></button></li><li><button type="button" data-t="21"><time>00:21</time><span>Největší problém: realita provozu</span></button></li><li><button type="button" data-t="77"><time>01:17</time><span>Lidé, kteří roboty obsluhují</span></button></li><li><button type="button" data-t="104"><time>01:44</time><span>Extrémní případy</span></button></li><li><button type="button" data-t="139"><time>02:19</time><span>Prosba konstruktérům: přístup k dílům</span></button></li><li><button type="button" data-t="327"><time>05:27</time><span>Dotazy z publika</span></button></li><li><button type="button" data-t="427"><time>07:07</time><span>Dotaz: autonomie a centrální řízení</span></button></li><li><button type="button" data-t="558"><time>09:18</time><span>Dotaz: nasazení venku</span></button></li><li><button type="button" data-t="673"><time>11:13</time><span>Dotaz: robot umytý hadicí</span></button></li><li><button type="button" data-t="790"><time>13:10</time><span>Dotaz: krádeže a vandalismus</span></button></li><li><button type="button" data-t="850"><time>14:10</time><span>Dotaz: záruční a pozáruční servis</span></button></li></ol></div>
+    </article>
+    <article class="talk" id="02-vitek-humanoids" data-id="02-vitek-humanoids">
+      <p class="talk__n">02</p>
+      <div class="talk__text">
+        <p class="talk__meta">19:15 · CZ · Live demo</p>
+        <h3 class="talk__title">Physical AI and humanoids in industry</h3>
+        <div class="talk__who">
+          <img class="talk__face" loading="lazy" decoding="async" src="/img/0/sp-vitek.webp" alt="" width="64" height="64">
+          <p><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener">Lukáš Vítek</a><span>Integra Robotics</span></p>
+        </div>
+        <p class="talk__desc">Lukáš Vítek of Prague startup Integra Robotics explains physical AI and vision-language-action (VLA) models, why data collection is the bottleneck, and where today&#x27;s models still fall short for industry: generalization, physical contact, recovering from errors and reliability. He covers where humanoids already work in factories, why Integra combines VLA with classical control and why it recommends wheeled or stationary humanoids over legged ones for industry. Followed by audience Q&amp;A. Talk in Czech.</p>
+      </div>
+      <div class="talk__media"><div class="talk__poster is-soon"><img loading="lazy" decoding="async" src="/img/0/sp-vitek.webp" alt="Lukáš Vítek"><span class="talk__soon">Video soon</span></div></div>
+      <div class="talk__ch"><p class="talk__label">Chapters</p><ol class="talk__chapters"><li><button type="button" data-t="0"><time>00:00</time><span>Úvod: Integra Robotics</span></button></li><li><button type="button" data-t="33"><time>00:33</time><span>Jak dnes fungují průmyslové roboty</span></button></li><li><button type="button" data-t="99"><time>01:39</time><span>Co je physical AI</span></button></li><li><button type="button" data-t="155"><time>02:35</time><span>VLA modely (vision-language-action)</span></button></li><li><button type="button" data-t="251"><time>04:11</time><span>Data: největší boj</span></button></li><li><button type="button" data-t="371"><time>06:11</time><span>Imitation learning v praxi</span></button></li><li><button type="button" data-t="430"><time>07:10</time><span>Slabiny: generalizace, kontakt, zotavení</span></button></li><li><button type="button" data-t="556"><time>09:16</time><span>Spolehlivost: 99 % nestačí</span></button></li><li><button type="button" data-t="609"><time>10:09</time><span>Humanoidi v továrnách už dnes</span></button></li><li><button type="button" data-t="684"><time>11:24</time><span>Hybridní řízení v Integra Robotics</span></button></li><li><button type="button" data-t="775"><time>12:55</time><span>Proč (ne)chodící robot?</span></button></li><li><button type="button" data-t="900"><time>15:00</time><span>Typické případy použití</span></button></li><li><button type="button" data-t="939"><time>15:39</time><span>Budoucnost: adaptace, ne tanec</span></button></li><li><button type="button" data-t="988"><time>16:28</time><span>Dotazy z publika</span></button></li></ol></div>
+    </article>
+    <article class="talk" id="03-danieau-reachy-mini" data-id="03-danieau-reachy-mini">
+      <p class="talk__n">03</p>
+      <div class="talk__text">
+        <p class="talk__meta">20:30 · EN · Live demo</p>
+        <h3 class="talk__title">Reachy Mini: open-source desk robot</h3>
+        <div class="talk__who">
+          <img class="talk__face" loading="lazy" decoding="async" src="/img/0/sp-danieau.webp" alt="" width="64" height="64">
+          <p><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener">Fabien Danieau</a><span>Pollen Robotics / Hugging Face</span></p>
+        </div>
+        <p class="talk__desc">Fabien Danieau of Pollen Robotics (now part of Hugging Face) presents Reachy Mini, the open-source desktop robot: how a Stewart-platform neck and two antennas make it expressive, what&#x27;s inside (camera, four-microphone array, Raspberry Pi), the software stack and SDKs for Python and JavaScript, and the conversation app that links speech, a language model and the robot&#x27;s tools. He shows what people build with the 11,000 robots shipped so far and ends with a live demo.</p>
+      </div>
+      <div class="talk__media"><div class="talk__poster is-soon"><img loading="lazy" decoding="async" src="/img/0/sp-danieau.webp" alt="Fabien Danieau"><span class="talk__soon">Video soon</span></div></div>
+      <div class="talk__ch"><p class="talk__label">Chapters</p><ol class="talk__chapters"><li><button type="button" data-t="0"><time>00:00</time><span>Intro: Fabien Danieau, Pollen Robotics and Hugging Face</span></button></li><li><button type="button" data-t="70"><time>01:10</time><span>The Pollen robot family</span></button></li><li><button type="button" data-t="331"><time>05:31</time><span>Reachy Mini: a desktop AI companion</span></button></li><li><button type="button" data-t="377"><time>06:17</time><span>What&#x27;s inside: motors, sensors, Wireless and Lite</span></button></li><li><button type="button" data-t="421"><time>07:01</time><span>Stewart platform and antennas</span></button></li><li><button type="button" data-t="516"><time>08:36</time><span>Emotions and dances</span></button></li><li><button type="button" data-t="551"><time>09:11</time><span>Camera and microphones</span></button></li><li><button type="button" data-t="651"><time>10:51</time><span>The software stack</span></button></li><li><button type="button" data-t="711"><time>11:51</time><span>Building with Reachy Mini: Python, JavaScript, apps</span></button></li><li><button type="button" data-t="763"><time>12:43</time><span>The conversation app</span></button></li><li><button type="button" data-t="883"><time>14:43</time><span>Reachy Mini around the world</span></button></li><li><button type="button" data-t="1060"><time>17:40</time><span>Usage and what&#x27;s next</span></button></li><li><button type="button" data-t="1129"><time>18:49</time><span>Live demo</span></button></li></ol></div>
+    </article>
+    <article class="talk" id="04-bruna-kord" data-id="04-bruna-kord">
+      <p class="talk__n">04</p>
+      <div class="talk__text">
+        <p class="talk__meta">20:50 · CZ</p>
+        <h3 class="talk__title">KORD: Lessons Learned</h3>
+        <div class="talk__who">
+          <img class="talk__face" loading="lazy" decoding="async" src="/img/0/sp-bruna.webp" alt="" width="64" height="64">
+          <p><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener">Ondřej Bruna</a><span>Co-author and developer of KORD</span></p>
+        </div>
+        <p class="talk__desc">Ondřej Bruna, co-author and developer of KORD, looks back at building the interface that lets customers drive a 7-axis collaborative robot directly over Ethernet, without the teach pendant. Why ROS wasn&#x27;t enough, what happened when the team exposed too broad an API, and what the first customer deployment taught them. Three lessons for any robotics software team: documentation with examples, code reviews that actually check, and automated testing. Followed by audience Q&amp;A. Talk in Czech.</p>
+      </div>
+      <div class="talk__media"><div class="talk__poster is-soon"><img loading="lazy" decoding="async" src="/img/0/sp-bruna.webp" alt="Ondřej Bruna"><span class="talk__soon">Video soon</span></div></div>
+      <div class="talk__ch"><p class="talk__label">Chapters</p><ol class="talk__chapters"><li><button type="button" data-t="0"><time>00:00</time><span>Úvod: KORD a tři lekce</span></button></li><li><button type="button" data-t="63"><time>01:03</time><span>Robotický manipulátor od kontroleru po teach pendant</span></button></li><li><button type="button" data-t="99"><time>01:39</time><span>Zákazník chce rameno řídit napřímo</span></button></li><li><button type="button" data-t="204"><time>03:24</time><span>ROS, nebo vlastní řešení?</span></button></li><li><button type="button" data-t="253"><time>04:13</time><span>Open source a příliš široké API</span></button></li><li><button type="button" data-t="328"><time>05:28</time><span>„Ono to nefunguje“: první nasazení</span></button></li><li><button type="button" data-t="378"><time>06:18</time><span>Dokumentace a příklady</span></button></li><li><button type="button" data-t="473"><time>07:53</time><span>Code review</span></button></li><li><button type="button" data-t="575"><time>09:35</time><span>Testování a CI</span></button></li><li><button type="button" data-t="648"><time>10:48</time><span>Zapisujte technická rozhodnutí</span></button></li><li><button type="button" data-t="711"><time>11:51</time><span>Zastavit se a splácet technický dluh</span></button></li><li><button type="button" data-t="811"><time>13:31</time><span>Ptejte se na druhý názor</span></button></li><li><button type="button" data-t="895"><time>14:55</time><span>Dotazy z publika</span></button></li><li><button type="button" data-t="933"><time>15:33</time><span>Dotaz: real-time řízení a frekvence</span></button></li><li><button type="button" data-t="991"><time>16:31</time><span>Dotaz: ROS, nebo vlastní protokol?</span></button></li></ol></div>
+    </article>
+  </div>
+  <template id="vp-tpl">
+    <div class="vp">
       <video class="vp__video" playsinline preload="metadata"></video>
-      <button class="vp__big" type="button" aria-label="Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
       <div class="vp__bar">
         <button class="vp__btn vp__play" type="button" aria-label="Play"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg></button>
         <input class="vp__seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek">
@@ -588,48 +665,7 @@ html.lb-open{overflow:hidden}
         <button class="vp__btn vp__fs" type="button" aria-label="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
       </div>
     </div>
-    <div class="vp__side">
-      <p class="vp__now"><b class="vp__spk"></b><span class="vp__ttl"></span></p>
-      <h3 class="vp__label">Chapters</h3>
-      <ol class="vp__chapters"></ol>
-    </div>
-  </div>
-  <h3 class="vp__label vp__label--list">Talks</h3>
-  <ol class="vp__list"></ol>
-</section>
-
-<section class="mod speakers" id="speakers">
-  <h2>Speakers</h2>
-  <div class="spk-grid">
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot spk__bot--wide"><img src="/img/bot-scrubber.webp" alt="Floor scrubber robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, LinkedIn profile">Tomáš Konečný</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co">Robotservice</span></p>
-      <p class="spk__talk">Common facility robot issues</p>
-      <p class="spk__note">Five minutes from the field: what really breaks on service robots in operation.</p>
-    </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoid robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, LinkedIn profile">Lukáš Vítek</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co"><img class="co-integra" src="/img/logo-integra.svg" alt="" height="22">Integra Robotics</span></p>
-      <p class="spk__talk">Physical AI and humanoids in industry</p>
-      <p class="spk__note">Where humanoids meet physical AI. Integra brought their humanoid for a live demo.</p>
-    </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, LinkedIn profile">Fabien Danieau</a></h3>
-      <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" height="18">Hugging Face</span></p>
-      <p class="spk__talk">Reachy Mini: open-source desk robot</p>
-      <p class="spk__note">An expressive desk robot. Live demo in the middle of the talk.</p>
-    </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-bruna.webp" alt="Ondřej Bruna"></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, LinkedIn profile">Ondřej Bruna</a></h3>
-      <p class="spk__org">Co-author and developer of KORD</p>
-      <p class="spk__talk">KORD: Lessons Learned</p>
-      <p class="spk__note">What worked, what didn’t and what he’d do differently after ten years building a 7-axis cobot.</p>
-    </article>
-  </div>
+  </template>
 </section>
 
 <section class="mod" id="photos">
@@ -1011,85 +1047,75 @@ html.lb-open{overflow:hidden}
 })();
 </script>
 <script>
-/* Lecture recordings. MEDIA_BASE: switch to the R2 public URL (R2 bucket protorobot, r2.dev). */
+/* Talk videos. MEDIA_BASE: R2 bucket protorobot (r2.dev); switch to a custom domain here. Files: <base><id>.mp4 / .jpg / .webp */
 window.PR_MEDIA_BASE = "https://pub-afcf63b01ca7486c8bda7f2ff617f31e.r2.dev/0/";
-window.PR_LECTURES = [{"id": "01-konecny-robot-issues", "speaker": "Tomáš Konečný", "org": "Robotservice", "ch": [[0, "Úvod"], [21, "Největší problém: realita provozu"], [77, "Lidé, kteří roboty obsluhují"], [104, "Extrémní případy"], [139, "Prosba konstruktérům: přístup k dílům"], [327, "Dotazy z publika"], [427, "Dotaz: autonomie a centrální řízení"], [558, "Dotaz: nasazení venku"], [673, "Dotaz: robot umytý hadicí"], [790, "Dotaz: krádeže a vandalismus"], [850, "Dotaz: záruční a pozáruční servis"]], "title": "Common facility robot issues"}, {"id": "02-vitek-humanoids", "speaker": "Lukáš Vítek", "org": "Integra Robotics", "ch": [[0, "Úvod: Integra Robotics"], [33, "Jak dnes fungují průmyslové roboty"], [99, "Co je physical AI"], [155, "VLA modely (vision-language-action)"], [251, "Data: největší boj"], [371, "Imitation learning v praxi"], [430, "Slabiny: generalizace, kontakt, zotavení"], [556, "Spolehlivost: 99 % nestačí"], [609, "Humanoidi v továrnách už dnes"], [684, "Hybridní řízení v Integra Robotics"], [775, "Proč (ne)chodící robot?"], [900, "Typické případy použití"], [939, "Budoucnost: adaptace, ne tanec"], [988, "Dotazy z publika"]], "ready": false, "title": "Physical AI and humanoids in industry"}, {"id": "03-danieau-reachy-mini", "speaker": "Fabien Danieau", "org": "Pollen Robotics / Hugging Face", "ch": [[0, "Intro: Fabien Danieau, Pollen Robotics and Hugging Face"], [70, "The Pollen robot family"], [331, "Reachy Mini: a desktop AI companion"], [377, "What's inside: motors, sensors, Wireless and Lite"], [421, "Stewart platform and antennas"], [516, "Emotions and dances"], [551, "Camera and microphones"], [651, "The software stack"], [711, "Building with Reachy Mini: Python, JavaScript, apps"], [763, "The conversation app"], [883, "Reachy Mini around the world"], [1060, "Usage and what's next"], [1129, "Live demo"]], "ready": false, "title": "Reachy Mini: open-source desk robot"}, {"id": "04-bruna-kord", "speaker": "Ondřej Bruna", "org": "KORD", "ch": [[0, "Úvod: KORD a tři lekce"], [63, "Robotický manipulátor od kontroleru po teach pendant"], [99, "Zákazník chce rameno řídit napřímo"], [204, "ROS, nebo vlastní řešení?"], [253, "Open source a příliš široké API"], [328, "„Ono to nefunguje“: první nasazení"], [378, "Dokumentace a příklady"], [473, "Code review"], [575, "Testování a CI"], [648, "Zapisujte technická rozhodnutí"], [711, "Zastavit se a splácet technický dluh"], [811, "Ptejte se na druhý názor"], [895, "Dotazy z publika"], [933, "Dotaz: real-time řízení a frekvence"], [991, "Dotaz: ROS, nebo vlastní protokol?"]], "ready": false, "title": "KORD: Lessons Learned"}];
-window.PR_I18N = {"h": "Recordings", "lede": "All four talks from PROTO ROBOT #0. Chapters jump straight to the spot.", "play": "Play", "pause": "Pause", "mute": "Mute", "fs": "Fullscreen", "speed": "Speed", "seek": "Seek", "chap": "Chapters", "list": "Talks", "soon": "Soon"};
+window.PR_I18N = {"play":"Play","pause":"Pause"};
 (() => {
   'use strict';
-  const root = document.getElementById('vp'); if (!root) return;
-  const base = window.PR_MEDIA_BASE, list = window.PR_LECTURES, S = window.PR_I18N;
-  const q = s => root.querySelector(s);
+  const list = document.querySelector('.talk-list'); if (!list) return;
+  const base = window.PR_MEDIA_BASE, S = window.PR_I18N;
+  list.querySelectorAll('.talk__poster img[data-src]').forEach(im => { im.src = base + im.dataset.src; });
+  const vp = document.getElementById('vp-tpl').content.firstElementChild.cloneNode(true);
+  const q = s => vp.querySelector(s);
   const v = q('.vp__video'), seek = q('.vp__seek'), time = q('.vp__time'), vol = q('.vp__vol'), spd = q('.vp__speed');
-  const ulC = q('.vp__chapters'), ulL = document.querySelector('.vp__list');
   const speeds = [1, 1.25, 1.5, 1.75, 2, 0.75];
-  let cur = -1, idleT;
+  let cur = null, poster = null, idleT;
   const fmt = s => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = String(s % 60).padStart(2, '0'); return h ? `${h}:${String(m).padStart(2, '0')}:${x}` : `${m}:${x}`; };
-  const avail = l => l.ready !== false;
-  const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
 
-  list.forEach((l, i) => {
-    const li = el('li', avail(l) ? '' : 'is-soon'), b = el('button');
-    b.type = 'button';
-    const th = el('span', 'vp__thumb'); th.style.backgroundImage = `url("${base}${l.id}.webp")`;
-    if (!avail(l)) th.appendChild(el('i', '', S.soon));
-    b.append(th, el('b', '', l.speaker), el('span', 't', l.title));
-    if (avail(l)) b.addEventListener('click', () => { load(i, 0, true); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-    else b.setAttribute('aria-disabled', 'true');
-    li.appendChild(b); ulL.appendChild(li);
-  });
-
-  function load(i, t = 0, play = false) {
-    const l = list[i]; if (!l) return;
-    if (i !== cur) {
-      cur = i;
-      v.src = `${base}${l.id}.mp4`; v.poster = `${base}${l.id}.jpg`;
-      q('.vp__spk').textContent = `${l.speaker} · ${l.org}`; q('.vp__ttl').textContent = l.title;
-      ulC.innerHTML = '';
-      l.ch.forEach(([s, n]) => { const li = el('li'), b = el('button'); b.type = 'button'; b.dataset.t = s; b.innerHTML = `<time>${fmt(s)}</time><span></span>`; b.lastChild.textContent = n; b.onclick = () => jump(s); li.appendChild(b); ulC.appendChild(li); });
-      [...ulL.children].forEach((li, k) => li.classList.toggle('is-on', k === i));
-      root.classList.remove('has-played');
-      if (history.replaceState) history.replaceState(null, '', '#' + l.id);
+  function open(art, t, play) {
+    if (art !== cur) {
+      if (cur) { v.pause(); cur.classList.remove('is-active'); cur.querySelector('.talk__media').replaceChildren(poster); }
+      cur = art; const id = art.dataset.id, media = art.querySelector('.talk__media');
+      poster = media.firstElementChild;
+      v.src = `${base}${id}.mp4`; v.poster = `${base}${id}.jpg`; spd.textContent = v.playbackRate + '×';
+      media.replaceChildren(vp); art.classList.add('is-active');
+      if (history.replaceState) history.replaceState(null, '', '#' + id);
     }
-    if (t) { const go = () => { v.currentTime = t; }; v.readyState ? go() : v.addEventListener('loadedmetadata', go, { once: true }); }
+    if (t != null) { const go = () => { v.currentTime = t; }; v.readyState ? go() : v.addEventListener('loadedmetadata', go, { once: true }); }
     if (play) v.play().catch(() => {});
   }
-  function jump(s) { v.currentTime = s; v.play().catch(() => {}); }
-  const toggle = () => v.paused ? v.play().catch(() => {}) : v.pause();
+  list.querySelectorAll('.talk.is-ready').forEach(art => {
+    art.querySelector('[data-play]').addEventListener('click', () => open(art, null, true));
+    art.querySelectorAll('.talk__chapters button').forEach(b => b.addEventListener('click', () => open(art, +b.dataset.t, true)));
+  });
 
-  q('.vp__big').onclick = toggle; q('.vp__play').onclick = toggle; v.onclick = toggle;
-  v.addEventListener('play', () => { root.classList.add('is-playing', 'has-played'); q('.vp__play').setAttribute('aria-label', S.pause); });
-  v.addEventListener('pause', () => { root.classList.remove('is-playing'); q('.vp__play').setAttribute('aria-label', S.play); });
+  const toggle = () => v.paused ? v.play().catch(() => {}) : v.pause();
+  q('.vp__play').onclick = toggle; v.onclick = toggle;
+  v.addEventListener('play', () => { vp.classList.add('is-playing'); q('.vp__play').setAttribute('aria-label', S.pause); });
+  v.addEventListener('pause', () => { vp.classList.remove('is-playing'); q('.vp__play').setAttribute('aria-label', S.play); });
   v.addEventListener('timeupdate', () => {
     const d = v.duration || 0;
     if (!seek.matches(':active')) seek.value = d ? Math.round(v.currentTime / d * 1000) : 0;
     time.textContent = `${fmt(v.currentTime)} / ${fmt(d)}`;
-    const ch = list[cur] ? list[cur].ch : []; let on = -1; ch.forEach(([s], k) => { if (v.currentTime >= s) on = k; });
-    [...ulC.children].forEach((li, k) => li.classList.toggle('is-on', k === on));
+    if (!cur) return; const lis = [...cur.querySelectorAll('.talk__chapters li')]; let on = -1;
+    lis.forEach((li, k) => { if (v.currentTime >= +li.firstChild.dataset.t) on = k; });
+    lis.forEach((li, k) => li.classList.toggle('is-on', k === on));
   });
-  v.addEventListener('loadedmetadata', () => { time.textContent = `${fmt(0)} / ${fmt(v.duration)}`; });
+  v.addEventListener('loadedmetadata', () => { time.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`; });
   seek.addEventListener('input', () => { if (v.duration) v.currentTime = seek.value / 1000 * v.duration; });
   vol.addEventListener('input', () => { v.volume = +vol.value; v.muted = v.volume === 0; });
   q('.vp__mute').onclick = () => { v.muted = !v.muted; };
-  v.addEventListener('volumechange', () => root.classList.toggle('is-muted', v.muted || v.volume === 0));
+  v.addEventListener('volumechange', () => vp.classList.toggle('is-muted', v.muted || v.volume === 0));
   spd.onclick = () => { const n = speeds[(speeds.indexOf(v.playbackRate) + 1) % speeds.length]; v.playbackRate = n; spd.textContent = n + '×'; };
   const fs = () => {
     if (document.fullscreenElement) return document.exitFullscreen();
-    if (root.requestFullscreen) return root.requestFullscreen();
-    if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); /* iOS */
+    if (vp.requestFullscreen) return vp.requestFullscreen();
+    if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
   };
   q('.vp__fs').onclick = fs; v.ondblclick = fs;
-  const wake = () => { root.classList.remove('is-idle'); clearTimeout(idleT); idleT = setTimeout(() => root.classList.add('is-idle'), 2500); };
-  root.addEventListener('pointermove', wake); root.addEventListener('touchstart', wake, { passive: true });
-  root.addEventListener('keydown', e => {
+  const wake = () => { vp.classList.remove('is-idle'); clearTimeout(idleT); idleT = setTimeout(() => vp.classList.add('is-idle'), 2500); };
+  vp.addEventListener('pointermove', wake); vp.addEventListener('touchstart', wake, { passive: true });
+  vp.tabIndex = -1;
+  vp.addEventListener('keydown', e => {
     if (e.target.matches('input[type=range]') && /Arrow/.test(e.key)) return;
     const k = e.key.toLowerCase(), h = { ' ': toggle, k: toggle, f: fs, m: () => { v.muted = !v.muted; },
       arrowleft: () => { v.currentTime -= 5; }, arrowright: () => { v.currentTime += 5; }, j: () => { v.currentTime -= 10; }, l: () => { v.currentTime += 10; } }[k];
     if (h && !(k === ' ' && e.target.tagName === 'BUTTON')) { e.preventDefault(); h(); wake(); }
   });
 
-  const fromHash = list.findIndex(l => '#' + l.id === location.hash && avail(l));
-  load(fromHash >= 0 ? fromHash : Math.max(0, list.findIndex(avail)));
+  const hashArt = location.hash && list.querySelector(`.talk.is-ready[data-id="${CSS.escape(location.hash.slice(1))}"]`);
+  const first = hashArt || list.querySelector('.talk.is-ready');
+  if (hashArt) open(hashArt, null, false);
 })();
 </script>
 </body>
