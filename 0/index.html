@@ -454,6 +454,44 @@ html.lb-open{overflow:hidden}
 .foot a{position:relative;padding:11px 0;margin:-11px 0}
 .foot a::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,44px);transform:translateX(-50%)}
 .foot .foot__meta{padding-top:0}
+/* ---------- recordings: custom player ---------- */
+.vp{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:var(--g);margin-top:var(--s3)}
+.vp__stage{position:relative;aspect-ratio:16/9;background:var(--orange-deep);overflow:hidden}
+.vp__video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.vp__big{position:absolute;inset:0;margin:auto;width:84px;height:84px;border:0;border-radius:999px;background:var(--orange);color:var(--black);cursor:pointer;display:grid;place-items:center}
+.vp__big svg{width:40px;height:40px;fill:currentColor}
+.vp__big:hover,.vp__big:focus-visible{background:var(--black);color:var(--white)}
+.vp.is-playing .vp__big,.vp.has-played .vp__big{display:none}
+.vp__bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:8px;padding:10px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:var(--white)}
+.vp.is-playing.is-idle .vp__bar{opacity:0}
+.vp__btn{flex:none;height:36px;min-width:36px;padding:0 10px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:var(--white);font:600 14px var(--font);cursor:pointer;display:grid;place-items:center}
+.vp__btn:hover,.vp__btn:focus-visible{background:var(--orange);color:var(--black)}
+.vp__btn svg{width:20px;height:20px;fill:currentColor;stroke:currentColor;stroke-width:0}
+.vp__fs svg,.vp__mute .i-vol,.vp__mute .i-x{fill:none;stroke-width:2}
+.vp__play .i-pause,.vp.is-playing .vp__play .i-play{display:none}.vp.is-playing .vp__play .i-pause{display:inline}
+.vp__mute .i-x,.vp.is-muted .vp__mute .i-vol{display:none}.vp.is-muted .vp__mute .i-x{display:inline}
+.vp__seek{flex:1;min-width:60px;accent-color:var(--orange);height:24px}
+.vp__vol{width:80px;accent-color:var(--orange)}
+.vp__time{flex:none;font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.vp:fullscreen{display:block;background:#000}.vp:fullscreen .vp__side{display:none}.vp:fullscreen .vp__stage{height:100%;aspect-ratio:auto}
+.vp__side{background:var(--grey);padding:var(--s2,20px);max-height:0;min-height:100%;overflow:auto}
+.vp__now{font-size:20px;line-height:1.2;margin-bottom:var(--s2,20px)}.vp__now b{display:block}.vp__now span{color:var(--grey-text)}
+.vp__label{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+.vp__label--list{margin-top:var(--s3)}
+.vp__chapters{list-style:none;padding:0;margin:0}
+.vp__chapters button{all:unset;box-sizing:border-box;display:flex;gap:12px;width:100%;padding:6px 0;border-top:1px solid var(--grey-line);font-size:15px;line-height:1.3;cursor:pointer}
+.vp__chapters time{flex:none;width:3.2em;font-variant-numeric:tabular-nums;color:var(--grey-text)}
+.vp__chapters button:hover,.vp__chapters button:focus-visible,.vp__chapters .is-on button{color:var(--orange)}
+.vp__list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g)}
+.vp__list button{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer}
+.vp__thumb{display:block;aspect-ratio:16/9;background:var(--orange-deep) center/cover no-repeat;margin-bottom:8px;position:relative}
+.vp__thumb i{position:absolute;left:8px;top:8px;background:var(--black);color:var(--white);font:600 12px var(--font);font-style:normal;padding:4px 6px}
+.vp__list b{display:block;font-size:17px}.vp__list span.t{display:block;font-size:15px;color:var(--grey-text);line-height:1.3}
+.vp__list .is-on .vp__thumb{outline:3px solid var(--orange);outline-offset:-3px}
+.vp__list button:hover b,.vp__list button:focus-visible b{color:var(--orange)}
+.vp__list .is-soon button{cursor:default;opacity:.55}
+@media (max-width:900px){.vp{grid-template-columns:1fr}.vp__side{max-height:340px;min-height:0}.vp__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.vp__vol{display:none}.vp__bar{gap:4px;padding:6px}.vp__big{width:64px;height:64px}}
 </style>
 </head>
 <body>
@@ -531,7 +569,33 @@ html.lb-open{overflow:hidden}
     <li><time datetime="2026-10-23T21:05+02:00">21:05</time><div><b>Hiring blok</b><span>REVEL Robotics</span></div></li>
     <li><time datetime="2026-10-23T21:15+02:00">21:15</time><div><b>Networking</b><span>Do 22:00</span></div></li>
   </ol>
-  <p class="tl-note">Záznamy přednášek doplníme sem.</p>
+</section>
+
+<section class="mod rec" id="recordings">
+  <h2>Záznamy</h2>
+  <p class="lede">Všechny čtyři přednášky z PROTO ROBOT #0. Kapitoly vedou rovnou na dané místo.</p>
+  <div class="vp" id="vp" tabindex="-1">
+    <div class="vp__stage">
+      <video class="vp__video" playsinline preload="metadata"></video>
+      <button class="vp__big" type="button" aria-label="Přehrát"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+      <div class="vp__bar">
+        <button class="vp__btn vp__play" type="button" aria-label="Přehrát"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg></button>
+        <input class="vp__seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posun ve videu">
+        <span class="vp__time">0:00 / 0:00</span>
+        <button class="vp__btn vp__mute" type="button" aria-label="Ztlumit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="i-vol" d="M16 8.5a5 5 0 0 1 0 7"/><path class="i-x" d="M16 9l5 6m0-6l-5 6"/></svg></button>
+        <input class="vp__vol" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+        <button class="vp__btn vp__speed" type="button" aria-label="Rychlost">1×</button>
+        <button class="vp__btn vp__fs" type="button" aria-label="Celá obrazovka"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+      </div>
+    </div>
+    <div class="vp__side">
+      <p class="vp__now"><b class="vp__spk"></b><span class="vp__ttl"></span></p>
+      <h3 class="vp__label">Kapitoly</h3>
+      <ol class="vp__chapters"></ol>
+    </div>
+  </div>
+  <h3 class="vp__label vp__label--list">Přednášky</h3>
+  <ol class="vp__list"></ol>
 </section>
 
 <section class="mod speakers" id="speakers">
@@ -944,6 +1008,88 @@ html.lb-open{overflow:hidden}
     const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(i + (dx < 0 ? 1 : -1));
   }, { passive: true });
+})();
+</script>
+<script>
+/* Lecture recordings. MEDIA_BASE: switch to the R2 public URL (R2 bucket protorobot, r2.dev). */
+window.PR_MEDIA_BASE = "https://pub-afcf63b01ca7486c8bda7f2ff617f31e.r2.dev/0/";
+window.PR_LECTURES = [{"id": "01-konecny-robot-issues", "speaker": "Tomáš Konečný", "org": "Robotservice", "ch": [[0, "Úvod"], [21, "Největší problém: realita provozu"], [77, "Lidé, kteří roboty obsluhují"], [104, "Extrémní případy"], [139, "Prosba konstruktérům: přístup k dílům"], [327, "Dotazy z publika"], [427, "Dotaz: autonomie a centrální řízení"], [558, "Dotaz: nasazení venku"], [673, "Dotaz: robot umytý hadicí"], [790, "Dotaz: krádeže a vandalismus"], [850, "Dotaz: záruční a pozáruční servis"]], "title": "Běžné problémy servisních robotů"}, {"id": "02-vitek-humanoids", "speaker": "Lukáš Vítek", "org": "Integra Robotics", "ch": [[0, "Úvod: Integra Robotics"], [33, "Jak dnes fungují průmyslové roboty"], [99, "Co je physical AI"], [155, "VLA modely (vision-language-action)"], [251, "Data: největší boj"], [371, "Imitation learning v praxi"], [430, "Slabiny: generalizace, kontakt, zotavení"], [556, "Spolehlivost: 99 % nestačí"], [609, "Humanoidi v továrnách už dnes"], [684, "Hybridní řízení v Integra Robotics"], [775, "Proč (ne)chodící robot?"], [900, "Typické případy použití"], [939, "Budoucnost: adaptace, ne tanec"], [988, "Dotazy z publika"]], "ready": false, "title": "Physical AI a humanoidi v průmyslu"}, {"id": "03-danieau-reachy-mini", "speaker": "Fabien Danieau", "org": "Pollen Robotics / Hugging Face", "ch": [[0, "Intro: Fabien Danieau, Pollen Robotics and Hugging Face"], [70, "The Pollen robot family"], [331, "Reachy Mini: a desktop AI companion"], [377, "What's inside: motors, sensors, Wireless and Lite"], [421, "Stewart platform and antennas"], [516, "Emotions and dances"], [551, "Camera and microphones"], [651, "The software stack"], [711, "Building with Reachy Mini: Python, JavaScript, apps"], [763, "The conversation app"], [883, "Reachy Mini around the world"], [1060, "Usage and what's next"], [1129, "Live demo"]], "ready": false, "title": "Reachy Mini: open-source stolní robot"}, {"id": "04-bruna-kord", "speaker": "Ondřej Bruna", "org": "KORD", "ch": [[0, "Úvod: KORD a tři lekce"], [63, "Robotický manipulátor od kontroleru po teach pendant"], [99, "Zákazník chce rameno řídit napřímo"], [204, "ROS, nebo vlastní řešení?"], [253, "Open source a příliš široké API"], [328, "„Ono to nefunguje“: první nasazení"], [378, "Dokumentace a příklady"], [473, "Code review"], [575, "Testování a CI"], [648, "Zapisujte technická rozhodnutí"], [711, "Zastavit se a splácet technický dluh"], [811, "Ptejte se na druhý názor"], [895, "Dotazy z publika"], [933, "Dotaz: real-time řízení a frekvence"], [991, "Dotaz: ROS, nebo vlastní protokol?"]], "ready": false, "title": "KORD: Lessons Learned"}];
+window.PR_I18N = {"h": "Záznamy", "lede": "Všechny čtyři přednášky z PROTO ROBOT #0. Kapitoly vedou rovnou na dané místo.", "play": "Přehrát", "pause": "Pauza", "mute": "Ztlumit", "fs": "Celá obrazovka", "speed": "Rychlost", "seek": "Posun ve videu", "chap": "Kapitoly", "list": "Přednášky", "soon": "Brzy"};
+(() => {
+  'use strict';
+  const root = document.getElementById('vp'); if (!root) return;
+  const base = window.PR_MEDIA_BASE, list = window.PR_LECTURES, S = window.PR_I18N;
+  const q = s => root.querySelector(s);
+  const v = q('.vp__video'), seek = q('.vp__seek'), time = q('.vp__time'), vol = q('.vp__vol'), spd = q('.vp__speed');
+  const ulC = q('.vp__chapters'), ulL = document.querySelector('.vp__list');
+  const speeds = [1, 1.25, 1.5, 1.75, 2, 0.75];
+  let cur = -1, idleT;
+  const fmt = s => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = String(s % 60).padStart(2, '0'); return h ? `${h}:${String(m).padStart(2, '0')}:${x}` : `${m}:${x}`; };
+  const avail = l => l.ready !== false;
+  const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
+
+  list.forEach((l, i) => {
+    const li = el('li', avail(l) ? '' : 'is-soon'), b = el('button');
+    b.type = 'button';
+    const th = el('span', 'vp__thumb'); th.style.backgroundImage = `url("${base}${l.id}.webp")`;
+    if (!avail(l)) th.appendChild(el('i', '', S.soon));
+    b.append(th, el('b', '', l.speaker), el('span', 't', l.title));
+    if (avail(l)) b.addEventListener('click', () => { load(i, 0, true); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    else b.setAttribute('aria-disabled', 'true');
+    li.appendChild(b); ulL.appendChild(li);
+  });
+
+  function load(i, t = 0, play = false) {
+    const l = list[i]; if (!l) return;
+    if (i !== cur) {
+      cur = i;
+      v.src = `${base}${l.id}.mp4`; v.poster = `${base}${l.id}.jpg`;
+      q('.vp__spk').textContent = `${l.speaker} · ${l.org}`; q('.vp__ttl').textContent = l.title;
+      ulC.innerHTML = '';
+      l.ch.forEach(([s, n]) => { const li = el('li'), b = el('button'); b.type = 'button'; b.dataset.t = s; b.innerHTML = `<time>${fmt(s)}</time><span></span>`; b.lastChild.textContent = n; b.onclick = () => jump(s); li.appendChild(b); ulC.appendChild(li); });
+      [...ulL.children].forEach((li, k) => li.classList.toggle('is-on', k === i));
+      root.classList.remove('has-played');
+      if (history.replaceState) history.replaceState(null, '', '#' + l.id);
+    }
+    if (t) { const go = () => { v.currentTime = t; }; v.readyState ? go() : v.addEventListener('loadedmetadata', go, { once: true }); }
+    if (play) v.play().catch(() => {});
+  }
+  function jump(s) { v.currentTime = s; v.play().catch(() => {}); }
+  const toggle = () => v.paused ? v.play().catch(() => {}) : v.pause();
+
+  q('.vp__big').onclick = toggle; q('.vp__play').onclick = toggle; v.onclick = toggle;
+  v.addEventListener('play', () => { root.classList.add('is-playing', 'has-played'); q('.vp__play').setAttribute('aria-label', S.pause); });
+  v.addEventListener('pause', () => { root.classList.remove('is-playing'); q('.vp__play').setAttribute('aria-label', S.play); });
+  v.addEventListener('timeupdate', () => {
+    const d = v.duration || 0;
+    if (!seek.matches(':active')) seek.value = d ? Math.round(v.currentTime / d * 1000) : 0;
+    time.textContent = `${fmt(v.currentTime)} / ${fmt(d)}`;
+    const ch = list[cur] ? list[cur].ch : []; let on = -1; ch.forEach(([s], k) => { if (v.currentTime >= s) on = k; });
+    [...ulC.children].forEach((li, k) => li.classList.toggle('is-on', k === on));
+  });
+  v.addEventListener('loadedmetadata', () => { time.textContent = `${fmt(0)} / ${fmt(v.duration)}`; });
+  seek.addEventListener('input', () => { if (v.duration) v.currentTime = seek.value / 1000 * v.duration; });
+  vol.addEventListener('input', () => { v.volume = +vol.value; v.muted = v.volume === 0; });
+  q('.vp__mute').onclick = () => { v.muted = !v.muted; };
+  v.addEventListener('volumechange', () => root.classList.toggle('is-muted', v.muted || v.volume === 0));
+  spd.onclick = () => { const n = speeds[(speeds.indexOf(v.playbackRate) + 1) % speeds.length]; v.playbackRate = n; spd.textContent = n + '×'; };
+  const fs = () => {
+    if (document.fullscreenElement) return document.exitFullscreen();
+    if (root.requestFullscreen) return root.requestFullscreen();
+    if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); /* iOS */
+  };
+  q('.vp__fs').onclick = fs; v.ondblclick = fs;
+  const wake = () => { root.classList.remove('is-idle'); clearTimeout(idleT); idleT = setTimeout(() => root.classList.add('is-idle'), 2500); };
+  root.addEventListener('pointermove', wake); root.addEventListener('touchstart', wake, { passive: true });
+  root.addEventListener('keydown', e => {
+    if (e.target.matches('input[type=range]') && /Arrow/.test(e.key)) return;
+    const k = e.key.toLowerCase(), h = { ' ': toggle, k: toggle, f: fs, m: () => { v.muted = !v.muted; },
+      arrowleft: () => { v.currentTime -= 5; }, arrowright: () => { v.currentTime += 5; }, j: () => { v.currentTime -= 10; }, l: () => { v.currentTime += 10; } }[k];
+    if (h && !(k === ' ' && e.target.tagName === 'BUTTON')) { e.preventDefault(); h(); wake(); }
+  });
+
+  const fromHash = list.findIndex(l => '#' + l.id === location.hash && avail(l));
+  load(fromHash >= 0 ? fromHash : Math.max(0, list.findIndex(avail)));
 })();
 </script>
 </body>
