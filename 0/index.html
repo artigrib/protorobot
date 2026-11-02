@@ -1047,6 +1047,7 @@ html.lb-open{overflow:hidden}
 })();
 </script>
 <script>
+window.PR_MEDIA_VER = {"01-konecny-robot-issues": 2};
 /* Talk videos. MEDIA_BASE: R2 bucket protorobot (r2.dev); switch to a custom domain here. Files: <base><id>.mp4 / .jpg / .webp */
 window.PR_MEDIA_BASE = "https://pub-afcf63b01ca7486c8bda7f2ff617f31e.r2.dev/0/";
 window.PR_I18N = {"play":"Přehrát","pause":"Pauza"};
@@ -1067,7 +1068,7 @@ window.PR_I18N = {"play":"Přehrát","pause":"Pauza"};
       if (cur) { v.pause(); cur.classList.remove('is-active'); cur.querySelector('.talk__media').replaceChildren(poster); }
       cur = art; const id = art.dataset.id, media = art.querySelector('.talk__media');
       poster = media.firstElementChild;
-      v.src = `${base}${id}.mp4`; v.poster = `${base}${id}.jpg`; spd.textContent = v.playbackRate + '×';
+      v.src = `${base}${id}.mp4${(window.PR_MEDIA_VER||{})[id] ? '?v=' + window.PR_MEDIA_VER[id] : ''}`; v.poster = `${base}${id}.jpg`; spd.textContent = v.playbackRate + '×';
       media.replaceChildren(vp); art.classList.add('is-active');
       if (history.replaceState) history.replaceState(null, '', '#' + id);
     }
