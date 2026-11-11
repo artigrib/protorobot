@@ -23,7 +23,7 @@ T = {
   faces=['#1 Brno', 'čt 26. 11. 2026', 'FF MU, Arna Nováka 1'],
   faces_vh='#1 Brno, čtvrtek 26. 11. 2026, FF MU, Arna Nováka 1',
   cos_label='Téma', cos=['Roboti v laboratořích a nemocnicích'],
-  nums=[('26. 11.','čtvrtek'),('19:00','otevřeno od'),('150','míst v sále'),('0 Kč','vstup')],
+  nums=[('26. 11.','čtvrtek'),('19:00','otevřeno od'),('150','míst v sále')],
   nums_label='#1 v číslech',
   h1='PROTO ROBOT #1 Brno',
   intro=('Roboti už v&nbsp;Česku operují pacienty, pomáhají lidem znovu chodit a&nbsp;ulehčují práci sestrám. '
@@ -73,7 +73,7 @@ T = {
   faces=['#1 Brno', 'Thu 26 Nov 2026', 'FA MU, Arna Nováka 1'],
   faces_vh='#1 Brno, Thursday 26 Nov 2026, Faculty of Arts MU, Arna Nováka 1',
   cos_label='Topic', cos=['Robots in labs and hospitals'],
-  nums=[('26 Nov','Thursday'),('19:00','doors'),('150','seats'),('free','entry')],
+  nums=[('26 Nov','Thursday'),('19:00','doors'),('150','seats')],
   nums_label='#1 in numbers',
   h1='PROTO ROBOT #1 Brno',
   intro=('Robots already operate on patients in Czechia, help people walk again and take load off nurses. '
@@ -275,7 +275,8 @@ def body(t):
 </div>
 '''
 
-EXTRA_CSS = '''.photo--empty{background:var(--orange-deep);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.12) 14px 16px)}
+EXTRA_CSS = '''.nums{grid-template-columns:repeat(3,minmax(0,1fr));max-width:760px}
+.photo--empty{background:var(--orange-deep);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.12) 14px 16px)}
 .note{font-size:15px;opacity:.75;margin-top:var(--s2);max-width:34em}
 .demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--s3)}
 @media (max-width:640px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
