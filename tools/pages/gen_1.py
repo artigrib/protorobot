@@ -42,6 +42,8 @@ T = {
    ('21:00','Networking a demo stoly','Do 22:00. VR simulátor chirurgického robota, exoskelet pro zvedání břemen'),
   ],
   prog_note='Program doplňujeme, jména zveřejňujeme po potvrzení. Přednášky česky, demo i&nbsp;anglicky.',
+  demo1='Konzole chirurgického robota', demo1s='VR simulátor, vyzkoušíte si řízení ramen',
+  demo2='Exoskelet pro zvedání', demo2s='Nasadíte si ho a&nbsp;zvednete břemeno, pro sestry a&nbsp;pečovatele',
   spk_h='Řečníci',
   spk=[dict(name='Petr Filipenský', org='Fakultní nemocnice u sv. Anny v Brně', talk='Robotická chirurgie v praxi: da Vinci ve FNUSA', note='Primář. FNUSA operuje na robotu da Vinci od roku 2023, v&nbsp;roce 2025 to bylo kolem 269 výkonů.'),
        dict(name='Lucie Vidovićová', org='Fakulta sociálních studií MU', talk='Panel: Technologie v péči', note='Socioložka stárnutí. Etika asistivních technologií v&nbsp;sociálních službách a&nbsp;to, jak lidé roboty v&nbsp;péči přijímají.'),
@@ -90,6 +92,8 @@ T = {
    ('21:00','Networking and demo tables','Until 22:00. VR simulator of a surgical robot, a lifting exoskeleton'),
   ],
   prog_note='Programme in progress; names go up once confirmed. Talks in Czech, demo tables also in English.',
+  demo1='Surgical robot console', demo1s='VR simulator, try steering the arms yourself',
+  demo2='Lifting exoskeleton', demo2s='Put it on and lift a load, built for nurses and carers',
   spk_h='Speakers',
   spk=[dict(name='Petr Filipenský', org="St. Anne's University Hospital Brno", talk='Robotic surgery in practice: da Vinci at FNUSA', note='Head of department. FNUSA has operated with a da Vinci robot since 2023, about 269 procedures in 2025.'),
        dict(name='Lucie Vidovićová', org='Faculty of Social Studies, Masaryk University', talk='Panel: Technology in care', note='Sociologist of ageing. Ethics of assistive technologies in social care and how people accept robots.'),
@@ -107,8 +111,8 @@ T = {
  ),
 }
 
-HERO_H = ['h-8141','h-8039','h-8035','h-8230','h-8186','h-8357','h-8217','h-8340']
-HERO_V = ['v-1-8039','v-2-8141','v-3-8217','v-4-8357','v-5-8186','v-6-8230','v-7-8156','v-8-8129']
+HERO_H = ['h-1','h-2','h-3']
+HERO_V = ['v-1','v-2','v-3','v-4']
 MAP = 'https://mapy.cz/zakladni?q=Arna%20Nov%C3%A1ka%201%2C%20Brno'
 
 def ld(t):
@@ -154,7 +158,7 @@ def ld(t):
 
 def body(t):
     slides = lambda ids: '\n'.join(
-        f'    <div class="slide{" is-on" if i==0 else ""}"><img src="/img/0/{s}.webp" alt=""{" fetchpriority=\"high\"" if i==0 else " loading=\"lazy\" decoding=\"async\""}></div>'
+        f'    <div class="slide{" is-on" if i==0 else ""}"><img src="/img/1/{s}.webp" alt=""{" fetchpriority=\"high\"" if i==0 else " loading=\"lazy\" decoding=\"async\""}></div>'
         for i, s in enumerate(ids))
     nav = ''.join(f'\n      <a class="pill" href="{h}">{l}</a>' for h, l in t['nav'])
     faces = str(t['faces']).replace("'", '"')
@@ -217,6 +221,10 @@ def body(t):
 {prog}
   </ol>
   <p class="note">{t['prog_note']}</p>
+  <div class="demo-grid">
+    <figure class="demo"><div class="photo"><img src="/img/1/demo-versius.webp" alt="" loading="lazy" decoding="async"></div><figcaption><b>{t['demo1']}</b><span>{t['demo1s']}</span></figcaption></figure>
+    <figure class="demo"><div class="photo"><img src="/img/1/demo-musclesuit.webp" alt="" loading="lazy" decoding="async"></div><figcaption><b>{t['demo2']}</b><span>{t['demo2s']}</span></figcaption></figure>
+  </div>
 </section>
 
 <section class="mod speakers" id="speakers">
@@ -227,11 +235,16 @@ def body(t):
   <p class="note">{t['spk_more']}</p>
 </section>
 
-<section class="mod" id="where">
+<section class="mod where" id="where">
   <h2>{t['where_h']}</h2>
-  <p class="lede"><b>{t['where_name']}</b><br>{t['where_addr']}</p>
-  <p class="lede">{t['where_note']}</p>
-  <div class="cta-row"><a class="pill" href="{MAP}" target="_blank" rel="noopener">{t['where_map']}</a></div>
+  <div class="where__grid">
+    <div>
+      <p class="lede"><b>{t['where_name']}</b><br>{t['where_addr']}</p>
+      <p class="lede">{t['where_note']}</p>
+      <div class="cta-row"><a class="pill" href="{MAP}" target="_blank" rel="noopener">{t['where_map']}</a></div>
+    </div>
+    <div class="photo where__photo"><img src="/img/1/kde-ffmu.webp" alt="" loading="lazy" decoding="async"></div>
+  </div>
 </section>
 
 <section class="mod" id="who">
@@ -263,8 +276,22 @@ def body(t):
 
 EXTRA_CSS = '''.photo--empty{background:var(--orange-deep);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.12) 14px 16px)}
 .note{font-size:15px;opacity:.75;margin-top:var(--s2);max-width:34em}
+.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--s3)}
+@media (max-width:640px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
+.demo{margin:0}.demo .photo{aspect-ratio:16/9}
+.demo figcaption{margin-top:10px;font-size:15px;line-height:1.3}.demo figcaption b{display:block;font-size:17px}.demo figcaption span{color:var(--grey-text)}
+.where__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}
+.where__photo{aspect-ratio:3/2}
+@media (max-width:760px){.where__grid{grid-template-columns:minmax(0,1fr)}.where__photo{display:none}}
 .spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:1100px){.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:1100px){.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--s3)}
+@media (max-width:640px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
+.demo{margin:0}.demo .photo{aspect-ratio:16/9}
+.demo figcaption{margin-top:10px;font-size:15px;line-height:1.3}.demo figcaption b{display:block;font-size:17px}.demo figcaption span{color:var(--grey-text)}
+.where__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}
+.where__photo{aspect-ratio:3/2}
+@media (max-width:760px){.where__grid{grid-template-columns:minmax(0,1fr)}.where__photo{display:none}}
+.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
 </style>'''
 

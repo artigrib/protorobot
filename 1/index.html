@@ -485,8 +485,22 @@ html.lb-open{overflow:hidden}
 @media (max-width:640px){.rec .spk__name{font-size:26px}.rec__ico{width:48px;height:48px;margin:-24px 0 0 -24px}.rec__ico svg{width:20px;height:20px}.rec__dur{right:6px;bottom:6px}}
 .photo--empty{background:var(--orange-deep);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.12) 14px 16px)}
 .note{font-size:15px;opacity:.75;margin-top:var(--s2);max-width:34em}
+.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--s3)}
+@media (max-width:640px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
+.demo{margin:0}.demo .photo{aspect-ratio:16/9}
+.demo figcaption{margin-top:10px;font-size:15px;line-height:1.3}.demo figcaption b{display:block;font-size:17px}.demo figcaption span{color:var(--grey-text)}
+.where__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}
+.where__photo{aspect-ratio:3/2}
+@media (max-width:760px){.where__grid{grid-template-columns:minmax(0,1fr)}.where__photo{display:none}}
 .spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:1100px){.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:1100px){.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--s3)}
+@media (max-width:640px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
+.demo{margin:0}.demo .photo{aspect-ratio:16/9}
+.demo figcaption{margin-top:10px;font-size:15px;line-height:1.3}.demo figcaption b{display:block;font-size:17px}.demo figcaption span{color:var(--grey-text)}
+.where__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}
+.where__photo{aspect-ratio:3/2}
+@media (max-width:760px){.where__grid{grid-template-columns:minmax(0,1fr)}.where__photo{display:none}}
+.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
@@ -515,24 +529,15 @@ html.lb-open{overflow:hidden}
 <section class="hero" id="top" aria-label="Proto Robot #1 Brno">
   <div class="hero__bg">
     <div class="hero__track hero__track--h" data-track>
-    <div class="slide is-on"><img src="/img/0/h-8141.webp" alt="" fetchpriority="high"></div>
-    <div class="slide"><img src="/img/0/h-8039.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/h-8035.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/h-8230.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/h-8186.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/h-8357.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/h-8217.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/h-8340.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide is-on"><img src="/img/1/h-1.webp" alt="" fetchpriority="high"></div>
+    <div class="slide"><img src="/img/1/h-2.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/1/h-3.webp" alt="" loading="lazy" decoding="async"></div>
     </div>
     <div class="hero__track hero__track--v" data-track>
-    <div class="slide is-on"><img src="/img/0/v-1-8039.webp" alt="" fetchpriority="high"></div>
-    <div class="slide"><img src="/img/0/v-2-8141.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-3-8217.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-4-8357.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-5-8186.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-6-8230.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-7-8156.webp" alt="" loading="lazy" decoding="async"></div>
-    <div class="slide"><img src="/img/0/v-8-8129.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide is-on"><img src="/img/1/v-1.webp" alt="" fetchpriority="high"></div>
+    <div class="slide"><img src="/img/1/v-2.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/1/v-3.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="slide"><img src="/img/1/v-4.webp" alt="" loading="lazy" decoding="async"></div>
     </div>
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
@@ -561,6 +566,10 @@ html.lb-open{overflow:hidden}
     <li><time datetime="2026-11-26T21:00+01:00">21:00</time><div><b>Networking a demo stoly</b><span>Do 22:00. VR simulátor chirurgického robota, exoskelet pro zvedání břemen</span></div></li>
   </ol>
   <p class="note">Program doplňujeme, jména zveřejňujeme po potvrzení. Přednášky česky, demo i&nbsp;anglicky.</p>
+  <div class="demo-grid">
+    <figure class="demo"><div class="photo"><img src="/img/1/demo-versius.webp" alt="" loading="lazy" decoding="async"></div><figcaption><b>Konzole chirurgického robota</b><span>VR simulátor, vyzkoušíte si řízení ramen</span></figcaption></figure>
+    <figure class="demo"><div class="photo"><img src="/img/1/demo-musclesuit.webp" alt="" loading="lazy" decoding="async"></div><figcaption><b>Exoskelet pro zvedání</b><span>Nasadíte si ho a&nbsp;zvednete břemeno, pro sestry a&nbsp;pečovatele</span></figcaption></figure>
+  </div>
 </section>
 
 <section class="mod speakers" id="speakers">
@@ -591,11 +600,16 @@ html.lb-open{overflow:hidden}
   <p class="note">Další řečníky doplníme.</p>
 </section>
 
-<section class="mod" id="where">
+<section class="mod where" id="where">
   <h2>Kde</h2>
-  <p class="lede"><b>Aula C33, Filozofická fakulta Masarykovy univerzity</b><br>Arna Nováka 1, Brno, budova C, 3. patro</p>
-  <p class="lede">Asi 15 minut pěšky od FNUSA, hned po konferenci BioTech jak Brno. Bezbariérový přístup výtahem. Občerstvení a&nbsp;nealko, bez alkoholu podle pravidel fakulty.</p>
-  <div class="cta-row"><a class="pill" href="https://mapy.cz/zakladni?q=Arna%20Nov%C3%A1ka%201%2C%20Brno" target="_blank" rel="noopener">Otevřít mapu</a></div>
+  <div class="where__grid">
+    <div>
+      <p class="lede"><b>Aula C33, Filozofická fakulta Masarykovy univerzity</b><br>Arna Nováka 1, Brno, budova C, 3. patro</p>
+      <p class="lede">Asi 15 minut pěšky od FNUSA, hned po konferenci BioTech jak Brno. Bezbariérový přístup výtahem. Občerstvení a&nbsp;nealko, bez alkoholu podle pravidel fakulty.</p>
+      <div class="cta-row"><a class="pill" href="https://mapy.cz/zakladni?q=Arna%20Nov%C3%A1ka%201%2C%20Brno" target="_blank" rel="noopener">Otevřít mapu</a></div>
+    </div>
+    <div class="photo where__photo"><img src="/img/1/kde-ffmu.webp" alt="" loading="lazy" decoding="async"></div>
+  </div>
 </section>
 
 <section class="mod" id="who">
