@@ -463,8 +463,31 @@ html.lb-open{overflow:hidden}
 .vp__list .is-soon button{cursor:default;opacity:.55}
 @media (max-width:900px){.vp{grid-template-columns:1fr}.vp__side{max-height:340px;min-height:0}.vp__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.vp__vol{display:none}.vp__bar{gap:4px;padding:6px}.vp__big{width:64px;height:64px}}
+
+/* ---------- recordings: one card per talk, the card is the speaker ---------- */
+.rec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3) var(--g);margin-top:var(--s3)}
+@media (max-width:1000px){.rec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.rec-grid{grid-template-columns:minmax(0,1fr);gap:var(--s3)}}
+.rec.is-on{display:none}
+.vp__now a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent}.vp__now a:hover,.vp__now a:focus-visible{text-decoration-color:currentColor}
+.vp__note{font-size:15px;line-height:1.35;margin:6px 0 var(--s2)}
+.rec{display:grid;align-content:start}
+.rec__play{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer}
+.rec__play:focus-visible .photo{outline:3px solid var(--black);outline-offset:3px}
+.rec .photo{display:block;aspect-ratio:16/9}
+.rec .photo img{transition:opacity .65s var(--ease-out),transform .9s var(--ease-out)}
+.rec:hover .photo img{transform:scale(1.03)}
+.rec__ico{position:absolute;z-index:3;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--white);display:grid;place-items:center;transition:transform .25s var(--ease-out),background .2s}
+.rec__ico svg{width:26px;height:26px;fill:var(--black);margin-left:3px}
+.rec:hover .rec__ico{transform:scale(1.08);background:var(--orange)}
+.rec__dur{position:absolute;z-index:3;right:var(--s1);bottom:var(--s1);background:var(--black);color:var(--white);font:600 13px/1 var(--font);padding:7px 9px;letter-spacing:.02em}
+.rec .spk__name{margin-top:var(--s2)}
+@media (max-width:640px){.rec .spk__name{font-size:26px}.rec__ico{width:48px;height:48px;margin:-24px 0 0 -24px}.rec__ico svg{width:20px;height:20px}.rec__dur{right:6px;bottom:6px}}
 .photo--empty{background:var(--orange-deep);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.12) 14px 16px)}
 .note{font-size:15px;opacity:.75;margin-top:var(--s2);max-width:34em}
+.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1100px){.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -520,7 +543,7 @@ html.lb-open{overflow:hidden}
 <section class="mod intro" id="about">
   <ul class="nums" aria-label="#1 v číslech"><li><b>26. 11.</b><span>čtvrtek</span></li><li><b>19:00</b><span>otevřeno od</span></li><li><b>150</b><span>míst v sále</span></li><li><b>0 Kč</b><span>vstup</span></li></ul>
   <h1 class="vh">PROTO ROBOT #1 Brno</h1>
-  <p>Roboti už v&nbsp;Brně operují pacienty, zpracovávají vzorky a&nbsp;pomáhají lidem znovu chodit. Po Praze jedeme za lidmi, kteří je v&nbsp;medicíně používají a&nbsp;vyvíjejí.</p>
+  <p>Roboti už v&nbsp;Česku operují pacienty, pomáhají lidem znovu chodit a&nbsp;ulehčují práci sestrám. Uvidíte, jak jsou zavedená existující řešení, a&nbsp;potkáte lidi z&nbsp;praxe pro budoucí piloty vlastních produktů.</p>
   <p class="facts"><a href="#programme">Program</a><a href="#speakers">Řečníci</a><a href="#where">Kde</a><a class="pill--orange" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Registrovat se</a></p>
 </section>
 
@@ -529,14 +552,15 @@ html.lb-open{overflow:hidden}
   <ol class="tl">
     <li><time datetime="2026-11-26T19:00+01:00">19:00</time><div><b>Dveře</b><span>Příchod, občerstvení ve foyer</span></div></li>
     <li><time datetime="2026-11-26T19:30+01:00">19:30</time><div><b>Úvod</b><span>PROTO ROBOT #1 Brno</span></div></li>
-    <li><time datetime="2026-11-26T19:35+01:00">19:35</time><div><b>Robot v laboratoři</b><span>Řečníka upřesníme</span></div></li>
-    <li><time datetime="2026-11-26T19:50+01:00">19:50</time><div><b>Robot na operačním sále</b><span>Řečníka upřesníme</span></div></li>
-    <li><time datetime="2026-11-26T20:05+01:00">20:05</time><div><b>Panel: robot v nemocnici v praxi</b><span>Lucie Vidovićová (FSS MU) a&nbsp;další hosté, upřesníme</span></div></li>
-    <li><time datetime="2026-11-26T20:30+01:00">20:30</time><div><b>Krátké ukázky</b><span>Firmy a&nbsp;týmy, které roboty pro medicínu stavějí</span></div></li>
+    <li><time datetime="2026-11-26T19:40+01:00">19:40</time><div><b>Robotická chirurgie v praxi: da Vinci ve FNUSA</b><span>prim. MUDr. Petr Filipenský, Fakultní nemocnice u&nbsp;sv. Anny</span></div></li>
+    <li><time datetime="2026-11-26T19:55+01:00">19:55</time><div><b>Jak se robot zavádí do nemocnice: Versius ve FN Brno</b><span>Řečníka upřesníme</span></div></li>
+    <li><time datetime="2026-11-26T20:10+01:00">20:10</time><div><b>Panel: Technologie v péči. Kdo je přijme a co je etické?</b><span>Lucie Vidovićová (FSS MU), David Černý (ÚSP AV ČR) a&nbsp;praktik z&nbsp;nemocnice, upřesníme. Moderuje Arti</span></div></li>
+    <li><time datetime="2026-11-26T20:35+01:00">20:35</time><div><b>Otázky z publika</b></div></li>
+    <li><time datetime="2026-11-26T20:40+01:00">20:40</time><div><b>Lightning: ukaž svůj projekt</b><span>5 × 2 minuty, přihlášky v&nbsp;registraci</span></div></li>
     <li><time datetime="2026-11-26T20:50+01:00">20:50</time><div><b>Shrnutí</b></div></li>
-    <li><time datetime="2026-11-26T21:00+01:00">21:00</time><div><b>Networking a ukázky robotů</b><span>Do 22:00</span></div></li>
+    <li><time datetime="2026-11-26T21:00+01:00">21:00</time><div><b>Networking a demo stoly</b><span>Do 22:00. VR simulátor chirurgického robota, exoskelet pro zvedání břemen</span></div></li>
   </ol>
-  <p class="note">Program doplňujeme, jména zveřejňujeme po potvrzení. Přednášky jsou česky.</p>
+  <p class="note">Program doplňujeme, jména zveřejňujeme po potvrzení. Přednášky česky, demo i&nbsp;anglicky.</p>
 </section>
 
 <section class="mod speakers" id="speakers">
@@ -544,10 +568,24 @@ html.lb-open{overflow:hidden}
   <div class="spk-grid">
     <article class="spk">
       <div class="photo photo--empty" aria-hidden="true"></div>
+      <h3 class="spk__name">Petr Filipenský</h3>
+      <p class="spk__org">Fakultní nemocnice u sv. Anny v Brně</p>
+      <p class="spk__talk">Robotická chirurgie v praxi: da Vinci ve FNUSA</p>
+      <p class="spk__note">Primář. FNUSA operuje na robotu da Vinci od roku 2023, v&nbsp;roce 2025 to bylo kolem 269 výkonů.</p>
+    </article>
+    <article class="spk">
+      <div class="photo photo--empty" aria-hidden="true"></div>
       <h3 class="spk__name">Lucie Vidovićová</h3>
       <p class="spk__org">Fakulta sociálních studií MU</p>
-      <p class="spk__talk">Panel: robot v nemocnici v praxi</p>
-      <p class="spk__note">Socioložka stárnutí, výzkum asistivních technologií a&nbsp;toho, jak lidé roboty v&nbsp;péči přijímají.</p>
+      <p class="spk__talk">Panel: Technologie v péči</p>
+      <p class="spk__note">Socioložka stárnutí. Etika asistivních technologií v&nbsp;sociálních službách a&nbsp;to, jak lidé roboty v&nbsp;péči přijímají.</p>
+    </article>
+    <article class="spk">
+      <div class="photo photo--empty" aria-hidden="true"></div>
+      <h3 class="spk__name">David Černý</h3>
+      <p class="spk__org">Ústav státu a práva AV ČR</p>
+      <p class="spk__talk">Panel: Technologie v péči</p>
+      <p class="spk__note">Etik AI a&nbsp;robotů, spolueditor knihy Autonomous Vehicle Ethics (Oxford, 2022).</p>
     </article>
   </div>
   <p class="note">Další řečníky doplníme.</p>
@@ -556,13 +594,13 @@ html.lb-open{overflow:hidden}
 <section class="mod" id="where">
   <h2>Kde</h2>
   <p class="lede"><b>Aula C33, Filozofická fakulta Masarykovy univerzity</b><br>Arna Nováka 1, Brno, budova C, 3. patro</p>
-  <p class="lede">Asi 15 minut pěšky od FNUSA. Ve stejný den odpoledne probíhá v&nbsp;Brně konference BioTech jak Brno, náš večer začíná po ní.</p>
+  <p class="lede">Asi 15 minut pěšky od FNUSA, hned po konferenci BioTech jak Brno. Bezbariérový přístup výtahem. Občerstvení a&nbsp;nealko, bez alkoholu podle pravidel fakulty.</p>
   <div class="cta-row"><a class="pill" href="https://mapy.cz/zakladni?q=Arna%20Nov%C3%A1ka%201%2C%20Brno" target="_blank" rel="noopener">Otevřít mapu</a></div>
 </section>
 
 <section class="mod" id="who">
   <h2>Pro koho</h2>
-  <p class="lede">Inženýři, vědci, lékaři, laboranti, fyzioterapeuti, studenti VUT a&nbsp;MUNI, zakladatelé medtech a&nbsp;robotických firem.</p>
+  <p class="lede">Inženýři a&nbsp;vývojáři robotiky, lékaři, sestry, fyzioterapeuti, laboranti, studenti VUT (FEKT, FSI, FIT) a&nbsp;MUNI (FI, LF), zakladatelé medtech startupů.</p>
 </section>
 
 <section class="mod tix" id="tickets">
