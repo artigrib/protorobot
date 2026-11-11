@@ -45,8 +45,8 @@ T = {
   demo1='Konzole chirurgického robota', demo1s='VR simulátor, vyzkoušíte si řízení ramen',
   demo2='Exoskelet pro zvedání', demo2s='Nasadíte si ho a&nbsp;zvednete břemeno, pro sestry a&nbsp;pečovatele',
   spk_h='Řečníci',
-  spk=[dict(name='Petr Filipenský', org='Fakultní nemocnice u sv. Anny v Brně', talk='Robotická chirurgie v praxi: da Vinci ve FNUSA', note='Primář. FNUSA operuje na robotu da Vinci od roku 2023, v&nbsp;roce 2025 to bylo kolem 269 výkonů.'),
-       dict(name='Lucie Vidovićová', org='Fakulta sociálních studií MU', talk='Panel: Technologie v péči', note='Socioložka stárnutí. Etika asistivních technologií v&nbsp;sociálních službách a&nbsp;to, jak lidé roboty v&nbsp;péči přijímají.'),
+  spk=[dict(img='filipensky', name='Petr Filipenský', org='Fakultní nemocnice u sv. Anny v Brně', talk='Robotická chirurgie v praxi: da Vinci ve FNUSA', note='Primář. FNUSA operuje na robotu da Vinci od roku 2023, v&nbsp;roce 2025 to bylo kolem 269 výkonů.'),
+       dict(img='vidovicova', name='Lucie Vidovićová', org='Fakulta sociálních studií MU', talk='Panel: Technologie v péči', note='Socioložka stárnutí. Etika asistivních technologií v&nbsp;sociálních službách a&nbsp;to, jak lidé roboty v&nbsp;péči přijímají.'),
        dict(name='David Černý', org='Ústav státu a práva AV ČR', talk='Panel: Technologie v péči', note='Etik AI a&nbsp;robotů, spolueditor knihy Autonomous Vehicle Ethics (Oxford, 2022).')],
   spk_more='Další řečníky doplníme.',
   where_h='Kde', where_name='Aula C33, Filozofická fakulta Masarykovy univerzity', where_addr='Arna Nováka 1, Brno, budova C, 3. patro',
@@ -95,8 +95,8 @@ T = {
   demo1='Surgical robot console', demo1s='VR simulator, try steering the arms yourself',
   demo2='Lifting exoskeleton', demo2s='Put it on and lift a load, built for nurses and carers',
   spk_h='Speakers',
-  spk=[dict(name='Petr Filipenský', org="St. Anne's University Hospital Brno", talk='Robotic surgery in practice: da Vinci at FNUSA', note='Head of department. FNUSA has operated with a da Vinci robot since 2023, about 269 procedures in 2025.'),
-       dict(name='Lucie Vidovićová', org='Faculty of Social Studies, Masaryk University', talk='Panel: Technology in care', note='Sociologist of ageing. Ethics of assistive technologies in social care and how people accept robots.'),
+  spk=[dict(img='filipensky', name='Petr Filipenský', org="St. Anne's University Hospital Brno", talk='Robotic surgery in practice: da Vinci at FNUSA', note='Head of department. FNUSA has operated with a da Vinci robot since 2023, about 269 procedures in 2025.'),
+       dict(img='vidovicova', name='Lucie Vidovićová', org='Faculty of Social Studies, Masaryk University', talk='Panel: Technology in care', note='Sociologist of ageing. Ethics of assistive technologies in social care and how people accept robots.'),
        dict(name='David Černý', org='Institute of State and Law, Czech Academy of Sciences', talk='Panel: Technology in care', note='Ethicist of AI and robots, co-editor of Autonomous Vehicle Ethics (Oxford, 2022).')],
   spk_more='More speakers to be announced.',
   where_h='Where', where_name='Lecture hall C33, Faculty of Arts, Masaryk University', where_addr='Arna Nováka 1, Brno, building C, 3rd floor',
@@ -168,8 +168,9 @@ def body(t):
     prog = '\n'.join(
         f'    <li><time datetime="2026-11-26T{tm}+01:00">{tm}</time><div><b>{b}</b>{"<span>"+s+"</span>" if s else ""}</div></li>'
         for tm, b, s in t['prog'])
+    photo = lambda s: (f'<div class="photo"><img src="/img/1/sp-{s["img"]}.webp" alt="{s["name"]}" width="600" height="600" loading="lazy" decoding="async"></div>' if s.get('img') else '<div class="photo photo--empty" aria-hidden="true"></div>')
     spk = '\n'.join(f'''    <article class="spk">
-      <div class="photo photo--empty" aria-hidden="true"></div>
+      {photo(s)}
       <h3 class="spk__name">{s['name']}</h3>
       <p class="spk__org">{s['org']}</p>
       <p class="spk__talk">{s['talk']}</p>
