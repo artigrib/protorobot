@@ -22,19 +22,21 @@ L = {
 
 CSS = '''
 /* ---------- recordings: one card per talk, the card is the speaker ---------- */
-.rec-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s3) var(--g);margin-top:var(--s3)}
+.rec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3) var(--g);margin-top:var(--s3)}
+@media (max-width:1000px){.rec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.rec-grid{grid-template-columns:minmax(0,1fr);gap:var(--s3)}}
+.rec.is-on{display:none}
+.vp__now a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent}.vp__now a:hover,.vp__now a:focus-visible{text-decoration-color:currentColor}
+.vp__note{font-size:15px;line-height:1.35;margin:6px 0 var(--s2)}
 .rec{display:grid;align-content:start}
 .rec__play{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer}
 .rec__play:focus-visible .photo{outline:3px solid var(--black);outline-offset:3px}
 .rec .photo{display:block;aspect-ratio:16/9}
 .rec .photo img{transition:opacity .65s var(--ease-out),transform .9s var(--ease-out)}
 .rec:hover .photo img{transform:scale(1.03)}
-.rec.is-on .photo::after{background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.42)),var(--black);mix-blend-mode:normal;opacity:.55}
 .rec__ico{position:absolute;z-index:3;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--white);display:grid;place-items:center;transition:transform .25s var(--ease-out),background .2s}
 .rec__ico svg{width:26px;height:26px;fill:var(--black);margin-left:3px}
 .rec:hover .rec__ico{transform:scale(1.08);background:var(--orange)}
-.rec.is-on .rec__ico{background:var(--black)}.rec.is-on .rec__ico svg{fill:var(--white)}
 .rec__dur{position:absolute;z-index:3;right:var(--s1);bottom:var(--s1);background:var(--black);color:var(--white);font:600 13px/1 var(--font);padding:7px 9px;letter-spacing:.02em}
 .rec .spk__name{margin-top:var(--s2)}
 @media (max-width:640px){.rec .spk__name{font-size:26px}.rec__ico{width:48px;height:48px;margin:-24px 0 0 -24px}.rec__ico svg{width:20px;height:20px}.rec__dur{right:6px;bottom:6px}}
@@ -81,6 +83,9 @@ for lang, t in L.items():
 
   function load''', s, flags=re.S)
     s = s.replace("v.poster = `${base}${l.id}.jpg`;", "v.poster = `/img/0/vp-${l.id}.webp`;")
+    s = s.replace("q('.vp__spk').textContent = `${l.speaker} · ${l.org}`; q('.vp__ttl').textContent = l.title;",
+                  "const card = cards[i], li = card && card.querySelector('.spk__name a'); q('.vp__spk').innerHTML = ''; if (li) { const a = document.createElement('a'); a.href = li.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = l.speaker; q('.vp__spk').append(a, ` · ${l.org}`); } else q('.vp__spk').textContent = `${l.speaker} · ${l.org}`; q('.vp__ttl').textContent = l.title; const nt = card && card.querySelector('.spk__note'); q('.vp__note').textContent = nt ? nt.textContent : '';")
+    s = s.replace('<p class="vp__now"><b class="vp__spk"></b><span class="vp__ttl"></span></p>', '<p class="vp__now"><b class="vp__spk"></b><span class="vp__ttl"></span></p>\n      <p class="vp__note"></p>')
     s = s.replace("[...ulL.children].forEach((li, k) => li.classList.toggle('is-on', k === i));", "cards.forEach((c, k) => c.classList.toggle('is-on', k === i));")
     # G. footer
     s = re.sub(r'(<footer class="foot">\n  <a href="[^"]*">#1</a>\n  )' + re.escape(t['foot_old']), lambda m: m.group(1) + t['foot_new'], s, count=1)
