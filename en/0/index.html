@@ -496,6 +496,26 @@ html.lb-open{overflow:hidden}
 .vp__list .is-soon button{cursor:default;opacity:.55}
 @media (max-width:900px){.vp{grid-template-columns:1fr}.vp__side{max-height:340px;min-height:0}.vp__list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.vp__vol{display:none}.vp__bar{gap:4px;padding:6px}.vp__big{width:64px;height:64px}}
+
+/* ---------- recordings: one card per talk, the card is the speaker ---------- */
+.rec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3) var(--g);margin-top:var(--s3)}
+@media (max-width:1000px){.rec-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.rec-grid{grid-template-columns:minmax(0,1fr);gap:var(--s3)}}
+.rec.is-on{display:none}
+.vp__now a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:transparent}.vp__now a:hover,.vp__now a:focus-visible{text-decoration-color:currentColor}
+.vp__note{font-size:15px;line-height:1.35;margin:6px 0 var(--s2)}
+.rec{display:grid;align-content:start}
+.rec__play{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer}
+.rec__play:focus-visible .photo{outline:3px solid var(--black);outline-offset:3px}
+.rec .photo{display:block;aspect-ratio:16/9}
+.rec .photo img{transition:opacity .65s var(--ease-out),transform .9s var(--ease-out)}
+.rec:hover .photo img{transform:scale(1.03)}
+.rec__ico{position:absolute;z-index:3;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--white);display:grid;place-items:center;transition:transform .25s var(--ease-out),background .2s}
+.rec__ico svg{width:26px;height:26px;fill:var(--black);margin-left:3px}
+.rec:hover .rec__ico{transform:scale(1.08);background:var(--orange)}
+.rec__dur{position:absolute;z-index:3;right:var(--s1);bottom:var(--s1);background:var(--black);color:var(--white);font:600 13px/1 var(--font);padding:7px 9px;letter-spacing:.02em}
+.rec .spk__name{margin-top:var(--s2)}
+@media (max-width:640px){.rec .spk__name{font-size:26px}.rec__ico{width:48px;height:48px;margin:-24px 0 0 -24px}.rec__ico svg{width:20px;height:20px}.rec__dur{right:6px;bottom:6px}}
 </style>
 </head>
 <body>
@@ -505,8 +525,7 @@ html.lb-open{overflow:hidden}
   <nav class="city" id="city" aria-label="Sections">
     <button class="city__name" type="button" id="cityBtn" aria-controls="cityNav" aria-expanded="true" aria-label="Menu"><span class="burger" aria-hidden="true"></span></button>
     <div class="city__nav" id="cityNav">
-      <a class="pill" href="#programme">Program</a>
-      <a class="pill" href="#speakers">Speakers</a>
+      <a class="pill" href="#recordings">Recordings</a>
       <a class="pill" href="#photos">Photos</a>
       <a class="pill" href="/en/">#1</a>
     </div>
@@ -558,26 +577,12 @@ html.lb-open{overflow:hidden}
   <p class="nums-who">Among those registered: 73 engineers and researchers, 37 students (CTU, CIIRC, Matfyz, 42 Prague) and 31 founders. Investors from Czech VC funds were in the room too.</p>
   <h1 class="vh">PROTO ROBOT #0</h1>
   <p>Friday 23 October 2026, Pracovna, Prague 3. Four talks, three live demos (the AgiBot X2 Ultra humanoid from Integra Robotics, Reachy Mini by Pollen Robotics and Krabičák) and a full house of robotics people.</p>
-  <p class="facts"><a href="#programme">Program</a><a href="#photos">Photos</a><a href="#recordings">Talks</a><a class="pill--orange" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a></p>
-</section>
-
-<section class="mod" id="programme">
-  <h2>Program</h2>
-  <ol class="tl">
-    <li><time datetime="2026-10-23T18:00+02:00">18:00</time><div><b>Doors, bar, demo tables</b></div></li>
-    <li><time datetime="2026-10-23T19:05+02:00">19:05</time><div><b>Tomáš Konečný</b><span>Robotservice · Common facility robot issues</span></div></li>
-    <li><time datetime="2026-10-23T19:15+02:00">19:15</time><div><b>Lukáš Vítek</b><span>Integra Robotics · Physical AI and humanoids in industry</span></div></li>
-    <li><time datetime="2026-10-23T20:00+02:00">20:00</time><div><b>Break</b><span>Pizza, humanoid in the room</span></div></li>
-    <li><time datetime="2026-10-23T20:30+02:00">20:30</time><div><b>Fabien Danieau</b><span>Pollen Robotics / Hugging Face · Reachy Mini: open-source desk robot, live demo</span></div></li>
-    <li><time datetime="2026-10-23T20:50+02:00">20:50</time><div><b>Ondřej Bruna</b><span>Co-author and developer of KORD · KORD: Lessons Learned</span></div></li>
-    <li><time datetime="2026-10-23T21:05+02:00">21:05</time><div><b>Hiring slot</b><span>REVEL Robotics</span></div></li>
-    <li><time datetime="2026-10-23T21:15+02:00">21:15</time><div><b>Networking</b><span>Until 22:00</span></div></li>
-  </ol>
+  <p class="facts"><a href="#recordings">Recordings</a><a href="#photos">Photos</a><a class="pill--orange" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a></p>
 </section>
 
 <section class="mod rec" id="recordings">
   <h2>Recordings</h2>
-  <p class="lede">All four talks from PROTO ROBOT #0. Chapters jump straight to the spot.</p>
+  <p class="lede">The four talks from PROTO ROBOT #0 in the order they were given. Chapters jump straight to the spot.</p>
   <div class="vp" id="vp" tabindex="-1">
     <div class="vp__stage">
       <video class="vp__video" playsinline preload="metadata"></video>
@@ -594,44 +599,43 @@ html.lb-open{overflow:hidden}
     </div>
     <div class="vp__side">
       <p class="vp__now"><b class="vp__spk"></b><span class="vp__ttl"></span></p>
+      <p class="vp__note"></p>
       <h3 class="vp__label">Chapters</h3>
       <ol class="vp__chapters"></ol>
     </div>
   </div>
-  <h3 class="vp__label vp__label--list">Talks</h3>
-  <ol class="vp__list"></ol>
-</section>
-
-<section class="mod speakers" id="speakers">
-  <h2>Speakers</h2>
-  <div class="spk-grid">
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-konecny.webp" alt="Tomáš Konečný"><span class="spk__bot spk__bot--wide"><img src="/img/bot-scrubber.webp" alt="Floor scrubber robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, LinkedIn profile">Tomáš Konečný</a></h3>
+  <div class="rec-grid" id="recGrid">
+    <article class="rec" data-i="0" id="rec-01-konecny-robot-issues">
+      <button class="rec__play" type="button" aria-label="Play: Tomáš Konečný"><span class="photo"><img src="/img/0/vp-01-konecny-robot-issues.webp" alt="" width="1600" height="900" decoding="async"><span class="rec__ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="rec__dur">16:54</span></span></button>
+            <h3 class="spk__name"><a href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-kone%C4%8Dn%C3%BD-360a63164/" target="_blank" rel="noopener" aria-label="Tomáš Konečný, LinkedIn profile">Tomáš Konečný</a></h3>
       <p class="spk__org spk__orgs"><span class="spk__co">Robotservice</span></p>
       <p class="spk__talk">Common facility robot issues</p>
       <p class="spk__note">Five minutes from the field: what really breaks on service robots in operation.</p>
+    
     </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-vitek.webp" alt="Lukáš Vítek"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-integra.webp" alt="Humanoid robot" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, LinkedIn profile">Lukáš Vítek</a></h3>
+    <article class="rec" data-i="1" id="rec-02-vitek-humanoids">
+      <button class="rec__play" type="button" aria-label="Play: Lukáš Vítek"><span class="photo"><img src="/img/0/vp-02-vitek-humanoids.webp" alt="" width="1600" height="900" decoding="async"><span class="rec__ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="rec__dur">36:35</span></span></button>
+            <h3 class="spk__name"><a href="https://www.linkedin.com/in/vitek-lukas/" target="_blank" rel="noopener" aria-label="Lukáš Vítek, LinkedIn profile">Lukáš Vítek</a></h3>
       <p class="spk__org spk__orgs"><span class="spk__co"><img class="co-integra" src="/img/logo-integra.svg" alt="" height="22">Integra Robotics</span></p>
       <p class="spk__talk">Physical AI and humanoids in industry</p>
       <p class="spk__note">Where humanoids meet physical AI. Integra brought their humanoid for a live demo.</p>
+    
     </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-danieau.webp" alt="Fabien Danieau"><span class="spk__demo">Live demo</span><span class="spk__bot"><img src="/img/bot-reachy.webp" alt="Reachy Mini" width="66" height="88" loading="lazy" decoding="async"></span></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, LinkedIn profile">Fabien Danieau</a></h3>
+    <article class="rec" data-i="2" id="rec-03-danieau-reachy-mini">
+      <button class="rec__play" type="button" aria-label="Play: Fabien Danieau"><span class="photo"><img src="/img/0/vp-03-danieau-reachy-mini.webp" alt="" width="1600" height="900" decoding="async"><span class="rec__ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="rec__dur">21:54</span></span></button>
+            <h3 class="spk__name"><a href="https://www.linkedin.com/in/fabiendanieau/" target="_blank" rel="noopener" aria-label="Fabien Danieau, LinkedIn profile">Fabien Danieau</a></h3>
       <p class="spk__org spk__orgs"><span class="spk__co"><img src="/img/logo-pollen.webp" alt="" height="18">Pollen Robotics</span><span class="spk__co"><img src="/img/logo-hf.svg" alt="" height="18">Hugging Face</span></p>
       <p class="spk__talk">Reachy Mini: open-source desk robot</p>
       <p class="spk__note">An expressive desk robot. Live demo in the middle of the talk.</p>
+    
     </article>
-    <article class="spk">
-      <div class="photo"><img loading="lazy" decoding="async" src="/img/0/sp-bruna.webp" alt="Ondřej Bruna"></div>
-      <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, LinkedIn profile">Ondřej Bruna</a></h3>
+    <article class="rec" data-i="3" id="rec-04-bruna-kord">
+      <button class="rec__play" type="button" aria-label="Play: Ondřej Bruna"><span class="photo"><img src="/img/0/vp-04-bruna-kord.webp" alt="" width="1600" height="900" decoding="async"><span class="rec__ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="rec__dur">20:02</span></span></button>
+            <h3 class="spk__name"><a href="https://www.linkedin.com/in/ond%C5%99ej-bruna-1500a043/" target="_blank" rel="noopener" aria-label="Ondřej Bruna, LinkedIn profile">Ondřej Bruna</a></h3>
       <p class="spk__org">Co-author and developer of KORD</p>
       <p class="spk__talk">KORD: Lessons Learned</p>
       <p class="spk__note">What worked, what didn’t and what he’d do differently after ten years building a 7-axis cobot.</p>
+    
     </article>
   </div>
 </section>
@@ -669,16 +673,11 @@ html.lb-open{overflow:hidden}
   </div>
 </section>
 
-<section class="mod tix" id="next">
-  <h2>#1 is in the works</h2>
-  <p class="lede">Follow us on Luma to hear about the next meetup first.</p>
-  <div class="cta-row"><a class="pill pill--orange pill--lg" href="https://luma.com/user/protorobot" target="_blank" rel="noopener">Follow on Luma</a></div>
-</section>
-
 </main>
 
 <footer class="foot">
   <a href="/en/">#1</a>
+  <a href="#recordings">Recordings</a>
   <a href="#photos">Photos</a>
   <a href="/en/dilny/">Where to build</a>
   <a href="/en/granty/">Grants</a>
@@ -1027,33 +1026,26 @@ window.PR_I18N = {"h": "Recordings", "lede": "All four talks from PROTO ROBOT #0
   const base = window.PR_MEDIA_BASE, list = window.PR_LECTURES, S = window.PR_I18N;
   const q = s => root.querySelector(s);
   const v = q('.vp__video'), seek = q('.vp__seek'), time = q('.vp__time'), vol = q('.vp__vol'), spd = q('.vp__speed');
-  const ulC = q('.vp__chapters'), ulL = document.querySelector('.vp__list');
+  const ulC = q('.vp__chapters'), cards = [...document.querySelectorAll('#recGrid .rec')];
   const speeds = [1, 1.25, 1.5, 1.75, 2, 0.75];
   let cur = -1, idleT;
   const fmt = s => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = String(s % 60).padStart(2, '0'); return h ? `${h}:${String(m).padStart(2, '0')}:${x}` : `${m}:${x}`; };
   const avail = l => l.ready !== false;
   const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h != null) e.innerHTML = h; return e; };
 
-  list.forEach((l, i) => {
-    const li = el('li', avail(l) ? '' : 'is-soon'), b = el('button');
-    b.type = 'button';
-    const th = el('span', 'vp__thumb'); th.style.backgroundImage = `url("${base}${l.id}.webp")`;
-    if (!avail(l)) th.appendChild(el('i', '', S.soon));
-    b.append(th, el('b', '', l.speaker), el('span', 't', l.title));
-    if (avail(l)) b.addEventListener('click', () => { load(i, 0, true); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-    else b.setAttribute('aria-disabled', 'true');
-    li.appendChild(b); ulL.appendChild(li);
+  cards.forEach((c, i) => {
+    c.querySelector('.rec__play').addEventListener('click', () => { load(i, 0, true); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   });
 
   function load(i, t = 0, play = false) {
     const l = list[i]; if (!l) return;
     if (i !== cur) {
       cur = i;
-      v.src = `${base}${l.id}.mp4${l.v ? '?v=' + l.v : ''}`; v.poster = `${base}${l.id}.jpg`;
-      q('.vp__spk').textContent = `${l.speaker} · ${l.org}`; q('.vp__ttl').textContent = l.title;
+      v.src = `${base}${l.id}.mp4${l.v ? '?v=' + l.v : ''}`; v.poster = `/img/0/vp-${l.id}.webp`;
+      const card = cards[i], li = card && card.querySelector('.spk__name a'); q('.vp__spk').innerHTML = ''; if (li) { const a = document.createElement('a'); a.href = li.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = l.speaker; q('.vp__spk').append(a, ` · ${l.org}`); } else q('.vp__spk').textContent = `${l.speaker} · ${l.org}`; q('.vp__ttl').textContent = l.title; const nt = card && card.querySelector('.spk__note'); q('.vp__note').textContent = nt ? nt.textContent : '';
       ulC.innerHTML = '';
       l.ch.forEach(([s, n]) => { const li = el('li'), b = el('button'); b.type = 'button'; b.dataset.t = s; b.innerHTML = `<time>${fmt(s)}</time><span></span>`; b.lastChild.textContent = n; b.onclick = () => jump(s); li.appendChild(b); ulC.appendChild(li); });
-      [...ulL.children].forEach((li, k) => li.classList.toggle('is-on', k === i));
+      cards.forEach((c, k) => c.classList.toggle('is-on', k === i));
       root.classList.remove('has-played');
       if (history.replaceState) history.replaceState(null, '', '#' + l.id);
     }
