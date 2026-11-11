@@ -26,9 +26,8 @@ T = {
   nums=[('26. 11.','čtvrtek'),('19:00','otevřeno od'),('150','míst v sále'),('0 Kč','vstup')],
   nums_label='#1 v číslech',
   h1='PROTO ROBOT #1 Brno',
-  intro=('Roboti už v Brně operují pacienty, zpracovávají vzorky v laboratořích a&nbsp;pomáhají lidem znovu chodit. '
-         'Jak to vypadá v&nbsp;praxi, co funguje, kde to drhne a&nbsp;co z&nbsp;toho mají inženýři, lékaři a&nbsp;pacienti? '
-         'Po pražském nultém dílu (143 registrací, kolem 100 lidí v&nbsp;sále) jedeme do Brna, k&nbsp;lidem, kteří roboty v&nbsp;medicíně skutečně používají a&nbsp;vyvíjejí.'),
+  intro=('Roboti už v&nbsp;Brně operují pacienty, zpracovávají vzorky a&nbsp;pomáhají lidem znovu chodit. '
+         'Po Praze jedeme za lidmi, kteří je v&nbsp;medicíně používají a&nbsp;vyvíjejí.'),
   facts=[('#programme','Program'),('#speakers','Řečníci'),('#where','Kde')], facts_cta='Registrovat se',
   prog_h='Program',
   prog=[
@@ -72,9 +71,8 @@ T = {
   nums=[('26 Nov','Thursday'),('19:00','doors'),('150','seats'),('free','entry')],
   nums_label='#1 in numbers',
   h1='PROTO ROBOT #1 Brno',
-  intro=('Robots already operate on patients in Brno, process samples in labs and help people walk again. '
-         'What does that look like day to day, what works, what breaks, and what does it mean for engineers, clinicians and patients? '
-         'After edition #0 in Prague (143 registrations, about 100 people in the room) we come to Brno, to the people who build and use robots in medicine.'),
+  intro=('Robots already operate on patients in Brno, process samples and help people walk again. '
+         'After Prague we come to the people who build and use them in medicine.'),
   facts=[('#programme','Programme'),('#speakers','Speakers'),('#where','Where')], facts_cta='Register',
   prog_h='Programme',
   prog=[
@@ -228,7 +226,10 @@ def body(t):
   <p class="lede"><b>{t['where_name']}</b><br>{t['where_addr']}</p>
   <p class="lede">{t['where_note']}</p>
   <div class="cta-row"><a class="pill" href="{MAP}" target="_blank" rel="noopener">{t['where_map']}</a></div>
-  <h2 class="h2--sub">{t['who_h']}</h2>
+</section>
+
+<section class="mod" id="who">
+  <h2>{t['who_h']}</h2>
   <p class="lede">{t['who']}</p>
 </section>
 
@@ -238,10 +239,10 @@ def body(t):
   <div class="cta-row"><a class="pill pill--orange pill--lg" href="{LUMA}" target="_blank" rel="noopener">{t['tix_cta']}</a></div>
 </section>
 
-<section class="mod tix" id="prev">
+<section class="mod" id="prev">
   <h2>{t['prev_h']}</h2>
   <p class="lede">{t['prev_lede']}</p>
-  <div class="cta-row"><a class="pill pill--lg" href="/{'0' if t['lang']=='cs' else 'en/0'}/">{t['prev_cta']}</a></div>
+  <div class="cta-row"><a class="pill" href="/{'0' if t['lang']=='cs' else 'en/0'}/">{t['prev_cta']}</a></div>
 </section>
 
 </main>
@@ -256,7 +257,6 @@ def body(t):
 
 EXTRA_CSS = '''.photo--empty{background:var(--orange-deep);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.12) 14px 16px)}
 .note{font-size:15px;opacity:.75;margin-top:var(--s2);max-width:34em}
-.h2--sub{margin-top:var(--s4)}
 </style>'''
 
 for lang, t in T.items():
