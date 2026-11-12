@@ -72,8 +72,8 @@ def logo(path, h):
         return f'<img src="data:image/svg+xml;base64,{base64.b64encode(path.read_bytes()).decode()}" style="height:{h}px" alt="">'
     b = io.BytesIO(); Image.open(path).convert('RGBA').save(b, 'PNG')
     return f'<img src="data:image/png;base64,{base64.b64encode(b.getvalue()).decode()}" style="height:{h}px" alt="">'
-PARTNERS = (f'<div><span>partneři</span><p><em>Filozofická fakulta MU</em>{logo("brand/duotone/revel_duotone.png", 36)}'
-            f'{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 22)}{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
+PARTNERS = (f'<div><span>hiring partner</span><p>{logo("brand/duotone/revel_duotone.png", 52)}</p></div>'
+            f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 22)}{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
 WIDE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
 body{{width:1920px;height:1080px}}
 .top{{left:36px;right:36px;top:36px}}
@@ -91,8 +91,8 @@ figcaption{{height:72px;padding:0 16px}}
 .big figcaption b,.big figcaption span{{font-size:26px;line-height:34px}}
 .sm figcaption b{{font-size:26px;line-height:30px}} .sm figcaption span{{font-size:20px;line-height:24px}}
 .sm img{{transform:none}}
-.partners{{position:absolute;left:36px;right:36px;bottom:36px;display:flex;gap:72px;align-items:flex-end}}
-.partners div{{display:flex;flex-direction:column;gap:14px}} .partners p{{display:flex;align-items:center;gap:56px;height:36px}}
+.partners{{position:absolute;left:36px;right:36px;bottom:36px;display:flex;gap:96px;align-items:flex-end}}
+.partners div{{display:flex;flex-direction:column;gap:14px}} .partners p{{display:flex;align-items:center;gap:56px;height:52px}}
 .partners span{{font-size:18px;line-height:22px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}}
 .partners img{{display:block}}
 .partners em{{font-style:normal;font-size:26px;line-height:36px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}}
