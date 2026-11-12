@@ -1,6 +1,8 @@
-"""Cut backgrounds, normalise face scale and eye line, render uniform 3:4 duotone cards."""
-import sys, pathlib, cv2, numpy as np
-from PIL import Image, ImageOps
+"""Portrait series v3 (jury recipe): one crop rule, per-face tone normalisation, grain + posterise, duotone on orange.
+Output: /home/claude/spk/cut3/<key>.png 600x600 and _sheet.jpg
+"""
+import pathlib, cv2, numpy as np
+from PIL import Image, ImageOps, ImageFilter
 from rembg import remove, new_session
 
 A = '/mnt/user-data/attachments/a1a697a9-e7d7-5d30-b5c7-82cdf3b35dfb/'
@@ -12,55 +14,77 @@ SRC = {
  'mikesova': A + '5141ef10-image.jpg',
  'orlova': A + '0b8213bf-image.png',
 }
-OUT = pathlib.Path('/home/claude/spk/cut'); OUT.mkdir(exist_ok=True)
-W, H = 600, 560           # card
-FACE_H = 0.58 * H         # target face box height
-EYE_Y = 0.47 * H          # eye line
-ORANGE = (232, 54, 10)
-BG = tuple(int(sys.argv[1][i:i+2], 16) for i in (1, 3, 5)) if len(sys.argv) > 1 else ORANGE
+GAZE = {'borek': -1, 'vidovicova': +1}   # -1 looks left, +1 looks right -> shift face 8% toward gaze side
+OUT = pathlib.Path(__file__).resolve().parents[2] / 'brand/speakers-1'; OUT.mkdir(exist_ok=True)
+W = H = 600
+FACE_H, EYE_Y = 0.44 * H, 0.40 * H
+ORANGE = np.array([232, 54, 10], np.float32)
 
 sess = new_session('u2net_human_seg')
 casc = cv2.CascadeClassifier('/tmp/haar.xml')
 
+def levels3(L, lo, mid, hi, tlo=0.08, tmid=0.52, thi=0.90):
+    """three-point fit: black, white, gamma so that lo->tlo, hi->thi, mid->tmid"""
+    x = np.clip((L - lo) / max(hi - lo, 1e-3), 0, 1)
+    m = np.clip((mid - lo) / max(hi - lo, 1e-3), 0.05, 0.95)
+    g = np.log(tmid_n(tlo, tmid, thi)) / np.log(m)
+    return tlo + (thi - tlo) * x ** g
+
+def tmid_n(tlo, tmid, thi):
+    return (tmid - tlo) / (thi - tlo)
+
 for k, path in SRC.items():
     im = ImageOps.exif_transpose(Image.open(path)).convert('RGB')
+    up = max(1.0, 1200 / min(im.size))
+    if up > 1: im = im.resize((int(im.width*up), int(im.height*up)), Image.LANCZOS)
     g = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2GRAY)
     faces = casc.detectMultiScale(g, 1.05, 3, minSize=(int(im.width*0.08),)*2)
-    if len(faces) == 0:
-        print('no face', k); fx, fy, fw, fh = im.width*0.3, im.height*0.15, im.width*0.4, im.width*0.4
-    else:
-        fx, fy, fw, fh = max(faces, key=lambda f: f[2])
-    up = max(1.0, 1200 / min(im.size))                  # small sources: upscale before matting, cleaner edge
-    if up > 1:
-        im = im.resize((int(im.width*up), int(im.height*up)), Image.LANCZOS); fx, fy, fw, fh = fx*up, fy*up, fw*up, fh*up
-    cut = remove(im, session=sess)                      # RGBA
-    from PIL import ImageFilter
-    cut = ImageOps.expand(cut, 12, (0, 0, 0, 0)); fx, fy = fx + 12, fy + 12   # transparent border so frame edges erode too
-    A = cut.split()[3].filter(ImageFilter.MinFilter(9)).filter(ImageFilter.GaussianBlur(2))  # eat the dark halo
-    cut.putalpha(A)
-    a0 = np.array(cut.split()[3]) > 40
-    touch_l, touch_r = a0[:, :3].any(), a0[:, -3:].any()
-    ey0 = fy + fh*0.42; cx0 = fx + fw/2
+    fx, fy, fw, fh = max(faces, key=lambda f: f[2])
+    # 3) cutout
+    cut = remove(im, session=sess)
+    cut = ImageOps.expand(cut, 12, (0, 0, 0, 0)); fx, fy = fx + 12, fy + 12
+    alpha = cut.split()[3].filter(ImageFilter.MinFilter(7)).filter(ImageFilter.GaussianBlur(1.5))
+    # frame-edge feather: where the subject is cut by the source frame, melt the last 3% into the field instead of a hard line
+    an = np.asarray(alpha, np.float32) / 255; hh, ww = an.shape; f = int(min(hh, ww) * 0.10) + 12
+    if an[12:16, :].max() > 0.5: an[:f, :] *= np.linspace(0, 1, f)[:, None]
+    if an[-16:-12, :].max() > 0.5: an[-f:, :] *= np.linspace(1, 0, f)[:, None]
+    if an[:, 12:16].max() > 0.5: an[:, :f] *= np.linspace(0, 1, f)[None, :]
+    if an[:, -16:-12].max() > 0.5: an[:, -f:] *= np.linspace(1, 0, f)[None, :]
+    alpha = Image.fromarray((an * 255).astype(np.uint8))
+    # luminance 0..1
+    L = np.asarray(cut.convert('L'), np.float32) / 255
+    # 6) per-image levels to face targets (box: eyes to mouth, central 60% width)
+    bx0, bx1 = int(fx + fw*0.2), int(fx + fw*0.8); by0, by1 = int(fy + fh*0.3), int(fy + fh*0.85)
+    face = L[by0:by1, bx0:bx1]
+    lo, mid, hi = np.percentile(face, 5), np.median(face), np.percentile(face, 95)
+    L = levels3(L, lo, mid, hi)
+    # 7) clothing lift below chin
+    chin = int(fy + fh * 1.02)
+    ramp = np.zeros_like(L); ramp[chin:, :] = 0.12
+    ramp = cv2.GaussianBlur(ramp, (0, 0), 25)
+    L = np.clip(L + ramp, 0, 1)
+    # 8) global black / white
+    L = np.clip((L - 0.06) / (0.94 - 0.06), 0, 1)
+    Lim = Image.fromarray((L * 255).astype(np.uint8)); Lim.putalpha(alpha)
+    # 4-5) scale + place
     s = FACE_H / fh
-    s = max(s, (H - EYE_Y + 4) / (im.height + 2 - ey0))    # no fade: subject must reach the card bottom (eroded edge stays below)
-    cut = cut.resize((int(cut.width*s), int(cut.height*s)), Image.LANCZOS)
-    cx = (fx + fw/2) * s; ey = (fy + fh*0.42) * s        # eyes ~42% down the face box
-    # duotone: luminance -> black..orange, keep alpha
-    rgb = cut.convert('RGB'); a = cut.split()[3]
-    lum = ImageOps.autocontrast(rgb.convert('L'), cutoff=1)
-    duo = ImageOps.colorize(lum, black=(0, 0, 0), white=ORANGE).convert('RGBA'); duo.putalpha(a)
-    # fade the lower part into the background so every card ends the same way
-    y0 = int(EYE_Y - ey0*s)
-    grad = np.ones((cut.height, cut.width), np.float32)
-    ys = (np.arange(cut.height) + y0) / H
-    grad *= 1  # no fade
-    aa = np.clip((np.array(a).astype(np.float32) - 120) / 110, 0, 1) * 255
-    a2 = Image.fromarray((aa * grad).astype(np.uint8)); duo.putalpha(a2)
-    card = Image.new('RGBA', (W, H), BG + (255,))
-    card.alpha_composite(duo, (int(W/2 - cx), int(EYE_Y - ey)))
-    card.convert('RGB').save(OUT / f'{k}.png')
-    print(k, im.size, 'face', fw, 'scale %.2f' % s)
+    Lim = Lim.resize((int(Lim.width*s), int(Lim.height*s)), Image.LANCZOS)
+    cx = (fx + fw/2) * s + GAZE.get(k, 0) * 0.04 * W   # lead room: face offset against the gaze, space in front of the look
+    ey = (fy + fh*0.42) * s
+    canvas = Image.new('LA', (W, H), (0, 0))
+    canvas.paste(Lim, (int(W/2 - cx), int(EYE_Y - ey)), Lim)
+    Lc = np.asarray(canvas.split()[0], np.float32) / 255; Ac = np.asarray(canvas.split()[1], np.float32) / 255
+    # 9) unsharp, 10) grain, 11) posterise
+    Lc = np.asarray(Image.fromarray((Lc*255).astype(np.uint8)).filter(ImageFilter.UnsharpMask(1.5, 60, 2)), np.float32) / 255
+    rng = np.random.default_rng(7); Lc = np.clip(Lc + rng.normal(0, 0.045, Lc.shape), 0, 1)
+    lv = 15 if k == 'filipensky' else 9   # scanned source bands at 10 levels
+    Lc = np.round(Lc * lv) / lv
+    # 12-13) duotone over orange
+    rgb = Lc[..., None] * ORANGE[None, None, :]
+    outp = rgb * Ac[..., None] + ORANGE * (1 - Ac[..., None])
+    Image.fromarray(outp.astype(np.uint8)).save(OUT / f'{k}.png')
+    print(k, 'face', int(fh), 'lo/mid/hi %.2f %.2f %.2f' % (lo, mid, hi))
+
 sheet = Image.new('RGB', (W*6 + 50, H), 'white')
-for i, k in enumerate(SRC):
-    sheet.paste(Image.open(OUT / f'{k}.png'), (i*(W+10), 0))
+for i, k in enumerate(SRC): sheet.paste(Image.open(OUT / f'{k}.png'), (i*(W+10), 0))
 sheet.save(OUT / '_sheet.jpg', quality=85)
