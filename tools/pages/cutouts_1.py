@@ -35,13 +35,14 @@ for k, path in SRC.items():
         im = im.resize((int(im.width*up), int(im.height*up)), Image.LANCZOS); fx, fy, fw, fh = fx*up, fy*up, fw*up, fh*up
     cut = remove(im, session=sess)                      # RGBA
     from PIL import ImageFilter
+    cut = ImageOps.expand(cut, 12, (0, 0, 0, 0)); fx, fy = fx + 12, fy + 12   # transparent border so frame edges erode too
     A = cut.split()[3].filter(ImageFilter.MinFilter(9)).filter(ImageFilter.GaussianBlur(2))  # eat the dark halo
     cut.putalpha(A)
     a0 = np.array(cut.split()[3]) > 40
     touch_l, touch_r = a0[:, :3].any(), a0[:, -3:].any()
     ey0 = fy + fh*0.42; cx0 = fx + fw/2
     s = FACE_H / fh
-    s = max(s, (H - EYE_Y) / (im.height - ey0))            # no fade: subject must reach the card bottom
+    s = max(s, (H - EYE_Y + 4) / (im.height + 2 - ey0))    # no fade: subject must reach the card bottom (eroded edge stays below)
     cut = cut.resize((int(cut.width*s), int(cut.height*s)), Image.LANCZOS)
     cx = (fx + fw/2) * s; ey = (fy + fh*0.42) * s        # eyes ~42% down the face box
     # duotone: luminance -> black..orange, keep alpha
