@@ -8,17 +8,15 @@ from playwright.sync_api import sync_playwright
 
 root = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 ORANGE = (232, 54, 10)
-SPK = [('filipensky', 'Petr Filipenský'), ('borek', 'Kamil Bořek'), ('vidovicova', 'Lucie Vidovićová'),
-       ('cerny', 'David Černý'), ('mikesova', 'Jana Mikešová'), ('orlova', 'Zhenya Orlova')]
+SPK = [('filipensky', 'Petr Filipenský', 'FN u sv. Anny'), ('borek', 'Kamil Bořek', 'Promedica, Versius'), ('vidovicova', 'Lucie Vidovićová', 'FSS MU'),
+       ('cerny', 'David Černý', 'ÚSP AV ČR'), ('mikesova', 'Jana Mikešová', 'FN Brno'), ('orlova', 'Zhenya Orlova', 'REVEL Robotics')]
+CUT = root / 'brand/speakers-1'  # cards from tools/pages/cutouts_1.py (rembg + face-normalised)
 
-def duo(path):
-    im = Image.open(path).convert('L')
-    im = ImageOps.autocontrast(im, cutoff=1)
-    im = ImageOps.colorize(im, black=(0, 0, 0), white=ORANGE)
-    b = io.BytesIO(); im.save(b, 'JPEG', quality=90)
+def b64(path):
+    b = io.BytesIO(); Image.open(path).convert('RGB').save(b, 'JPEG', quality=90)
     return 'data:image/jpeg;base64,' + base64.b64encode(b.getvalue()).decode()
 
-cards = ''.join(f'<figure><figcaption>{n}</figcaption><img src="{duo(root / "img/1" / f"sp-{k}.webp")}" alt=""></figure>' for k, n in SPK)
+cards = ''.join(f'<figure><img src="{b64(CUT / f"{k}.png")}" alt=""><figcaption><b>{n}</b><span>{o}</span></figcaption></figure>' for k, n, o in SPK)
 
 CSS = '''*{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,sans-serif;background:#fff;color:#000;width:var(--w);height:var(--h);overflow:hidden;position:relative}
@@ -30,9 +28,11 @@ body{font-family:Inter,sans-serif;background:#fff;color:#000;width:var(--w);heig
 .meta{font-weight:400}
 .url{color:#E8360A;font-weight:700}
 .grid{display:grid;gap:22px}
-figure{position:relative;display:grid;grid-template-columns:78px 1fr;background:#000;overflow:hidden}
-figure img{width:100%;height:100%;object-fit:cover;display:block}
-figcaption{color:#fff;font-weight:500;writing-mode:vertical-rl;transform:rotate(180deg);font-size:30px;padding:16px 0;white-space:nowrap;letter-spacing:-.01em;display:flex;align-items:center;justify-content:flex-start}
+figure{display:grid;grid-template-rows:1fr auto;min-height:0}
+figure img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;min-height:0}
+figcaption{padding-top:14px;line-height:1.15;letter-spacing:-.02em}
+figcaption b{display:block;font-weight:700;font-size:30px}
+figcaption span{display:block;font-weight:400;font-size:22px;color:#555;margin-top:3px}
 '''
 
 WIDE = f'''<!doctype html><meta charset="utf-8"><style>{CSS}
@@ -42,7 +42,7 @@ body{{--w:1920px;--h:1080px}}
 .when{{position:absolute;left:72px;top:640px;font-size:56px}}
 .meta{{position:absolute;left:72px;top:780px;font-size:36px;line-height:1.3}}
 .url{{position:absolute;left:72px;top:950px;font-size:40px}}
-.grid{{position:absolute;left:672px;top:72px;width:1176px;height:936px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr)}}
+.grid{{position:absolute;left:672px;top:72px;width:1176px;height:936px;gap:40px 28px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr)}}
 </style><body>
 <div class="logo">proto<br>robot</div>
 <div class="rule"><i></i><b>#1</b></div>
@@ -61,7 +61,7 @@ body{{--w:1200px;--h:1200px}}
 .meta{{position:absolute;left:56px;top:300px;font-size:28px;line-height:1.3}}
 .url{{position:absolute;left:56px;top:390px;font-size:30px}}
 .grid{{position:absolute;left:56px;top:470px;width:1088px;height:674px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:18px}}
-figure{{grid-template-columns:60px 1fr}} figcaption{{font-size:23px;padding:12px 0}}
+figcaption b{{font-size:25px}} figcaption span{{font-size:18px}} figcaption{{padding-top:10px}}
 </style><body>
 <div class="logo">proto<br>robot</div>
 <div class="rule"><i></i><b>#1</b></div>
