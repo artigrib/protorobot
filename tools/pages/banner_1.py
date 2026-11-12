@@ -73,7 +73,7 @@ def logo(path, h):
     b = io.BytesIO(); Image.open(path).convert('RGBA').save(b, 'PNG')
     return f'<img src="data:image/png;base64,{base64.b64encode(b.getvalue()).decode()}" style="height:{h}px" alt="">'
 PARTNERS = (f'<div><span>partneři</span><p><em>Filozofická fakulta MU</em>{logo("brand/duotone/revel_duotone.png", 36)}'
-            f'{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/cmr_black.png", 36)}{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
+            f'{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 22)}{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
 WIDE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
 body{{width:1920px;height:1080px}}
 .top{{left:36px;right:36px;top:36px}}
