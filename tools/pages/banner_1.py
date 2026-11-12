@@ -66,27 +66,48 @@ h1{{left:48px;right:48px;top:150px;font-size:96px}}
 '''
 
 # 1920x1080: 12 cols of 132 + 11 gutters of 24 = 1848, margin 36. Text cols 1-5 (756), tiles cols 6-12 (1068).
+def logo(path, h):
+    path = root / path
+    if path.suffix == '.svg':
+        return f'<img src="data:image/svg+xml;base64,{base64.b64encode(path.read_bytes()).decode()}" style="height:{h}px" alt="">'
+    b = io.BytesIO(); Image.open(path).convert('RGBA').save(b, 'PNG')
+    return f'<img src="data:image/png;base64,{base64.b64encode(b.getvalue()).decode()}" style="height:{h}px" alt="">'
+PARTNERS = (f'<div><span>místo</span><em>Filozofická fakulta MU</em></div>'
+            f'<div><span>hiring partner</span><p>{logo("brand/duotone/revel_duotone.png", 36)}</p></div>'
+            f'<div><span>demo Versius</span><p>{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/cmr_black.png", 36)}</p></div>'
+            f'<div><span>partner</span><p>{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
 WIDE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
 body{{width:1920px;height:1080px}}
 .top{{left:36px;right:36px;top:36px}}
 h1{{left:36px;width:756px;top:150px;font-size:112px}}
-.meta{{left:36px;width:700px;top:900px}}
+.top{{top:36px}}
+.meta{{left:36px;width:760px;top:488px;font-size:40px;line-height:50px;letter-spacing:-.02em}}
+.meta b{{font-weight:700;display:block}}
 .lab{{left:816px}}
 .row{{left:816px;right:36px}}
-.r1{{top:230px;grid-template-columns:repeat(2,1fr);height:310px}}
-.r2{{top:640px;grid-template-columns:repeat(4,1fr);height:310px}}
-.sm figcaption{{padding:14px 16px}}
-.big figcaption{{white-space:nowrap}}
-.big figcaption b,.big figcaption span{{font-size:26px;line-height:32px}}
+.r1{{top:190px;grid-template-columns:repeat(2,1fr);height:310px}}
+.r2{{top:570px;grid-template-columns:repeat(4,1fr);height:310px}}
+figcaption{{height:72px;padding:0 16px}}
+.big figcaption{{white-space:nowrap;padding-top:19px}}
+.sm figcaption{{padding-top:9px}}
+.big figcaption b,.big figcaption span{{font-size:26px;line-height:34px}}
 .sm figcaption b{{font-size:26px;line-height:30px}} .sm figcaption span{{font-size:20px;line-height:24px}}
 .sm img{{transform:none}}
+.partners{{position:absolute;left:36px;right:36px;bottom:36px;display:flex;gap:72px;align-items:flex-end}}
+.partners div{{display:flex;flex-direction:column;gap:12px}} .partners p{{display:flex;align-items:flex-end;gap:24px;height:36px}}
+.partners span{{font-size:18px;line-height:22px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}}
+.partners img{{display:block}}
+.partners em{{font-style:normal;font-size:26px;line-height:36px;font-weight:600;letter-spacing:-.02em}}
+.url{{position:absolute;left:36px;top:640px;font-size:32px;line-height:40px;font-weight:700;color:#E8360A;letter-spacing:-.02em}}
 </style><body>
 <div class="top"><span>proto robot</span><b>#1</b><i></i><span class="d">{DATE}</span></div>
 <h1>{HEAD}</h1>
-<div class="meta">{META}</div>
-<div class="lab" style="top:194px">přednášky</div>
+<div class="meta"><b>čt 26. 11. 2026, 19:00</b>aula C33, FF MU, Arna Nováka 1, Brno</div>
+<div class="partners">{PARTNERS}</div>
+<div class="url">protorobot.cz</div>
+<div class="lab" style="top:154px">přednášky</div>
 <div class="row r1">{talks}</div>
-<div class="lab" style="top:604px">panel: roboti v péči</div>
+<div class="lab" style="top:534px">panel: roboti v péči</div>
 <div class="row r2">{panel}</div>
 '''
 
