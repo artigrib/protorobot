@@ -55,8 +55,8 @@ def logo(path, h):
     return f'<img src="data:image/png;base64,{base64.b64encode(b.getvalue()).decode()}" style="height:{h}px" alt="">'
 PARTNERS = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 52)}</p></div>'
             f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 22)}{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
-PARTNERS_SQ = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 40)}</p></div>'
-               f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 26)}{logo("brand/black/technologiezdravi_black.png", 18)}{logo("brand/black/printedrobotics_black.svg", 30)}</p></div>')
+PARTNERS_SQ = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 56)}</p></div>'
+               f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 38)}{logo("brand/black/technologiezdravi_black.png", 26)}{logo("brand/black/printedrobotics_black.svg", 44)}</p></div>')
 SQUARE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
 body{{width:1200px;height:1200px}}
 .top{{left:48px;right:48px;top:48px}}
@@ -67,8 +67,8 @@ h1{{left:48px;right:48px;top:150px;font-size:88px}}
 .r1{{top:498px;grid-template-columns:repeat(2,1fr);height:290px}}
 .r2{{top:848px;grid-template-columns:repeat(4,1fr);height:188px}}
 .sm figcaption{{padding:8px 16px 9px}} .sm img{{transform:translateY(-16px)}}
-.partners{{position:absolute;left:48px;right:48px;bottom:44px;display:flex;gap:72px;align-items:flex-end}}
-.partners div{{display:flex;flex-direction:column;gap:10px}} .partners p{{display:flex;align-items:center;gap:40px;height:40px}}
+.partners{{position:absolute;left:48px;right:48px;bottom:48px;display:flex;gap:64px;align-items:flex-end}}
+.partners div{{display:flex;flex-direction:column;gap:10px}} .partners p{{display:flex;align-items:center;gap:48px;height:56px}} .partners div:last-child{{flex:1}} .partners div:last-child p{{justify-content:space-between}}
 .partners span{{font-size:16px;line-height:20px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}}
 .partners img{{display:block}}
 </style><body>
