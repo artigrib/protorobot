@@ -14,8 +14,8 @@ SRC = {
 }
 OUT = pathlib.Path('/home/claude/spk/cut'); OUT.mkdir(exist_ok=True)
 W, H = 600, 640           # card
-FACE_H = 0.40 * H         # target face box height
-EYE_Y = 0.42 * H          # eye line
+FACE_H = 0.56 * H         # target face box height
+EYE_Y = 0.33 * H          # eye line
 ORANGE = (232, 54, 10)
 BG = tuple(int(sys.argv[1][i:i+2], 16) for i in (1, 3, 5)) if len(sys.argv) > 1 else ORANGE
 
@@ -45,7 +45,7 @@ for k, path in SRC.items():
     y0 = int(EYE_Y - ey0*s)
     grad = np.ones((cut.height, cut.width), np.float32)
     ys = (np.arange(cut.height) + y0) / H
-    grad *= np.clip((0.86 - ys) / 0.30, 0, 1)[:, None]
+    grad *= np.clip((0.90 - ys) / 0.25, 0, 1)[:, None]
     aa = np.clip((np.array(a).astype(np.float32) - 120) / 110, 0, 1) * 255
     a2 = Image.fromarray((aa * grad).astype(np.uint8)); duo.putalpha(a2)
     card = Image.new('RGBA', (W, H), BG + (255,))
