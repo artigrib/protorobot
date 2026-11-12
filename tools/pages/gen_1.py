@@ -6,7 +6,7 @@ Names and places appear only with written confirmation; everything else is a lab
 import re, sys, pathlib
 
 root = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
-LUMA = 'https://luma.com/user/protorobot'  # TODO: replace with the #1 event link on go
+LUMA = 'https://luma.com/sxk08o64'
 
 T = {
  'cs': dict(
@@ -274,7 +274,7 @@ def body(t):
 </main>
 
 <footer class="foot">{foot}
-  <a href="{LUMA}" target="_blank" rel="noopener">{t['foot_luma']}</a>
+  <a href="https://luma.com/user/protorobot" target="_blank" rel="noopener">{t['foot_luma']}</a>
   <a href="/{t['other']}/" hreflang="{'en' if t['lang']=='cs' else 'cs'}" lang="{'en' if t['lang']=='cs' else 'cs'}">{t['lang_label']}</a>
   <div class="foot__meta">{t['foot_meta']}</div>
 </footer>
