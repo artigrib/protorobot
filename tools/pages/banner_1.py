@@ -11,7 +11,7 @@ root = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else '.')
 CUT = root / 'brand/speakers-1'
 TALKS = [('filipensky', 'Petr Filipenský', 'FN u sv. Anny, da Vinci'), ('borek', 'Kamil Bořek', 'Promedica, Versius')]
 PANEL = [('vidovicova', 'Lucie Vidovićová', 'FSS MU'), ('cerny', 'David Černý', 'AV ČR'), ('mikesova', 'Jana Mikešová', 'FN Brno'), ('orlova', 'Zhenya Orlova', 'REVEL')]
-DATE, META = 'čtvrtek 26. 11. 2026', '19:00, aula C33, Filozofická fakulta MU, Arna Nováka 1, Brno'
+DATE, META = 'čtvrtek 26. 11. 2026', '18:30, aula C33, Filozofická fakulta MU, Arna Nováka 1, Brno'
 HEAD = 'roboti<br>v&nbsp;laboratořích<br>a&nbsp;nemocnicích'
 
 def b64(k):
@@ -108,7 +108,7 @@ figcaption{{height:72px;padding:0 16px}}
 </style><body>
 <div class="top"><span>proto robot</span><b>#1</b><i></i><span class="d">{DATE}</span></div>
 <h1>{HEAD}</h1>
-<div class="meta"><b>čt 26. 11. 2026, 19:00</b>aula C33, FF MU, Arna Nováka 1, Brno</div>
+<div class="meta"><b>čt 26. 11. 2026, 18:30</b>aula C33, FF MU, Arna Nováka 1, Brno</div>
 <div class="partners">{PARTNERS}</div>
 <div class="url">protorobot.cz</div>
 <div class="lab" style="top:154px">přednášky</div>
