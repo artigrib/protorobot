@@ -46,25 +46,6 @@ figcaption{position:absolute;left:0;right:0;bottom:0;background:#000;color:#fff;
 .sm figcaption span{display:block;font-size:18px;line-height:22px}
 '''
 
-SQUARE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
-body{{width:1200px;height:1200px}}
-.top{{left:48px;right:48px;top:48px}}
-h1{{left:48px;right:48px;top:150px;font-size:96px}}
-.meta{{left:48px;top:428px}}
-.lab{{left:48px}}
-.row{{left:48px;right:48px}}
-.r1{{top:536px;grid-template-columns:repeat(2,1fr);height:320px}}
-.r2{{top:940px;grid-template-columns:repeat(4,1fr);height:212px}}
-</style><body>
-<div class="top"><span>proto robot</span><b>#1</b><i></i><span class="d">{DATE}</span></div>
-<h1>{HEAD}</h1>
-<div class="meta">{META}</div>
-<div class="lab" style="top:500px">přednášky</div>
-<div class="row r1">{talks}</div>
-<div class="lab" style="top:904px">panel: roboti v péči</div>
-<div class="row r2">{panel}</div>
-'''
-
 # 1920x1080: 12 cols of 132 + 11 gutters of 24 = 1848, margin 36. Text cols 1-5 (756), tiles cols 6-12 (1068).
 def logo(path, h):
     path = root / path
@@ -72,8 +53,35 @@ def logo(path, h):
         return f'<img src="data:image/svg+xml;base64,{base64.b64encode(path.read_bytes()).decode()}" style="height:{h}px" alt="">'
     b = io.BytesIO(); Image.open(path).convert('RGBA').save(b, 'PNG')
     return f'<img src="data:image/png;base64,{base64.b64encode(b.getvalue()).decode()}" style="height:{h}px" alt="">'
-PARTNERS = (f'<div><span>hiring partner</span><p>{logo("brand/duotone/revel_duotone.png", 52)}</p></div>'
+PARTNERS = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 52)}</p></div>'
             f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 22)}{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
+PARTNERS_SQ = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 40)}</p></div>'
+               f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 26)}{logo("brand/black/technologiezdravi_black.png", 18)}{logo("brand/black/printedrobotics_black.svg", 30)}</p></div>')
+SQUARE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
+body{{width:1200px;height:1200px}}
+.top{{left:48px;right:48px;top:48px}}
+h1{{left:48px;right:48px;top:150px;font-size:88px}}
+.meta{{left:48px;top:404px}}
+.lab{{left:48px}}
+.row{{left:48px;right:48px}}
+.r1{{top:498px;grid-template-columns:repeat(2,1fr);height:290px}}
+.r2{{top:848px;grid-template-columns:repeat(4,1fr);height:188px}}
+.sm figcaption{{padding:8px 16px 9px}} .sm img{{transform:translateY(-16px)}}
+.partners{{position:absolute;left:48px;right:48px;bottom:44px;display:flex;gap:72px;align-items:flex-end}}
+.partners div{{display:flex;flex-direction:column;gap:10px}} .partners p{{display:flex;align-items:center;gap:40px;height:40px}}
+.partners span{{font-size:16px;line-height:20px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}}
+.partners img{{display:block}}
+</style><body>
+<div class="top"><span>proto robot</span><b>#1</b><i></i><span class="d">{DATE}</span></div>
+<h1>{HEAD}</h1>
+<div class="meta">{META}</div>
+<div class="lab" style="top:462px">přednášky</div>
+<div class="row r1">{talks}</div>
+<div class="lab" style="top:812px">panel: roboti v péči</div>
+<div class="row r2">{panel}</div>
+<div class="partners">{PARTNERS_SQ}</div>
+'''
+
 WIDE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
 body{{width:1920px;height:1080px}}
 .top{{left:36px;right:36px;top:36px}}
