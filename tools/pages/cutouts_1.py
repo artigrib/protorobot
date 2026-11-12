@@ -13,9 +13,9 @@ SRC = {
  'orlova': A + '0b8213bf-image.png',
 }
 OUT = pathlib.Path('/home/claude/spk/cut'); OUT.mkdir(exist_ok=True)
-W, H = 600, 640           # card
-FACE_H = 0.56 * H         # target face box height
-EYE_Y = 0.33 * H          # eye line
+W, H = 600, 560           # card
+FACE_H = 0.58 * H         # target face box height
+EYE_Y = 0.47 * H          # eye line
 ORANGE = (232, 54, 10)
 BG = tuple(int(sys.argv[1][i:i+2], 16) for i in (1, 3, 5)) if len(sys.argv) > 1 else ORANGE
 
@@ -30,11 +30,18 @@ for k, path in SRC.items():
         print('no face', k); fx, fy, fw, fh = im.width*0.3, im.height*0.15, im.width*0.4, im.width*0.4
     else:
         fx, fy, fw, fh = max(faces, key=lambda f: f[2])
+    up = max(1.0, 1200 / min(im.size))                  # small sources: upscale before matting, cleaner edge
+    if up > 1:
+        im = im.resize((int(im.width*up), int(im.height*up)), Image.LANCZOS); fx, fy, fw, fh = fx*up, fy*up, fw*up, fh*up
     cut = remove(im, session=sess)                      # RGBA
+    from PIL import ImageFilter
+    A = cut.split()[3].filter(ImageFilter.MinFilter(9)).filter(ImageFilter.GaussianBlur(2))  # eat the dark halo
+    cut.putalpha(A)
     a0 = np.array(cut.split()[3]) > 40
     touch_l, touch_r = a0[:, :3].any(), a0[:, -3:].any()
     ey0 = fy + fh*0.42; cx0 = fx + fw/2
     s = FACE_H / fh
+    s = max(s, (H - EYE_Y) / (im.height - ey0))            # no fade: subject must reach the card bottom
     cut = cut.resize((int(cut.width*s), int(cut.height*s)), Image.LANCZOS)
     cx = (fx + fw/2) * s; ey = (fy + fh*0.42) * s        # eyes ~42% down the face box
     # duotone: luminance -> black..orange, keep alpha
@@ -45,7 +52,7 @@ for k, path in SRC.items():
     y0 = int(EYE_Y - ey0*s)
     grad = np.ones((cut.height, cut.width), np.float32)
     ys = (np.arange(cut.height) + y0) / H
-    grad *= np.clip((0.90 - ys) / 0.25, 0, 1)[:, None]
+    grad *= 1  # no fade
     aa = np.clip((np.array(a).astype(np.float32) - 120) / 110, 0, 1) * 255
     a2 = Image.fromarray((aa * grad).astype(np.uint8)); duo.putalpha(a2)
     card = Image.new('RGBA', (W, H), BG + (255,))
