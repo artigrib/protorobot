@@ -54,21 +54,20 @@ body{{--w:1920px;--h:1080px}}
 
 SQUARE = f'''<!doctype html><meta charset="utf-8"><style>{CSS}
 body{{--w:1200px;--h:1200px}}
-.logo{{position:absolute;left:56px;top:56px;font-size:118px}}
-.rule{{right:0;top:84px;width:470px;flex-direction:row-reverse}}
-.rule b{{width:120px;height:120px;font-size:48px}}
-.when{{position:absolute;right:56px;top:250px;font-size:40px;text-align:right}}
-.meta{{position:absolute;left:56px;top:300px;font-size:28px;line-height:1.3}}
-.url{{position:absolute;left:56px;top:390px;font-size:30px}}
-.grid{{position:absolute;left:56px;top:470px;width:1088px;height:674px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:18px}}
-figcaption b{{font-size:25px}} figcaption span{{font-size:18px}} figcaption{{padding-top:10px}}
+.logo{{position:absolute;left:48px;top:44px;font-size:150px}}
+.rule{{right:0;top:80px;width:520px;flex-direction:row-reverse}}
+.rule b{{width:150px;height:150px;font-size:62px}}
+.when{{position:absolute;right:48px;top:262px;font-size:56px;text-align:right;line-height:1}}
+.grid{{position:absolute;left:48px;top:400px;width:1104px;height:690px;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:26px 24px}}
+figcaption{{padding-top:10px}} figcaption b{{font-size:38px;letter-spacing:-.03em}} figcaption span{{display:none}}
+.meta{{position:absolute;left:48px;right:48px;bottom:40px;font-size:34px;line-height:1.2;display:flex;justify-content:space-between;align-items:baseline}}
+.meta .url{{position:static}}
 </style><body>
 <div class="logo">proto<br>robot</div>
 <div class="rule"><i></i><b>#1</b></div>
-<div class="when">čtvrtek<br>26. listopadu</div>
-<div class="meta">19:00 až 22:00<br>Filozofická fakulta MU, Arna Nováka 1, Brno</div>
-<div class="url">protorobot.cz</div>
+<div class="when">čtvrtek 26. 11.<br><span style="font-weight:400;font-size:40px">od 19:00, FF MU, Arna Nováka 1</span></div>
 <div class="grid">{cards}</div>
+<div class="meta"><span>roboti v laboratořích a nemocnicích</span><span class="url">protorobot.cz</span></div>
 '''
 
 out = root / 'brand/banners'
