@@ -144,7 +144,7 @@ def ld(t):
     }}
   }},
   "image": [
-    "https://protorobot.cz/img/1/og.jpg"
+    "https://protorobot.cz/img/1/og.jpg?v=2"
   ],
   "organizer": {{
     "@type": "Organization",
@@ -318,7 +318,7 @@ for lang, t in T.items():
     head = head.replace('href="https://protorobot.cz/1/"', 'href="https://protorobot.cz/1/"')
     head = re.sub(r'<meta property="og:title" content=".*?">', f'<meta property="og:title" content="{t["og_title"]}">', head)
     head = re.sub(r'<meta property="og:description" content=".*?">', f'<meta property="og:description" content="{t["og_desc"]}">', head)
-    head = head.replace('https://protorobot.cz/img/og.jpg?v=4', 'https://protorobot.cz/img/1/og.jpg')
+    head = head.replace('https://protorobot.cz/img/og.jpg?v=4', 'https://protorobot.cz/img/1/og.jpg?v=2')
     head = re.sub(r'<meta property="og:image:alt" content=".*?">', f'<meta property="og:image:alt" content="{t["og_alt"]}">', head)
     head = re.sub(r'<script type="application/ld\+json">.*?</script>', ld(t), head, flags=re.S)
     head = head.replace('</style>', EXTRA_CSS, 1)
