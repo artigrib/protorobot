@@ -58,8 +58,8 @@ T = {
   who_h='Pro koho', who='Inženýři a&nbsp;vývojáři robotiky, lékaři, sestry, fyzioterapeuti, laboranti, studenti VUT (FEKT, FSI, FIT) a&nbsp;MUNI (FI, LF), zakladatelé medtech startupů.',
   tix_h='Vstup zdarma, registrace nutná', tix_lede='Kapacita sálu je 150 míst. Zaregistrujte se na Lumě, ať víme, s&nbsp;kolika lidmi počítat.',
   tix_cta='Registrovat se na Lumě',
-  prev_h='#0 Praha', prev_lede='Jak proběhl nultý díl: program, fotky a&nbsp;záznamy všech čtyř přednášek.', prev_cta='#0: program, fotky a&nbsp;záznamy',
-  foot=[('/0/','#0'),('/dilny/','Kde stavět'),('/granty/','Granty')], foot_luma='Sledovat na Lumě', foot_meta='© 2026 PROTO ROBOT. Máme toho hodně. A&nbsp;proto robot.',
+  prev_h='#0 Praha', prev_lede='Jak proběhl nultý díl: program, fotky a&nbsp;záznamy všech čtyř přednášek.', prev_cta='#0: záznamy a&nbsp;fotky',
+  foot=[('/','Domů'),('/0/','#0'),('/dilny/','Kde stavět'),('/granty/','Granty')], foot_luma='Sledovat na Lumě', foot_meta='© 2026 PROTO ROBOT. Máme toho hodně. A&nbsp;proto robot.',
   ld_name='PROTO ROBOT #1 Brno: roboti v laboratořích a nemocnicích', ld_desc='Otevřený večer o robotech v laboratořích a nemocnicích. Přednášky, panel a ukázky robotů.',
  ),
  'en': dict(
@@ -111,8 +111,8 @@ T = {
   who_h='Who it is for', who='Robotics engineers and developers, clinicians, nurses, physiotherapists, lab staff, students of VUT (FEKT, FSI, FIT) and MUNI (FI, LF), founders of medtech startups.',
   tix_h='Free entry, registration required', tix_lede='The hall seats 150. Register on Luma so we know how many people to expect.',
   tix_cta='Register on Luma',
-  prev_h='#0 Prague', prev_lede='How edition #0 went: programme, photos and recordings of all four talks.', prev_cta='#0: programme, photos and recordings',
-  foot=[('/en/0/','#0'),('/en/dilny/','Where to build'),('/en/granty/','Grants')], foot_luma='Follow on Luma', foot_meta='© 2026 PROTO ROBOT. We have a lot on our hands. Hence the robot.',
+  prev_h='#0 Prague', prev_lede='How edition #0 went: programme, photos and recordings of all four talks.', prev_cta='#0: recordings and photos',
+  foot=[('/en/','Home'),('/en/0/','#0'),('/en/dilny/','Where to build'),('/en/granty/','Grants')], foot_luma='Follow on Luma', foot_meta='© 2026 PROTO ROBOT. We have a lot on our hands. Hence the robot.',
   ld_name='PROTO ROBOT #1 Brno: robots in labs and hospitals', ld_desc='An open evening on robots in labs and hospitals. Talks, a panel and robot demos.',
  ),
 }

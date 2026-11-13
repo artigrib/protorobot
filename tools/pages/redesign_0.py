@@ -10,11 +10,11 @@ DUR = {'01-konecny-robot-issues': '16:54', '02-vitek-humanoids': '36:35', '03-da
 IDS = list(DUR)
 
 L = {
- 'cs': dict(page='0', nav='<a class="pill" href="#recordings">Záznamy</a>\n      <a class="pill" href="#photos">Fotky</a>\n      <a class="pill" href="/">#1</a>',
+ 'cs': dict(page='0', nav='<a class="pill" href="#recordings">Záznamy</a>\n      <a class="pill" href="#photos">Fotky</a>\n      <a class="pill" href="/1/">#1</a>',
             facts_old=['<a href="#programme">Program</a>', '<a href="#recordings">Přednášky</a>'], facts_new='<a href="#recordings">Záznamy</a>',
             play='Přehrát', lede='Čtyři přednášky z PROTO ROBOT #0 v pořadí, jak zazněly. Kapitoly vedou rovnou na dané místo.',
             foot_old='<a href="#photos">Fotky</a>', foot_new='<a href="#recordings">Záznamy</a>\n  <a href="#photos">Fotky</a>'),
- 'en': dict(page='en/0', nav='<a class="pill" href="#recordings">Recordings</a>\n      <a class="pill" href="#photos">Photos</a>\n      <a class="pill" href="/en/">#1</a>',
+ 'en': dict(page='en/0', nav='<a class="pill" href="#recordings">Recordings</a>\n      <a class="pill" href="#photos">Photos</a>\n      <a class="pill" href="/en/1/">#1</a>',
             facts_old=['<a href="#programme">Program</a>', '<a href="#recordings">Talks</a>'], facts_new='<a href="#recordings">Recordings</a>',
             play='Play', lede='The four talks from PROTO ROBOT #0 in the order they were given. Chapters jump straight to the spot.',
             foot_old='<a href="#photos">Photos</a>', foot_new='<a href="#recordings">Recordings</a>\n  <a href="#photos">Photos</a>'),
