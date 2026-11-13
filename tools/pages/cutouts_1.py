@@ -88,8 +88,10 @@ for k, path in SRC.items():
     outp = rgb * Ac[..., None] + ORANGE * (1 - Ac[..., None])
     Image.fromarray(outp.astype(np.uint8)).save(OUT / f'{k}.png')
     # site version: same cut and tone, grayscale on white; the page applies its own orange multiply
-    site = (Lc * Ac + 1.0 * (1 - Ac)) * 255
-    Image.fromarray(site.astype(np.uint8)).convert('RGB').save(OUT.parents[1] / 'img/1' / f'sp-{k}.webp', 'WEBP', quality=84)
+    site = Image.fromarray(((Lc * Ac + 1.0 * (1 - Ac)) * 255).astype(np.uint8)).convert('RGB')
+    # square window 0.18H..0.72H: same tight crop for all six, hides every source frame edge (talk tiles on the covers use the same)
+    y0, y1 = int(0.18 * H), int(0.72 * H); side = y1 - y0; x0 = W // 2 - side // 2
+    site.crop((x0, y0, x0 + side, y1)).resize((600, 600), Image.LANCZOS).save(OUT.parents[1] / 'img/1' / f'sp-{k}.webp', 'WEBP', quality=84)
     print(k, 'face', int(fh), 'lo/mid/hi %.2f %.2f %.2f' % (lo, mid, hi))
 
 sheet = Image.new('RGB', (W*6 + 50, H), 'white')
