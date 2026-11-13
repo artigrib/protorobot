@@ -291,16 +291,14 @@ EXTRA_CSS = '''.nums{grid-template-columns:repeat(3,minmax(0,1fr));max-width:760
 .where__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}
 .where__photo{aspect-ratio:3/2}
 @media (max-width:760px){.where__grid{grid-template-columns:minmax(0,1fr)}.where__photo{display:none}}
+/* speakers: six portraits from one pipeline (tools/pages/cutouts_1.py), already a flat tonal series,
+   so the shade at the foot of the frame is a touch, not the #0 caption gradient */
 .spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:1100px){.demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--s3)}
-@media (max-width:640px){.demo-grid{grid-template-columns:minmax(0,1fr)}}
-.demo{margin:0}.demo .photo{aspect-ratio:16/9}
-.demo figcaption{margin-top:10px;font-size:15px;line-height:1.3}.demo figcaption b{display:block;font-size:17px}.demo figcaption span{color:var(--grey-text)}
-.where__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}
-.where__photo{aspect-ratio:3/2}
-@media (max-width:760px){.where__grid{grid-template-columns:minmax(0,1fr)}.where__photo{display:none}}
-.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:760px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
+.spk .photo img{object-position:center center}
+.spk .photo::after{background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.18))}
+@media (max-width:1100px){.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.spk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
 </style>'''
 
 for lang, t in T.items():
