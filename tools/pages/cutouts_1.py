@@ -20,7 +20,7 @@ SRC = {
  'mikesova': A + '5141ef10-image.jpg',
  'orlova': A + '0b8213bf-image.png',
 }
-FACE = {'vidovicova': (380, 200, 300, 350)}   # manual face box (x, y, w, h) in source px where the detector misfires
+FACE = {'vidovicova': (380, 200, 300, 350), 'orlova': (300, 140, 220, 230)}   # manual face box (x, y, w, h) in source px where the detector misfires
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / 'brand/speakers-1'; OUT.mkdir(exist_ok=True)
 SITE = ROOT / 'img/1'
