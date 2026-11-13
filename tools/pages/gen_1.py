@@ -22,7 +22,7 @@ T = {
   hero_label='Proto Robot #1 Brno',
   faces=['#1 Brno', 'čt 26. 11. 2026', 'FF MU, Arna Nováka 1'],
   faces_vh='#1 Brno, čtvrtek 26. 11. 2026, FF MU, Arna Nováka 1',
-  cos_label='Téma', cos=['Roboti v laboratořích a nemocnicích'],
+  cos_label='Sponzor a partneři',
   nums=[('26. 11.','čtvrtek'),('18:30','otevřeno od'),('150','míst v sále')],
   nums_label='#1 v číslech',
   h1='PROTO ROBOT #1 Brno',
@@ -75,7 +75,7 @@ T = {
   hero_label='Proto Robot #1 Brno',
   faces=['#1 Brno', 'Thu 26 Nov 2026', 'FA MU, Arna Nováka 1'],
   faces_vh='#1 Brno, Thursday 26 Nov 2026, Faculty of Arts MU, Arna Nováka 1',
-  cos_label='Topic', cos=['Robots in labs and hospitals'],
+  cos_label='Sponsor and partners',
   nums=[('26 Nov','Thursday'),('18:30','doors'),('150','seats')],
   nums_label='#1 in numbers',
   h1='PROTO ROBOT #1 Brno',
@@ -168,7 +168,8 @@ def body(t):
         for i, s in enumerate(ids))
     nav = ''.join(f'\n      <a class="pill" href="{h}">{l}</a>' for h, l in t['nav'])
     faces = str(t['faces']).replace("'", '"')
-    cos = ''.join(f'<span class="co">{c}</span>' for c in t['cos'])
+    LOGOS = [('revel','REVEL Robotics',30,'https://revelrobotics.com'),('promedica','Promedica Praha Group',26,'https://www.promedica-praha.cz'),('exoskelets','Technologie zdraví',18,'https://exoskelets.cz'),('printedrobotics','Printed Robotics',26,'https://printedrobotics.cz'),('prgai','prg.ai',26,'https://prg.ai')]
+    cos = ''.join(f'<a class="co" href="{u}" target="_blank" rel="noopener" aria-label="{n}"><img src="/img/1/logo/{k}.{"svg" if k in ("printedrobotics","prgai") else "png"}" alt="{n}" style="height:{h}px"></a>' for k,n,h,u in LOGOS)
     nums = ''.join(f'<li><b>{b}</b><span>{s}</span></li>' for b, s in t['nums'])
     facts = ''.join(f'<a href="{h}">{l}</a>' for h, l in t['facts'])
     prog = '\n'.join(
@@ -281,7 +282,8 @@ def body(t):
 </div>
 '''
 
-EXTRA_CSS = '''.nums{grid-template-columns:repeat(3,minmax(0,1fr));max-width:760px}
+EXTRA_CSS = '''.hero__cos{gap:12px 36px}.hero__cos .co img{height:auto;filter:none;opacity:.92}.hero__cos .co:hover img{opacity:1}@media (max-width:640px){.hero__cos{gap:10px 22px}.hero__cos .co img{transform:scale(.8);transform-origin:center}}
+.nums{grid-template-columns:repeat(3,minmax(0,1fr));max-width:760px}
 .photo--empty{background:var(--orange-deep);background-image:repeating-linear-gradient(135deg,transparent 0 14px,rgba(0,0,0,.12) 14px 16px)}
 .note{font-size:15px;opacity:.75;margin-top:var(--s2);max-width:34em}
 .demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);margin-top:var(--s3)}
