@@ -14,8 +14,11 @@ PANEL = [('vidovicova', 'Lucie Vidovićová', 'FSS MU'), ('cerny', 'David Čern�
 DATE, META = 'čtvrtek 26. 11. 2026', '18:30, aula C33, Filozofická fakulta MU, Arna Nováka 1, Brno'
 HEAD = 'roboti<br>v&nbsp;laboratořích<br>a&nbsp;nemocnicích'
 
+from PIL import ImageOps
 def b64(k):
-    b = io.BytesIO(); Image.open(CUT / f'{k}.png').convert('RGB').save(b, 'JPEG', quality=92)
+    # same portraits as the site (img/1/sp-*.webp, grayscale on white), duotone black -> orange here
+    im = ImageOps.colorize(Image.open(root / 'img/1' / f'sp-{k}.webp').convert('L'), black=(0, 0, 0), white=(232, 54, 10))
+    b = io.BytesIO(); im.save(b, 'JPEG', quality=92)
     return 'data:image/jpeg;base64,' + base64.b64encode(b.getvalue()).decode()
 
 def tile(k, n, o, big):
@@ -34,9 +37,8 @@ h1{position:absolute;font-weight:700;letter-spacing:-.05em;line-height:.9}
 .lab{position:absolute;font-size:20px;line-height:24px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
 .row{position:absolute;display:grid;gap:24px}
 figure{position:relative;background:#E8360A;overflow:hidden}
-figure img{width:100%;height:100%;object-fit:contain;object-position:50% 0;display:block}
-.big img{object-fit:cover;object-position:50% 48%}
-.sm img{transform:translateY(-10px)}
+figure img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+.big img{object-fit:contain;object-position:50% 0}
 figcaption{position:absolute;left:0;right:0;bottom:0;background:#000;color:#fff;padding:16px}
 .big figcaption b{font-size:24px;line-height:30px;font-weight:600;letter-spacing:-.01em}
 .big figcaption span{font-size:24px;line-height:30px}
@@ -54,9 +56,9 @@ def logo(path, h):
     b = io.BytesIO(); Image.open(path).convert('RGBA').save(b, 'PNG')
     return f'<img src="data:image/png;base64,{base64.b64encode(b.getvalue()).decode()}" style="height:{h}px" alt="">'
 PARTNERS = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 52)}</p></div>'
-            f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 22)}{logo("brand/black/printedrobotics_black.svg", 36)}</p></div>')
-PARTNERS_SQ = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 56)}</p></div>'
-               f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 38)}{logo("brand/black/technologiezdravi_black.png", 26)}{logo("brand/black/printedrobotics_black.svg", 44)}</p></div>')
+            f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 22)}{logo("brand/black/printedrobotics_black.svg", 36)}{logo("brand/black/prgai_black.svg", 34)}</p></div>')
+PARTNERS_SQ = (f'<div><span>sponzor</span><p>{logo("brand/duotone/revel_duotone.png", 48)}</p></div>'
+               f'<div><span>partneři</span><p>{logo("brand/black/promedica_black.png", 30)}{logo("brand/black/technologiezdravi_black.png", 20)}{logo("brand/black/printedrobotics_black.svg", 36)}{logo("brand/black/prgai_black.svg", 32)}</p></div>')
 SQUARE = f'''<!doctype html><meta charset="utf-8"><style>{BASE}
 body{{width:1200px;height:1200px}}
 .top{{left:48px;right:48px;top:48px}}
@@ -64,11 +66,12 @@ h1{{left:48px;right:48px;top:150px;font-size:88px}}
 .meta{{left:48px;top:404px}}
 .lab{{left:48px}}
 .row{{left:48px;right:48px}}
-.r1{{top:498px;grid-template-columns:repeat(2,1fr);height:290px}}
-.r2{{top:848px;grid-template-columns:repeat(4,1fr);height:188px}}
-.sm figcaption{{padding:8px 16px 9px}} .sm img{{transform:translateY(-16px)}}
+.r1{{top:498px;grid-template-columns:repeat(2,1fr);height:270px}}
+.r2{{top:828px;grid-template-columns:repeat(4,1fr);height:216px}}
+.r2 img{{object-fit:contain;object-position:50% 0;transform:scale(.92) translateY(-9%);transform-origin:50% 0}}
+.sm figcaption{{padding:8px 16px 9px}}
 .partners{{position:absolute;left:48px;right:48px;bottom:48px;display:flex;gap:64px;align-items:flex-end}}
-.partners div{{display:flex;flex-direction:column;gap:10px}} .partners p{{display:flex;align-items:center;gap:48px;height:56px}} .partners div:last-child{{flex:1}} .partners div:last-child p{{justify-content:space-between}}
+.partners div{{display:flex;flex-direction:column;gap:10px}} .partners p{{display:flex;align-items:center;gap:40px;height:48px}} .partners div:last-child{{flex:1}} .partners div:last-child p{{justify-content:space-between}}
 .partners span{{font-size:16px;line-height:20px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}}
 .partners img{{display:block}}
 </style><body>
@@ -77,7 +80,7 @@ h1{{left:48px;right:48px;top:150px;font-size:88px}}
 <div class="meta">{META}</div>
 <div class="lab" style="top:462px">přednášky</div>
 <div class="row r1">{talks}</div>
-<div class="lab" style="top:812px">panel: roboti v péči</div>
+<div class="lab" style="top:792px">panel: roboti v péči</div>
 <div class="row r2">{panel}</div>
 <div class="partners">{PARTNERS_SQ}</div>
 '''
@@ -98,7 +101,6 @@ figcaption{{height:72px;padding:0 16px}}
 .sm figcaption{{padding-top:9px}}
 .big figcaption b,.big figcaption span{{font-size:26px;line-height:34px}}
 .sm figcaption b{{font-size:26px;line-height:30px}} .sm figcaption span{{font-size:20px;line-height:24px}}
-.sm img{{transform:none}}
 .partners{{position:absolute;left:36px;right:36px;bottom:36px;display:flex;gap:96px;align-items:flex-end}}
 .partners div{{display:flex;flex-direction:column;gap:14px}} .partners p{{display:flex;align-items:center;gap:56px;height:52px}}
 .partners span{{font-size:18px;line-height:22px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}}
