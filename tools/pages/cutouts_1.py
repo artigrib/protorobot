@@ -9,12 +9,13 @@ A = '/mnt/user-data/attachments/a1a697a9-e7d7-5d30-b5c7-82cdf3b35dfb/'
 SRC = {
  'filipensky': A + '3292d9d4-image.png',
  'borek': '/tmp/claude-0/-home-claude/a1a697a9-e7d7-5d30-b5c7-82cdf3b35dfb/scratchpad/borek.jpg',
- 'vidovicova': '/mnt/user-data/uploads/Downloads/protorobot-spk/vidovicova.jpg',
+ 'vidovicova': str(pathlib.Path(__file__).resolve().parents[2] / 'brand/original/vidovicova_fss.jpg'),
  'cerny': A + '1ae5b3d6-image.png',
  'mikesova': A + '5141ef10-image.jpg',
  'orlova': A + '0b8213bf-image.png',
 }
-GAZE = {'borek': -1, 'vidovicova': +1}   # -1 looks left, +1 looks right -> shift face 8% toward gaze side
+GAZE = {'borek': -1}
+FACE = {'vidovicova': (380, 200, 300, 350)}   # manual face box (x, y, w, h) in source px where the detector misfires   # -1 looks left, +1 looks right -> shift face 8% toward gaze side
 OUT = pathlib.Path(__file__).resolve().parents[2] / 'brand/speakers-1'; OUT.mkdir(exist_ok=True)
 W = H = 600
 FACE_H, EYE_Y = 0.44 * H, 0.40 * H
@@ -38,8 +39,11 @@ for k, path in SRC.items():
     up = max(1.0, 1200 / min(im.size))
     if up > 1: im = im.resize((int(im.width*up), int(im.height*up)), Image.LANCZOS)
     g = cv2.cvtColor(np.array(im), cv2.COLOR_RGB2GRAY)
-    faces = casc.detectMultiScale(g, 1.05, 3, minSize=(int(im.width*0.08),)*2)
-    fx, fy, fw, fh = max(faces, key=lambda f: f[2])
+    if k in FACE:
+        fx, fy, fw, fh = [v*up for v in FACE[k]]
+    else:
+        faces = casc.detectMultiScale(g, 1.05, 3, minSize=(int(im.width*0.08),)*2)
+        fx, fy, fw, fh = max(faces, key=lambda f: f[2])
     # 3) cutout
     cut = remove(im, session=sess)
     cut = ImageOps.expand(cut, 12, (0, 0, 0, 0)); fx, fy = fx + 12, fy + 12
