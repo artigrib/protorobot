@@ -83,6 +83,9 @@ for k, path in SRC.items():
     rgb = Lc[..., None] * ORANGE[None, None, :]
     outp = rgb * Ac[..., None] + ORANGE * (1 - Ac[..., None])
     Image.fromarray(outp.astype(np.uint8)).save(OUT / f'{k}.png')
+    # site version: same cut and tone, grayscale on white; the page applies its own orange multiply
+    site = (Lc * Ac + 1.0 * (1 - Ac)) * 255
+    Image.fromarray(site.astype(np.uint8)).convert('RGB').save(OUT.parents[1] / 'img/1' / f'sp-{k}.webp', 'WEBP', quality=84)
     print(k, 'face', int(fh), 'lo/mid/hi %.2f %.2f %.2f' % (lo, mid, hi))
 
 sheet = Image.new('RGB', (W*6 + 50, H), 'white')
