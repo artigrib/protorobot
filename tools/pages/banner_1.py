@@ -126,6 +126,5 @@ with sync_playwright() as p:
         pg = b.new_page(viewport={'width': w, 'height': h}); pg.set_content(html); pg.wait_for_timeout(300)
         pg.screenshot(path=str(out / f'{name}.png')); print('wrote', out / f'{name}.png')
     b.close()
-Image.open(out / '1_cover_1920x1080.png').convert('RGB').resize((1200, 675), Image.LANCZOS).save(root / 'img/1/og.jpg', 'JPEG', quality=86)
 Image.open(out / '1_luma_1200x1200.png').resize((320, 320), Image.LANCZOS).save(out / '1_luma_320.png')
-print('wrote img/1/og.jpg')
+print('done')
