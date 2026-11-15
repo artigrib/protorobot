@@ -168,7 +168,7 @@ def body(t):
         for i, s in enumerate(ids))
     nav = ''.join(f'\n      <a class="pill" href="{h}">{l}</a>' for h, l in t['nav'])
     faces = str(t['faces']).replace("'", '"')
-    LOGOS = [('revel','REVEL Robotics',30,'https://revelrobotics.com'),('promedica','Promedica Praha Group',26,'https://www.promedica-praha.cz'),('exoskelets','Technologie zdraví',18,'https://exoskelets.cz'),('printedrobotics','Printed Robotics',26,'https://printedrobotics.cz'),('prgai','prg.ai',26,'https://prg.ai')]
+    LOGOS = [('revel','REVEL Robotics',30,'https://revelrobotics.com'),('promedica','Promedica Praha Group',26,'https://www.promedica-praha.cz'),('exoskelets','Technologie zdraví',18,'https://www.technologiezdravi.cz'),('printedrobotics','Printed Robotics',26,'https://printedrobotics.cz'),('prgai','prg.ai',26,'https://prg.ai')]
     cos = ''.join(f'<a class="co" href="{u}" target="_blank" rel="noopener" aria-label="{n}"><img src="/img/1/logo/{k}.{"svg" if k in ("printedrobotics","prgai") else "png"}" alt="{n}" style="height:{h}px"></a>' for k,n,h,u in LOGOS)
     nums = ''.join(f'<li><b>{b}</b><span>{s}</span></li>' for b, s in t['nums'])
     facts = ''.join(f'<a href="{h}">{l}</a>' for h, l in t['facts'])
