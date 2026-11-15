@@ -26,7 +26,8 @@ OUT = ROOT / 'brand/speakers-1'; OUT.mkdir(exist_ok=True)
 SITE = ROOT / 'img/1'
 W = H = 600
 CARD_FACE, CARD_EYE = 0.44, 0.40      # covers: face-box height / eye line as a fraction of the 600 card
-SITE_FACE, SITE_EYE = 1 / 1.5, 0.45   # site: window side = 1.5 face heights, eyes at 45% (Filipensky source native ratio)
+SITE_FACE, SITE_EYE = 1 / 2.1, 0.42   # site: window side = 2.1 face heights, eyes at 42%: whole head with hair and air above
+SITE_TIGHT = {'filipensky': (1 / 1.5, 0.45), 'cerny': (1 / 1.55, 0.44)}   # sources start at the crown; a loose window would only upscale them
 EYE_IN_BOX = 0.42                     # eye line inside the haar box
 ORANGE = np.array([232, 54, 10], np.float32)
 SEED = 7
@@ -107,15 +108,21 @@ for k, path in SRC.items():
     Image.fromarray(outp.astype(np.uint8)).save(OUT / f'{k}.png')
 
     # --- site: window 1.5 face heights, eyes at 44%, never outside the source frame (12px pad excluded)
-    s = SITE_FACE * H / fh
+    sf, se = SITE_TIGHT.get(k, (SITE_FACE, SITE_EYE))
+    s = sf * H / fh
     top_room, bot_room = (ey - 12) * s, (sh + 12 - ey) * s          # source px above / below the eye line, scaled
-    need_top, need_bot = SITE_EYE * H, (1 - SITE_EYE) * H
-    s *= max(1.0, need_top / top_room, need_bot / bot_room)          # grow the face a little rather than show the frame
+    need_top, need_bot = se * H, (1 - se) * H
+    s *= max(1.0, need_top / top_room)                               # never show the top frame edge
+    short_bot = need_bot / bot_room > 1.0                            # source ends above the window bottom (chest cut)
     left_room, right_room = (cx - 12) * s, (sw + 12 - cx) * s
     nudge = max(0.0, W / 2 - left_room) - max(0.0, W / 2 - right_room)   # shift the window sideways if a side is short
     Lim = L8.copy(); Lim.putalpha(Image.fromarray((an * 255).astype(np.uint8)))
-    Ls, As = place(Lim, s, cx - nudge / s, ey, SITE_EYE * H)
+    Ls, As = place(Lim, s, cx - nudge / s, ey, se * H)
     Ls = finish(Ls, lv)
+    if short_bot:                                                    # melt the last 8% of the torso into the field instead of a hard line
+        yb = int(SITE_EYE * H + bot_room) if k not in SITE_TIGHT else int(se * H + bot_room)
+        ramp = np.ones(H, np.float32); y0 = max(0, yb - int(0.08 * H)); ramp[y0:yb] = np.linspace(1, 0, yb - y0); ramp[yb:] = 0
+        As = As * ramp[:, None]
     site = Image.fromarray(((Ls * As + 1.0 * (1 - As)) * 255).astype(np.uint8)).convert('RGB')
     site.save(SITE / f'sp-{k}.webp', 'WEBP', quality=84)
     print(f'{k:11s} face {int(fh)}  lo/mid/hi {lo:.2f} {mid:.2f} {hi:.2f}  site scale x{s * fh / H / SITE_FACE:.3f} nudge {nudge:+.0f}px  body {body_mean:.2f} lift {lift:.2f}')
