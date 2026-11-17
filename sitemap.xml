@@ -67,9 +67,21 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://protorobot.cz/granty/"/>
   </url>
   <url>
+    <loc>https://protorobot.cz/akce/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://protorobot.cz/akce/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://protorobot.cz/en/akce/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://protorobot.cz/akce/"/>
+  </url>
+  <url>
     <loc>https://protorobot.cz/en/granty/</loc>
     <xhtml:link rel="alternate" hreflang="cs" href="https://protorobot.cz/granty/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://protorobot.cz/en/granty/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://protorobot.cz/granty/"/>
+  </url>
+  <url>
+    <loc>https://protorobot.cz/en/akce/</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://protorobot.cz/granty/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://protorobot.cz/en/akce/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://protorobot.cz/granty/"/>
   </url>
 </urlset>
