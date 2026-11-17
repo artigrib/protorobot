@@ -37,6 +37,7 @@ h1 b{font-weight:700}
 .e--now .pill{background:var(--white);color:var(--black)} .e--now .pill:hover{background:var(--grey-pill)}
 .e--now .pill--orange{background:var(--orange)} .e--now .pill--orange:hover{background:var(--white)}
 @media (max-width:820px){.e{grid-template-columns:1fr auto;padding:var(--s2)}.e>div:nth-child(2){grid-column:1/-1;grid-row:2}.tag{grid-column:2;grid-row:1;justify-self:end}}
+@media (max-width:480px){.e{grid-template-columns:minmax(0,1fr)}.e>div:nth-child(2){grid-column:1;grid-row:auto}.tag{grid-column:1;grid-row:auto;order:-1;justify-self:start;white-space:normal;height:auto;min-height:30px;padding:4px 12px}}
 .join{margin-top:var(--s4);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s2);align-items:end;border-top:2px solid var(--black);padding-top:var(--s2)}
 .join p{font-size:clamp(20px,2vw,28px);line-height:1.25;letter-spacing:-.015em;max-width:30em}
 @media (max-width:700px){.join{grid-template-columns:1fr}}
