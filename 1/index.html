@@ -534,8 +534,16 @@ html.lb-open{overflow:hidden}
 @media (max-width:560px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px) and (max-height:700px){.hero__cos{--lu:min(27px,(100vw - 2 * var(--gt) - 64px) / 7.3)}}
 .hero__cos__br{display:none}
+/* the sponsor rides under the event badge: a second black plate of the badge's width, so the orange mark always sits on black
+   and the hero reads as one phrase, PROTO ROBOT / #1 BRNO / sponzor REVEL */
+.badge__sponsor{--ph:46px;display:flex;align-items:center;justify-content:center;gap:14px;width:100%;height:var(--ph);margin-top:6px;background:var(--black);color:var(--white);text-decoration:none}
+.badge__sponsor__l{font-size:12px;line-height:1;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.badge__sponsor img{display:block;height:calc(var(--ph) * .56);width:auto;margin-left:calc(var(--ph) * -.085)}
+.badge__sponsor:hover .badge__sponsor__l{opacity:.85}
+@media (max-width:640px){.badge__sponsor{--ph:36px;gap:12px;margin-top:5px}.badge__sponsor__l{font-size:10px}}
+
 /* portrait phones: the logos leave the strip and form centred lines, each label the first word of its line,
-   built by optical width (lu at k): REVEL / promedica 2.6 / EXOSKELETS KVANT 5.9 / PRINTED EDIH cnaip 7.1 / APSS ČAS 5.9 / ČAAI Brno.AI 5.2 / FEKT 3.2,
+   built by optical width (lu at k): promedica 2.6 / EXOSKELETS KVANT 5.9 / PRINTED EDIH cnaip 7.1 / APSS ČAS 5.9 / ČAAI Brno.AI 5.2 / FEKT 3.2,
    a closed diamond. The widest line fills the column, so the unit is width-driven; on short phones the height term wins.
    Lines are cut by full-width spacers (<i>) whose height is the line gap; the markup keeps the strip order and `order` regroups it. */
 @media (max-width:640px) and (orientation:portrait){
@@ -544,13 +552,12 @@ html.lb-open{overflow:hidden}
   .hero__cos .co{height:auto;justify-content:center}
   .hero__cos__label{height:auto;align-self:center}
   .hero__cos__br{display:block;flex:0 0 100%;height:calc(var(--u) * 1.5)}
-  .hero__cos__label--sponsor{order:1}.co--revel{order:2}.hero__cos__br:nth-of-type(1){order:3}
-  .hero__cos__label:not(.hero__cos__label--sponsor){order:4}.co--promedica{order:5}.hero__cos__br:nth-of-type(2){order:6}
-  .co--exoskelets{order:7}.co--kvant{order:8}.hero__cos__br:nth-of-type(3){order:9}
-  .co--printed{order:10}.co--edih{order:11}.co--cnaip{order:12}.hero__cos__br:nth-of-type(4){order:13}
-  .co--apss{order:14}.co--cas{order:15}.hero__cos__br:nth-of-type(5){order:16}
-  .co--caai{order:17}.co--brnoai{order:18}.hero__cos__br:nth-of-type(6){order:19}
-  .co--fekt{order:20}
+  .hero__cos__label{order:1}.co--promedica{order:2}.hero__cos__br:nth-of-type(1){order:3}
+  .co--exoskelets{order:4}.co--kvant{order:5}.hero__cos__br:nth-of-type(2){order:6}
+  .co--printed{order:7}.co--edih{order:8}.co--cnaip{order:9}.hero__cos__br:nth-of-type(3){order:10}
+  .co--apss{order:11}.co--cas{order:12}.hero__cos__br:nth-of-type(4){order:13}
+  .co--caai{order:14}.co--brnoai{order:15}.hero__cos__br:nth-of-type(5){order:16}
+  .co--fekt{order:17}
 }
 </style>
 </head>
@@ -592,8 +599,8 @@ html.lb-open{overflow:hidden}
     </div>
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
-  <div class="badge" id="badge" data-faces='["#1 Brno", "čt 26. 11. 2026", "FF MU, Arna Nováka 1"]'><span class="vh">#1 Brno, čtvrtek 26. 11. 2026, FF MU, Arna Nováka 1</span><div class="badge__flip" aria-hidden="true"><span class="f-a">#1 Brno</span><span class="f-b" aria-hidden="true"></span></div></div>
-  <div class="hero__cos"><span class="hero__cos__label hero__cos__label--sponsor">Sponzor</span><div class="hero__cos__logos hero__cos__logos--sponsor"><a class="co co--revel" href="https://revelrobotics.com" target="_blank" rel="noopener" aria-label="REVEL Robotics"><img class="co-sponsor" src="/img/1/logo/revel-orange.png" alt="REVEL Robotics"></a></div><span class="hero__cos__label">Partneři</span><div class="hero__cos__logos hero__cos__logos--partners"><a class="co co--promedica" href="https://www.promedica-praha.cz" target="_blank" rel="noopener" aria-label="Promedica Praha Group"><img src="/img/1/logo/promedica.png" alt="Promedica Praha Group"></a><a class="co co--exoskelets" href="https://exoskelets.cz" target="_blank" rel="noopener" aria-label="Exoskelets (Technologie zdraví)"><img src="/img/1/logo/exoskelets.png" alt="Exoskelets (Technologie zdraví)"></a><a class="co co--kvant" href="https://www.humanoidrobots.sk" target="_blank" rel="noopener" aria-label="KVANT Robotics"><img src="/img/1/logo/kvant.png" alt="KVANT Robotics"></a><a class="co co--printed" href="https://printedrobotics.cz" target="_blank" rel="noopener" aria-label="Printed Robotics"><img src="/img/1/logo/printedrobotics.svg" alt="Printed Robotics"></a><a class="co co--edih" href="https://www.edihctu.eu/event/proto-robot-1/" target="_blank" rel="noopener" aria-label="EDIH CTU"><img src="/img/1/logo/edih-white.png" alt="EDIH CTU"></a><a class="co co--cnaip" href="https://cnaip.cz" target="_blank" rel="noopener" aria-label="Česká národní AI platforma (CNAIP)"><img src="/img/1/logo/cnaip-white.svg" alt="Česká národní AI platforma (CNAIP)"></a><a class="co co--caai" href="https://asociace.ai/akce/proto-robot-1-brno-roboti-v-laboratorich-a-nemocnicich/" target="_blank" rel="noopener" aria-label="Česká asociace umělé inteligence"><img src="/img/1/logo/caai-white.svg" alt="Česká asociace umělé inteligence"></a><a class="co co--brnoai" href="https://www.brno.ai" target="_blank" rel="noopener" aria-label="Brno.AI"><img src="/img/1/logo/brnoai-white.svg" alt="Brno.AI"></a><a class="co co--apss" href="https://www.apsscr.cz" target="_blank" rel="noopener" aria-label="Asociace poskytovatelů sociálních služeb ČR"><img src="/img/1/logo/apss-white.png" alt="Asociace poskytovatelů sociálních služeb ČR"></a><a class="co co--fekt" href="https://www.fekt.vut.cz" target="_blank" rel="noopener" aria-label="FEKT VUT v Brně"><img src="/img/1/logo/fekt-white.png" alt="Fakulta elektrotechniky a komunikačních technologií VUT v Brně"></a><span class="co co--cas" aria-label="Česká asociace sester"><img src="/img/1/logo/cas-white.png" alt="Česká asociace sester"></span><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i></div></div>
+  <div class="badge" id="badge" data-faces='["#1 Brno", "čt 26. 11. 2026", "FF MU, Arna Nováka 1"]'><span class="vh">#1 Brno, čtvrtek 26. 11. 2026, FF MU, Arna Nováka 1</span><div class="badge__flip" aria-hidden="true"><span class="f-a">#1 Brno</span><span class="f-b" aria-hidden="true"></span></div><a class="badge__sponsor" href="https://revelrobotics.com" target="_blank" rel="noopener" aria-label="REVEL Robotics"><span class="badge__sponsor__l">Sponzor</span><img src="/img/1/logo/revel-orange.png" alt="REVEL Robotics"></a></div>
+  <div class="hero__cos"><span class="hero__cos__label">Partneři</span><div class="hero__cos__logos hero__cos__logos--partners"><a class="co co--promedica" href="https://www.promedica-praha.cz" target="_blank" rel="noopener" aria-label="Promedica Praha Group"><img src="/img/1/logo/promedica.png" alt="Promedica Praha Group"></a><a class="co co--exoskelets" href="https://exoskelets.cz" target="_blank" rel="noopener" aria-label="Exoskelets (Technologie zdraví)"><img src="/img/1/logo/exoskelets.png" alt="Exoskelets (Technologie zdraví)"></a><a class="co co--kvant" href="https://www.humanoidrobots.sk" target="_blank" rel="noopener" aria-label="KVANT Robotics"><img src="/img/1/logo/kvant.png" alt="KVANT Robotics"></a><a class="co co--printed" href="https://printedrobotics.cz" target="_blank" rel="noopener" aria-label="Printed Robotics"><img src="/img/1/logo/printedrobotics.svg" alt="Printed Robotics"></a><a class="co co--edih" href="https://www.edihctu.eu/event/proto-robot-1/" target="_blank" rel="noopener" aria-label="EDIH CTU"><img src="/img/1/logo/edih-white.png" alt="EDIH CTU"></a><a class="co co--cnaip" href="https://cnaip.cz" target="_blank" rel="noopener" aria-label="Česká národní AI platforma (CNAIP)"><img src="/img/1/logo/cnaip-white.svg" alt="Česká národní AI platforma (CNAIP)"></a><a class="co co--caai" href="https://asociace.ai/akce/proto-robot-1-brno-roboti-v-laboratorich-a-nemocnicich/" target="_blank" rel="noopener" aria-label="Česká asociace umělé inteligence"><img src="/img/1/logo/caai-white.svg" alt="Česká asociace umělé inteligence"></a><a class="co co--brnoai" href="https://www.brno.ai" target="_blank" rel="noopener" aria-label="Brno.AI"><img src="/img/1/logo/brnoai-white.svg" alt="Brno.AI"></a><a class="co co--apss" href="https://www.apsscr.cz" target="_blank" rel="noopener" aria-label="Asociace poskytovatelů sociálních služeb ČR"><img src="/img/1/logo/apss-white.png" alt="Asociace poskytovatelů sociálních služeb ČR"></a><a class="co co--fekt" href="https://www.fekt.vut.cz" target="_blank" rel="noopener" aria-label="FEKT VUT v Brně"><img src="/img/1/logo/fekt-white.png" alt="Fakulta elektrotechniky a komunikačních technologií VUT v Brně"></a><span class="co co--cas" aria-label="Česká asociace sester"><img src="/img/1/logo/cas-white.png" alt="Česká asociace sester"></span><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i></div></div>
 </section>
 
 <section class="mod intro" id="about">
@@ -773,7 +780,7 @@ html.lb-open{overflow:hidden}
     let B = bounds();
     // posters are centred: the title on the hero's centre line, the badge right under its ink
     const gut = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gt')) || 10;
-    const badgeH = badgeFlipEl.getBoundingClientRect().height || 65;
+    const badgeH = badgeEl.getBoundingClientRect().height || 65;   // the badge and the sponsor plate under it
     const titleH = parseFloat(getComputedStyle(hero).getPropertyValue('--title-h')) || 0.6;   // share of the hero height the title may take
     // the block stays clear of the bar above and of the sponsor + partner lines below (two line gaps above the logos)
     const cos = $('.hero__cos', hero);
