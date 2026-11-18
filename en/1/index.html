@@ -797,18 +797,26 @@ html.lb-open{overflow:hidden}
     type.classList.add('is-ready');
   };
 
-  /* badge keeps one width: measured on the widest of its faces so the flips do not change its size */
-  const badgeEl = $('#badge'), badgeFlipEl = $('.badge__flip', badgeEl);
+  /* badge keeps one width so the flips never resize it: the width of its first face (#1 Brno) or of the sponsor plate under it,
+     whichever is wider; the two plates share it, and a longer face is set smaller to fit (scale kept per face) */
+  const badgeEl = $('#badge'), badgeFlipEl = $('.badge__flip', badgeEl), plateEl = $('.badge__sponsor', badgeEl);
   const sizeBadge = () => {
     const faces = JSON.parse(badgeEl.dataset.faces);
     const probe = badgeFlipEl.cloneNode(false);
     probe.style.cssText = 'position:absolute;visibility:hidden;width:auto;left:-9999px;top:0';
     badgeEl.appendChild(probe);
     badgeFlipEl.style.width = '';
-    const w = Math.max(...faces.map(f => { probe.textContent = f; return probe.getBoundingClientRect().width; }));
+    const ws = faces.map(f => { probe.textContent = f; return probe.getBoundingClientRect().width; });
     probe.remove();
-    badgeFlipEl.style.width = Math.ceil(w) + 'px';
+    if (plateEl) plateEl.style.width = '';
+    const pad = 2 * parseFloat(getComputedStyle(badgeFlipEl).paddingLeft);
+    const w = Math.ceil(Math.max(ws[0], plateEl ? plateEl.getBoundingClientRect().width : 0));
+    badgeFlipEl.style.width = w + 'px';
+    if (plateEl) plateEl.style.width = w + 'px';
+    badgeEl._scales = ws.map(x => Math.min(1, (w - pad) / (x - pad)));
+    $$('span', badgeFlipEl).forEach(sp => { const k = faces.indexOf(sp.textContent); sp.style.fontSize = k > -1 ? (badgeEl._scales[k] * 100) + '%' : ''; });
   };
+
   /* nav panel: pick the widest arrangement whose real width fits next to the buttons */
   const cityEl = $('#city'), cityNav = $('#cityNav'), topRight = $('.top__right'), topEl = $('.top');
   const fitNav = () => {
@@ -913,10 +921,10 @@ html.lb-open{overflow:hidden}
   const badgeFlip = (() => {
     const faces = JSON.parse(badge.dataset.faces), fa = $('.f-a', badge), fb = $('.f-b', badge);
     let i = 0, flipped = false;
-    const reset = () => { i = 0; flipped = false; fa.textContent = faces[0]; fb.textContent = ''; badge.classList.remove('is-flipped'); };
+    const reset = () => { i = 0; flipped = false; fa.textContent = faces[0]; fa.style.fontSize = badge._scales ? (badge._scales[0] * 100) + '%' : ''; fb.textContent = ''; badge.classList.remove('is-flipped'); };
     const next = () => {
       i = (i + 1) % faces.length;
-      (flipped ? fa : fb).textContent = faces[i];   // write onto the hidden face, then turn it to the front
+      (flipped ? fa : fb).textContent = faces[i]; (flipped ? fa : fb).style.fontSize = badge._scales ? (badge._scales[i] * 100) + '%' : '';   // write onto the hidden face, then turn it to the front
       flipped = !flipped; badge.classList.toggle('is-flipped', flipped);
       return i;
     };
