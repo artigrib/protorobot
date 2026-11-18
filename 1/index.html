@@ -228,7 +228,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 /* sponsor + partners on the hero's dark bottom: one grid, a label column and a logo column.
    Everything is a multiple of one logo unit --lu: spacing --u = .375lu, partner row --row = .66lu, and each logo's height = lu * --k.
    --k equalises optical area, not height: k ~ 1/sqrt(ink aspect ratio) * (ink density)^-1/4, then trimmed by eye (see commit). */
-.hero__cos{--lu:min(48px,5.4vh,(100vw - 110px) / 24.5);--u:calc(var(--lu) * .375);--row:calc(var(--lu) * .66);--rev:calc(var(--lu) * .78);
+.hero__cos{--lu:min(48px,5.4vh,(100vw - 110px) / 26.5);--u:calc(var(--lu) * .375);--row:calc(var(--lu) * .66);--rev:calc(var(--lu) * .78);
   position:absolute;z-index:3;left:0;right:0;bottom:calc(var(--s3) + env(safe-area-inset-bottom));padding:0 var(--gt);color:var(--white);
   display:grid;grid-template-columns:max-content max-content;justify-content:center;column-gap:var(--u);row-gap:var(--u)}
 .hero__cos__label{align-self:start;display:flex;align-items:center;height:var(--row);font-size:12px;line-height:1;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;opacity:.75}
@@ -240,7 +240,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .hero__cos .co:hover img{opacity:1}
 .hero__cos .co--revel img{height:var(--rev);margin-left:calc(var(--rev) * -.17)}   /* the file has 17% of its height empty on the left */
 .co--promedica{--k:.56}.co--exoskelets{--k:.28}.co--kvant{--k:.53}.co--printed{--k:.30}
-.co--edih{--k:.66}.co--cnaip{--k:.55}.co--caai{--k:.48}.co--apss{--k:.55}
+.co--edih{--k:.66}.co--cnaip{--k:.55}.co--caai{--k:.60}.co--apss{--k:.62}
 /* Printed Robotics: the SVG carries a hairline frame and wide margins round its words; show just the words (k sizes their height) */
 .hero__cos .co--printed{overflow:hidden}
 .hero__cos .co--printed img{--t:calc(var(--lu) * var(--k));height:calc(var(--t) / .4425);margin:calc(var(--t) * -.6158) calc(var(--t) * -.4628) calc(var(--t) * -.644) calc(var(--t) * -.4574)}
