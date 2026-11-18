@@ -537,9 +537,9 @@ html.lb-open{overflow:hidden}
 /* the sponsor rides under the event badge: a second black plate of the badge's width, so the orange mark always sits on black
    and the hero reads as one phrase, PROTO ROBOT / #1 BRNO / sponzor REVEL */
 .badge__sponsor{--ph:46px;display:flex;align-items:center;justify-content:center;gap:14px;width:max-content;padding:0 calc(var(--ph) * .5);height:var(--ph);margin:6px auto 0;background:var(--black);color:var(--white);text-decoration:none}
-.badge__sponsor__l{font-size:12px;line-height:1;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.badge__sponsor__l{font-size:12px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
 .badge__sponsor img{display:block;height:calc(var(--ph) * .56);width:auto;margin-left:calc(var(--ph) * -.085)}
-.badge__sponsor:hover .badge__sponsor__l{opacity:.85}
+.badge__sponsor:hover img{opacity:.85}
 @media (max-width:640px){.badge__sponsor{--ph:36px;gap:12px;margin-top:5px}.badge__sponsor__l{font-size:10px}}
 @media (orientation:landscape) and (max-height:500px){.badge__sponsor{--ph:32px;gap:10px;margin-top:4px}.badge__sponsor__l{font-size:10px}}
 
