@@ -527,11 +527,11 @@ html.lb-open{overflow:hidden}
 @media (max-width:760px){.where__grid{grid-template-columns:minmax(0,1fr)}.where__photo{display:none}}
 /* speakers: six portraits from one pipeline (tools/pages/cutouts_1.py), already a flat tonal series,
    so the shade at the foot of the frame is a touch, not the #0 caption gradient */
-.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.spk-grid{grid-template-columns:repeat(12,minmax(0,1fr))}
+.spk{grid-column:span 3}.spk:nth-child(-n+3){grid-column:span 4}   /* 3 talks on top, 4 panelists below */
 .spk .photo img{object-position:center center}
 .spk .photo::after{background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.18))}
-@media (max-width:1100px){.spk-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:760px){.spk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.spk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.spk,.spk:nth-child(-n+3){grid-column:auto}}
 @media (max-width:560px){.spk-grid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px) and (max-height:700px){.hero__cos{--lu:min(27px,(100vw - 2 * var(--gt) - 64px) / 7.3)}}
 .hero__cos__br{display:none}
@@ -617,7 +617,7 @@ html.lb-open{overflow:hidden}
   <ol class="tl">
     <li><time datetime="2026-11-26T18:30+01:00">18:30</time><div><b>Doors</b><span>Demo tables and refreshments in the foyer</span></div></li>
     <li><time datetime="2026-11-26T19:30+01:00">19:30</time><div><b>Opening</b><span>PROTO ROBOT #1 Brno</span></div></li>
-    <li><time datetime="2026-11-26T19:40+01:00">19:40</time><div><b>A robot in the lab: openTube from Brno University of Technology</b><span>Prof. Radomil Matoušek, Department of Control and Instrumentation, FEEC BUT</span></div></li>
+    <li><time datetime="2026-11-26T19:40+01:00">19:40</time><div><b>A robot in the lab: the openTube2 system from BUT</b><span>Prof. Radomil Matoušek, Department of Control and Instrumentation, FEEC BUT</span></div></li>
     <li><time datetime="2026-11-26T19:50+01:00">19:50</time><div><b>Robotic surgery in practice: da Vinci at FNUSA</b><span>Petr Filipenský, MD, head of department, St. Anne's University Hospital Brno</span></div></li>
     <li><time datetime="2026-11-26T20:05+01:00">20:05</time><div><b>How a surgical robot gets into a hospital: Versius</b><span>Kamil Bořek, Promedica Praha Group. Short talk and discussion</span></div></li>
     <li><time datetime="2026-11-26T20:20+01:00">20:20</time><div><b>Panel: Robots in care. Who accepts them, and what is ethical?</b><span>Lucie Vidovićová (FSS MU), David Černý (Institute of State and Law, CAS), Jana Mikešová (Rehabilitation Clinic, FN Brno), Zhenya Orlova (REVEL Robotics). Moderated by Arti</span></div></li>
@@ -638,6 +638,13 @@ html.lb-open{overflow:hidden}
 <section class="mod speakers" id="speakers">
   <h2>Speakers</h2>
   <div class="spk-grid">
+    <article class="spk">
+      <div class="photo"><img src="/img/1/sp-matousek.webp" alt="Radomil Matoušek" width="600" height="600" loading="lazy" decoding="async"></div>
+      <h3 class="spk__name">Radomil Matoušek</h3>
+      <p class="spk__org">Department of Control and Instrumentation, FEEC BUT</p>
+      <p class="spk__talk">A robot in the lab: the openTube2 system from BUT</p>
+      <p class="spk__note">Professor who led the development of openTube2 with University Hospital Brno. Inside a biohazard box, the robot identifies and uncaps tubes with infectious samples and pipettes them for isolation.</p>
+    </article>
     <article class="spk">
       <div class="photo"><img src="/img/1/sp-filipensky.webp" alt="Petr Filipenský" width="600" height="600" loading="lazy" decoding="async"></div>
       <h3 class="spk__name">Petr Filipenský</h3>
