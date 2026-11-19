@@ -538,18 +538,17 @@ html.lb-open{overflow:hidden}
 @media (max-width:640px) and (max-height:700px){.hero__cos{--lu:min(27px,(100vw - 2 * var(--gt) - 64px) / 7.3)}}
 .hero__cos__br{display:none}
 /* the hero reads top to bottom as one phrase: #1 BRNO / PROTO ROBOT / the sponsors. The sponsors are two tiers of black plates
-   in the badge's language (so REVEL's orange mark always sits on black): the main sponsor first and on the taller plate,
-   the sponsor after it on a plate .66 as tall. Side by side on wide screens, stacked to one column width on portrait phones. */
-.sponsors{position:absolute;left:50%;top:var(--sy,80%);transform:translateX(-50%);z-index:3;display:flex;align-items:flex-end;gap:6px;width:max-content}
-.sponsor{--ph:58px;display:flex;align-items:center;justify-content:center;gap:calc(var(--ph) * .24);flex:none;height:var(--ph);padding:0 calc(var(--ph) * .4);background:var(--black);color:var(--white);text-decoration:none;white-space:nowrap}
-.sponsor--sub{--ph:38px}
+   in the badge's language (so REVEL's orange mark always sits on black): the main sponsor first, the sponsor after it,
+   both plates one height. Side by side on wide screens, stacked to one column width on portrait phones. */
+.sponsors{position:absolute;left:50%;top:var(--sy,80%);transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:6px;width:max-content}
+.sponsor{--ph:50px;display:flex;align-items:center;justify-content:center;gap:calc(var(--ph) * .24);flex:none;height:var(--ph);padding:0 calc(var(--ph) * .4);background:var(--black);color:var(--white);text-decoration:none;white-space:nowrap}
 .sponsor__l{font-size:12px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
 .sponsor img{display:block;width:auto}
 .sponsor--main img{height:calc(var(--ph) * .56);margin-left:calc(var(--ph) * -.085)}   /* the file has 17% of its height empty on the left */
-.sponsor--sub img{height:calc(var(--ph) * .28)}
+.sponsor--sub img{height:calc(var(--ph) * .26)}
 .sponsor:hover img{opacity:.85}
-@media (max-width:640px) and (orientation:portrait){.sponsors{flex-direction:column;align-items:stretch;gap:5px}.sponsor{--ph:46px}.sponsor--sub{--ph:32px}.sponsor__l{font-size:10px}}
-@media (orientation:landscape) and (max-height:500px){.sponsors{gap:4px}.sponsor{--ph:36px}.sponsor--sub{--ph:24px}.sponsor__l{font-size:10px}}
+@media (max-width:640px) and (orientation:portrait){.sponsors{flex-direction:column;align-items:stretch;gap:5px}.sponsor{--ph:42px}.sponsor__l{font-size:10px}}
+@media (orientation:landscape) and (max-height:500px){.sponsors{gap:4px}.sponsor{--ph:30px}.sponsor__l{font-size:10px}}
 
 /* portrait phones: the logos leave the strip and form centred lines, each label the first word of its line,
    built by optical width (lu at k, gaps .75): promedica KVANT 7.1 / Technologie Zdraví PRINTED 6.8 / EDIH cnaip BMR 6.1 / APSS ČAS 5.9 /
