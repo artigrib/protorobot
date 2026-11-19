@@ -900,7 +900,8 @@ html.lb-open{overflow:hidden}
     set('--ty', (tTop - B.t) + 'px');
     hero.style.setProperty('--by', (top - H.top) + 'px');
     type._l0 = ['--tx', '--ty', '--sc'].map(k => [k, type.style.getPropertyValue(k)]);   // the PROTO ROBOT layout, restored when the title comes back to it
-    type.classList.add('is-ready');
+    // show the title only once it is measured in its own font: measured in a fallback font it would appear at a wrong size first
+    if (!document.fonts || document.fonts.status === 'loaded') type.classList.add('is-ready');
   };
 
   // sponsor tiers above the title: REVEL across the top, the other two side by side under it, both columns one width
@@ -936,6 +937,8 @@ html.lb-open{overflow:hidden}
   };
   const layout = () => { fitNav(); fitProgram(); sizePlates(); centreType(); };
   const relayout = debounce(layout);
+  // phones start with the menu folded (see foldCity below): fold it before the first measure, or the title is sized under the open menu
+  if (matchMedia('(max-width: 640px), (max-height: 500px)').matches) cityEl.classList.add('city--collapsed');
   layout();
   if ('ResizeObserver' in window) {
     const ro = new ResizeObserver(relayout);
@@ -943,7 +946,8 @@ html.lb-open{overflow:hidden}
   } else {
     addEventListener('resize', relayout);
   }
-  if (document.fonts) { document.fonts.ready.then(layout); document.fonts.addEventListener('loadingdone', layout); }
+  setTimeout(() => type.classList.add('is-ready'), 2500);   // a font that never arrives must not hide the title
+  if (document.fonts) { document.fonts.ready.then(() => requestAnimationFrame(layout)); document.fonts.addEventListener('loadingdone', layout); }
   addEventListener('load', layout);
 
   /* ---------- navigation ---------- */
@@ -1017,6 +1021,7 @@ html.lb-open{overflow:hidden}
 
   const titleOut = () => { type._moving = true; type.classList.add('is-out'); };
   const titleIn = () => {
+    if (!type.classList.contains('is-out')) { if (typeLayoutPending) centreType(); return; }   // nothing slid out (first start): nothing to wait for
     type.classList.remove('is-out');
     // the new words resize the title box, which asks for a layout while the letters still slide in: hold it until they are back
     type._moving = true;
