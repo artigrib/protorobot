@@ -869,8 +869,8 @@ html.lb-open{overflow:hidden}
 
   let typeLayoutPending = false;
   const centreType = () => {
-    if (type.dataset.face && type.dataset.face !== '0') return;   // only the PROTO ROBOT face sets the layout; the date face reuses it
-    if (type.classList.contains('is-out')) { typeLayoutPending = true; return; }   // letters are slid apart: measure later
+    if (type.dataset.face && type.dataset.face !== '0') { typeLayoutPending = true; return; }   // only the PROTO ROBOT face sets the layout; the date face reuses it
+    if (type.classList.contains('is-out') || type._moving) { typeLayoutPending = true; return; }   // letters are slid apart or still sliding: measure later
     typeLayoutPending = false;
     const set = (k, v) => type.style.setProperty(k, v);
     set('--tx', '0px'); set('--ty', '0px'); set('--sc', '1');
@@ -899,6 +899,7 @@ html.lb-open{overflow:hidden}
     set('--tx', (H.left + H.width / 2 - (B.l + B.r) / 2) + 'px');
     set('--ty', (tTop - B.t) + 'px');
     hero.style.setProperty('--by', (top - H.top) + 'px');
+    type._l0 = ['--tx', '--ty', '--sc'].map(k => [k, type.style.getPropertyValue(k)]);   // the PROTO ROBOT layout, restored when the title comes back to it
     type.classList.add('is-ready');
   };
 
@@ -1014,10 +1015,13 @@ html.lb-open{overflow:hidden}
     return { reset, step };
   })();
 
-  const titleOut = () => type.classList.add('is-out');
+  const titleOut = () => { type._moving = true; type.classList.add('is-out'); };
   const titleIn = () => {
     type.classList.remove('is-out');
-    if (typeLayoutPending) setTimeout(centreType, CUT_MS + 100);   // measure only once the letters are back
+    // the new words resize the title box, which asks for a layout while the letters still slide in: hold it until they are back
+    type._moving = true;
+    clearTimeout(type._settle);
+    type._settle = setTimeout(() => { type._moving = false; if (typeLayoutPending) centreType(); }, CUT_MS + 100);
   };
 
   const titleFace = (() => {
@@ -1028,7 +1032,7 @@ html.lb-open{overflow:hidden}
       const l = Math.min(...rs.map(r => r.left)), r = Math.max(...rs.map(r => r.right));
       type.style.setProperty('--tx', (H.left + H.width / 2 - (l + r) / 2) + 'px');
     };
-    const show = k => { i = k; type.dataset.face = k; sp[0].textContent = faces[k][0]; sp[1].textContent = faces[k][1]; if (k) recentre(); else centreType(); };
+    const show = k => { i = k; type.dataset.face = k; sp[0].textContent = faces[k][0]; sp[1].textContent = faces[k][1]; if (k) recentre(); else if (type._l0) type._l0.forEach(([p, v]) => type.style.setProperty(p, v)); else centreType(); };
     const next = () => { titleOut(); setTimeout(() => { show((i + 1) % faces.length); titleIn(); }, CUT_MS * .55); };
     const reset = () => { if (i) show(0); };
     return { next, reset };
