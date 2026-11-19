@@ -569,6 +569,52 @@ html.lb-open{overflow:hidden}
   .co--caai{order:15}.co--brnoai{order:16}.hero__cos__br:nth-of-type(5){order:17}
   .co--fekt{order:18}.co--utbft{order:19}.hero__cos__br:nth-of-type(6){order:20}.co--hotskola{order:21}
 }
+/* ---------- jobs: the main sponsor's hiring block, right after the demo tables ---------- */
+.jobs__roles{margin-top:var(--s3);border-top:1px solid var(--black);max-width:960px;counter-reset:role}
+.jobs__roles li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s2);align-items:baseline;padding:var(--s1) 0;border-bottom:1px solid var(--grey-line);font-weight:600;font-size:clamp(19px,1.6vw,23px);line-height:1.25;letter-spacing:-.01em;counter-increment:role}
+.jobs__roles li::before{content:counter(role,decimal-leading-zero);font-weight:300;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em;line-height:1}
+@media (max-width:640px){.jobs__roles li{grid-template-columns:44px minmax(0,1fr);gap:var(--s1)}.jobs__roles li::before{font-size:22px}}
+
+/* ---------- sponsor toast: a notification card for one sponsor, filled from data attributes (see the aside) ----------
+   black card in the sponsor plates' language, corners concentric with the pill inside it, bottom right on desktop,
+   full width between the gutters on phones; shown past the hero, hidden over #jobs and the footer */
+.sponsor-toast{--tp:12px;position:fixed;z-index:40;right:calc(var(--g) + env(safe-area-inset-right));bottom:calc(var(--g) + env(safe-area-inset-bottom));
+  width:min(480px,calc(100vw - 2 * var(--g) - env(safe-area-inset-left) - env(safe-area-inset-right)));
+  display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head x" "text cta";align-items:end;gap:10px 16px;
+  padding:var(--tp) var(--tp) var(--tp) calc(var(--tp) + 10px);border-radius:calc(var(--pill-h) / 2 + var(--tp));
+  background:var(--black);color:var(--white);box-shadow:0 18px 40px -12px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.18);
+  opacity:0;visibility:hidden;transform:translateY(calc(100% + var(--g)));pointer-events:none;
+  transition:opacity .35s ease,transform .6s var(--ease-out),visibility 0s linear .6s}
+.sponsor-toast[hidden]{display:none}
+.sponsor-toast.is-on{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .35s ease,transform .6s var(--ease-out),visibility 0s}
+.sponsor-toast__head{grid-area:head;display:flex;align-items:center;gap:12px;min-width:0;padding-top:4px}
+.sponsor-toast__logo{display:block;flex:none;border-radius:4px}
+.sponsor-toast__logo img{height:26px;width:auto;margin-left:-4px}   /* the file has 17% of its height empty on the left */
+.sponsor-toast__label{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);white-space:nowrap}
+.sponsor-toast__live{position:relative;flex:none;width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.sponsor-toast__live::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--orange);animation:toast-ping 2.4s cubic-bezier(0,0,.2,1) infinite}
+@keyframes toast-ping{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(3.2);opacity:0}}
+.sponsor-toast__text{grid-area:text;min-width:0;padding-bottom:4px}
+.sponsor-toast__title{font-size:20px;line-height:1.15;font-weight:600;letter-spacing:-.015em}
+.sponsor-toast__lines{display:grid;margin-top:3px;font-size:15px;line-height:1.3;color:rgba(255,255,255,.72)}
+.sponsor-toast__lines span{grid-area:1/1;opacity:0;transition:opacity .7s ease;text-wrap:pretty}
+.sponsor-toast__lines span.is-on{opacity:1}
+.sponsor-toast__cta{grid-area:cta}
+.sponsor-toast__cta.pill{height:44px;padding:0 20px;font-size:15px}
+.sponsor-toast__x{grid-area:x;justify-self:end;align-self:start;width:36px;height:36px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:var(--white);display:grid;place-items:center;cursor:pointer;font:inherit;transition:background .18s,color .18s}
+.sponsor-toast__x:hover,.sponsor-toast__x:focus-visible{background:var(--orange);color:var(--black)}
+.sponsor-toast :focus-visible{outline-color:var(--white)}
+.sponsor-toast__x:focus-visible,.sponsor-toast__cta:focus-visible{border-radius:999px}
+@media (max-width:640px){
+  .sponsor-toast{left:calc(var(--g) + env(safe-area-inset-left));right:calc(var(--g) + env(safe-area-inset-right));width:auto;grid-template-areas:"head x" "text text" "cta cta";align-items:start;gap:8px 12px}
+  .sponsor-toast__title{font-size:18px}
+  .sponsor-toast__cta{justify-self:start;margin-top:4px}
+}
+@media (prefers-reduced-motion:reduce){
+  /* it just appears: no slide, no ping; the lines still crossfade */
+  .sponsor-toast,.sponsor-toast.is-on{transform:none;transition:opacity .2s ease,visibility 0s linear .2s}
+  .sponsor-toast.is-on{transition:opacity .2s ease,visibility 0s}
+}
 </style>
 </head>
 <body>
@@ -610,7 +656,7 @@ html.lb-open{overflow:hidden}
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
   <div class="badge" id="badge" data-faces='["#1 Brno", "Thu 26 Nov 2026", "FA MU, Arna Nováka 1"]'><span class="vh">#1 Brno, Thursday 26 Nov 2026, Faculty of Arts MU, Arna Nováka 1</span><div class="badge__flip" aria-hidden="true"><span class="f-a">#1 Brno</span><span class="f-b" aria-hidden="true"></span></div></div>
-  <div class="sponsors" id="sponsors" role="group" aria-label="Organizer and sponsors"><a class="sponsor sponsor--org" href="https://printedrobotics.cz" target="_blank" rel="noopener"><span class="sponsor__l">Organizer</span><img src="/img/1/logo/printedrobotics-white.png" alt="Printed Robotics"></a><a class="sponsor sponsor--main" href="https://revelrobotics.com" target="_blank" rel="noopener"><span class="sponsor__l">Main sponsor</span><img src="/img/1/logo/revel-orange.png" alt="REVEL Robotics"></a><a class="sponsor sponsor--sub" href="https://exoskelets.cz" target="_blank" rel="noopener"><span class="sponsor__l">Sponsor</span><img src="/img/1/logo/exoskelets-orange.png" alt="Exoskelets (Technologie zdraví)"></a></div>
+  <div class="sponsors" id="sponsors" role="group" aria-label="Organizer and sponsors"><a class="sponsor sponsor--main" href="https://revelrobotics.com" target="_blank" rel="noopener"><span class="sponsor__l">Main sponsor</span><img src="/img/1/logo/revel-orange.png" alt="REVEL Robotics"></a><a class="sponsor sponsor--sub" href="https://exoskelets.cz" target="_blank" rel="noopener"><span class="sponsor__l">Sponsor</span><img src="/img/1/logo/exoskelets-orange.png" alt="Exoskelets (Technologie zdraví)"></a><a class="sponsor sponsor--org" href="https://printedrobotics.cz" target="_blank" rel="noopener"><span class="sponsor__l">Organizer</span><img src="/img/1/logo/printedrobotics-white.png" alt="Printed Robotics"></a></div>
   <div class="hero__cos"><span class="hero__cos__label">Partners</span><div class="hero__cos__logos hero__cos__logos--partners"><a class="co co--promedica" href="https://www.promedica-praha.cz" target="_blank" rel="noopener" aria-label="Promedica Praha Group"><img src="/img/1/logo/promedica.png" alt="Promedica Praha Group"></a><a class="co co--techzdravi" href="https://www.linkedin.com/company/technologie-zdrav%C3%AD/" target="_blank" rel="noopener" aria-label="Technologie Zdraví"><img src="/img/1/logo/techzdravi-white.png" alt="Technologie Zdraví"></a><a class="co co--kvant" href="https://www.humanoidrobots.sk" target="_blank" rel="noopener" aria-label="KVANT Robotics"><img src="/img/1/logo/kvant.png" alt="KVANT Robotics"></a><a class="co co--edih" href="https://www.edihctu.eu/event/proto-robot-1/" target="_blank" rel="noopener" aria-label="EDIH CTU"><img src="/img/1/logo/edih-white.png" alt="EDIH CTU"></a><a class="co co--cnaip" href="https://cnaip.cz" target="_blank" rel="noopener" aria-label="Česká národní AI platforma (CNAIP)"><img src="/img/1/logo/cnaip-white.svg" alt="Česká národní AI platforma (CNAIP)"></a><a class="co co--caai" href="https://asociace.ai/akce/proto-robot-1-brno-roboti-v-laboratorich-a-nemocnicich/" target="_blank" rel="noopener" aria-label="Česká asociace umělé inteligence"><img src="/img/1/logo/caai-white.svg" alt="Česká asociace umělé inteligence"></a><a class="co co--brnoai" href="https://www.brno.ai" target="_blank" rel="noopener" aria-label="Brno.AI"><img src="/img/1/logo/brnoai-white.svg" alt="Brno.AI"></a><a class="co co--apss" href="https://www.apsscr.cz" target="_blank" rel="noopener" aria-label="Asociace poskytovatelů sociálních služeb ČR"><img src="/img/1/logo/apss-white.png" alt="Asociace poskytovatelů sociálních služeb ČR"></a><a class="co co--fekt" href="https://www.fekt.vut.cz" target="_blank" rel="noopener" aria-label="FEKT VUT v Brně"><img src="/img/1/logo/fekt-white.png" alt="Fakulta elektrotechniky a komunikačních technologií VUT v Brně"></a><a class="co co--cas" href="https://www.cnna.cz" target="_blank" rel="noopener" aria-label="Česká asociace sester"><img src="/img/1/logo/cas-white.png" alt="Česká asociace sester"></a><a class="co co--bmr" href="https://mars.fekt.vut.cz" target="_blank" rel="noopener" aria-label="Brno Mars Rover"><img src="/img/1/logo/bmr-white.png" alt="Brno Mars Rover"></a><a class="co co--utbft" href="https://ft.utb.cz" target="_blank" rel="noopener" aria-label="Tomas Bata University in Zlín, Faculty of Technology"><img src="/img/1/logo/utbft-white.png" alt="Tomas Bata University in Zlín, Faculty of Technology"></a><a class="co co--hotskola" href="https://www.hotskolabrno.cz" target="_blank" rel="noopener" aria-label="Hotelová škola Brno, catering"><img src="/img/1/logo/hotskola-white.png" alt="Hotelová škola Brno"></a><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i></div></div>
 </section>
 
@@ -642,6 +688,21 @@ html.lb-open{overflow:hidden}
     <figure class="demo"><div class="photo"><img src="/img/1/demo-mars.webp" alt="" loading="lazy" decoding="async"></div><figcaption><b>Mars rover</b><span>Brno Mars Rover student team from BUT, built for the European Rover Challenge</span></figcaption></figure>
     <figure class="demo"><div class="photo"><img src="/img/1/demo-kvant.webp" alt="" loading="lazy" decoding="async"></div><figcaption><b>KVANT Robotics humanoid</b><span>Its twin Robbie welcomes hotel guests in Bratislava; in Brno it will be an interactive companion</span></figcaption></figure>
   </div>
+</section>
+
+<section class="mod jobs" id="jobs">
+  <h2>Jobs in robotics</h2>
+  <p class="lede">REVEL Robotics, the evening’s main sponsor, is growing its team. Come to their demo table on 26&nbsp;Nov or check their website.</p>
+  <!-- roles from REVEL (English titles in both languages); no careers page yet, so the link goes to revelrobotics.com -->
+  <ul class="jobs__roles" aria-label="Open roles at REVEL Robotics">
+    <li lang="en">sEMG / Biosignal ML Scientist</li>
+    <li lang="en">RAI Robot Learning Engineer</li>
+    <li lang="en">Junior Data Collection Specialist</li>
+    <li lang="en">Mechanical Engineer, Wearables</li>
+    <li lang="en">Data Collection Engineer</li>
+  </ul>
+  <p class="tl-note">Prague, on-site</p>
+  <div class="cta-row"><a class="pill pill--dark" href="https://revelrobotics.com" target="_blank" rel="noopener">revelrobotics.com</a></div>
 </section>
 
 <section class="mod speakers" id="speakers">
@@ -742,6 +803,23 @@ html.lb-open{overflow:hidden}
   <div class="foot__meta">© 2026 PROTO ROBOT. We have a lot on our hands. Hence the robot.</div>
 </footer>
 </div>
+
+<!-- sponsor toast: to reuse for another sponsor, change data-sponsor (also the key that remembers a close), data-lines,
+     the logo, label, title and the CTA's href (the block it points to hides the toast while in view) -->
+<aside class="sponsor-toast" aria-label="Main sponsor REVEL Robotics is hiring" hidden
+  data-sponsor="revel" data-after="top" data-snooze-days="7" data-cycle-seconds="4.5"
+  data-lines='["Hiring: sEMG / Biosignal ML Scientist", "Hiring: RAI Robot Learning Engineer", "Hiring: Junior Data Collection Specialist", "Hiring: Mechanical Engineer, Wearables", "Hiring: Data Collection Engineer", "See the REVEL robot hand at the demo table on 26 Nov"]'>
+  <div class="sponsor-toast__head">
+    <a class="sponsor-toast__logo" href="https://revelrobotics.com" target="_blank" rel="noopener"><img src="/img/1/logo/revel-orange.png" alt="REVEL Robotics" width="361" height="120"></a>
+    <p class="sponsor-toast__label"><span class="sponsor-toast__live" aria-hidden="true"></span>Main sponsor</p>
+  </div>
+  <div class="sponsor-toast__text">
+    <p class="sponsor-toast__title">REVEL Robotics is hiring</p>
+    <p class="sponsor-toast__lines">Hiring: sEMG / Biosignal ML Scientist</p>
+  </div>
+  <a class="pill pill--orange sponsor-toast__cta" href="#jobs">Open roles</a>
+  <button class="sponsor-toast__x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+</aside>
 
 
 
@@ -1078,6 +1156,77 @@ html.lb-open{overflow:hidden}
     const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(i + (dx < 0 ? 1 : -1));
   }, { passive: true });
+})();
+</script>
+<script>
+/* sponsor toast: every word, link and logo comes from the aside's data attributes and markup, so the next sponsor
+   only edits the aside. Shown once the hero has scrolled away, hidden over the target block and the footer,
+   closed for data-snooze-days per browser (localStorage, best effort). */
+(() => {
+  'use strict';
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  const toast = $('.sponsor-toast');
+  if (!toast || !('IntersectionObserver' in window)) return;
+  const d = toast.dataset;
+  const key = 'sponsorToast:' + (d.sponsor || 'sponsor') + ':closed';
+  const snooze = (parseFloat(d.snoozeDays) || 7) * 864e5;
+  const store = {
+    get() { try { return Number(localStorage.getItem(key)) || 0; } catch (e) { return 0; } },
+    set(v) { try { localStorage.setItem(key, String(v)); } catch (e) { /* storage blocked: closed for this page view only */ } }
+  };
+  if (Date.now() - store.get() < snooze) return;
+
+  // the cycling sublines
+  const box = $('.sponsor-toast__lines', toast);
+  let lines = [];
+  try { lines = JSON.parse(d.lines || '[]'); } catch (e) { lines = []; }
+  if (box && lines.length) {
+    box.textContent = '';
+    lines.forEach((t, i) => { const s = document.createElement('span'); s.textContent = t; if (i) s.setAttribute('aria-hidden', 'true'); box.append(s); });
+  }
+  const spans = box ? $$('span', box) : [];
+  let cur = 0, timer = null;
+  const every = (parseFloat(d.cycleSeconds) || 4.5) * 1000;
+  const step = () => {
+    spans[cur].classList.remove('is-on'); spans[cur].setAttribute('aria-hidden', 'true');
+    cur = (cur + 1) % spans.length;
+    spans[cur].classList.add('is-on'); spans[cur].removeAttribute('aria-hidden');
+  };
+  if (spans.length) spans[0].classList.add('is-on');
+  const cycle = on => {
+    clearInterval(timer); timer = null;
+    if (on && spans.length > 1 && !document.hidden) timer = setInterval(step, every);
+  };
+
+  // when to show: past the hero, not over the target block, not over the footer, not paused by hover/focus
+  const st = { past: false, target: false, foot: false, closed: false };
+  let shownOnce = false, delay = null;
+  const render = () => {
+    const on = st.past && !st.target && !st.foot && !st.closed;
+    clearTimeout(delay);
+    if (on && !shownOnce) { delay = setTimeout(() => { shownOnce = true; render(); }, 700); return; }   // a beat after the hero leaves, like a real notification
+    if (!on && toast.contains(document.activeElement)) document.activeElement.blur();
+    toast.classList.toggle('is-on', on);
+    cycle(on);
+  };
+  toast.hidden = false;
+  const watch = (el, fn, opts) => el && new IntersectionObserver(([e]) => { fn(e); render(); }, opts).observe(el);
+  watch(document.getElementById(d.after || 'top'), e => { st.past = !e.isIntersecting && e.boundingClientRect.top < 0; }, { threshold: 0 });
+  const target = document.getElementById((($('.sponsor-toast__cta', toast) || {}).hash || '#').slice(1));
+  watch(target, e => { st.target = e.isIntersecting; }, { threshold: 0 });
+  watch($('footer'), e => { st.foot = e.isIntersecting; }, { threshold: 0 });
+
+  // pause the lines while the visitor reads or tabs through the card
+  toast.addEventListener('pointerenter', () => cycle(false));
+  toast.addEventListener('pointerleave', () => cycle(toast.classList.contains('is-on')));
+  toast.addEventListener('focusin', () => cycle(false));
+  toast.addEventListener('focusout', () => cycle(toast.classList.contains('is-on')));
+  document.addEventListener('visibilitychange', () => cycle(toast.classList.contains('is-on')));
+
+  const close = () => { st.closed = true; store.set(Date.now()); render(); };
+  $('.sponsor-toast__x', toast).addEventListener('click', close);
+  toast.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
 </script>
 </body>
