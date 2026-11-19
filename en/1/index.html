@@ -218,12 +218,13 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .hero__type.is-out span{opacity:0;transition:transform var(--cut) var(--ease-slide),opacity .5s ease .35s}
 .hero__type.is-out span:first-child{transform:translateX(-260%)}
 .hero__type.is-out span:last-child{transform:translateX(260%)}
-.badge{position:absolute;left:50%;top:var(--by,60%);transform:translateX(-50%);z-index:3;perspective:900px}
-.badge__flip{position:relative;background:var(--black);color:var(--white);border-radius:0;font-size:clamp(26px,2.8vw,40px);height:65px;padding:0 32px;display:grid;place-items:center;text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;transform-style:preserve-3d;transition:transform var(--cut) var(--ease-slide)}
+.plates{--ph:56px;position:absolute;left:50%;top:var(--by,40%);transform:translateX(-50%);z-index:3;display:grid;grid-template-columns:repeat(var(--pc,2),var(--pw,max-content));gap:6px}
+.badge{position:relative;perspective:900px}
+.badge__flip{position:relative;background:var(--black);color:var(--white);border-radius:0;font-size:calc(var(--ph) * .56);height:var(--ph);padding:0 calc(var(--ph) * .45);display:grid;place-items:center;text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;transform-style:preserve-3d;transition:transform var(--cut) var(--ease-slide)}
 .badge__flip span{grid-area:1/1;backface-visibility:hidden;text-align:center}
 .badge__flip .f-b{transform:rotateX(180deg)}
 .badge.is-flipped .badge__flip{transform:rotateX(180deg)}
-@media (max-width:640px){.badge__flip{height:52px;padding:0 20px;font-size:24px;max-width:calc(100vw - 2*var(--gt))}.hero__type span{font-size:22vw}}
+@media (max-width:640px){.hero__type span{font-size:22vw}}
 
 /* sponsor + partners on the hero's dark bottom: one grid, a label column and a logo column.
    Everything is a multiple of one logo unit --lu: spacing --u = .375lu, partner row --row = .66lu, and each logo's height = lu * --k.
@@ -240,7 +241,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 .hero__cos .co:hover img{opacity:1}
 .hero__cos .co--revel img{height:var(--rev);margin-left:calc(var(--rev) * -.17)}   /* the file has 17% of its height empty on the left */
 .co--promedica{--k:.56}.co--techzdravi{--k:.36}.co--kvant{--k:.53}.co--printed{--k:.30}
-.co--edih{--k:.66}.co--cnaip{--k:.55}.co--caai{--k:.60}.co--apss{--k:.62}.co--brnoai{--k:.46}.co--cas{--k:.96}.co--fekt{--k:.50}.co--bmr{--k:.62}.co--utbft{--k:.50}.co--hotskola{--k:.80}
+.co--edih{--k:.78}.co--cnaip{--k:.55}.co--caai{--k:.60}.co--apss{--k:.62}.co--brnoai{--k:.46}.co--cas{--k:.96}.co--fekt{--k:.62}.co--bmr{--k:.62}.co--utbft{--k:.50}.co--hotskola{--k:.55}
 /* Printed Robotics: the SVG carries a hairline frame and wide margins round its words; show just the words (k sizes their height) */
 .hero__cos .co--printed{overflow:hidden}
 .hero__cos .co--printed img{--t:calc(var(--lu) * var(--k));height:calc(var(--t) / .4425);margin:calc(var(--t) * -.6158) calc(var(--t) * -.4628) calc(var(--t) * -.644) calc(var(--t) * -.4574)}
@@ -274,7 +275,7 @@ p a{text-decoration:underline;text-underline-offset:.15em;text-decoration-thickn
 
 /* short screens: a smaller badge and company line; phones on their side also get a smaller title and the companies on one line */
 @media (max-height:500px){
-  .badge__flip{height:44px;padding:0 20px;font-size:20px}
+  .plates{--ph:34px;gap:4px}
 }
 @media (orientation:landscape) and (max-height:500px){
   .hero{--title-h:.42}
@@ -540,34 +541,33 @@ html.lb-open{overflow:hidden}
 /* the hero reads top to bottom as one phrase: #1 BRNO / PROTO ROBOT / the sponsors. The sponsors are two tiers of black plates
    in the badge's language (so REVEL's orange mark always sits on black): the main sponsor first, the sponsor after it,
    both plates one height. Side by side on wide screens, stacked to one column width on portrait phones. */
-.sponsors{position:absolute;left:50%;top:var(--sy,80%);transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:6px;width:max-content}
-.sponsor{--ph:50px;display:flex;align-items:center;justify-content:center;gap:calc(var(--ph) * .24);flex:none;height:var(--ph);padding:0 calc(var(--ph) * .4);background:var(--black);color:var(--white);text-decoration:none;white-space:nowrap}
+.sponsors{display:contents}
+.sponsor{display:flex;align-items:center;justify-content:center;gap:calc(var(--ph) * .24);flex:none;height:var(--ph);padding:0 calc(var(--ph) * .4);background:var(--black);color:var(--white);text-decoration:none;white-space:nowrap}
 .sponsor__l{font-size:12px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
 .sponsor img{display:block;width:auto}
 .sponsor--main img{height:calc(var(--ph) * .56);margin-left:calc(var(--ph) * -.085)}   /* the file has 17% of its height empty on the left */
 .sponsor--sub img{height:calc(var(--ph) * .26)}
 .sponsor--org img{height:calc(var(--ph) * .3)}
 .sponsor:hover img{opacity:.85}
-@media (min-width:641px) and (max-width:900px) and (orientation:portrait){.sponsors{flex-direction:column;align-items:stretch;gap:6px}}
-@media (max-width:640px) and (orientation:portrait){.sponsors{flex-direction:column;align-items:stretch;gap:4px}.sponsor{--ph:36px}.sponsor__l{font-size:10px}}
-@media (orientation:landscape) and (max-height:500px){.sponsors{gap:4px}.sponsor{--ph:30px}.sponsor__l{font-size:10px}}
+@media (max-width:640px) and (orientation:portrait){.plates{--ph:36px;gap:4px}.sponsor__l{font-size:10px}}
+@media (orientation:landscape) and (max-height:500px){.sponsor__l{font-size:10px}}
 
 /* portrait phones: the logos leave the strip and form centred lines, each label the first word of its line,
    built by optical width (lu at k, gaps .75): promedica KVANT 7.1 / Technologie Zdraví PRINTED 6.8 / EDIH cnaip BMR 6.1 / APSS ČAS 5.9 /
    ČAAI Brno.AI 5.2 / FEKT UTB 7.1, the companies first. The widest line fills the column, so the unit is width-driven; on short phones the height term wins.
    Lines are cut by full-width spacers (<i>) whose height is the line gap; the markup keeps the strip order and `order` regroups it. */
 @media (max-width:640px) and (orientation:portrait){
-  .hero__cos{--lu:min(48px,(100vw - 2 * var(--gt)) / 7.4,(100svh - 320px) / 9.6);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;column-gap:calc(var(--u) * 2);row-gap:0}
+  .hero__cos{--lu:min(48px,(100vw - 2 * var(--gt)) / 7.4,(100svh - 340px) / 10.4);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;column-gap:calc(var(--u) * 2);row-gap:0}
   .hero__cos__logos,.hero__cos__logos--partners{display:contents}
   .hero__cos .co{height:auto;justify-content:center}
   .hero__cos__label{height:auto;align-self:center}
   .hero__cos__br{display:block;flex:0 0 100%;height:calc(var(--u) * 1.5)}
-  .hero__cos__label{order:1}.co--promedica{order:2}.co--kvant{order:3}.hero__cos__br:nth-of-type(1){order:4}
-  .co--techzdravi{order:5}.co--printed{order:6}.hero__cos__br:nth-of-type(2){order:7}
-  .co--edih{order:8}.co--cnaip{order:9}.co--bmr{order:10}.hero__cos__br:nth-of-type(3){order:11}
-  .co--apss{order:12}.co--cas{order:13}.hero__cos__br:nth-of-type(4){order:14}
-  .co--caai{order:15}.co--brnoai{order:16}.hero__cos__br:nth-of-type(5){order:17}
-  .co--fekt{order:18}.co--utbft{order:19}.hero__cos__br:nth-of-type(6){order:20}.co--hotskola{order:21}
+  .hero__cos__label{order:1}.co--fekt{order:2}.hero__cos__br:nth-of-type(1){order:3}
+  .co--edih{order:4}.co--utbft{order:5}.hero__cos__br:nth-of-type(2){order:6}
+  .co--apss{order:7}.co--cas{order:8}.hero__cos__br:nth-of-type(3){order:9}
+  .co--caai{order:10}.co--brnoai{order:11}.hero__cos__br:nth-of-type(4){order:12}
+  .co--bmr{order:13}.co--cnaip{order:14}.hero__cos__br:nth-of-type(5){order:15}
+  .co--promedica{order:16}.co--kvant{order:17}.hero__cos__br:nth-of-type(6){order:18}.co--techzdravi{order:19}.co--hotskola{order:20}
 }
 /* ---------- jobs: the main sponsor's hiring block, right after the demo tables ---------- */
 .jobs__roles{margin-top:var(--s3);border-top:1px solid var(--black);max-width:960px;counter-reset:role}
@@ -655,9 +655,9 @@ html.lb-open{overflow:hidden}
     </div>
   </div>
   <div class="hero__type" id="type" aria-hidden="true"><div class="hero__type__in"><span>PROTO</span><span>ROBOT</span></div></div>
-  <div class="badge" id="badge" data-faces='["#1 Brno", "Thu 26 Nov 2026", "FA MU, Arna Nováka 1"]'><span class="vh">#1 Brno, Thursday 26 Nov 2026, Faculty of Arts MU, Arna Nováka 1</span><div class="badge__flip" aria-hidden="true"><span class="f-a">#1 Brno</span><span class="f-b" aria-hidden="true"></span></div></div>
-  <div class="sponsors" id="sponsors" role="group" aria-label="Organizer and sponsors"><a class="sponsor sponsor--main" href="https://revelrobotics.com" target="_blank" rel="noopener"><span class="sponsor__l">Main sponsor</span><img src="/img/1/logo/revel-orange.png" alt="REVEL Robotics"></a><a class="sponsor sponsor--sub" href="https://exoskelets.cz" target="_blank" rel="noopener"><span class="sponsor__l">Sponsor</span><img src="/img/1/logo/exoskelets-orange.png" alt="Exoskelets (Technologie zdraví)"></a><a class="sponsor sponsor--org" href="https://printedrobotics.cz" target="_blank" rel="noopener"><span class="sponsor__l">Organizer</span><img src="/img/1/logo/printedrobotics-orange.png" alt="Printed Robotics"></a></div>
-  <div class="hero__cos"><span class="hero__cos__label">Partners</span><div class="hero__cos__logos hero__cos__logos--partners"><a class="co co--promedica" href="https://www.promedica-praha.cz" target="_blank" rel="noopener" aria-label="Promedica Praha Group"><img src="/img/1/logo/promedica.png" alt="Promedica Praha Group"></a><a class="co co--techzdravi" href="https://www.linkedin.com/company/technologie-zdrav%C3%AD/" target="_blank" rel="noopener" aria-label="Technologie Zdraví"><img src="/img/1/logo/techzdravi-white.png" alt="Technologie Zdraví"></a><a class="co co--kvant" href="https://www.humanoidrobots.sk" target="_blank" rel="noopener" aria-label="KVANT Robotics"><img src="/img/1/logo/kvant.png" alt="KVANT Robotics"></a><a class="co co--edih" href="https://www.edihctu.eu/event/proto-robot-1/" target="_blank" rel="noopener" aria-label="EDIH CTU"><img src="/img/1/logo/edih-white.png" alt="EDIH CTU"></a><a class="co co--cnaip" href="https://cnaip.cz" target="_blank" rel="noopener" aria-label="Česká národní AI platforma (CNAIP)"><img src="/img/1/logo/cnaip-white.svg" alt="Česká národní AI platforma (CNAIP)"></a><a class="co co--caai" href="https://asociace.ai/akce/proto-robot-1-brno-roboti-v-laboratorich-a-nemocnicich/" target="_blank" rel="noopener" aria-label="Česká asociace umělé inteligence"><img src="/img/1/logo/caai-white.svg" alt="Česká asociace umělé inteligence"></a><a class="co co--brnoai" href="https://www.brno.ai" target="_blank" rel="noopener" aria-label="Brno.AI"><img src="/img/1/logo/brnoai-white.svg" alt="Brno.AI"></a><a class="co co--apss" href="https://www.apsscr.cz" target="_blank" rel="noopener" aria-label="Asociace poskytovatelů sociálních služeb ČR"><img src="/img/1/logo/apss-white.png" alt="Asociace poskytovatelů sociálních služeb ČR"></a><a class="co co--fekt" href="https://www.fekt.vut.cz" target="_blank" rel="noopener" aria-label="FEKT VUT v Brně"><img src="/img/1/logo/fekt-white.png" alt="Fakulta elektrotechniky a komunikačních technologií VUT v Brně"></a><a class="co co--cas" href="https://www.cnna.cz" target="_blank" rel="noopener" aria-label="Česká asociace sester"><img src="/img/1/logo/cas-white.png" alt="Česká asociace sester"></a><a class="co co--bmr" href="https://mars.fekt.vut.cz" target="_blank" rel="noopener" aria-label="Brno Mars Rover"><img src="/img/1/logo/bmr-white.png" alt="Brno Mars Rover"></a><a class="co co--utbft" href="https://ft.utb.cz" target="_blank" rel="noopener" aria-label="Tomas Bata University in Zlín, Faculty of Technology"><img src="/img/1/logo/utbft-white.png" alt="Tomas Bata University in Zlín, Faculty of Technology"></a><a class="co co--hotskola" href="https://www.hotskolabrno.cz" target="_blank" rel="noopener" aria-label="Hotelová škola Brno, catering"><img src="/img/1/logo/hotskola-white.png" alt="Hotelová škola Brno"></a><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i></div></div>
+  <div class="plates" id="plates"><div class="badge" id="badge" data-faces='["#1 Brno", "Thu 26 Nov 2026", "FA MU, Arna Nováka 1"]'><span class="vh">#1 Brno, Thursday 26 Nov 2026, Faculty of Arts MU, Arna Nováka 1</span><div class="badge__flip" aria-hidden="true"><span class="f-a">#1 Brno</span><span class="f-b" aria-hidden="true"></span></div></div>
+  <div class="sponsors" id="sponsors" role="group" aria-label="Organizer and sponsors"><a class="sponsor sponsor--main" href="https://revelrobotics.com" target="_blank" rel="noopener"><span class="sponsor__l">Main sponsor</span><img src="/img/1/logo/revel-orange.png" alt="REVEL Robotics"></a><a class="sponsor sponsor--sub" href="https://exoskelets.cz" target="_blank" rel="noopener"><span class="sponsor__l">Sponsor</span><img src="/img/1/logo/exoskelets-orange.png" alt="Exoskelets (Technologie zdraví)"></a><a class="sponsor sponsor--org" href="https://printedrobotics.cz" target="_blank" rel="noopener"><span class="sponsor__l">Organizer</span><img src="/img/1/logo/printedrobotics-orange.png" alt="Printed Robotics"></a></div></div>
+  <div class="hero__cos"><span class="hero__cos__label">Partners</span><div class="hero__cos__logos hero__cos__logos--partners"><a class="co co--fekt" href="https://www.fekt.vut.cz" target="_blank" rel="noopener" aria-label="FEKT VUT v Brně"><img src="/img/1/logo/fekt-white.png" alt="Fakulta elektrotechniky a komunikačních technologií VUT v Brně"></a><a class="co co--edih" href="https://www.edihctu.eu/event/proto-robot-1/" target="_blank" rel="noopener" aria-label="EDIH CTU"><img src="/img/1/logo/edih-white.png" alt="EDIH CTU"></a><a class="co co--utbft" href="https://ft.utb.cz" target="_blank" rel="noopener" aria-label="Tomas Bata University in Zlín, Faculty of Technology"><img src="/img/1/logo/utbft-white.png" alt="Tomas Bata University in Zlín, Faculty of Technology"></a><a class="co co--bmr" href="https://mars.fekt.vut.cz" target="_blank" rel="noopener" aria-label="Brno Mars Rover"><img src="/img/1/logo/bmr-white.png" alt="Brno Mars Rover"></a><a class="co co--cas" href="https://www.cnna.cz" target="_blank" rel="noopener" aria-label="Česká asociace sester"><img src="/img/1/logo/cas-white.png" alt="Česká asociace sester"></a><a class="co co--apss" href="https://www.apsscr.cz" target="_blank" rel="noopener" aria-label="Asociace poskytovatelů sociálních služeb ČR"><img src="/img/1/logo/apss-white.png" alt="Asociace poskytovatelů sociálních služeb ČR"></a><a class="co co--caai" href="https://asociace.ai/akce/proto-robot-1-brno-roboti-v-laboratorich-a-nemocnicich/" target="_blank" rel="noopener" aria-label="Česká asociace umělé inteligence"><img src="/img/1/logo/caai-white.svg" alt="Česká asociace umělé inteligence"></a><a class="co co--cnaip" href="https://cnaip.cz" target="_blank" rel="noopener" aria-label="Česká národní AI platforma (CNAIP)"><img src="/img/1/logo/cnaip-white.svg" alt="Česká národní AI platforma (CNAIP)"></a><a class="co co--brnoai" href="https://www.brno.ai" target="_blank" rel="noopener" aria-label="Brno.AI"><img src="/img/1/logo/brnoai-white.svg" alt="Brno.AI"></a><a class="co co--promedica" href="https://www.promedica-praha.cz" target="_blank" rel="noopener" aria-label="Promedica Praha Group"><img src="/img/1/logo/promedica.png" alt="Promedica Praha Group"></a><a class="co co--kvant" href="https://www.humanoidrobots.sk" target="_blank" rel="noopener" aria-label="KVANT Robotics"><img src="/img/1/logo/kvant.png" alt="KVANT Robotics"></a><a class="co co--techzdravi" href="https://www.linkedin.com/company/technologie-zdrav%C3%AD/" target="_blank" rel="noopener" aria-label="Technologie Zdraví"><img src="/img/1/logo/techzdravi-white.png" alt="Technologie Zdraví"></a><a class="co co--hotskola" href="https://www.hotskolabrno.cz" target="_blank" rel="noopener" aria-label="Hotelová škola Brno, catering"><img src="/img/1/logo/hotskola-white.png" alt="Hotelová škola Brno"></a><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i><i class="hero__cos__br" aria-hidden="true"></i></div></div>
 </section>
 
 <section class="mod intro" id="about">
@@ -879,8 +879,8 @@ html.lb-open{overflow:hidden}
     let B = bounds();
     // posters are centred: one block, the #1 BRNO plate, the title's ink, then the sponsor tiers, on the hero's centre line
     const gut = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gt')) || 10;
-    const badgeH = badgeFlipEl.getBoundingClientRect().height || 65;   // the flip plate (it turns in place, so its box never changes)
-    const spH = sponsorsEl ? sponsorsEl.getBoundingClientRect().height : 0;
+    const badgeH = platesEl.getBoundingClientRect().height || 65;   // the plates block: #1 BRNO + sponsors (the flip turns in place)
+    const spH = 0;
     const gap = Math.round(Math.max(12, Math.min(24, H.height * .024)));   // plate to ink, ink to sponsors
     const titleH = parseFloat(getComputedStyle(hero).getPropertyValue('--title-h')) || 0.6;   // share of the hero height the title may take
     // the block stays clear of the bar above and of the sponsor + partner lines below (two line gaps above the logos)
@@ -889,19 +889,18 @@ html.lb-open{overflow:hidden}
     const bar = $('.top'), ceil = H.top + (bar ? bar.getBoundingClientRect().bottom : 0) + gut;   // the bar is fixed over the hero's top
     set('--sc', Math.max(.2, Math.min(1, (H.width - 2 * gut) / (B.r - B.l), (H.height * titleH) / (B.b - B.t), (floor - ceil - 2 * gap - badgeH - spH) / (B.b - B.t))));
     B = bounds();
-    const blockH = badgeH + gap + (B.b - B.t) + gap + spH;
+    const blockH = badgeH + gap + (B.b - B.t);
     const top = Math.max(ceil, Math.min(H.top + (H.height - blockH) / 2 + H.height * 0.02, floor - blockH));
     const tTop = top + badgeH + gap;
     set('--tx', (H.left + H.width / 2 - (B.l + B.r) / 2) + 'px');
     set('--ty', (tTop - B.t) + 'px');
     hero.style.setProperty('--by', (top - H.top) + 'px');
-    hero.style.setProperty('--sy', (tTop - H.top + (B.b - B.t) + gap) + 'px');
     type.classList.add('is-ready');
   };
 
   /* badge keeps one width so the flips never resize it: the width of its first face (#1 Brno), but at least .6 of the longest
      face so the date and the address stay readable; a longer face is set smaller to fit (scale kept per face) */
-  const badgeEl = $('#badge'), badgeFlipEl = $('.badge__flip', badgeEl), sponsorsEl = $('#sponsors');
+  const badgeEl = $('#badge'), badgeFlipEl = $('.badge__flip', badgeEl), platesEl = $('#plates');
   const sizeBadge = () => {
     const faces = JSON.parse(badgeEl.dataset.faces);
     const probe = badgeFlipEl.cloneNode(false);
@@ -911,7 +910,15 @@ html.lb-open{overflow:hidden}
     const ws = faces.map(f => { probe.textContent = f; return probe.getBoundingClientRect().width; });
     probe.remove();
     const pad = 2 * parseFloat(getComputedStyle(badgeFlipEl).paddingLeft);
-    const w = Math.ceil(Math.min(Math.max(ws[0], .6 * Math.max(...ws)), badgeEl.parentElement.clientWidth - 2 * (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gt')) || 10)));
+    // the four plates (#1 BRNO + three sponsors) share one width, the widest of them: 2 x 2 where it fits (about the title's width), else one column
+    const sps = $$('.sponsor', platesEl);
+    platesEl.style.setProperty('--pw', 'max-content'); platesEl.style.setProperty('--pc', '1');
+    const spW = sps.map(a => a.getBoundingClientRect().width);
+    const avail = platesEl.parentElement.clientWidth - 2 * (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--gt')) || 10);
+    const w = Math.ceil(Math.min(Math.max(ws[0], .6 * Math.max(...ws), ...spW), avail));
+    const pg = parseFloat(getComputedStyle(platesEl).columnGap) || 6;
+    const pc = 2 * w + pg <= avail ? 2 : 1;
+    platesEl.style.setProperty('--pw', w + 'px'); platesEl.style.setProperty('--pc', pc);
     badgeFlipEl.style.width = w + 'px';
     badgeEl._scales = ws.map(x => Math.min(1, (w - pad) / (x - pad)));
     $$('span', badgeFlipEl).forEach(sp => { const k = faces.indexOf(sp.textContent); sp.style.fontSize = k > -1 ? (badgeEl._scales[k] * 100) + '%' : ''; });
