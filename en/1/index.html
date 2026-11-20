@@ -573,6 +573,8 @@ html.lb-open{overflow:hidden}
 }
 /* ---------- jobs: the main sponsor's hiring block, right after the demo tables ---------- */
 .jobs__roles{margin-top:var(--s3);border-top:1px solid var(--black);max-width:960px;counter-reset:role}
+.jobs__intro .tl-note{margin-top:var(--s2)}
+@media (min-width:900px){.jobs__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}.jobs__grid .jobs__roles{margin-top:0;max-width:none}}
 .jobs__roles li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s2);align-items:baseline;padding:var(--s1) 0;border-bottom:1px solid var(--grey-line);font-weight:600;font-size:clamp(19px,1.6vw,23px);line-height:1.25;letter-spacing:-.01em;counter-increment:role}
 .jobs__roles li::before{content:counter(role,decimal-leading-zero);font-weight:300;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em;line-height:1}
 @media (max-width:640px){.jobs__roles li{grid-template-columns:44px minmax(0,1fr);gap:var(--s1)}.jobs__roles li::before{font-size:22px}}
@@ -758,8 +760,13 @@ html.lb-open{overflow:hidden}
 
 <section class="mod jobs" id="jobs">
   <h2>Jobs in robotics</h2>
-  <p class="lede">REVEL Robotics, the evening’s main sponsor, is growing its team. Come to their demo table on 26&nbsp;Nov or check their website.</p>
-  <!-- roles from REVEL (English titles in both languages); no careers page yet, so the link goes to revelrobotics.com -->
+  <div class="jobs__grid">
+    <div class="jobs__intro">
+      <p class="lede">REVEL Robotics, the evening’s main sponsor, is growing its team. Come to their demo table on 26&nbsp;Nov or check their website.</p>
+      <p class="tl-note">Prague, on-site</p>
+      <div class="cta-row"><a class="pill pill--dark" href="https://revelrobotics.com" target="_blank" rel="noopener">revelrobotics.com</a></div>
+    </div>
+    <!-- roles from REVEL (English titles in both languages); no careers page yet, so the link goes to revelrobotics.com -->
   <ul class="jobs__roles" aria-label="Open roles at REVEL Robotics">
     <li lang="en">sEMG / Biosignal ML Scientist</li>
     <li lang="en">RAI Robot Learning Engineer</li>
@@ -767,8 +774,7 @@ html.lb-open{overflow:hidden}
     <li lang="en">Mechanical Engineer, Wearables</li>
     <li lang="en">Data Collection Engineer</li>
   </ul>
-  <p class="tl-note">Prague, on-site</p>
-  <div class="cta-row"><a class="pill pill--dark" href="https://revelrobotics.com" target="_blank" rel="noopener">revelrobotics.com</a></div>
+  </div>
 </section>
 
 <section class="mod where" id="where">
