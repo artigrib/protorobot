@@ -697,7 +697,7 @@ html.lb-open{overflow:hidden}
     <article class="spk">
       <div class="photo"><img src="/img/1/sp-krizova.webp" alt="Barbora Křížová" width="600" height="600" loading="lazy" decoding="async"></div>
       <h3 class="spk__name">Barbora Křížová</h3>
-      <p class="spk__org">Technologie Zdraví (Exoskelets)</p>
+      <p class="spk__org">Exoskelets</p>
       <p class="spk__talk">Exoskeletons in care: research with Mendel University</p>
       <p class="spk__note">Exoskeleton research with Mendel University that Technologie Zdraví presented to physiotherapists at University Hospital Brno.</p>
     </article>
@@ -741,7 +741,7 @@ html.lb-open{overflow:hidden}
     <li><time datetime="2026-11-26T19:35+01:00">19:35</time><div><b>A robot in the lab: the openTube2 system from BUT</b><span>Prof. Radomil Matoušek, Department of Control and Instrumentation, FEEC BUT</span></div></li>
     <li><time datetime="2026-11-26T19:45+01:00">19:45</time><div><b>Robotic surgery in practice: da Vinci at FNUSA</b><span>Petr Filipenský, MD, head of department, St. Anne's University Hospital Brno</span></div></li>
     <li><time datetime="2026-11-26T20:00+01:00">20:00</time><div><b>How a surgical robot gets into a hospital: Versius</b><span>Kamil Bořek, Promedica Praha Group</span></div></li>
-    <li><time datetime="2026-11-26T20:15+01:00">20:15</time><div><b>Exoskeletons in care: research with Mendel University</b><span>Barbora Křížová, Technologie Zdraví (Exoskelets)</span></div></li>
+    <li><time datetime="2026-11-26T20:15+01:00">20:15</time><div><b>Exoskeletons in care: research with Mendel University</b><span>Barbora Křížová, Exoskelets</span></div></li>
     <li><time datetime="2026-11-26T20:25+01:00">20:25</time><div><b>Panel: Robots in care. Who accepts them, and what is ethical?</b><span>Lucie Vidovićová (FSS MU), David Černý (Institute of State and Law, CAS), Jana Mikešová (Rehabilitation Clinic, FN Brno), Zhenya Orlova (REVEL Robotics). Moderated by Arti</span></div></li>
     <li><time datetime="2026-11-26T20:55+01:00">20:55</time><div><b>Lightning: show your project</b><span>Teams, 2 minutes each, sign up at registration</span></div></li>
     <li><time datetime="2026-11-26T21:10+01:00">21:10</time><div><b>Networking and demo tables</b><span>Until 21:40. VR simulator of a surgical robot, a lifting exoskeleton, a robot hand that mirrors yours, a humanoid robot from KVANT Robotics, Bratislava, an OT-2 pipetting robot from Tomas Bata University, a Mars rover by BUT students, the TROPIC01 secure chip by Tropic Square</span></div></li>
@@ -1241,5 +1241,7 @@ html.lb-open{overflow:hidden}
   toast.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
 </script>
+<script>/* pass UTM tags from the page URL to the Luma registration links */
+(function(){try{var q=new URLSearchParams(location.search),u=new URLSearchParams();q.forEach(function(v,k){if(/^utm_/.test(k))u.set(k,v)});if(![...u.keys()].length)return;document.querySelectorAll('a[href*="luma.com/sxk08o64"]').forEach(function(a){var h=new URL(a.href);u.forEach(function(v,k){h.searchParams.set(k,v)});a.href=h.toString()})}catch(e){}})();</script>
 </body>
 </html>
