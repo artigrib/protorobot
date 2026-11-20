@@ -587,6 +587,7 @@ html.lb-open{overflow:hidden}
 /* ---------- jobs: the main sponsor's hiring block, right after the demo tables ---------- */
 .jobs__roles{margin-top:var(--s3);border-top:1px solid var(--black);max-width:960px;counter-reset:role}
 .jobs__intro .tl-note{margin-top:var(--s2)}
+.jobs__roles a{color:inherit;text-decoration:none;display:flex;justify-content:space-between;gap:var(--s1)}.jobs__roles a::after{content:"↗";font-weight:400;opacity:.5;transition:opacity .2s,transform .2s}.jobs__roles a:hover{color:var(--orange)}.jobs__roles a:hover::after{opacity:1;transform:translate(2px,-2px)}
 @media (min-width:900px){.jobs__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:start}.jobs__grid .jobs__roles{margin-top:0;max-width:none}}
 .jobs__roles li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s2);align-items:baseline;padding:var(--s1) 0;border-bottom:1px solid var(--grey-line);font-weight:600;font-size:clamp(19px,1.6vw,23px);line-height:1.25;letter-spacing:-.01em;counter-increment:role}
 .jobs__roles li::before{content:counter(role,decimal-leading-zero);font-weight:300;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.03em;line-height:1}
@@ -778,13 +779,13 @@ html.lb-open{overflow:hidden}
       <p class="lede">REVEL Robotics, the evening’s main sponsor, is growing its team. Come to their demo table on 26&nbsp;Nov or check their website.</p>
       <div class="cta-row"><a class="pill pill--dark" href="https://revelrobotics.com" target="_blank" rel="noopener">revelrobotics.com</a></div>
     </div>
-    <!-- roles from REVEL (English titles in both languages); no careers page yet, so the link goes to revelrobotics.com -->
+    <!-- roles from REVEL (English titles in both languages), links to their Ashby job posts -->
   <ul class="jobs__roles" aria-label="Open roles at REVEL Robotics">
-    <li lang="en">sEMG / Biosignal ML Scientist</li>
-    <li lang="en">RAI Robot Learning Engineer</li>
-    <li lang="en">Junior Data Collection Specialist</li>
-    <li lang="en">Mechanical Engineer, Wearables</li>
-    <li lang="en">Data Collection Engineer</li>
+    <li lang="en"><a href="https://jobs.ashbyhq.com/revelrobotics/9328e553-3426-4ae4-90f6-0f2ad420359b" target="_blank" rel="noopener">sEMG / Biosignal ML Scientist</a></li>
+    <li lang="en"><a href="https://jobs.ashbyhq.com/revelrobotics/58c03266-0610-4470-857b-67380eea79c2" target="_blank" rel="noopener">RAI Robot Learning Engineer</a></li>
+    <li lang="en"><a href="https://jobs.ashbyhq.com/revelrobotics/f8b76581-38c6-42df-96c7-1e3ede387835" target="_blank" rel="noopener">Junior Data Collection Specialist</a></li>
+    <li lang="en"><a href="https://jobs.ashbyhq.com/revelrobotics/78885195-b6ce-4e1a-8d97-c7bf160738af" target="_blank" rel="noopener">Mechanical Engineer, Wearables</a></li>
+    <li lang="en"><a href="https://jobs.ashbyhq.com/revelrobotics/814efd36-de9d-410f-9f41-0020a24f1e01" target="_blank" rel="noopener">Data Collection Operations Lead</a></li>
   </ul>
   </div>
 </section>
